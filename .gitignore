@@ -1,0 +1,18 @@
+# Dependency
+**/node_modules/
+npm-debug.log
+yarn-error.log
+
+# others
+*.log
+*.xml
+*.iml
+
+.vscode/settings.json
+.idea
+
+.DS_Store
+
+# Config - Never remove this script
+**/config/
+
