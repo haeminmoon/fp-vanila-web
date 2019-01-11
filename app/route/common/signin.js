@@ -1,4 +1,4 @@
-app.get('/signin', (req, res) => {
+app.get('/common/signin', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: ``,
         header: ``,
@@ -20,8 +20,8 @@ app.get('/signin', (req, res) => {
         `,
         footer: ``,
         script: `
-            <script src="/front/script/signin.js"></script>
-            <script>go('.signin_btn', $, Signin.route.signin)</script>
+            <script src="/front/script/common/signin.js"></script>
+            <script>go('.signin_btn', $, Signin.Route.signin)</script>
         `
     }));
 });
