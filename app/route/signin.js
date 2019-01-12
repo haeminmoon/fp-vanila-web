@@ -12,8 +12,8 @@ app.get('/signin', (req, res) => {
                         <Button class="signin_btn">${__('signin')}</Button>
                     </div>
                     <div class="other_wrap">
-                        <Button class="signup_btn">${__('signup')}</Button>
-                        <Button class="find_user_btn">${__('find_user')}</Button>
+                        <a href="/signup" class="signup_btn">${__('signup')}</a>
+                        <a href="" class="find_user_btn">${__('find_user')}</a>
                     </div>
                 </div>
             </div>
