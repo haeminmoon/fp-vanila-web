@@ -1,4 +1,4 @@
-app.get('/common/signup', (req, res) => {
+app.get('/common/signup_popup', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
         <link rel="stylesheet" href="/front/css/signup.css">
@@ -18,15 +18,19 @@ app.get('/common/signup', (req, res) => {
             <div class="container">
                 <div class="btn_wrap">
                     <p class="txt">어떤 역할로 가입을 하시나요?</p>
-                    <a href="/advertiser/adv_signup" class="btn">Supplier</a>
-                    <a href="/influencer/inf_signup" class="btn">Influencer</a>
+                    <a href="#" class="btn adv_signup">Advertiser</a>
+                    <a href="#" class="btn inf_signup">Influencer</a>
                 </div>
             </div>
         </div>
         `,
         footer: ``,
         script: `
-    
-         `
+        <script src="/front/script/common/signup_popup.js"></script>
+        <script>
+            go('.adv_signup', $, SignupPopup.Route.advSignup);
+            go('.inf_signup', $, SignupPopup.Route.infSignup);
+        </script>
+        `
     }));
 });

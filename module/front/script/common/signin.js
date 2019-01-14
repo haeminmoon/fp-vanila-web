@@ -1,14 +1,16 @@
-<<<<<<< HEAD:module/front/script/signin.js
-// !function () {
-//     const do = {};
-
-//     global.Signin = {
-//             do
-//     }
-// }();
-=======
 !function() {
+    const Route = {
+        signupPopup: $.on('click', _ => { 
+            /**
+             * TO-DO
+             * 주소표시줄 제거, 팝업 사이즈 리사이징 - 레이어 팝업 고려
+             */
+            $.openPopup(`/common/signup_popup`, 'Signup', 'toolbar=no, status=no, scrollbars=no, width=1024, height=768')
+         })
+    };
+
     global.Signin = {
+        Route
     }; 
 } ();
->>>>>>> ca61d7cb65f19727e8ed902d281893ba1ad0da97:module/front/script/common/signin.js
+
