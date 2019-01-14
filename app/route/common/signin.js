@@ -1,4 +1,4 @@
-app.get('/signin', (req, res) => {
+app.get('/common/signin', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: ``,
         header: ``,
@@ -12,7 +12,7 @@ app.get('/signin', (req, res) => {
                         <Button class="signin_btn">${__('signin')}</Button>
                     </div>
                     <div class="other_wrap">
-                        <a href="/signup" class="signup_btn">${__('signup')}</a>
+                        <a href="/common/signup" class="signup_btn">${__('signup')}</a>
                         <a href="" class="find_user_btn">${__('find_user')}</a>
                     </div>
                 </div>
@@ -20,8 +20,8 @@ app.get('/signin', (req, res) => {
         `,
         footer: ``,
         script: `
-            <script src="/front/script/signin.js"></script>
-            <script>go('.signin_btn', $, Signin.route.signin)</script>
+            <script src="/front/script/common/signin.js"></script>
+            <script>go('.signin_btn', $, Signin.Route.signin)</script>
         `
     }));
 });

@@ -21,6 +21,8 @@ body{
     width: 100%;
     height: 100%;
 }
+
+/* 공통 */
 .tit{
     float: right;
     width: 70px;
@@ -29,16 +31,30 @@ body{
     color: #eaedf8;
     font-weight: 500;
 }
-
-/* main */
-#main{
-    margin-top: 30px;
+.txt{
+    text-align: center;
+    line-height: 80px;
 }
+.btn_wrap{
+    width: 360px;
+    height: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+.btn{
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #627efe;
+    color: #fff;
+}
+
 .form_tit{
     padding: 20px;
 }
 input[type="text"]{
-    width: 320px;
+    width: 380px;
     height: 35px;
     padding: 20px;
     margin-bottom: 5px;
@@ -64,9 +80,6 @@ sup{
 .input_wrap{
     display: inline-block;
 }
-.event, .industry, .address{
-    width: 180px !important;
-}
 button{
     text-align: center;
     color: #fff;
@@ -75,7 +88,15 @@ button{
     border-radius: 4px;
     background-color: #627efe;
 }
-.sch_add_btn, .id_chk_btn{
+
+/* main */
+#main{
+    margin-top: 30px;
+}
+.event, .industry, .address{
+    width: 180px !important;
+}
+.sch_add_btn, .id_chk_btn, .phone_chk_btn{
     width: 76px;
     height: 40px;
     margin-left: 10px;
@@ -84,7 +105,7 @@ button{
 /* 회원정보 */
 .info{
     float: left;
-    width: 900px;
+    width: 960px;
     height: 380px;
     border-radius: 8px;
     background-color: #ffffff;
@@ -113,8 +134,8 @@ button{
 .form{
     padding: 0 40px;
 }
-.id{
-    width: 270px !important;
+.id, .phone_num_cer{
+    width: 290px !important;
 }
 .notice{
     margin-top: 20px;
@@ -127,7 +148,7 @@ button{
 /* 서류제출 */
 .document{
     float: left;
-    width: 430px;
+    width: 447px;
     height: 320px;
     margin-top: 30px;
     border-radius: 8px;
@@ -137,7 +158,7 @@ button{
 /* 이용약관 */
 .term{
     float: right;
-    width: 950px;
+    width: 990px;
     height: 320px;
     margin-top: 30px;
     border-radius: 8px;
@@ -153,7 +174,6 @@ button{
     display: inline;
 }
 input[type="checkbox"]{
-    border-radius: 100%;
     vertical-align: middle;
 }
 .check_wrap{
@@ -161,13 +181,17 @@ input[type="checkbox"]{
     height: 119px;
     padding: 30px 50px;
     border-radius: 4px;
-    margin-top: 10px;
+    margin-left: 25px;
+    margin-top: 20px;
     background-color: #f9faff;
 }
-.check_wrap > li{
+.term .check_wrap > li{
     float: left;
     width: 250px;
     padding-bottom: 15px;
+}
+.term .check_wrap > li > a{
+    text-decoration: underline;
 }
 
 /* button */
