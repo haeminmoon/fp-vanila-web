@@ -1,3 +1,5 @@
+const getHash = require('../../../module/back/util/encryption');
+
 app.get('/advertiser/adv_signup', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
@@ -140,7 +142,33 @@ app.get('/advertiser/adv_signup', (req, res) => {
         `,
         footer: ``,
         script: `
+        <script src="/front/script/advertiser/adv_signup.js"></script>
+        <script>
+            go('.signup_form', $, AdvSignUp.Route.signup);
+        </script>
     
          `
     }));
+});
+
+app.post('/advertiser/adv_signup', (req, res, next) => {
+    go(
+        req.body,
+        a => {
+            a.pw = getHash(a.pw);
+            return a;
+        },
+        pipeT(
+            b => QUERY `INSERT INTO users ${VALUES(b)}`,
+            res.json
+        ).catch(
+            match
+                .case({constraint: 'tb_user_pkey'})(
+                    _ => 'id'
+                )
+                .else(_ => ''),
+            m => new Error(m),
+            next
+        )
+    )
 });
