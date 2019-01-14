@@ -1,5 +1,30 @@
-require('./home');
+/**
+ * Common router
+ */
+require('./common/home');
+require('./common/signin');
+require('./common/signup');
+require('./common/signout');
+require('./common/find_user');
 
-require('./signin');
-require('./signup');
+/**
+ * Advertiser router
+ */
+require('./advertiser/adv_my_info');
+require('./advertiser/adv_dashboard');
+require('./advertiser/adv_campaign_registration');
+require('./advertiser/adv_campaign_management');
+require('./advertiser/adv_influencer_list');
+
+ /**
+ * Influencer router
+ */
+require('./influencer/inf_my_info');
+require('./influencer/inf_dashboard');
+require('./influencer/inf_campaign_list');
+require('./influencer/inf_campaign_management');
+
+ /**
+ * Admin router
+ */
 
