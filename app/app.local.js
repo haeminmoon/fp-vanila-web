@@ -1,4 +1,4 @@
-(async () => {   
+(async () => {
     const express = require('express');
     const app = global.app = express();
 
@@ -10,7 +10,7 @@
     require('../module/share/base/global');
     Object.assign(global, FF);
     Object.assign(global, TTL);
-    
+
     require('../module/share/template/tmpl');
     require('../module/share/template/tmpl.layout');
     // require('../module/share/template/common/home');
@@ -19,7 +19,7 @@
      * DB - Query builder setting
      */
     const { PostgreSQL } = require('mql2');
-    const { CONNECT } = PostgreSQL; 
+    const { CONNECT } = PostgreSQL;
     const dbInfo = require('../config/dbInfo');
     const POOL = CONNECT({
         host: dbInfo.host,
@@ -40,7 +40,7 @@
     const cookieParser = require('cookie-parser');
 
     app.use(compress());
-    app.use(bodyParser.json({limit: '10mb'}));
+    app.use(bodyParser.json({ limit: '10mb' }));
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
     app.use(require('stylus').middleware(path.join(__dirname, '../module')));
@@ -54,10 +54,10 @@
         rolling: true,
         resave: false,
         cookie: {
-          path: '/',
-          httpOnly: true,
-          expires: new Date(Date.now() + 3600000 * 24 * 7),
-          maxAge: 3600000 * 24 * 7
+            path: '/',
+            httpOnly: true,
+            expires: new Date(Date.now() + 3600000 * 24 * 7),
+            maxAge: 3600000 * 24 * 7
         }
     }));
 
@@ -66,7 +66,7 @@
      */
     const i18n = require('i18n');
     i18n.configure({
-        locales:['ko', 'en'],
+        locales: ['ko', 'en'],
         directory: __dirname + '/locales',
         cookie: 'lang'
     });
@@ -89,7 +89,7 @@
         err.status = 404;
         next(err);
     });
-    
+
     app.use((err, req, res, next) => {
         if (!req.url.match('/api')) return res.redirect('/');
 
@@ -98,4 +98,4 @@
     });
 
     const server = app.listen(3000, () => log('local app listening on port ' + server.address().port));
-}) ();
+})();
