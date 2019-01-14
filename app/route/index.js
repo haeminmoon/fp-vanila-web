@@ -3,7 +3,7 @@
  */
 require('./common/home');
 require('./common/signin');
-require('./common/signup');
+require('./common/signup_popup');
 require('./common/signout');
 require('./common/find_user');
 

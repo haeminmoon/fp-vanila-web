@@ -1,7 +1,3 @@
-/**
- * Javascript ES6 functional base
- */
-
 !function(global) {
     const log = console.log;
 

@@ -13,8 +13,7 @@
 
     require('../module/share/template/tmpl');
     require('../module/share/template/tmpl.layout');
-    // require('../module/share/template/common/home');
-
+    
     /**
      * DB - Query builder setting
      */
@@ -73,9 +72,9 @@
     app.use(i18n.init);
 
     app.use((req, res, next) => {
+        __ = res.__.bind(res);
         res.send = res.send.bind(res);
         res.json = res.json.bind(res);
-        __ = res.__.bind(res);
         next();
     });
 
@@ -85,7 +84,7 @@
      * Error handling middle ware
      */
     app.use((req, res, next) => {
-        var err = new Error('Not Found');
+        let err = new Error('Not Found');
         err.status = 404;
         next(err);
     });

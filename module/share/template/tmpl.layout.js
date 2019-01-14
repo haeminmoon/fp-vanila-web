@@ -9,8 +9,7 @@
                 ${css}
             </head>
             <body>
-                
-                    ${body}
+                ${body}
                 
                 <script src="/share/base/global.js"></script>
                 <script src="/share/base/ff.js"></script>

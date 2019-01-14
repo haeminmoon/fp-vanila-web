@@ -36,8 +36,8 @@ app.get('/common/signin', (req, res) => {
                         <button class="signin_btn">${__('signin')}</button>
                     </div>
                     <div class="other_wrap">
-                        <a href="/common/signup" class="signup_btn">${__('signup')}</a>
-                        <a href="/common/find_user" class="find_user_btn">${__('find_user')}</a>
+                        <a href="#" class="btn signup">${__('signup')}</a>
+                        <a href="#" class="btn find_user">${__('find_user')}</a>
                     </div>
                 </div>
             </div>
@@ -49,28 +49,27 @@ app.get('/common/signin', (req, res) => {
         `,
         script: `
             <script src="/front/script/common/signin.js"></script>
-            <script>go('.signin_box', $, Signin.Route.signin)</script>
+            <script>go('.signin_wrap', $, Signin.Route.signin)</script>
+            <script>go('.signup', $, Signin.Route.signupPopup)</script>
         `
     }));
 });
 
-app.post('/common/signin', (req, res, next) => {
+app.post('/api/common/signin', (req, res, next) => {
     go(
         req.body,
         pipeT(
             a => QUERY `SELECT * FROM users WHERE id = ${a.id}`,
             b => {
-                if (b.length === 0)
-                    throw 'The ID does not exist';
+                if (b.length === 0) throw 'The ID does not exist';
                 return b;
             },
             first,
             c => {
-                if (c.pw !== getHash(req.body.pw))
-                    throw 'The password is incorrect';
+                if (c.pw !== getHash(req.body.pw)) throw 'The password is incorrect';
                 return c;
             },
-            user => req.session.user = user || null,
+            d => req.session.user = d || null,
             res.json
         ).catch(
             match
@@ -81,8 +80,8 @@ app.post('/common/signin', (req, res, next) => {
                     _ => 'The password is incorrect'
                 )
                 .else(_ => ''),
-            m => new Error(m),
-            next
+                m => new Error(m),
+                next,
         )
     )
 });
