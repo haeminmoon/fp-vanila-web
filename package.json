@@ -6,7 +6,8 @@
   "scripts": {
     "local": "node ./app/app.local",
     "auto-local": "supervisor ./app/app.local",
-    "migrate": "node ./migrate/app"
+    "migrate": "node ./migrate/app",
+    "deploy": "sls deploy"
   },
   "repository": {
     "type": "git",
@@ -34,8 +35,13 @@
     "morgan": "^1.9.1",
     "mql2": "^0.1.20",
     "nodemailer": "^4.7.0",
+    "pbkdf2": "^3.0.17",
     "request": "^2.88.0",
-    "stylus": "^0.54.5"
+    "serverless-http": "^1.8.0",
+    "stylus": "^0.54.5",
+    "supervisor": "^0.12.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "serverless-offline": "^3.32.2"
+  }
 }
