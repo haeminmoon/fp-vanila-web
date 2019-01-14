@@ -40,13 +40,15 @@ app.get('/influencer/inf_signup', (req, res) => {
                                         <label for="birth">생년월일<sup>*</sup></label>
                                         <input type="text" name="birth" id="birth">
                                     </div>
-                                    <div class="input_wrap">
+                                    <div class="select_box">
                                         <label for="gender" class="gen_la">성별<sup>*</sup></label>
-                                        <span class="gen_chk">
-                                            <input type="radio" name="gender" value="man" id="gender">남
+                                        <span>
+                                            <input type="radio" name="gender" value="man" id="man" checked>
+                                            <label for="man">남</label>
                                         </span>
-                                        <span class="gen_chk"> 
-                                            <input type="radio" name="gender" value="woman" id="gender">여 
+                                        <span> 
+                                            <input type="radio" name="gender" value="woman" id="woman">
+                                            <label for="woman">여</label> 
                                         </span>
                                     </div>
                                 </div>

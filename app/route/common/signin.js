@@ -20,12 +20,12 @@ app.get('/common/signin', (req, res) => {
                     <p class="login_tit">SIGN IN</p>
                     <div class="select_wrap">
                         <span class="select_box">
-                            <input type="radio" name="select_role" value="supplier" id="supplier">
-                            <label for="select_role">${__('supplier')}</label>
+                            <input type="radio" name="select_role" value="supplier" id="supplier" checked>
+                            <label for="supplier">${__('supplier')}</label>
                         </span>
                         <span class="select_box">
                             <input type="radio" name="select_role" value="influencer" id="influencer">
-                            <label for="select_role">${__('influencer')}</label>
+                            <label for="influencer">${__('influencer')}</label>
                         </span>
                     </div>
                     <div class="signin_wrap">
