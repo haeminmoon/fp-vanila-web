@@ -1,9 +1,10 @@
 {
-    "signin": "signin",
-    "signup": "signup",
+    "signin": "sign in",
+    "signup": "sign up",
     "find_user": "Forgot your ID/PW?",
     "id": "ID",
     "pw": "Password",
-
+    "influencer": "Influencer",
+    "supplier": "Supplier",
     "copyright": "COPYRIGHT SPIN PROTOCOL. ALL RIGHTS RESERVED."
 }

@@ -3,7 +3,6 @@ body{
 }
 
 /* header */
-
 #header{
     width: 100%;
     height: 70px;
@@ -21,9 +20,7 @@ body{
     width: 100%;
     height: 100%;
 }
-
-/* 공통 */
-.tit{
+.title{
     float: right;
     width: 70px;
     margin-right: 30px;
@@ -31,9 +28,10 @@ body{
     color: #eaedf8;
     font-weight: 500;
 }
+
+/* 회원가입 카테고리 버튼 */
 .txt{
-    text-align: center;
-    line-height: 80px;
+    line-height: 70px;
 }
 .btn_wrap{
     width: 360px;
@@ -63,6 +61,12 @@ input[type="text"]{
     /* box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1); */
     background-color: #fbfcff;
 }
+input:focus{
+    border: 1px solid #627efe;
+}
+input[type="checkbox"]{
+    vertical-align: middle;
+}
 label{
     display: block;
     padding-bottom: 5px;
@@ -89,9 +93,22 @@ button{
     background-color: #627efe;
 }
 
+.error{
+    color: red;
+    font-size: 12px;
+}
 /* main */
 #main{
-    margin-top: 30px;
+    padding-top: 20px;
+}
+.form_left{
+    padding: 0 40px;
+    width: 400px;
+    float: left;
+}
+.form_right{
+    width: 430px;
+    float: right;
 }
 .event, .industry, .address{
     width: 180px !important;
@@ -105,28 +122,15 @@ button{
 /* 회원정보 */
 .info{
     float: left;
-    width: 960px;
     height: 380px;
     border-radius: 8px;
     background-color: #ffffff;
 }
-.form_left{
-    padding: 0 40px;
-    width: 400px;
-    float: left;
-}
-.form_right{
-    width: 430px;
-    float: right;
-}
-.detail_address{
-    margin-top: 10px;
-}
+
 
 /* 계정정보 */
 .account{
     float: right;
-    width: 480px;
     height: 380px;
     border-radius: 8px;
     background-color: #ffffff;
@@ -145,65 +149,62 @@ button{
     color: #74767d;
 }
 
-/* 서류제출 */
-.document{
-    float: left;
-    width: 447px;
-    height: 320px;
-    margin-top: 30px;
-    border-radius: 8px;
-    background-color: #ffffff;
+/* 체크박스 디자인 */
+.agree input[type="checkbox"]{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0
 }
-
-/* 이용약관 */
-.term{
-    float: right;
-    width: 990px;
-    height: 320px;
-    margin-top: 30px;
-    border-radius: 8px;
-    background-color: #ffffff;
+.agree input[type="checkbox"] + label{
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
-.term .form{
-    margin-top: 20px;
-}
-.check_box{
-    display: block;
-}
-.check_box > label{
-    display: inline;
-}
-input[type="checkbox"]{
+.agree input[type="checkbox"] + label:before {
+    content: ' ';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    margin: -2px 8px 0 0;
+    text-align: center;
     vertical-align: middle;
+    background: #fafafa;
+    border: 1px solid #cacece;
+    border-radius: 100%;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
 }
-.check_wrap{
-    width: 860px;
-    height: 119px;
-    padding: 30px 50px;
-    border-radius: 4px;
-    margin-left: 25px;
-    margin-top: 20px;
-    background-color: #f9faff;
+.agree input[type="checkbox"] + label:active:before,
+.agree input[type="checkbox"]:checked + label:active:before {
+        box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
 }
-.term .check_wrap > li{
-    float: left;
-    width: 250px;
-    padding-bottom: 15px;
-}
-.term .check_wrap > li > a{
-    text-decoration: underline;
+.agree input[type="checkbox"]:checked + label:before {
+    content: '\2713';
+    color: #314ca2;
+    text-shadow: 1px 1px white;
+    background: #f1f4ff;
+    border-color: #adb8c0;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
 }
 
-/* button */
+/* 제출 button */
 .submit_wrap{
-   display: flex;
-   justify-content: center;
-   align-content: center;
-   margin-top: 30px;
-}
-.submit_btn{
-    width: 300px;
-    height: 50px;
-    border-radius: 30px;
-}
-
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 30px;
+ }
+ .submit_btn{
+     width: 300px;
+     height: 50px;
+     border-radius: 30px;
+ }
