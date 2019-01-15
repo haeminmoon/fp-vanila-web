@@ -26,6 +26,7 @@ require('./advertiser/adv_signup_complete');
 require('./influencer/inf_my_info');
 require('./influencer/inf_campaign_list');
 require('./influencer/inf_campaign_detail');
+require('./influencer/inf_campaign_apply');
 require('./influencer/inf_campaign_management');
 require('./influencer/inf_signup');
 require('./influencer/inf_signup_complete');
