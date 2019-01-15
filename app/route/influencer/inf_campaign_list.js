@@ -5,7 +5,9 @@ app.get('/influencer/inf_campaign_list', (req, res) => {
         css: ``,
         header: ``,
         nav: ``,
-        main: ``,
+        main: `
+            캠페인 목록
+        `,
         footer: ``,
         script: ``
     }));
