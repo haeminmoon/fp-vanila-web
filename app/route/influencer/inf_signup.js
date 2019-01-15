@@ -1,6 +1,7 @@
+const {config, Group} = require('coolsms-sdk-v4');
+
 const getHash = require('../../../module/back/util/encryption');
 const getRandomInt6 = require('../../../module/back/util/getRandomInt');
-const {config, Group} = require('coolsms-sdk-v4');
 const coolsms = require('../../../config/coolsms');
 
 app.get('/influencer/inf_signup', (req, res) => {
@@ -161,7 +162,7 @@ app.get('/influencer/inf_signup', (req, res) => {
         <script>
             go('.signup_form', $, InfSignup.Route.signup);
             go('.signup_form', $, InfSignup.Route.checkId);
-            //go('.signup_form', $, InfSignup.Route.checkBn);
+            go('.signup_form', $, InfSignup.Route.checkBn);
             go('.input_wrap', $, InfSignup.Route.readyImage);
             go('#id', $, InfSignup.Route.validateEmail);
             go('#password', $, InfSignup.Route.validatePw);
