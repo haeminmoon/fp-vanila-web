@@ -57,6 +57,9 @@ app.get('/common/signin', (req, res) => {
     }));
 });
 
+/**
+ * 로그인
+ */
 app.post('/api/common/signin', (req, res, next) => {
     go(
         req.body,
@@ -76,10 +79,10 @@ app.post('/api/common/signin', (req, res, next) => {
         ).catch(
             match
                 .case('The ID does not exist')(
-                    _ => 'The ID does not exist'
+                    _ => 'id'
                 )
                 .case('The password is incorrect')(
-                    _ => 'The password is incorrect'
+                    _ => 'pw'
                 )
                 .else(_ => ''),
                 m => new Error(m),

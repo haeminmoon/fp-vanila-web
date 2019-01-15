@@ -33,18 +33,15 @@
             ).catch(
                 res => res.text(),
                 match
-                    .case('The ID does not exist')(
-                        _ => alert('아이디가 올바르지 않습니다.')
-                    )
-                    .case('The password is incorrect')(
-                        _ => alert('비밀번호가 올바르지 않습니다.')
-                    )
-                    .else(
-                        _ => alert('서버 에러입니다.')
-                    )
+                    .case('id')
+                    (_ => alert('아이디가 올바르지 않습니다.'))
+                    .case('pw')
+                    (_ => alert('비밀번호가 올바르지 않습니다.'))
+                    .else
+                    (_ => alert('서버 에러입니다.'))
             )
         ))
-    }
+    };
 
     global.Signin = {
         Route, Do

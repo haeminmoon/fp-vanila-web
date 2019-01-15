@@ -112,7 +112,7 @@ button{
     width: 430px;
     float: right;
 }
-.event, .industry, .address{
+.event, .industry, .post_code{
     width: 180px !important;
 }
 .sch_add_btn, .id_chk_btn, .phone_chk_btn{

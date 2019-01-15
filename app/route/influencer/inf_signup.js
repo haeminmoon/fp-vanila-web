@@ -1,3 +1,8 @@
+const getHash = require('../../../module/back/util/encryption');
+const getRandomInt6 = require('../../../module/back/util/getRandomInt');
+const {config, Group} = require('coolsms-sdk-v4');
+const coolsms = require('../../../config/coolsms');
+
 app.get('/influencer/inf_signup', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
@@ -16,6 +21,7 @@ app.get('/influencer/inf_signup', (req, res) => {
                                     <div class="input_wrap">
                                         <label for="profile_pic">사진(1MB 이하)<sup>*</sup></label>
                                         <input type="file" name="profile_pic" id="profile_pic">
+                                        <img id="profile_image" src="#" width="50" height="50" alt="your image" />
                                     </div>
                                     <div class="input_wrap">
                                         <label for="name">이름(본명)</label>
@@ -50,16 +56,17 @@ app.get('/influencer/inf_signup', (req, res) => {
                                         <label for="id">ID<sup>*</sup></label>
                                         <input type="text" name="id" class="id" id="id">
                                         <button type="button" class="id_chk_btn">중복확인</button>
+                                        <p class="error id_error"></p>
                                     </div>
                                     <div class="input_wrap">
                                         <label for="password">비밀번호<sup>*</sup></label>
                                         <input type="text" name="password" id="password">
-
+                                        <p class="error password_error"></p>
                                     </div>
                                     <div class="input_wrap">
                                         <label for="password_chk">비밀번호 확인<sup>*</sup></label>
                                         <input type="text" name="password_chk" id="password_chk">
-
+                                        <p class="error password_chk_error"></p>
                                     </div>
                                     <ul class="notice">
                                         <li>* 영문, 숫자, 특수문자 혼합 8자리 이상</li>
@@ -84,10 +91,13 @@ app.get('/influencer/inf_signup', (req, res) => {
                                         <label for="phone_num_cer">휴대폰 번호<sup>*</sup></label>
                                         <input type="text" name="phone_num_cer" id="phone_num_cer" class="phone_num_cer">
                                         <button type="button" class="phone_chk_btn">본인인증</button>
+                                        <p class="error phone_num_error"></p>
                                     </div>
-                                    <div class="input_wrap">
+                                    <div class="input_wrap hidden">
                                         <label for="certification_num">인증번호<sup>*</sup></label>
                                         <input type="text" name="certification_num" id="certification_num" class="certification_num">
+                                        <span class="error code_error"></span>
+                                        <input type="hidden" name="user_code" class="user_code">
                                     </div>
                                 </div>
                         </div>
@@ -142,7 +152,96 @@ app.get('/influencer/inf_signup', (req, res) => {
         `,
         footer: ``,
         script: `
-    
+        <script src="/front/script/influencer/inf_signup.js"></script> 
+        <script>
+            go('.signup_form', $, InfSignup.Route.signup);
+            go('.signup_form', $, InfSignup.Route.checkId);
+            //go('.signup_form', $, InfSignup.Route.checkBn);
+            go('.input_wrap', $, InfSignup.Route.readyImage);
+            go('#id', $, InfSignup.Route.validateEmail);
+            go('#password', $, InfSignup.Route.validatePw);
+            go('#password_chk', $, InfSignup.Route.validateCheckPw);
+            go('#phone_num_cer', $, InfSignup.Route.validatePhoneNumber);
+            go('#certification_num', $, InfSignup.Route.validateCheckCode);
+            go('.phone_chk_btn', $, InfSignup.Route.showCode)
+        </script>
          `
     }));
+});
+
+/**
+ * 인플런서 회원가입
+ */
+app.post('/api/influencer/inf_signup', (req, res, next) => {
+    go(
+        req.body,
+        a => {
+            a.pw = getHash(a.pw);
+            return a;
+        },
+        pipeT(
+            b => QUERY `INSERT INTO users ${VALUES(b)}`,
+            res.json
+        ).catch(
+            match
+                .case ({constraint: 'tb_user_pkey'})(_ => 'id')
+                .else (_ => ''),
+            m => new Error(m),
+            next
+        )
+    )
+});
+
+/**
+ * 인플런서 아이디 중복체크
+ */
+app.post('/api/influencer/inf_checkId', (req, res, next) => {
+    go(
+        req.body.id,
+        pipeT(
+            a => QUERY `SELECT * FROM users WHERE id = ${a}`,
+            b => {
+                if (b.length !== 0){
+                    throw 'The ID is already exist';
+                }
+                return b;
+            },
+            res.json
+        ).catch(
+            match
+                .case ('The ID is already exist')(_ => 'The ID is already exist')
+                .else (_ => ''),
+            m => new Error(m),
+            next
+        )
+    )
+});
+
+/**
+ * 인플런서 인증번호 발송
+ */
+app.post('/api/influencer/inf_checkBn', (req, res, next) => {
+    const code = String(getRandomInt6());
+
+    config.init({
+        apiKey: coolsms.apiKey,
+        apiSecret: coolsms.apiSecret
+    });
+
+    go(
+        req.body.phone_num,
+        a  => {
+            return { text: `spin-protocol 에서 발송한 인증번호 ${code} 입니다.`,
+                type: coolsms.type,
+                to: a,
+                from: coolsms.from };
+        },
+        pipeT(
+            b => Group.sendSimpleMessage(b),
+            _ => res.json({code : code})
+        ).catch(
+            m => new Error(m),
+            next
+        )
+    )
 });
