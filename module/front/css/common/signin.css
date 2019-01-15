@@ -1,0 +1,122 @@
+body{
+    background-color: rgba(0,0,0,0.3);
+}
+/* header */
+#header{
+    width: 100%;
+    height: 70px;
+    /* background-color: #1f263e; */
+}
+#header .logo{
+    float: left;
+    width: 174px;
+    height: 70px;
+    padding-left: 20px;
+    object-fit: contain;
+}
+#header .logo a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.title{
+    float: right;
+    width: 70px;
+    margin-right: 30px;
+    line-height: 70px;
+    color: #eaedf8;
+    font-weight: 500;
+}
+
+/* main */
+#main{
+    width: 100%;
+    height: 100%;
+}
+.signin_box{
+    position: absolute;
+    width: 520px;
+    height: 600px;
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    box-shadow: 12.2px 19.5px 9.6px 0.4px rgba(0, 0, 0, 0.13);
+    background-color: #f8f8fb;
+    transform: translate(-50%,-50%);
+}
+.login_tit{
+    position: relative;
+    text-align: center;
+    line-height: 80px;
+    margin-top: 20px;
+    font-size: 2em;
+}
+.login_tit::before{
+    content: '';
+    position: absolute;
+    width: 48px;
+    height: 1px;
+    background-color: #4864e2;
+    bottom: -0;
+    margin-left: 25px;
+}
+.select_wrap{
+    text-align:center;
+    margin: 40px 60px;
+}
+.select_box{
+    position: relative;
+    padding: 50px;
+}
+.signin_wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.signin_wrap  > input{
+    width: 443px;
+    height: 58px;
+    border: none;
+    background: none;
+    border-bottom: 1px solid #cbcbcb;
+    margin-top: 10px;
+    padding: 20px;
+}
+.signin_wrap > input:focus{
+    border-bottom: 1px solid #4864e2;
+    transition: 0.5s ease;
+}
+.signin_wrap > button{
+    width: 443px;
+    height: 58px;
+    border: none;
+    margin-top: 30px;
+    background-color: #445abc;
+    color: #fff;
+}
+.other_wrap{
+    text-align: right;
+    padding: 10px 40px;
+}
+.other_wrap > a{
+    font-size: 12px;
+    color: #999999;
+}
+.other_wrap > a:hover{
+    text-decoration: underline;
+}
+
+/* footer */
+#footer{
+    position: absolute;
+    width: 100%;
+    height: 57px;
+    background-color: #343434;
+    bottom: 0;
+}
+#footer > p{
+    line-height: 57px;
+    text-align: center;
+    color: #fff;
+}
+

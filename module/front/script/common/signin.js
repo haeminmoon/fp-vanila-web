@@ -1,6 +1,6 @@
-!function() {
+!function () {
     const Route = {
-        signupPopup: $.on('click', _ => { 
+        signupPopup: $.on('click', _ => {
             /**
              * TO-DO
              * 주소표시줄 제거, 팝업 사이즈 리사이징 - 레이어 팝업 고려
@@ -10,7 +10,7 @@
     };
 
     const Do = {
-        signin: $.on('click', '.signin_btn', ({delegateTarget: dt}) => go(
+        signin: $.on('click', '.signin_btn', ({ delegateTarget: dt }) => go(
             {
                 id: go(dt, $.find('.id'), $.trim),
                 pw: go(dt, $.find('.pw'), $.trim)
@@ -48,7 +48,7 @@
 
     global.Signin = {
         Route, Do
-    }; 
-} ();
+    };
+}();
 
 
