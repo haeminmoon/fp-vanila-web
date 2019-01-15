@@ -55,7 +55,7 @@
 
     TMPL.layout.footer = _ => `
         <div id="footer">
-            ${__('copyright')}
+            <p>${__('copyright')}</p>
         </div>
     `;
 }();
