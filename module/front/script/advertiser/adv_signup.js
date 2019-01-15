@@ -1,5 +1,5 @@
 !function (){
-    const Route = {
+    const Do = {
         signup: $.on('click', '.submit_btn', ({delegateTarget: dt}) => go(
             {
                 id: go(dt, $.find('[name="id"]'), $.trim),
@@ -22,7 +22,7 @@
                     }
                     return a;
                 },
-                ({id, pw, auth, created_at, ...info}) => {
+                ({ id, pw, auth, created_at, ...info }) => {
                   return {
                       id: id,
                       pw: pw,
@@ -31,7 +31,6 @@
                       created_at: new Date()
                   }
                 },
-                tap(log),
                 $.post('/advertiser/adv_signup'),
                 _ => location.href = '/'
             ).catch(
@@ -50,6 +49,6 @@
         ))
     };
     global.AdvSignUp = {
-        Route
+        Do
     }
-}();
+} ();

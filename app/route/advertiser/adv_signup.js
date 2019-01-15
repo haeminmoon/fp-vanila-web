@@ -143,14 +143,14 @@ app.get('/advertiser/adv_signup', (req, res) => {
         script: `
             <script src="/front/script/advertiser/adv_signup.js"></script>
             <script>
-                go('.signup_form', $, AdvSignUp.Route.signup);
+                go('.signup_form', $, AdvSignUp.Do.signup);
             </script>
     
          `
     }));
 });
 
-app.post('/advertiser/adv_signup', (req, res, next) => {
+app.post('/api/advertiser/adv_signup', (req, res, next) => {
     go(
         req.body,
         a => {
@@ -158,7 +158,7 @@ app.post('/advertiser/adv_signup', (req, res, next) => {
             return a;
         },
         pipeT(
-            b => QUERY`INSERT INTO users ${VALUES(b)}`,
+            b => QUERY `INSERT INTO users ${VALUES(b)}`,
             res.json
         ).catch(
             match
