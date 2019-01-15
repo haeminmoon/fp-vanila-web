@@ -13,7 +13,8 @@
 
     require('../module/share/template/tmpl');
     require('../module/share/template/tmpl.layout');
-    
+    // require('../module/share/template/common/home');
+
     /**
      * DB - Query builder setting
      */
@@ -39,7 +40,7 @@
     const cookieParser = require('cookie-parser');
 
     app.use(compress());
-    app.use(bodyParser.json({ limit: '10mb' }));
+    app.use(bodyParser.json({limit: '10mb'}));
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
     app.use(require('stylus').middleware(path.join(__dirname, '../module')));
@@ -65,16 +66,16 @@
      */
     const i18n = require('i18n');
     i18n.configure({
-        locales: ['ko', 'en'],
+        locales:['ko', 'en'],
         directory: __dirname + '/locales',
         cookie: 'lang'
     });
     app.use(i18n.init);
 
     app.use((req, res, next) => {
-        __ = res.__.bind(res);
         res.send = res.send.bind(res);
         res.json = res.json.bind(res);
+        __ = res.__.bind(res);
         next();
     });
 
@@ -84,7 +85,7 @@
      * Error handling middle ware
      */
     app.use((req, res, next) => {
-        let err = new Error('Not Found');
+        var err = new Error('Not Found');
         err.status = 404;
         next(err);
     });
@@ -95,6 +96,6 @@
         res.status(err.status || 500);
         res.send(err.message);
     });
+}) ();
 
-    const server = app.listen(3000, () => log('local app listening on port ' + server.address().port));
-})();
+module.exports = app;

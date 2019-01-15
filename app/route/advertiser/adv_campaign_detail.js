@@ -1,4 +1,4 @@
-app.get('/advertiser/adv_my_info', (req, res) => {
+app.get('/advertiser/adv_campaign_detail', (req, res) => {
     // if (req.session.user.auth !== 'advertiser') return res.redirect('/');
 
     res.send(TMPL.layout.hnmf({
@@ -6,7 +6,7 @@ app.get('/advertiser/adv_my_info', (req, res) => {
         header: ``,
         nav: ``,
         main: `
-            나의 정보 수정
+            캠페인 상세보기
         `,
         footer: ``,
         script: ``

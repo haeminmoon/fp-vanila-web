@@ -4,16 +4,7 @@ app.get('/influencer/inf_signup', (req, res) => {
             <link rel="stylesheet" href="/front/css/common/signup.css">
             <link rel="stylesheet" href="/front/css/influencer/inf_signup.css">
          `,
-        header: `
-            <div id="header">
-                <h1 class="logo">
-                    <a href="/">
-                    <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo%403x.png" class="logo" alt="spinprotocol_logo">
-                    </a>
-                </h1>
-                <p class="title">${__('signup')}</p>
-            </div>
-        `,
+        header: TMPL.layout.header(),
         main: `
             <div id="main">
                 <div class="container">
@@ -31,6 +22,7 @@ app.get('/influencer/inf_signup', (req, res) => {
                                         <input type="text" name="name" id="name">
                                     </div>
                                 </div>
+
                                 <div class="form_right">
                                     <div class="input_wrap">
                                         <label for="nickname">닉네임<sup>*</sup></label>
@@ -40,6 +32,7 @@ app.get('/influencer/inf_signup', (req, res) => {
                                         <label for="birth">생년월일<sup>*</sup></label>
                                         <input type="text" name="birth" id="birth">
                                     </div>
+
                                     <div class="select_box">
                                         <label for="gender" class="gen_la">성별<sup>*</sup></label>
                                         <span>
@@ -50,6 +43,7 @@ app.get('/influencer/inf_signup', (req, res) => {
                                             <input type="radio" name="gender" value="woman" id="woman">
                                             <label for="woman">여</label> 
                                         </span>
+
                                     </div>
                                 </div>
                         </div>
@@ -144,13 +138,13 @@ app.get('/influencer/inf_signup', (req, res) => {
                                     </ul>
                                 </div>
                         </div>
+
                         <!-- 이용약관 끝 -->
                         <div class="clear"></div>
                         <div class="submit_wrap">
                             <button type="button" class="submit_btn">가입하기</button>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         `,

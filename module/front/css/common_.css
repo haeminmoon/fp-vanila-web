@@ -1,0 +1,31 @@
+@charset "utf-8";
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+	font-family:normal 12px "Noto Sans KR", sans-serif;
+	line-height:1.6;
+	color: #000;
+	margin:0;
+	padding:0;
+}
+ul, ol {list-style:none;}
+img {border:0;}
+a:hover, button, button:hover{cursor: pointer;}
+a:link, a:visited, a:hover {text-decoration:none;}
+input[type="checkbox"]{
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+}
+input[type="text"]{
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+table{border-collapse: collapse;}
+caption{display: none;}

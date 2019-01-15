@@ -10,24 +10,15 @@
 ol, ul{
     list-style: none;
 }
-
-.container{
-    width: 1600px;
-    min-width: 1600px;
-    margin: 0 auto;
-}
 input[type="checkbox"], input[type="radio"]{
     vertical-align: middle;
 }
 
-input:focus{
+input,button:focus{
     outline: none;
 }
 button{
     cursor: pointer;
-}
-button:focus{
-    outline: none;
 }
 .clear{
     clear: both;

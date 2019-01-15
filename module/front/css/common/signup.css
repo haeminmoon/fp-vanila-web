@@ -2,6 +2,11 @@ body{
     background-color: #f2f7fd;
 }
 
+.container{
+    width: 1600px;
+    min-width: 1600px;
+    margin: 0 auto;
+}
 /* header */
 #header{
     width: 100%;
@@ -36,8 +41,11 @@ body{
 .btn_wrap{
     width: 360px;
     height: 300px;
-    margin: 0 auto;
     text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
 }
 .btn{
     display: inline-block;

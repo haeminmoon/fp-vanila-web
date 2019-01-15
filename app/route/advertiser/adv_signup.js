@@ -1,19 +1,12 @@
+const getHash = require('../../../module/back/util/encryption');
+
 app.get('/advertiser/adv_signup', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/common/signup.css">
             <link rel="stylesheet" href="/front/css/advertiser/adv_signup.css">
          `,
-        header: `
-            <div id="header">
-                <h1 class="logo">
-                    <a href="/">
-                    <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo%403x.png" class="logo" alt="spinprotocol_logo">
-                    </a>
-                </h1>
-                <p class="title">${__('signup')}</p>
-            </div>
-        `,
+        header: TMPL.layout.header(),
         main: `
             <div id="main">
                 <div class="container">
@@ -143,13 +136,38 @@ app.get('/advertiser/adv_signup', (req, res) => {
                             <button type="button" class="submit_btn">가입하기</button>
                         </div>
                     </div>
-
                 </div>
             </div>
         `,
         footer: ``,
         script: `
+            <script src="/front/script/advertiser/adv_signup.js"></script>
+            <script>
+                go('.signup_form', $, AdvSignUp.Route.signup);
+            </script>
     
          `
     }));
+});
+
+app.post('/advertiser/adv_signup', (req, res, next) => {
+    go(
+        req.body,
+        a => {
+            a.pw = getHash(a.pw);
+            return a;
+        },
+        pipeT(
+            b => QUERY`INSERT INTO users ${VALUES(b)}`,
+            res.json
+        ).catch(
+            match
+                .case({ constraint: 'tb_user_pkey' })(
+                    _ => 'id'
+                )
+                .else(_ => ''),
+            m => new Error(m),
+            next
+        )
+    )
 });
