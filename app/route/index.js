@@ -6,6 +6,7 @@ require('./common/signin');
 require('./common/signup');
 require('./common/signout');
 require('./common/find_user');
+require('./common/signup_complete');
 
 /**
  * Advertiser router

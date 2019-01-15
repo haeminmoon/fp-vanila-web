@@ -16,7 +16,7 @@ ol, ul{
     min-width: 1600px;
     margin: 0 auto;
 }
-input[type="checkbox"]{
+input[type="checkbox"], input[type="radio"]{
     vertical-align: middle;
 }
 

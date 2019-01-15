@@ -64,9 +64,7 @@ input[type="text"]{
 input:focus{
     border: 1px solid #627efe;
 }
-input[type="checkbox"]{
-    vertical-align: middle;
-}
+
 label{
     display: block;
     padding-bottom: 5px;
@@ -149,39 +147,6 @@ button{
     color: #74767d;
 }
 
-/* 체크박스 디자인 */
-input[type="checkbox"]{
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip:rect(0,0,0,0);
-    border: 0
-}
-input[type="checkbox"] + label:before {
-    content: ' ';
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    line-height: 15px;
-    margin: -2px 8px 0 0;
-    text-align: center;
-    vertical-align: middle;
-    background: #fafafa;
-    border: 1px solid #cacece;
-    border-radius: 100%;
-    box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
-}
-input[type="checkbox"]:checked + label:before {
-    content: '\2713';
-    color: #314ca2;
-    text-shadow: 1px 1px white;
-    background: #f1f4ff;
-    border-color: #adb8c0;
-    box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
-}
 
 /* 제출 button */
 .submit_wrap{
@@ -195,3 +160,5 @@ input[type="checkbox"]:checked + label:before {
      height: 50px;
      border-radius: 30px;
  }
+
+
