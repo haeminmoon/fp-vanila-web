@@ -2,7 +2,7 @@ app.get('/influencer/inf_signup_complete', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/common/signup.css">
-            <link rel="stylesheet" href="/front/css/common/signup_com.css">
+            <link rel="stylesheet" href="/front/css/common/signup_complete.css">
         `,
         header: TMPL.layout.header(),
         main: `
@@ -28,11 +28,7 @@ app.get('/influencer/inf_signup_complete', (req, res) => {
                 </div>
             </div>
         `,
-        footer: `
-        `,
-        script: `
-            <script src="/front/script/common/signin.js"></script>
-            <script>go('.signin_btn', $, Signin.Route.signin)</script>
-        `
+        footer: ``,
+        script: ``
     }));
 });

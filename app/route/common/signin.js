@@ -5,16 +5,7 @@ app.get('/common/signin', (req, res) => {
         css: `
             <link rel="stylesheet" href="/front/css/common/signin.css">
         `,
-        header: `
-            <div id="header">
-                <h1 class="logo">
-                    <a href="/">
-                    <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo%403x.png" class="logo" alt="spinprotocol_logo">
-                    </a>
-                </h1>
-                <p class="title">${__('signin')}</p>
-            </div>
-        `,
+        header: TMPL.layout.header(),
         main: `
             <div id="main">
                 <div class="signin_box">
@@ -41,11 +32,7 @@ app.get('/common/signin', (req, res) => {
                 </div>
             </div>
         `,
-        footer: `
-            <div id="footer">
-                <p>${__('copyright')}</p>
-            </div>
-        `,
+        footer: TMPL.layout.footer(),
         script: `
             <script src="/front/script/common/signin.js"></script>
             <script>
@@ -56,39 +43,6 @@ app.get('/common/signin', (req, res) => {
     }));
 });
 
-
-app.post('/api/common/signin', (req, res, next) => {
-    go(
-        req.body,
-        pipeT(
-            a => QUERY`SELECT * FROM users WHERE id = ${a.id}`,
-            b => {
-                if (b.length === 0) throw 'The ID does not exist';
-                return b;
-            },
-            first,
-            c => {
-                if (c.pw !== getHash(req.body.pw)) throw 'The password is incorrect';
-                return c;
-            },
-            d => req.session.user = d || null,
-            res.json
-        ).catch(
-            match
-                .case('The ID does not exist')(
-                    _ => 'id'
-                )
-                .case('The password is incorrect')(
-                    _ => 'pw'
-                )
-                .else(_ => ''),
-            m => new Error(m),
-            next,
-        )
-    )
-});
-
-// Signin test code
 // app.post('/api/common/signin', (req, res, next) => {
 //     go(
 //         req.body,
@@ -146,8 +100,8 @@ app.post('/api/common/signin', (req, res, next) => {
                     _ => 'The password is incorrect'
                 )
                 .else(_ => ''),
-                m => new Error(m),
-                next
+            m => new Error(m),
+            next
         )
     )
 });

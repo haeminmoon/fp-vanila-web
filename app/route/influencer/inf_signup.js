@@ -1,8 +1,8 @@
-const {config, Group} = require('coolsms-sdk-v4');
+// const {config, Group} = require('coolsms-sdk-v4');
 
 const getHash = require('../../../module/back/util/encryption');
 const getRandomInt6 = require('../../../module/back/util/getRandomInt');
-const coolsms = require('../../../config/coolsms');
+// const coolsms = require('../../../config/coolsms');
 
 app.get('/influencer/inf_signup', (req, res) => {
     res.send(TMPL.layout.hnmf({
@@ -227,27 +227,27 @@ app.post('/api/influencer/inf_checkId', (req, res, next) => {
  * 인플런서 인증번호 발송
  */
 app.post('/api/influencer/inf_checkBn', (req, res, next) => {
-    const code = String(getRandomInt6());
+    // const code = String(getRandomInt6());
 
-    config.init({
-        apiKey: coolsms.apiKey,
-        apiSecret: coolsms.apiSecret
-    });
+    // config.init({
+    //     apiKey: coolsms.apiKey,
+    //     apiSecret: coolsms.apiSecret
+    // });
 
-    go(
-        req.body.phone_num,
-        a  => {
-            return { text: `spin-protocol 에서 발송한 인증번호 ${code} 입니다.`,
-                type: coolsms.type,
-                to: a,
-                from: coolsms.from };
-        },
-        pipeT(
-            b => Group.sendSimpleMessage(b),
-            _ => res.json({code : code})
-        ).catch(
-            m => new Error(m),
-            next
-        )
-    )
+    // go(
+    //     req.body.phone_num,
+    //     a  => {
+    //         return { text: `spin-protocol 에서 발송한 인증번호 ${code} 입니다.`,
+    //             type: coolsms.type,
+    //             to: a,
+    //             from: coolsms.from };
+    //     },
+    //     pipeT(
+    //         b => Group.sendSimpleMessage(b),
+    //         _ => res.json({code : code})
+    //     ).catch(
+    //         m => new Error(m),
+    //         next
+    //     )
+    // )
 });

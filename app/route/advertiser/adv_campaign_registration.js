@@ -3,8 +3,8 @@ app.get('/advertiser/adv_campaign_registration', (req, res) => {
 
     res.send(TMPL.layout.hnmf({
         css: ``,
-        header: ``,
-        nav: ``,
+        header: TMPL.layout.advHeader(),
+        nav: TMPL.layout.advNav(),
         main: `
             캠페인 등록
         `,
