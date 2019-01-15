@@ -13,7 +13,7 @@ require('./common/find_user');
 require('./advertiser/adv_my_info');
 require('./advertiser/adv_campaign_registration');
 require('./advertiser/adv_campaign_management');
-require('./advertiser/adv_campaign_modidfy');
+require('./advertiser/adv_campaign_modify');
 require('./advertiser/adv_campaign_detail');
 require('./advertiser/adv_influencer_list');
 require('./advertiser/adv_signup');

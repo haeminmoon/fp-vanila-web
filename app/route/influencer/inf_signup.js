@@ -18,7 +18,7 @@ app.get('/influencer/inf_signup', (req, res) => {
                         <!-- 개인정보 입력 폼 -->
                             <h2 class="form_tit">개인정보 입력</h2>
                                 <div class="form_left">
-                                    <div class="input_wrap">
+                                    <div class="input_wrap"> 
                                         <label for="profile_pic">사진(1MB 이하)<sup>*</sup></label>
                                         <input type="file" name="profile_pic" id="profile_pic">
                                         <img id="profile_image" src="#" width="50" height="50" alt="your image" />
