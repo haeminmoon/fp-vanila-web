@@ -3,7 +3,8 @@ const getHash = require('../../../module/back/util/encryption');
 app.get('/advertiser/adv_signup', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
-            <link rel="stylesheet" href="/front/css/signup.css">
+            <link rel="stylesheet" href="/front/css/common/signup.css">
+            <link rel="stylesheet" href="/front/css/advertiser/adv_signup.css">
          `,
         header: TMPL.layout.header(),
         main: `
@@ -48,8 +49,7 @@ app.get('/advertiser/adv_signup', (req, res) => {
                                         <label for="post_code">회사 주소<sup>*</sup></label>
                                         <input type="text" name="post_code" class="post_code" id="post_code">
                                         <button type="button" class="sch_add_btn">주소검색</button>
-                                        <input type="text" name="address" class="address">
-                                    </div>
+                                        <input type="text" name="address" class="address">                                    </div>
                                 </div>
                         </div>
                         <!-- 회원정보 입력 폼 끝  -->
@@ -66,12 +66,12 @@ app.get('/advertiser/adv_signup', (req, res) => {
                                     </div>
                                     <div class="input_wrap">
                                         <label for="password">비밀번호<sup>*</sup></label>
-                                        <input type="text" name="password" id="password">
+                                        <input type="password" name="password" id="password">
                                         <p class="error password_error"></p>
                                     </div>
                                     <div class="input_wrap">
                                         <label for="password_chk">비밀번호 확인<sup>*</sup></label>
-                                        <input type="text" name="password_chk" id="password_chk">
+                                        <input type="password" name="password_chk" id="password_chk">
                                         <p class="error password_chk_error"></p>
                                     </div>
                                     <ul class="notice">
@@ -86,46 +86,52 @@ app.get('/advertiser/adv_signup', (req, res) => {
                         <div class="document">
                             <h2 class="form_tit">서류등록</h2>
                                 <div class="form">
-                                <p class="notice">결과는 3일 이내 등록하신 이메일로 발송됩니다. 파일은 PDF 혹은 JPG 파일 5Mb 이하로 업로드해 주세요.</p>
-                            
+                                    <p class="notice">결과는 3일 이내 등록하신 이메일로 발송됩니다. 파일은 PDF 혹은 JPG 파일 5Mb 이하로 업로드해 주세요.</p>
                                 </div>
                         </div>
                         <!-- 서류 끝 -->
                         <!-- 이용약관 -->
                         <div class="term">
                             <h2 class="form_tit">약관</h2>
-                                <div class="form">
-                                    <p class="input_wrap check_box">
+                                <div class="agree">
+                                    <p class="all_agree">
                                         <input type="checkbox" name="all_chk" id="all_chk">
                                         <label for="all_chk">전체 동의</label>
                                     </p>
-                                    <ul class="input_wrap check_wrap">
+                                    <ul>
                                         <li>
                                             <input type="checkbox" name="chk1" id="chk1">
-                                            <a href="#">이용약관</a>
+                                            <label for="chk1"><a href="#">이용약관</a></label>
                                         </li>
                                         <li>
                                             <input type="checkbox" name="chk2" id="chk2">
-                                            <a href="#">개인정보 수집 및 이용동의</a>
+                                            <label for="chk2"><a href="#">개인정보 수집 및 이용동의</a></label>
                                         </li>
                                         <li>
                                             <input type="checkbox" name="chk3" id="chk3">
-                                            <a href="#">매월 15일/30일 정산동의</a>
+                                            <label for="chk3"><a href="#">매월 15일/30일 정산동의</a></label>
                                         </li>
                                         <li>
                                             <input type="checkbox" name="chk4" id="chk4">
-                                            <a href="#">개인정보 제4자 제공 동의</a>
+                                            <label for="chk4"><a href="#">개인정보 제3자 제공 동의</a></label>                                        
                                         </li>
                                         <li>
                                             <input type="checkbox" name="chk5" id="chk5">
-                                            <a href="#">전자 금융거래 이용약관</a>
+                                            <label for="chk5"><a href="#">전자 금융거래 이용약관</a></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="chk6" id="chk6">
+                                            <label for="chk6"><a href="#">[광고용]SNS 수신 동의</a></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="chk7" id="chk7">
+                                            <label for="chk7"><a href="#">[광고용]E-mail 수신 동의</a></label>
                                         </li>
                                     </ul>
                                 </div>
                         </div>
                         <!-- 이용약관 끝 -->
                         <div class="clear"></div>
-                        
                         <div class="submit_wrap">
                             <button type="button" class="submit_btn">가입하기</button>
                         </div>
@@ -138,20 +144,17 @@ app.get('/advertiser/adv_signup', (req, res) => {
         <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
         <script src="/front/script/advertiser/adv_signup.js"></script>
         <script>
-            go('.signup_form', $, AdvSignUp.Route.signup);
-            go('.signup_form', $, AdvSignUp.Route.checkId);
-            go('#id', $, AdvSignUp.Route.validateEmail);
-            go('#password', $, AdvSignUp.Route.validatePw);
-            go('#password_chk', $, AdvSignUp.Route.validateCheckPw);
-            go('.sch_add_btn', $, AdvSignUp.Route.showPost)
+            go('.signup_form', $, AdvSignUp.Do.signup);
+            go('.signup_form', $, AdvSignUp.Do.checkId);
+            go('#id', $, AdvSignUp.Do.validateEmail);
+            go('#password', $, AdvSignUp.Do.validatePw);
+            go('#password_chk', $, AdvSignUp.Do.validateCheckPw);
+            go('.sch_add_btn', $, AdvSignUp.Do.showPost)
         </script>
          `
     }));
 });
 
-/**
- * 광고주 회원가입
- */
 app.post('/api/advertiser/adv_signup', (req, res, next) => {
     go(
         req.body,
@@ -164,8 +167,10 @@ app.post('/api/advertiser/adv_signup', (req, res, next) => {
             res.json
         ).catch(
             match
-                .case ({constraint: 'tb_user_pkey'})(_ => 'id')
-                .else (_ => ''),
+                .case({ constraint: 'tb_user_pkey' })(
+                    _ => 'id'
+                )
+                .else(_ => ''),
             m => new Error(m),
             next
         )

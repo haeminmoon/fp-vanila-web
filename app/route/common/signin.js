@@ -4,7 +4,6 @@ app.get('/common/signin', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/common/signin.css">
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         `,
         header: `
             <div id="header">
@@ -22,12 +21,12 @@ app.get('/common/signin', (req, res) => {
                     <p class="login_tit">SIGN IN</p>
                     <div class="select_wrap">
                         <span class="select_box">
-                            <input type="radio" name="select_role" value="supplier" id="supplier">
-                            <label for="select_role">${__('supplier')}</label>
+                            <input type="radio" name="select_role" value="supplier" id="supplier" checked>
+                            <label for="supplier">${__('supplier')}</label>
                         </span>
                         <span class="select_box">
                             <input type="radio" name="select_role" value="influencer" id="influencer">
-                            <label for="select_role">${__('influencer')}</label>
+                            <label for="influencer">${__('influencer')}</label>
                         </span>
                     </div>
                     <div class="signin_wrap">
@@ -57,14 +56,12 @@ app.get('/common/signin', (req, res) => {
     }));
 });
 
-/**
- * 로그인
- */
+
 app.post('/api/common/signin', (req, res, next) => {
     go(
         req.body,
         pipeT(
-            a => QUERY `SELECT * FROM users WHERE id = ${a.id}`,
+            a => QUERY`SELECT * FROM users WHERE id = ${a.id}`,
             b => {
                 if (b.length === 0) throw 'The ID does not exist';
                 return b;
@@ -85,8 +82,8 @@ app.post('/api/common/signin', (req, res, next) => {
                     _ => 'pw'
                 )
                 .else(_ => ''),
-                m => new Error(m),
-                next,
+            m => new Error(m),
+            next,
         )
     )
 });
@@ -96,14 +93,14 @@ app.post('/api/common/signin', (req, res, next) => {
 //     go(
 //         req.body,
 //         pipeT(
-//             a => QUERY `SELECT * FROM users WHERE id = ${a.id}`,
+//             a => QUERY`SELECT * FROM users WHERE id = ${a.id}`,
 //             b => {
 //                 if (b.length === 0) throw 'The ID does not exist';
 //                 return b;
 //             },
 //             first,
 //             c => {
-//                 if (c.pw !== req.body.pw) throw 'The password is incorrect';
+//                 if (c.pw !== getHash(req.body.pw)) throw 'The password is incorrect';
 //                 return c;
 //             },
 //             d => req.session.user = d || null,
@@ -117,8 +114,40 @@ app.post('/api/common/signin', (req, res, next) => {
 //                     _ => 'The password is incorrect'
 //                 )
 //                 .else(_ => ''),
-//                 m => new Error(m),
-//                 next,
+//             m => new Error(m),
+//             next
 //         )
 //     )
 // });
+
+// Signin test code
+app.post('/api/common/signin', (req, res, next) => {
+    go(
+        req.body,
+        pipeT(
+            a => QUERY `SELECT * FROM users WHERE id = ${a.id}`,
+            b => {
+                if (b.length === 0) throw 'The ID does not exist';
+                return b;
+            },
+            first,
+            c => {
+                if (c.pw !== req.body.pw) throw 'The password is incorrect';
+                return c;
+            },
+            d => req.session.user = d || null,
+            res.json
+        ).catch(
+            match
+                .case('The ID does not exist')(
+                    _ => 'The ID does not exist'
+                )
+                .case('The password is incorrect')(
+                    _ => 'The password is incorrect'
+                )
+                .else(_ => ''),
+                m => new Error(m),
+                next
+        )
+    )
+});

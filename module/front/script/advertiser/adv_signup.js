@@ -1,5 +1,5 @@
-!function () {
-    const Route = {
+!function (){
+    const Do = {
         signup: $.on('click', '.submit_btn', ({delegateTarget: dt}) => go(
             {
                 id: go(dt, $.find('[name="id"]'), $.trim),
@@ -151,6 +151,6 @@
     };
 
     global.AdvSignUp = {
-        Route
+        Do
     }
-}();
+} ();
