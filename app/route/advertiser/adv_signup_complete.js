@@ -4,7 +4,7 @@ app.get('/advertiser/adv_signup_complete', (req, res) => {
             <link rel="stylesheet" href="/front/css/common/signup.css">
             <link rel="stylesheet" href="/front/css/common/signup_com.css">
         `,
-        header: TMPL.layout.header('signup'),
+        header: TMPL.layout.header.account('signup'),
         main: `
             <div id="main">
                 <div class="bg">
@@ -24,11 +24,7 @@ app.get('/advertiser/adv_signup_complete', (req, res) => {
                 </div>
             </div>
         `,
-        footer: `
-        `,
-        script: `
-            <script src="/front/script/common/signin.js"></script>
-            <script>go('.signin_btn', $, Signin.Route.signin)</script>
-        `
+        footer: ``,
+        script: ``
     }));
 });

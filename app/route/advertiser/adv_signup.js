@@ -6,7 +6,7 @@ app.get('/advertiser/adv_signup', (req, res) => {
             <link rel="stylesheet" href="/front/css/common/signup.css">
             <link rel="stylesheet" href="/front/css/advertiser/adv_signup.css">
          `,
-        header: TMPL.layout.header('signup'),
+        header: TMPL.layout.header.account('signup'),
         main: `
             <div id="main">
                 <div class="container">
@@ -49,7 +49,8 @@ app.get('/advertiser/adv_signup', (req, res) => {
                                         <label for="post_code">회사 주소<sup>*</sup></label>
                                         <input type="text" name="post_code" class="post_code" id="post_code">
                                         <button type="button" class="sch_add_btn">주소검색</button>
-                                        <input type="text" name="address" class="address">                                    </div>
+                                        <input type="text" name="address" class="address">                                    
+                                    </div>
                                 </div>
                         </div>
                         <!-- 회원정보 입력 폼 끝  -->
@@ -60,7 +61,7 @@ app.get('/advertiser/adv_signup', (req, res) => {
                                 <div class="form">
                                     <div class="input_wrap">
                                         <label for="id">ID<sup>*</sup></label>
-                                        <input type="text" name="id" class="id" id="id">
+                                        <input type="text" name="id" class="id" id="id" placeholder="sample@sample.com">
                                         <button type="button" class="id_chk_btn">중복확인</button>
                                         <p class="error id_error"></p>
                                     </div>
@@ -163,7 +164,7 @@ app.post('/api/advertiser/adv_signup', (req, res, next) => {
             return a;
         },
         pipeT(
-            b => QUERY `INSERT INTO users ${VALUES(b)}`,
+            b => QUERY`INSERT INTO users ${VALUES(b)}`,
             res.json
         ).catch(
             match
@@ -184,9 +185,9 @@ app.post('/api/advertiser/adv_checkId', (req, res, next) => {
     go(
         req.body.id,
         pipeT(
-            a => QUERY `SELECT * FROM users WHERE id = ${a}`,
+            a => QUERY`SELECT * FROM users WHERE id = ${a}`,
             b => {
-                if (b.length !== 0){
+                if (b.length !== 0) {
                     throw 'The ID is already exist';
                 }
                 return b;
@@ -194,8 +195,8 @@ app.post('/api/advertiser/adv_checkId', (req, res, next) => {
             res.json
         ).catch(
             match
-                .case ('The ID is already exist')(_ => 'The ID is already exist')
-                .else (_ => ''),
+                .case('The ID is already exist')(_ => 'The ID is already exist')
+                .else(_ => ''),
             m => new Error(m),
             next
         )

@@ -5,7 +5,7 @@ app.get('/common/signin', (req, res) => {
         css: `
             <link rel="stylesheet" href="/front/css/common/signin.css">
         `,
-        header: TMPL.layout.header('signin'),
+        header: TMPL.layout.header.account('signin'),
         main: `
             <div id="main">
                 <div class="signin_box">
@@ -102,7 +102,7 @@ app.post('/api/common/signin', (req, res, next) => {
     go(
         req.body,
         pipeT(
-            a => QUERY `SELECT * FROM users WHERE id = ${a.id}`,
+            a => QUERY`SELECT * FROM users WHERE id = ${a.id}`,
             b => {
                 if (b.length === 0) throw 'The ID does not exist';
                 return b;
@@ -123,8 +123,8 @@ app.post('/api/common/signin', (req, res, next) => {
                     _ => 'The password is incorrect'
                 )
                 .else(_ => ''),
-                m => new Error(m),
-                next
+            m => new Error(m),
+            next
         )
     )
 });
