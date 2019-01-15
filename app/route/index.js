@@ -6,7 +6,7 @@ require('./common/signin');
 require('./common/signup');
 require('./common/signout');
 require('./common/find_user');
-require('./common/signup_complete');
+
 
 /**
  * Advertiser router
@@ -17,6 +17,7 @@ require('./advertiser/adv_campaign_registration');
 require('./advertiser/adv_campaign_management');
 require('./advertiser/adv_influencer_list');
 require('./advertiser/adv_signup');
+require('./advertiser/adv_signup_complete');
 
 /**
 * Influencer router
@@ -26,6 +27,7 @@ require('./influencer/inf_dashboard');
 require('./influencer/inf_campaign_list');
 require('./influencer/inf_campaign_management');
 require('./influencer/inf_signup');
+require('./influencer/inf_signup_complete');
 
 /**
 * Admin router
