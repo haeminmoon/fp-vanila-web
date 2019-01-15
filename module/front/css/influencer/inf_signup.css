@@ -44,16 +44,16 @@
     text-decoration: underline;
 }
 
-
-
 .phone_cer{
     margin-left: 30px;
 }
 
-.gen_chk{
-    padding-right: 20px;
+.select_box > label{
+    padding-bottom: 20px;
 }
-.gen_la{
+.select_box > span > label{
+    display: inline-block;
+    padding-right: 20px;
     padding-bottom: 20px;
 }
 

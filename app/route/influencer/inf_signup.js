@@ -6,8 +6,8 @@ const coolsms = require('../../../config/coolsms');
 app.get('/influencer/inf_signup', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
-            <link rel="stylesheet" href="/front/css/signup.css">
-            <link rel="stylesheet" href="/front/css/inf_signup.css">
+            <link rel="stylesheet" href="/front/css/common/signup.css">
+            <link rel="stylesheet" href="/front/css/influencer/inf_signup.css">
          `,
         header: TMPL.layout.header(),
         main: `
@@ -38,12 +38,17 @@ app.get('/influencer/inf_signup', (req, res) => {
                                         <label for="birth">생년월일<sup>*</sup></label>
                                         <input type="text" name="birth" id="birth">
                                     </div>
-                                    <div class="input_wrap">
-                                        <label for="gender">성별<sup>*</sup></label>
-                                        <p>
-                                            <input type="radio" name="gender" value="man" id="gender">남
-                                        </p> 
-                                        <input type="radio" name="gender" value="woman" id="gender">여 
+
+                                    <div class="select_box">
+                                        <label for="gender" class="gen_la">성별<sup>*</sup></label>
+                                        <span>
+                                            <input type="radio" name="gender" value="man" id="man" checked>
+                                            <label for="man">남</label>
+                                        </span>
+                                        <span> 
+                                            <input type="radio" name="gender" value="woman" id="woman">
+                                            <label for="woman">여</label> 
+                                        </span>
                                     </div>
                                 </div>
                         </div>
@@ -60,12 +65,12 @@ app.get('/influencer/inf_signup', (req, res) => {
                                     </div>
                                     <div class="input_wrap">
                                         <label for="password">비밀번호<sup>*</sup></label>
-                                        <input type="text" name="password" id="password">
+                                        <input type="password" name="password" id="password">
                                         <p class="error password_error"></p>
                                     </div>
                                     <div class="input_wrap">
                                         <label for="password_chk">비밀번호 확인<sup>*</sup></label>
-                                        <input type="text" name="password_chk" id="password_chk">
+                                        <input type="password" name="password_chk" id="password_chk">
                                         <p class="error password_chk_error"></p>
                                     </div>
                                     <ul class="notice">
@@ -104,40 +109,40 @@ app.get('/influencer/inf_signup', (req, res) => {
                         <!-- 이용약관 -->
                         <div class="term_inf">
                             <h2 class="form_tit">약관</h2>
-                                <div class="form">
-                                    <p class="input_wrap check_box">
+                                <div class="agree">
+                                    <p class="all_agree">
                                         <input type="checkbox" name="all_chk" id="all_chk">
                                         <label for="all_chk">전체 동의</label>
                                     </p>
-                                    <ul class="input_wrap check_wrap">
+                                    <ul>
                                         <li>
                                             <input type="checkbox" name="chk1" id="chk1">
-                                            <a href="#">이용약관</a>
+                                            <label for="chk1"><a href="#">이용약관</a></label>
                                         </li>
                                         <li>
                                             <input type="checkbox" name="chk2" id="chk2">
-                                            <a href="#">개인정보 수집 및 이용동의</a>
+                                            <label for="chk2"><a href="#">개인정보 수집 및 이용동의</a></label>
                                         </li>
                                         <li>
                                             <input type="checkbox" name="chk3" id="chk3">
-                                            <a href="#">매월 15일/30일 정산동의</a>
+                                            <label for="chk3"><a href="#">매월 15일/30일 정산동의</a></label>
                                         </li>
                                         <li>
                                             <input type="checkbox" name="chk4" id="chk4">
-                                            <a href="#">개인정보 제3자 제공 동의</a>
+                                            <label for="chk4"><a href="#">개인정보 제3자 제공 동의</a></label>                                        
                                         </li>
                                         <li>
                                             <input type="checkbox" name="chk5" id="chk5">
-                                            <a href="#">전자 금융거래 이용약관</a>
+                                            <label for="chk5"><a href="#">전자 금융거래 이용약관</a></label>
                                         </li>
                                         <li>
                                             <input type="checkbox" name="chk6" id="chk6">
-                                            <a href="#">[광고용]SNS 수신 동의</a>
+                                            <label for="chk6"><a href="#">[광고용]SNS 수신 동의</a></label>
                                         </li>
-                                    <li>
-                                        <input type="checkbox" name="chk7" id="chk7">
-                                        <a href="#">[광고용]E-mail 수신 동의</a>
-                                    </li>
+                                        <li>
+                                            <input type="checkbox" name="chk7" id="chk7">
+                                            <label for="chk7"><a href="#">[광고용]E-mail 수신 동의</a></label>
+                                        </li>
                                     </ul>
                                 </div>
                         </div>

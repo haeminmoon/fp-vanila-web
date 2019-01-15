@@ -5,7 +5,9 @@ app.get('/advertiser/adv_campaign_registration', (req, res) => {
         css: ``,
         header: ``,
         nav: ``,
-        main: ``,
+        main: `
+            캠페인 등록
+        `,
         footer: ``,
         script: ``
     }));

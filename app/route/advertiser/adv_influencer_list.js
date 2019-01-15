@@ -5,7 +5,9 @@ app.get('/advertiser/adv_influencer_list', (req, res) => {
         css: ``,
         header: ``,
         nav: ``,
-        main: ``,
+        main: `
+            인플루언서 목록
+        `,
         footer: ``,
         script: ``
     }));
