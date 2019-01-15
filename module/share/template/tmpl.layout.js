@@ -37,14 +37,14 @@
         script
     });
 
-    TMPL.layout.header = _ => ` 
+    TMPL.layout.header = (title) => ` 
         <div id="header">
             <h1 class="logo">
                 <a href="/">
                 <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo%403x.png" class="logo" alt="spinprotocol_logo">
                 </a>
             </h1>
-            <p class="title">${__('signup')}</p>
+            <p class="title">${__(title)}</p>
         </div>
     `;
 

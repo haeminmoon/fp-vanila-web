@@ -3,7 +3,7 @@ app.get('/common/signup_popup', (req, res) => {
         css: `
             <link rel="stylesheet" href="/front/css/common/signup.css">
          `,
-        header: TMPL.layout.header(),
+        header: TMPL.layout.header('signup'),
         main: `
             <div id="main">
                 <div class="container">

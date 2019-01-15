@@ -4,7 +4,7 @@ app.get('/influencer/inf_signup', (req, res) => {
             <link rel="stylesheet" href="/front/css/common/signup.css">
             <link rel="stylesheet" href="/front/css/influencer/inf_signup.css">
          `,
-        header: TMPL.layout.header(),
+        header: TMPL.layout.header('signup'),
         main: `
             <div id="main">
                 <div class="container">

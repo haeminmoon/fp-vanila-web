@@ -60,18 +60,11 @@ body{
     bottom: -0;
     margin-left: 25px;
 }
-.select_wrap{
-    text-align:center;
-    margin: 40px 60px;
-}
-.select_box{
-    position: relative;
-    padding: 50px;
-}
 .signin_wrap {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 60px;
 }
 .signin_wrap  > input{
     width: 443px;
