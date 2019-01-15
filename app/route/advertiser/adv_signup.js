@@ -73,12 +73,12 @@ app.get('/advertiser/adv_signup', (req, res) => {
                                     </div>
                                     <div class="input_wrap">
                                         <label for="password">비밀번호<sup>*</sup></label>
-                                        <input type="text" name="password" id="password">
+                                        <input type="password" name="password" id="password">
                                         <p class="error"></p>
                                     </div>
                                     <div class="input_wrap">
                                         <label for="password_chk">비밀번호 확인<sup>*</sup></label>
-                                        <input type="text" name="password_chk" id="password_chk">
+                                        <input type="password" name="password_chk" id="password_chk">
                                         <p class="error"></p>
                                     </div>
                                     <ul class="notice">

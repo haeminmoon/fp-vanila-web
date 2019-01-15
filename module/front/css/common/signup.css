@@ -51,7 +51,7 @@ body{
 .form_tit{
     padding: 20px;
 }
-input[type="text"]{
+input[type="text"],input[type="password"]{
     width: 380px;
     height: 35px;
     padding: 20px;
