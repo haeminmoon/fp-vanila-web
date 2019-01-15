@@ -3,7 +3,7 @@ const getHash = require('../../../module/back/util/encryption');
 app.get('/advertiser/adv_signup', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
-            <link rel="stylesheet" href="/front/css/common/signup.css">
+            <link rel="stylesheet" href="/front/css/common/common_signup.css">
             <link rel="stylesheet" href="/front/css/advertiser/adv_signup.css">
          `,
         header: TMPL.layout.header.account('signup'),

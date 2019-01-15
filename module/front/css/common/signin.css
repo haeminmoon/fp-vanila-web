@@ -64,7 +64,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 60px;
+    margin-top: 70px;
 }
 .signin_wrap  > input{
     width: 443px;
@@ -89,7 +89,7 @@ body{
 }
 .other_wrap{
     text-align: right;
-    padding: 10px 40px;
+    padding: 15px 40px;
 }
 .other_wrap > a{
     font-size: 12px;

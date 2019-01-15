@@ -1,7 +1,7 @@
 app.get('/common/signup_popup', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
-            <link rel="stylesheet" href="/front/css/common/signup.css">
+            <link rel="stylesheet" href="/front/css/common/common_signup.css">
          `,
         header: TMPL.layout.header.account('signup'),
         main: `

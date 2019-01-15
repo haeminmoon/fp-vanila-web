@@ -1,8 +1,8 @@
 app.get('/advertiser/adv_signup_complete', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
-            <link rel="stylesheet" href="/front/css/common/signup.css">
-            <link rel="stylesheet" href="/front/css/common/signup_com.css">
+            <link rel="stylesheet" href="/front/css/common/common_signup.css">
+            <link rel="stylesheet" href="/front/css/common/signup_complete.css">
         `,
         header: TMPL.layout.header.account('signup'),
         main: `
