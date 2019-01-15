@@ -160,16 +160,16 @@ app.get('/influencer/inf_signup', (req, res) => {
         script: `
         <script src="/front/script/influencer/inf_signup.js"></script> 
         <script>
-            go('.signup_form', $, InfSignup.Route.signup);
-            go('.signup_form', $, InfSignup.Route.checkId);
-            go('.signup_form', $, InfSignup.Route.checkBn);
-            go('.input_wrap', $, InfSignup.Route.readyImage);
-            go('#id', $, InfSignup.Route.validateEmail);
-            go('#password', $, InfSignup.Route.validatePw);
-            go('#password_chk', $, InfSignup.Route.validateCheckPw);
-            go('#phone_num_cer', $, InfSignup.Route.validatePhoneNumber);
-            go('#certification_num', $, InfSignup.Route.validateCheckCode);
-            go('.phone_chk_btn', $, InfSignup.Route.showCode)
+            go('.signup_form', $, InfSignup.Do.signup);
+            go('.signup_form', $, InfSignup.Do.checkId);
+            go('.signup_form', $, InfSignup.Do.checkBn);
+            go('.input_wrap', $, InfSignup.Do.readyImage);
+            go('#id', $, InfSignup.Do.validateEmail);
+            go('#password', $, InfSignup.Do.validatePw);
+            go('#password_chk', $, InfSignup.Do.validateCheckPw);
+            go('#phone_num_cer', $, InfSignup.Do.validatePhoneNumber);
+            go('#certification_num', $, InfSignup.Do.validateCheckCode);
+            go('.phone_chk_btn', $, InfSignup.Do.showCode)
         </script>
          `
     }));

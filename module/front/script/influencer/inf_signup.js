@@ -1,5 +1,5 @@
 !function () {
-    const Route = {
+    const Do = {
         signup: $.on('click', '.submit_btn', ({delegateTarget : dt}) => go(
             {
                 id: go(dt, $.find('[name="id"]'), $.trim),
@@ -167,9 +167,8 @@
         }),
 
         showCode: $.on('click', _ => {
-            log(1);
             if (go($('.phone_num_cer'), $.trim) !== '') {
-                $.all('.input_wrap')[9].classList.remove("hidden");
+                $.all('.input_wrap')[8].classList.remove("hidden");
 
             }
         }),
@@ -191,6 +190,6 @@
         })
     };
     global.InfSignup = {
-        Route
+        Do
     };
 }();

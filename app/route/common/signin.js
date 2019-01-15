@@ -56,9 +56,7 @@ app.get('/common/signin', (req, res) => {
     }));
 });
 
-/**
- * 로그인
- */
+
 app.post('/api/common/signin', (req, res, next) => {
     go(
         req.body,
@@ -95,14 +93,14 @@ app.post('/api/common/signin', (req, res, next) => {
 //     go(
 //         req.body,
 //         pipeT(
-//             a => QUERY `SELECT * FROM users WHERE id = ${a.id}`,
+//             a => QUERY`SELECT * FROM users WHERE id = ${a.id}`,
 //             b => {
 //                 if (b.length === 0) throw 'The ID does not exist';
 //                 return b;
 //             },
 //             first,
 //             c => {
-//                 if (c.pw !== req.body.pw) throw 'The password is incorrect';
+//                 if (c.pw !== getHash(req.body.pw)) throw 'The password is incorrect';
 //                 return c;
 //             },
 //             d => req.session.user = d || null,
@@ -116,8 +114,40 @@ app.post('/api/common/signin', (req, res, next) => {
 //                     _ => 'The password is incorrect'
 //                 )
 //                 .else(_ => ''),
-//                 m => new Error(m),
-//                 next,
+//             m => new Error(m),
+//             next
 //         )
 //     )
 // });
+
+// Signin test code
+app.post('/api/common/signin', (req, res, next) => {
+    go(
+        req.body,
+        pipeT(
+            a => QUERY `SELECT * FROM users WHERE id = ${a.id}`,
+            b => {
+                if (b.length === 0) throw 'The ID does not exist';
+                return b;
+            },
+            first,
+            c => {
+                if (c.pw !== req.body.pw) throw 'The password is incorrect';
+                return c;
+            },
+            d => req.session.user = d || null,
+            res.json
+        ).catch(
+            match
+                .case('The ID does not exist')(
+                    _ => 'The ID does not exist'
+                )
+                .case('The password is incorrect')(
+                    _ => 'The password is incorrect'
+                )
+                .else(_ => ''),
+                m => new Error(m),
+                next
+        )
+    )
+});

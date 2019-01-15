@@ -144,20 +144,17 @@ app.get('/advertiser/adv_signup', (req, res) => {
         <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
         <script src="/front/script/advertiser/adv_signup.js"></script>
         <script>
-            go('.signup_form', $, AdvSignUp.Route.signup);
-            go('.signup_form', $, AdvSignUp.Route.checkId);
-            go('#id', $, AdvSignUp.Route.validateEmail);
-            go('#password', $, AdvSignUp.Route.validatePw);
-            go('#password_chk', $, AdvSignUp.Route.validateCheckPw);
-            go('.sch_add_btn', $, AdvSignUp.Route.showPost)
+            go('.signup_form', $, AdvSignUp.Do.signup);
+            go('.signup_form', $, AdvSignUp.Do.checkId);
+            go('#id', $, AdvSignUp.Do.validateEmail);
+            go('#password', $, AdvSignUp.Do.validatePw);
+            go('#password_chk', $, AdvSignUp.Do.validateCheckPw);
+            go('.sch_add_btn', $, AdvSignUp.Do.showPost)
         </script>
          `
     }));
 });
 
-/**
- * 광고주 회원가입
- */
 app.post('/api/advertiser/adv_signup', (req, res, next) => {
     go(
         req.body,
@@ -166,7 +163,7 @@ app.post('/api/advertiser/adv_signup', (req, res, next) => {
             return a;
         },
         pipeT(
-            b => QUERY`INSERT INTO users ${VALUES(b)}`,
+            b => QUERY `INSERT INTO users ${VALUES(b)}`,
             res.json
         ).catch(
             match
