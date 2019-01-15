@@ -1,0 +1,50 @@
+
+/* 회원정보 */
+.address{
+    margin-top: 10px;
+}
+.info{
+    width: 960px;
+}
+/* 계정 */
+.account{
+    width: 480px;
+}
+/* 서류제출 */
+.document{
+    float: left;
+    width: 550px;
+    height: 320px;
+    margin-top: 30px;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+/* 이용약관 */
+.term{
+    float: right;
+    width: 995px;
+    height: 320px;
+    margin-top: 30px;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+.all_agree{
+    padding-left: 40px;
+}
+.agree > ul{
+    width: 860px;
+    height: 160px;
+    padding: 30px 50px;
+    border-radius: 4px;
+    margin-left: 65px;
+    margin-top: 20px;
+    background-color: #f9faff;
+}
+.agree > ul > li{
+    float: left;
+    width: 250px;
+    padding-bottom: 15px;
+}
+.agree > ul > li > label >  a{
+    text-decoration: underline;
+}

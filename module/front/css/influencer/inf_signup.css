@@ -1,0 +1,73 @@
+.input_wrap{
+    display: inherit;
+    padding-bottom: 10px;
+}
+/* 회원정보 */
+.info{
+    width: 970px;
+}
+/* 계정정보 */
+.account{
+    width: 472px;
+}
+.account .input_wrap{
+    padding-bottom: 0;
+}
+.sns_con, .phone_cer, .term_inf{
+    float: left;
+    width: 470px;
+    height: 345px;
+    margin-top: 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+.term_inf{
+    width: 472px;
+    float: right;
+}
+.agree{
+    padding-left: 40px;
+}
+.agree > ul{
+    position: relative;
+    width: 390px;
+    height: 225px;
+    margin: 0;
+    padding: 10px 50px;
+    border-radius: 4px;
+    background-color: #f9faff;
+}
+.agree > ul > li{
+    margin-top: 5px;
+}
+.agree > ul > li > label > a{
+    text-decoration: underline;
+}
+
+
+
+.phone_cer{
+    margin-left: 30px;
+}
+
+.gen_chk{
+    padding-right: 20px;
+}
+.gen_la{
+    padding-bottom: 20px;
+}
+
+.sns_con > .form{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 75px;
+}
+.inst_con_btn{
+    width: 280px;
+    height: 60px;
+}
+
+.hidden{
+    display: none;
+}

@@ -18,7 +18,10 @@ ol, ul{
 }
 
 input:focus{
-    border: 1px solid #627efe;
+    outline: none;
+}
+button{
+    cursor: pointer;
 }
 button:focus{
     outline: none;

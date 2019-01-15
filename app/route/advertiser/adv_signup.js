@@ -45,10 +45,10 @@ app.get('/advertiser/adv_signup', (req, res) => {
                                         <input type="text" name="phone_num" id="phone_num">
                                     </div>
                                     <div class="input_wrap">
-                                        <label for="address">회사 주소<sup>*</sup></label>
-                                        <input type="text" name="address" class="address" id="address">
+                                        <label for="post_code">회사 주소<sup>*</sup></label>
+                                        <input type="text" name="post_code" class="post_code" id="post_code">
                                         <button type="button" class="sch_add_btn">주소검색</button>
-                                        <input type="text" name="detail_address" class="detail_address">
+                                        <input type="text" name="address" class="address">
                                     </div>
                                 </div>
                         </div>
@@ -62,14 +62,17 @@ app.get('/advertiser/adv_signup', (req, res) => {
                                         <label for="id">ID<sup>*</sup></label>
                                         <input type="text" name="id" class="id" id="id">
                                         <button type="button" class="id_chk_btn">중복확인</button>
+                                        <p class="error id_error"></p>
                                     </div>
                                     <div class="input_wrap">
                                         <label for="password">비밀번호<sup>*</sup></label>
                                         <input type="text" name="password" id="password">
+                                        <p class="error password_error"></p>
                                     </div>
                                     <div class="input_wrap">
                                         <label for="password_chk">비밀번호 확인<sup>*</sup></label>
                                         <input type="text" name="password_chk" id="password_chk">
+                                        <p class="error password_chk_error"></p>
                                     </div>
                                     <ul class="notice">
                                         <li>* 영문, 숫자, 특수문자 혼합 8자리 이상</li>
@@ -127,22 +130,29 @@ app.get('/advertiser/adv_signup', (req, res) => {
                             <button type="button" class="submit_btn">가입하기</button>
                         </div>
                     </div>
-
                 </div>
             </div>
         `,
         footer: ``,
         script: `
-            <script src="/front/script/advertiser/adv_signup.js"></script>
-            <script>
-                go('.signup_form', $, AdvSignUp.Route.signup);
-            </script>
-    
+        <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+        <script src="/front/script/advertiser/adv_signup.js"></script>
+        <script>
+            go('.signup_form', $, AdvSignUp.Route.signup);
+            go('.signup_form', $, AdvSignUp.Route.checkId);
+            go('#id', $, AdvSignUp.Route.validateEmail);
+            go('#password', $, AdvSignUp.Route.validatePw);
+            go('#password_chk', $, AdvSignUp.Route.validateCheckPw);
+            go('.sch_add_btn', $, AdvSignUp.Route.showPost)
+        </script>
          `
     }));
 });
 
-app.post('/advertiser/adv_signup', (req, res, next) => {
+/**
+ * 광고주 회원가입
+ */
+app.post('/api/advertiser/adv_signup', (req, res, next) => {
     go(
         req.body,
         a => {
@@ -154,10 +164,33 @@ app.post('/advertiser/adv_signup', (req, res, next) => {
             res.json
         ).catch(
             match
-                .case({constraint: 'tb_user_pkey'})(
-                    _ => 'id'
-                )
-                .else(_ => ''),
+                .case ({constraint: 'tb_user_pkey'})(_ => 'id')
+                .else (_ => ''),
+            m => new Error(m),
+            next
+        )
+    )
+});
+
+/**
+ * 광고주 아이디 중복체크
+ */
+app.post('/api/advertiser/adv_checkId', (req, res, next) => {
+    go(
+        req.body.id,
+        pipeT(
+            a => QUERY `SELECT * FROM users WHERE id = ${a}`,
+            b => {
+                if (b.length !== 0){
+                    throw 'The ID is already exist';
+                }
+                return b;
+            },
+            res.json
+        ).catch(
+            match
+                .case ('The ID is already exist')(_ => 'The ID is already exist')
+                .else (_ => ''),
             m => new Error(m),
             next
         )
