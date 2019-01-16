@@ -3,8 +3,8 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
 
     res.send(TMPL.layout.hnmf({
         css: `
-            <link rel="stylesheet" href="/front/css/advertiser/adv_campaign.css" />
             <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
+            <link rel="stylesheet" href="/front/css/advertiser/adv_campaign_management.css" />
         `,
         header: TMPL.layout.advHeader(),
         nav: TMPL.layout.advNav(),
@@ -77,82 +77,86 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                         </div>
                     </div>
                     <div class="list_wrap">
-                        <h2>캠페인 리스트</h2>
-                        <table>
-                            <caption>캠페인 리스트 등록안내 게시판</caption>
-                            <colgroup>
-                                <col style="width: 70px">
-                                <col style="width: 280px">
-                                <col style="width: 250px">
-                                <col style="width: 150px">
-                                <col style="width: 200px">
-                                <col style="width: 100px">
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="num">NO</th>
-                                    <th scope="col" class="product_name">상품</th>
-                                    <th scope="col" class="slae_term">판매기간</th>
-                                    <th scope="col" class="inf ud">인플루언서</th>
-                                    <th scope="col" class="start_date">캠페인 등록일</th>
-                                    <th scope="col" class="camp_state ud">상태</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="num">1</td>
-                                    <td class="product_name">
-                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션"/>
-                                        <p>[무료배송]헤라 블랙 쿠션</p>
-                                    </td>
-                                    <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
-                                    <td class="inf">409명</td>
-                                    <td class="start_date">2018-12-12 10:00:00</td>
-                                    <td class="camp_state">
-                                        <span class="check1">판매중</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="num">2</td>
-                                    <td class="product_name">
-                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션" />
-                                        <p>[무료배송]헤라 블랙 쿠션</p>
-                                    </td>
-                                    <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
-                                    <td class="inf">409명</td>
-                                    <td class="start_date">2018-12-12 10:00:00</td>
-                                    <td class="camp_state">
-                                        <span class="check2">진행중</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="num">3</td>
-                                    <td class="product_name">
-                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션" />
-                                        <p>[무료배송]헤라 블랙 쿠션</p>
-                                    </td>
-                                    <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
-                                    <td class="inf">409명</td>
-                                    <td class="start_date">2018-12-12 10:00:00</td>
-                                    <td class="camp_state">
-                                        <span class="check3">취소</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="num">4</td>
-                                    <td class="product_name">
-                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션" />
-                                        <p>[무료배송]헤라 블랙 쿠션</p>
-                                    </td>
-                                    <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
-                                    <td class="inf">409명</td>
-                                    <td class="start_date">2018-12-12 10:00:00</td>
-                                    <td class="camp_state">
-                                        <span class="check4">판매완료</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="list_title">
+                            <h2>캠페인 리스트</h2>
+                        </div>
+                        <div class="campaign_list">
+                            <table>
+                                <caption>캠페인 리스트 등록안내 게시판</caption>
+                                <colgroup>
+                                    <col style="width: 70px">
+                                    <col style="width: 280px">
+                                    <col style="width: 250px">
+                                    <col style="width: 150px">
+                                    <col style="width: 200px">
+                                    <col style="width: 100px">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="num">NO</th>
+                                        <th scope="col" class="product_name">상품</th>
+                                        <th scope="col" class="slae_term">판매기간</th>
+                                        <th scope="col" class="inf ud">인플루언서</th>
+                                        <th scope="col" class="start_date">캠페인 등록일</th>
+                                        <th scope="col" class="camp_state ud">상태</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="num">1</td>
+                                        <td class="product_name">
+                                            <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션"/>
+                                            <p>[무료배송]헤라 블랙 쿠션</p>
+                                        </td>
+                                        <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
+                                        <td class="inf">409명</td>
+                                        <td class="start_date">2018-12-12 10:00:00</td>
+                                        <td class="camp_state">
+                                            <span class="check1">판매중</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="num">2</td>
+                                        <td class="product_name">
+                                            <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션" />
+                                            <p>[무료배송]헤라 블랙 쿠션</p>
+                                        </td>
+                                        <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
+                                        <td class="inf">409명</td>
+                                        <td class="start_date">2018-12-12 10:00:00</td>
+                                        <td class="camp_state">
+                                            <span class="check2">진행중</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="num">3</td>
+                                        <td class="product_name">
+                                            <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션" />
+                                            <p>[무료배송]헤라 블랙 쿠션</p>
+                                        </td>
+                                        <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
+                                        <td class="inf">409명</td>
+                                        <td class="start_date">2018-12-12 10:00:00</td>
+                                        <td class="camp_state">
+                                            <span class="check3">취소</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="num">4</td>
+                                        <td class="product_name">
+                                            <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션" />
+                                            <p>[무료배송]헤라 블랙 쿠션</p>
+                                        </td>
+                                        <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
+                                        <td class="inf">409명</td>
+                                        <td class="start_date">2018-12-12 10:00:00</td>
+                                        <td class="camp_state">
+                                            <span class="check4">판매완료</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

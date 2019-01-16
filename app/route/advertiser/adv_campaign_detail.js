@@ -3,7 +3,7 @@ app.get('/advertiser/adv_campaign_detail', (req, res) => {
 
     res.send(TMPL.layout.hnmf({
         css: `
-            <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign_detail.css" />
+            <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
             <link rel="stylesheet" href="/front/css/advertiser/adv_campaign_detail.css" />
         `,
         header: TMPL.layout.advHeader(),
