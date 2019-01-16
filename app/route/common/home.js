@@ -1,7 +1,8 @@
 app.get('/', (req, res) => {
     res.send(TMPL.layout.hnmf({
-        css: ``,
-        header: TMPL.layout.header(),
+        css: `
+        `,
+        header: ``,
         nav: ``,
         main: `
             <div id="main">

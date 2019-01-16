@@ -57,7 +57,7 @@
                         throw 'No content';
                     return a;
                 },
-                $.post('/api/advertiser/adv_checkId'),
+                $.post('/api/advertiser/adv_check_id'),
                 _ => { $('.id_error').innerHTML = '사용 가능한 아이디입니다.'; }
             ).catch(
                 a => match(a)

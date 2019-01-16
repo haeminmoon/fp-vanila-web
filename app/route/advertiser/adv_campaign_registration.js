@@ -8,7 +8,7 @@ app.get('/advertiser/adv_campaign_registration', (req, res) => {
 
     res.send(TMPL.layout.hnmf({
         css: `
-            <link rel="stylesheet" href="/front/css/campaign.css" />
+            <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
         `,
         header: TMPL.layout.advHeader(),
         nav: TMPL.layout.advNav(),
@@ -144,7 +144,7 @@ app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
         notice_date: notice_date,
         post_start_date: post_date[0],
         post_end_date: post_date[1],
-        advertiser_id: 'test'
+        advertiser_id: 'test' // req.session.user,id
     };
     const newMainImg = req.files['main_img'];
     const newSubImgs = req.files['sub_img'];

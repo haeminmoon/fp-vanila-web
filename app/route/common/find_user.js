@@ -3,7 +3,9 @@ app.get('/common/find_user', (req, res) => {
         css: ``,
         header: ``,
         nav: ``,
-        main: ``,
+        main: `
+            준비중
+        `,
         footer: ``,
         script: ``
     }));

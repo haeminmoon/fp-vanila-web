@@ -3,8 +3,8 @@ app.get('/influencer/inf_campaign_management', (req, res) => {
 
     res.send(TMPL.layout.hnmf({
         css: ``,
-        header: ``,
-        nav: ``,
+        header: TMPL.layout.infHeader(),
+        nav: TMPL.layout.infNav(),
         main: `
             캠페인 관리
         `,

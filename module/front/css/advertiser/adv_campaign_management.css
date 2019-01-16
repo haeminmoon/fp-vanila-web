@@ -1,0 +1,142 @@
+@charset "utf-8";
+.state_wrap{position: relative;}
+.state_wrap:after{content: ''; display: block; clear: both;}
+.state_box li > a{
+	width: calc((100% - 30px)/4);
+	box-sizing: border-box;
+	display: block;
+	float: left; 
+	background-color: white; 
+	padding: 29px 22px 28px 25px;
+	box-shadow: 0 1px 4px 0 #e5e9f2;
+	border-radius: 5px;
+}
+.state_box li+li > a{margin-left: 10px;}
+.state_box .state{
+	font-size: 14px;
+	line-height: 20px;
+	color: #999;
+}
+.state_box span{
+	font-size:30px;
+	line-height: 33px;
+	display: block;
+}
+.camp_btn{
+	position: absolute;
+	right: 0;
+	bottom: -65px;
+	display: block;
+ 	width: 160px;
+	height: 50px;
+  	border-radius: 5px;
+	background-color: #00dbbf;
+	color: white;
+	border-style: none;
+}
+.search_wrap{
+	position: relative;
+	background-color: white;
+	height: 150px;
+	border-radius: 5px;
+  	box-shadow: 0 1px 4px 0 #e5e9f2;
+	padding: 25px 0 0 25px;
+}
+.search_wrap > h2{
+	position: absolute;
+	top: -40px;
+	left: 0;
+}
+.search_wrap > div{
+	position: relative;
+	height: 55px;
+}
+.search_wrap > div > div{
+	position: absolute;
+	left: 93px;
+	top: 0;
+}
+.search_wrap > div > span{
+	font-size: 16px;
+	line-height: 45px;
+	font-weight: bold;
+}
+.search_inbox .search_txt{
+	width: 544px;
+	font-size: 14px;
+	line-height: 40px;
+  	border-radius: 4px;
+	border: 1px solid #ddd;
+	padding-left: 15px;
+	letter-spacing: -1px;
+}
+.search_icon{
+	position: relative;
+	left: -34px;
+	top: 4px;
+	width: 18px;
+	height: 18px;
+	border: none;
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/search.png)no-repeat;
+	background-size: 18px 18px;
+}
+.check_tab input[type="checkbox"]{
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	vertical-align: text-top;
+}
+.check_tab input[type="checkbox"] + label:before {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    margin: -2px 6px 0 0;
+    background: #fff;
+    border-radius: 2px;
+	border: 1px solid #dddddd;
+}
+.check_tab.on input[type="checkbox"] + label:before {
+	border: 2px solid #00dbbf;
+}
+.check_tab{
+	display: inline-block;
+	line-height: 45px;
+	margin-right: 30px;
+	font-size: 14px;
+}
+.product_name p{
+	padding-left: 40px;
+}
+.product_name img{
+	position: absolute;
+	top: 25px;
+	width: 35px;
+	height: 35px;
+	border: 1px solid rgba(229, 233, 242, 0.5);
+}
+.camp_state span{
+	display: block;
+	font-size: 11px;
+	line-height: 12px;
+	border-radius: 20px;
+	padding: 5px 0;
+	width: 50px;
+	text-align: center;
+}
+.check1{
+	border: 2px solid #627efe;
+	color: #627efe;
+}
+.check2{
+	border: 2px solid #5d38db;
+	color: #5d38db;
+}
+.check3{
+	border: 2px solid #ccc;
+	color: #ccc;
+}
+.camp_state .check4{
+	width: 60px;
+	border: 2px solid #999;
+	color: #999;
+}

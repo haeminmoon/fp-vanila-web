@@ -1,3 +1,4 @@
+@charset "utf-8";
 body{
     background-color: #f2f7fd;
 }
@@ -168,5 +169,3 @@ button{
      height: 50px;
      border-radius: 30px;
  }
-
-

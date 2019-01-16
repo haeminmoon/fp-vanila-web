@@ -14,22 +14,20 @@ ol, ul{
 input[type="checkbox"], input[type="radio"]{
     vertical-align: middle;
 }
-
-input:focus{
+input::placeholder{
+    font-size: 12px;
+    color: #acacac;
+}
+input, button:focus{
     outline: none;
 }
-button{
+a, button{
     cursor: pointer;
-}
-button:focus{
-    outline: none;
 }
 .clear{
     clear: both;
 }
-a{
-	cursor: pointer;
-}
+
 /* 체크박스 디자인 */
 input[type="checkbox"]{
     position: absolute;
@@ -89,4 +87,135 @@ input[type="radio"]:checked + label:before {
     background: #f1f4ff;
     border-color: #adb8c0;
     box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+}
+
+/* nav */
+#nav{
+    position: fixed;
+    width: 220px;
+    height: 100%;
+    float: left;
+    background-color:#1f263e;
+}
+.logo{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo > a{
+    display: block;
+    width: 166.8px;
+    height: 27px;
+}
+.logo > a > img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.profile{
+    height: 171px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color:#1a2034;
+}
+.profile > .user_name{
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+}
+.profile > .image{
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.profile > .image > img{
+    width: 100%;
+}
+.nav_gnb {
+    width: 100%;
+}
+.nav_gnb > li{
+    width: 100%;
+    height: 58px;
+    line-height: 58px;
+}
+.nav_on{
+    border-left: 4px solid #627efe;
+    background-color: #293150;
+}
+.nav_on, .setting > a{
+    position: relative;
+}
+.setting > a{
+    padding: 0 50px !important;
+}
+.nav_on > a::after{
+    content: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/arrow-down-white_2019-01-16/arrow-down-white.png);
+    position: absolute;
+    color: #fff;
+    right: 20px;
+    top: 5px;
+}
+.setting > a::before{
+    content: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/icon-settings/ic-settings.png);
+    position: absolute;
+    top: 5px;
+    left: 20px;
+}
+.nav_gnb > li > a{
+    display: block;
+    padding: 0 35px;
+    color: #ccced6;
+}
+.btn_wrap{
+    position: absolute;
+    width: 100%;
+    height: 58px;
+    line-height: 58px;
+    text-align: center;
+    bottom: 0;
+}
+.signout_btn{
+    border: none;
+    background: none;
+    color: #fff;
+}
+
+/* header */
+#header{
+    width: 100%;
+    height: 70px;
+    background-color: #fff;
+    box-shadow: 0 3px 20px 0 rgba(124, 124, 124, 0.1);
+}
+.header_gnb{
+    float: right;
+    height: 100%;
+    line-height: 80px;
+    margin-right: 250px;
+}
+.notice_msg{
+    position:relative;
+    width: 26px;
+    height: 26px;
+    background: transparent none;
+    border: none;
+}
+.circle_cnt{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: #f45879;
+    border: 1px solid #fff;
+    border-radius: 100%;
+    top: -7px;
+    right: -7px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
 }

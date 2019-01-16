@@ -1,0 +1,119 @@
+@charset "utf-8";
+
+/*캠페인 등록 공통사항*/
+.hide{display: none;}
+/* ============ wrap ============ */
+#wrap{
+    margin-left: 220px;
+}
+
+/* ============ main ============ */
+#main{
+	padding: 0 20px 200px;
+}
+.breadcrumbs{
+	font-size: 15px;
+	line-height: 70px;
+	height: 70px;
+	position: relative;
+}
+.container > div:nth-child(1),.container > div:nth-child(2) {margin-top: 0px;}
+.container > div{margin-top: 75px;}
+
+.breadcrumbs a{
+	position: relative;
+	padding-right: 23px;
+	color: #ccc;
+}
+.breadcrumbs a:after{
+	content: '';
+	position: absolute;
+	top:3px; right: 4px;
+	width: 10px;
+	height: 15px;
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/arrow.png)no-repeat;
+	background-size: 8px;
+	opacity: 0.2;
+}
+.breadcrumbs a:last-child{
+	color: #00dbbf;
+}
+.breadcrumbs a:last-child:after{
+	content: none;
+}
+.container {width: 100%;}
+h2{
+	font-size: 17px;
+	line-height: 25px;
+	color: #222;
+}
+
+.list_wrap{
+	position: relative;
+	background-color: white;
+	box-shadow: 0 1px 4px 0 #e5e9f2;
+	border-radius: 5px;
+}
+.container h2{
+	position: absolute;
+	top: -40px;
+}
+/*캠페인 등록 공통사항 ====> 끝*/
+
+
+/* table공통사항 */
+caption{
+	position: absolute;
+	text-indent: -99999px;
+}
+table{border-collapse: collapse;}
+tr{text-align: left;}
+thead th{
+	padding: 14px 0 15px;
+	font-size: 15px;
+	position: relative;
+	color: #666;
+}
+thead:after{
+	content: '';
+	position: absolute;
+	left: 0;
+	width: 100%;
+	border-bottom: 1px solid #eeeeee;
+	z-index: 20;
+}
+tbody td{
+	position: relative;
+	padding: 30px 0;
+	font-size: 15px;
+	line-height: 15px;
+	font-weight: bold;
+	z-index: 100;
+}
+tbody tr{
+	position: relative;
+	width: 100%;
+	top: 0; right: 0; bottom: 0; left: 0;
+}
+tbody tr.tr_on:after{
+	content: '';
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 86px;
+	background-color: #f6fcfb;;
+	z-index: 10;
+}
+tbody tr *{
+	color: #222;
+}
+.num{padding-left: 20px;}
+thead .ud:after{
+	content: '';
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	vertical-align: top;
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/btn-list-filter/btn-list-filter.png)no-repeat;
+}
+/* table공통사항 끝 */

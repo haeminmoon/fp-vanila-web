@@ -3,7 +3,8 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
 
     res.send(TMPL.layout.hnmf({
         css: `
-            <link rel="stylesheet" href="/front/css/campaign.css" />
+            <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
+            <link rel="stylesheet" href="/front/css/advertiser/adv_campaign_management.css" />
         `,
         header: TMPL.layout.advHeader(),
         nav: TMPL.layout.advNav(),
@@ -11,8 +12,8 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
             <div id="main">
                 <div class="container">
                     <div class="breadcrumbs">
-                        <a>홈</a>
-                        <span>캠페인 리스트</span>
+                        <a href="/">홈</a>
+                        <a href="/advertiser/adv_campaign_management">캠페인 리스트</a>
                     </div>
                     <div class="state_wrap">
                         <h2 class="hide">전체 프로세스</h2>
@@ -57,20 +58,20 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                             <span>판매상태</span>
                             <div class="check_box">
                                 <div class="check_tab">
-                                    <input type="checkbox" name="sale_chk" id="progress">
+                                    <input type="checkbox" name="sale_chk" id="progress" value="progress">
                                     <label for="progress">진행중</label>
                                 </div>
                                 <div class="check_tab">
-                                    <input type="checkbox" name="sale_chk" id="onsale">
-                                    <span>판매중</span>
+                                    <input type="checkbox" name="sale_chk" id="onsale" value="onsale">
+                                    <label for="onsale">판매중</label>
                                 </div>
                                 <div class="check_tab">
-                                    <input type="checkbox" name="sale_chk" id="sale_complete">
-                                    <span>판매완료</span>
+                                    <input type="checkbox" name="sale_chk" id="sale_complete" value="sale_complete">
+                                    <label for="sale_complete">판매완료</label>
                                 </div>
                                 <div class="check_tab">
-                                    <input type="checkbox" name="sale_chk" id="cancel">
-                                    <span>취소</span>
+                                    <input type="checkbox" name="sale_chk" id="cancel" value="cancel">
+                                    <label for="cancel">취소</label>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +102,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">1</td>
                                     <td class="product_name">
-                                        <img src="/front/img/product_name_1.jpg" />
+                                        <img src="http://img.danawa.com/prod_img/500000/648/004/img/5004648_1.jpg?shrink=500:500&_v=20180514164715" alt="헤라 블랙 쿠션"/>
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
@@ -114,7 +115,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">2</td>
                                     <td class="product_name">
-                                        <img src="/front/img/product_name_1.jpg" />
+                                        <img src="http://img.danawa.com/prod_img/500000/648/004/img/5004648_1.jpg?shrink=500:500&_v=20180514164715" alt="헤라 블랙 쿠션" />
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
@@ -127,7 +128,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">3</td>
                                     <td class="product_name">
-                                        <img src="/front/img/product_name_1.jpg" />
+                                        <img src="http://img.danawa.com/prod_img/500000/648/004/img/5004648_1.jpg?shrink=500:500&_v=20180514164715" alt="헤라 블랙 쿠션" />
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
@@ -140,7 +141,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">4</td>
                                     <td class="product_name">
-                                        <img src="/front/img/product_name_1.jpg" />
+                                        <img src="http://img.danawa.com/prod_img/500000/648/004/img/5004648_1.jpg?shrink=500:500&_v=20180514164715" alt="헤라 블랙 쿠션" />
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>

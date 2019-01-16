@@ -7,7 +7,6 @@ require('./common/signup_popup');
 require('./common/signout');
 require('./common/find_user');
 
-
 /**
  * Advertiser router
  */
@@ -30,6 +29,7 @@ require('./influencer/inf_campaign_apply');
 require('./influencer/inf_campaign_management');
 require('./influencer/inf_signup');
 require('./influencer/inf_signup_complete');
+require('./influencer/inf_signup_connect_instagram');
 
 /**
 * Admin router

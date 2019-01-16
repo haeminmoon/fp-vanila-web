@@ -1,3 +1,4 @@
+@charset "utf-8";
 #main{
     padding-top: 0;
     width: 100%;
@@ -40,7 +41,7 @@
 .welcome_txt > p{
     font-size: 1.8em;
 }
-.welcome_txt > .txt_color{
+.txt_color{
     color: #627efe;
     font-weight: 700;
 }
