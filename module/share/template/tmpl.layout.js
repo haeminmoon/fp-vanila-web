@@ -86,15 +86,15 @@
                 <p class="user_name">아이유</p>
             </div>
             <ul class="nav_gnb">
-                <li class="nav_on"><a>홈</a></li>
-                <li><a>상품 관리</a></li>
-                <li><a>인플루언서</a></li>
-                <li><a>캠페인 관리</a></li>
-                <li><a>주문내역</a></li>
-                <li><a>정산 관리</a></li>
-                <li><a>고객문의</a></li>
-                <li><a>Wallet</a></li>
-                <li class="setting"><a>설정</a></li>
+                <li class="nav_on"><a href="/">홈</a></li>
+                <li><a href="#">상품 관리</a></li>
+                <li><a href="#">인플루언서</a></li>
+                <li><a href="#">캠페인 관리</a></li>
+                <li><a href="#">주문내역</a></li>
+                <li><a href="#">정산 관리</a></li>
+                <li><a href="#">고객문의</a></li>
+                <li><a href="#">Wallet</a></li>
+                <li class="setting"><a href="#">설정</a></li>
             </ul>
             <div class="btn_wrap">
                 <button type="button" class="signout_btn">로그아웃</button>
@@ -116,10 +116,10 @@
                 <p class="user_name">아이유</p>
             </div>
             <ul class="nav_gnb">
-                <li class="nav_on"><a>홈</a></li>
-                <li><a>캠페인 관리</a></li>
-                <li><a>캠페인 목록</a></li>
-                <li class="setting"><a>설정</a></li>
+                <li class="nav_on"><a href="/">홈</a></li>
+                <li><a href="#">캠페인 관리</a></li>
+                <li><a href="#">캠페인 목록</a></li>
+                <li class="setting"><a href="#">설정</a></li>
             </ul>
             <div class="btn_wrap">
                 <button type="button" class="signout_btn">로그아웃</button>
