@@ -104,7 +104,7 @@
                 <li><a>나의 정보</a></li>
             </ul>
             <div class="btn_wrap">
-                <button type="button" class="logout_btn">로그아웃</button>
+                <button type="button" class="signout_btn">로그아웃</button>
             </div>
         </div>
     `;
@@ -120,7 +120,7 @@
                 <li><a>나의 정보</a></li>
             </ul>
             <div class="btn_wrap">
-                <button type="button" class="logout_btn">로그아웃</button>
+                <button type="button" class="signout_btn">로그아웃</button>
             </div>
         </div>
     `;
