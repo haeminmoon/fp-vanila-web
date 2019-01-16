@@ -6,7 +6,8 @@ body{
 #header{
     width: 100%;
     height: 70px;
-    /* background-color: #1f263e; */
+    background: transparent;
+    box-shadow: none;
 }
 #header .logo{
     float: left;

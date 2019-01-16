@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*캠페인 등록 공통사항*/
-.hide{position: absolute; text-indent: -9999px;}
+.hide{display: none;}
 
 /* ============ wrap ============ */
 #wrap{
@@ -9,7 +9,6 @@
 
 /* ============ main ============ */
 #main{
-	background-color: #f9f9f9;
 	padding: 0 20px 200px;
 }
 .breadcrumbs{
@@ -36,8 +35,11 @@
 	background-size: 8px;
 	opacity: 0.2;
 }
-.breadcrumbs span{
+.breadcrumbs a:last-child{
 	color: #00dbbf;
+}
+.breadcrumbs a:last-child:after{
+	content: none;
 }
 .container {width: 100%;}
 h2{

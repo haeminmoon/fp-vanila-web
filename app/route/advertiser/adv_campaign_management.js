@@ -13,7 +13,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                 <div class="container">
                     <div class="breadcrumbs">
                         <a href="/">홈</a>
-                        <span>캠페인 리스트</span>
+                        <a href="/advertiser/adv_campaign_management">캠페인 리스트</a>
                     </div>
                     <div class="state_wrap">
                         <h2 class="hide">전체 프로세스</h2>
@@ -58,19 +58,19 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                             <span>판매상태</span>
                             <div class="check_box">
                                 <div class="check_tab">
-                                    <input type="checkbox" name="sale_chk" id="progress">
+                                    <input type="checkbox" name="sale_chk" id="progress" value="progress">
                                     <label for="progress">진행중</label>
                                 </div>
                                 <div class="check_tab">
-                                    <input type="checkbox" name="sale_chk" id="onsale">
+                                    <input type="checkbox" name="sale_chk" id="onsale" value="onsale">
                                     <label for="onsale">판매중</label>
                                 </div>
                                 <div class="check_tab">
-                                    <input type="checkbox" name="sale_chk" id="sale_complete">
+                                    <input type="checkbox" name="sale_chk" id="sale_complete" value="sale_complete">
                                     <label for="sale_complete">판매완료</label>
                                 </div>
                                 <div class="check_tab">
-                                    <input type="checkbox" name="sale_chk" id="cancel">
+                                    <input type="checkbox" name="sale_chk" id="cancel" value="cancel">
                                     <label for="cancel">취소</label>
                                 </div>
                             </div>

@@ -12,9 +12,9 @@ app.get('/advertiser/adv_campaign_detail', (req, res) => {
             <div id="main">
                 <div class="container">
                     <div class="breadcrumbs">
-                        <a>홈</a>
-                        <a>캠페인 리스트</a>
-                        <span>캠페인 상세</span>
+                        <a href="/">홈</a>
+                        <a href="/advertiser/adv_campaign_management">캠페인 리스트</a>
+                        <a href="/advertiser/adv_campaign_detail">캠페인 상세</a>
                     </div>
                     <div class="info_wrap">
                         <h2>캠페인 상품정보</h2>
