@@ -21,7 +21,7 @@ app.get('/common/signin', (req, res) => {
                         </span>
                     </div>
                     <div class="signin_wrap">
-                        <input type="text" class="id" class="id" placeholder="${__('id')}">
+                        <input type="text" class="id" placeholder="${__('id')}">
                         <input type="password" class="pw" placeholder="${__('pw')}">
                         <button class="signin_btn">${__('signin')}</button>
                     </div>
@@ -62,10 +62,10 @@ app.get('/common/signin', (req, res) => {
 //         ).catch(
 //             match
 //                 .case('The ID does not exist')(
-//                     _ => 'The ID does not exist'
+//                     _ => 'id'
 //                 )
 //                 .case('The password is incorrect')(
-//                     _ => 'The password is incorrect'
+//                      _ => 'pw'
 //                 )
 //                 .else(_ => ''),
 //             m => new Error(m),
@@ -94,10 +94,10 @@ app.post('/api/common/signin', (req, res, next) => {
         ).catch(
             match
                 .case('The ID does not exist')(
-                    _ => 'The ID does not exist'
+                    _ => 'id'
                 )
                 .case('The password is incorrect')(
-                    _ => 'The password is incorrect'
+                    _ => 'pw'
                 )
                 .else(_ => ''),
             m => new Error(m),

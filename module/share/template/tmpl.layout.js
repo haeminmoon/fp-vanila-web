@@ -98,10 +98,10 @@
                 <a>SPIN Protocol</a>
             </h1>
             <ul>
-                <li class="nav_on"><a>캠페인 관리</a></li>
-                <li><a>캠페인 등록</a></li>
-                <li><a>인플루언서 조회</a></li>
-                <li><a>나의 정보</a></li>
+                <li class="nav_on"><a href="/advertiser/adv_campaign_management">캠페인 관리</a></li>
+                <li><a href="/advertiser/adv_campaign_registration">캠페인 등록</a></li>
+                <li><a href="/advertiser/adv_influencer_list">인플루언서 조회</a></li>
+                <li><a href="/advertiser/adv_my_info">나의 정보</a></li>
             </ul>
             <div class="btn_wrap">
                 <button type="button" class="logout_btn">로그아웃</button>
