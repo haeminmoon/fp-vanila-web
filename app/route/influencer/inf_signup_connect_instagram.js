@@ -1,4 +1,4 @@
-const fbClientInfo = require('../../../config/fbClientInfo');
+const fbClientInfo = require('../../../config/fb_client_info');
 
 app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
     res.send(TMPL.layout.hnmf({
@@ -11,8 +11,7 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
             <div id="main">
                 <div class="input_wrap">    
                     <label for="discript_inst">
-                    현재 인스타그램 비즈니스 계정만 가입이 가능합니다.
-                    인스타 비즈니스 계정과 연결된 페이스북 아이디(ID)를 입력해주세요.
+                    현재 인스타그램 비즈니스 계정만 가입이 가능합니다. 인스타 비즈니스 계정과 연결된 페이스북 아이디(ID)를 입력해주세요.
                     </label>
                     <div class="fb-login-button" 
                     scope="manage_pages, instagram_basic" 
@@ -44,6 +43,13 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
             <script>
                 go('.inst_profile_btn', $, InfSignupConnectInstagram.Do.sendInstagramProfile);
                 go('.cancel', $, InfSignupConnectInstagram.Do.cancel);
+
+                /**
+                 * TO-DO 
+                 * Front script로 이관
+                 * sync 방식으로 Page rendering
+                 * Graph API - npm 모듈 존재하는지 확인
+                 */
                 InfSignupConnectInstagram.Do.init();
                 
                 function statusLogin () {
@@ -106,9 +112,12 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
     
                 function getLongTermToken (accessToken) {
                     return new Promise((resolve, reject) => {
-                        FB.api('/oauth/access_token', 'GET', {"grant_type":"fb_exchange_token","client_id":"${fbClientInfo.clientId}","client_secret":"${fbClientInfo.clientSecrit}","fb_exchange_token":accessToken},
-                            response => resolve(response.access_token)
-                        );
+                        FB.api('/oauth/access_token', 'GET', {
+                            "grant_type": "fb_exchange_token",
+                            "client_id": "${fbClientInfo.clientId}",
+                            "client_secret": "${fbClientInfo.clientSecret}",
+                            "fb_exchange_token":accessToken
+                        }, response => resolve(response.access_token));
                     })
                 }
             </script>

@@ -21,7 +21,6 @@
   "homepage": "https://github.com/haeminmoon/fp-vanila-web#readme",
   "dependencies": {
     "aws-sdk": "^2.388.0",
-    "aws-serverless-express": "^3.3.5",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "connect-multiparty": "^2.2.0",
@@ -41,8 +40,7 @@
     "pbkdf2": "^3.0.17",
     "request": "^2.88.0",
     "serverless-http": "^1.8.0",
-    "stylus": "^0.54.5",
-    "supervisor": "^0.12.0"
+    "stylus": "^0.54.5"
   },
   "devDependencies": {
     "serverless-offline": "^3.32.2"
