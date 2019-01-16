@@ -1,10 +1,10 @@
 app.get('/', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
-            <link rel="stylesheet" href="/front/css/influencer/inf_campaign_list.css">
+            
         `,
-        header: TMPL.layout.infHeader(),
-        nav: TMPL.layout.infNav(),
+        header: ``,
+        nav: ``,
         main: `
             <div id="main">
                 <button class="signin_btn">${__('signin')}</button>

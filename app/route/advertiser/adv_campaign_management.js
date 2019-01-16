@@ -63,15 +63,15 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 </div>
                                 <div class="check_tab">
                                     <input type="checkbox" name="sale_chk" id="onsale">
-                                    <span>판매중</span>
+                                    <label for="onsale">판매중</label>
                                 </div>
                                 <div class="check_tab">
                                     <input type="checkbox" name="sale_chk" id="sale_complete">
-                                    <span>판매완료</span>
+                                    <label for="sale_complete">판매완료</label>
                                 </div>
                                 <div class="check_tab">
                                     <input type="checkbox" name="sale_chk" id="cancel">
-                                    <span>취소</span>
+                                    <label for="cancel">취소</label>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">1</td>
                                     <td class="product_name">
-                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션"/>
+                                        <img src="http://img.danawa.com/prod_img/500000/648/004/img/5004648_1.jpg?shrink=500:500&_v=20180514164715" alt="헤라 블랙 쿠션"/>
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
@@ -115,7 +115,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">2</td>
                                     <td class="product_name">
-                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션" />
+                                        <img src="http://img.danawa.com/prod_img/500000/648/004/img/5004648_1.jpg?shrink=500:500&_v=20180514164715" alt="헤라 블랙 쿠션" />
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
@@ -128,7 +128,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">3</td>
                                     <td class="product_name">
-                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션" />
+                                        <img src="http://img.danawa.com/prod_img/500000/648/004/img/5004648_1.jpg?shrink=500:500&_v=20180514164715" alt="헤라 블랙 쿠션" />
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
@@ -141,7 +141,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">4</td>
                                     <td class="product_name">
-                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션" />
+                                        <img src="http://img.danawa.com/prod_img/500000/648/004/img/5004648_1.jpg?shrink=500:500&_v=20180514164715" alt="헤라 블랙 쿠션" />
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
