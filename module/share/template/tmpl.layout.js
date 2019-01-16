@@ -46,7 +46,6 @@
                 <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo%403x.png" class="logo" alt="spinprotocol_logo">
                 </a>
             </h1>
-            <p class="title">${__('signup')}</p>
         </div>
     `;
 
@@ -63,8 +62,8 @@
                 </li>
                 <li class="gnb_myinfo">
                     <a>
-                        <span class="myname">{광고주 이름}</span>
-                        <span class="myimg">프로필 이미지</span>
+                        <span class="my_name">{광고주 이름}</span>
+                        <span class="my_img">프로필 이미지</span>
                     </a>
                 </li>
             </ul>
@@ -84,8 +83,8 @@
                 </li>
                 <li class="gnb_myinfo">
                     <a>
-                        <span class="myname">{광고주 이름}</span>
-                        <span class="myimg">프로필 이미지</span>
+                        <span class="my_name">{광고주 이름}</span>
+                        <span class="my_img">프로필 이미지</span>
                     </a>
                 </li>
             </ul>
@@ -104,7 +103,7 @@
                 <li><a>나의 정보</a></li>
             </ul>
             <div class="btn_wrap">
-                <button type="button" class="logout_btn">로그아웃</button>
+                <button type="button" class="signout_btn">로그아웃</button>
             </div>
         </div>
     `;
@@ -120,7 +119,7 @@
                 <li><a>나의 정보</a></li>
             </ul>
             <div class="btn_wrap">
-                <button type="button" class="logout_btn">로그아웃</button>
+                <button type="button" class="signout_btn">로그아웃</button>
             </div>
         </div>
     `;

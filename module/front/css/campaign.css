@@ -47,7 +47,7 @@
 	width: 175px;
 	padding: 15px 8px;
 }
-.logout_btn{
+.signout_btn{
 	background: none;
 	border: none;
 	color: rgba(255,255,255,0.7);
@@ -113,17 +113,17 @@
 .gnb_myinfo span{
 	display: inline-block;
 }
-.myname{
+.my_name{
 	position: relative;
 	top: 7px;
 }
-.myimg{
+.my_img{
 	display: block;
 	border-radius: 20px;
 	width: 40px;
 	height: 40px;
 	text-indent: -999999px;
-	background: url(../img/myimg.jpg)no-repeat;
+	background: url(../img/my_img.jpg)no-repeat;
 	background-size: 40px 40px;
 }
 /* ============ main ============ */
