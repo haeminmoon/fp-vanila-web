@@ -86,18 +86,13 @@
                 <p class="user_name">아이유</p>
             </div>
             <ul class="nav_gnb">
-                <li class="nav_on"><a href="/">홈</a></li>
-                <li><a href="#">상품 관리</a></li>
-                <li><a href="#">인플루언서</a></li>
-                <li><a href="#">캠페인 관리</a></li>
-                <li><a href="#">주문내역</a></li>
-                <li><a href="#">정산 관리</a></li>
-                <li><a href="#">고객문의</a></li>
-                <li><a href="#">Wallet</a></li>
-                <li class="setting"><a href="#">설정</a></li>
+                <li class="nav_on"><a href="/advertiser/adv_campaign_management">캠페인 관리</a></li>
+                <li><a href="/advertiser/adv_campaign_registration">캠페인 등록</a></li>
+                <li><a href="/advertiser/adv_influencer_list">인플루언서 리스트</a></li> 
+                <li class="setting"><a href="/advertiser/adv_my_info">설정</a></li>
             </ul>
             <div class="btn_wrap">
-                <button type="button" class="signout_btn">로그아웃</button>
+                <a href="/common/signout">로그아웃</a>
             </div>
         </div>
     `;
@@ -116,13 +111,12 @@
                 <p class="user_name">아이유</p>
             </div>
             <ul class="nav_gnb">
-                <li class="nav_on"><a href="/">홈</a></li>
-                <li><a href="#">캠페인 관리</a></li>
-                <li><a href="#">캠페인 목록</a></li>
-                <li class="setting"><a href="#">설정</a></li>
+                <li class="nav_on"><a href="/influencer/inf_campaign_management">캠페인 관리</a></li>
+                <li><a href="/influencer/inf_campaign_list">캠페인 목록</a></li>
+                <li class="setting"><a href="/influencer/inf_my_info">설정</a></li>
             </ul>
             <div class="btn_wrap">
-                <button type="button" class="signout_btn">로그아웃</button>
+                <a href="/common/signout">로그아웃</a>
             </div>
         </div>
     `;

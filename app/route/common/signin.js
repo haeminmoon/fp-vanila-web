@@ -69,7 +69,7 @@ app.post('/api/common/signin', (req, res, next) => {
     go(
         req.body,
         pipeT(
-            a => QUERY`SELECT * FROM users WHERE id = ${a.id}`,
+            a => QUERY `SELECT * FROM users WHERE id = ${a.id}`,
             b => {
                 if (b.length === 0) throw 'The ID does not exist';
                 return b;
@@ -82,6 +82,7 @@ app.post('/api/common/signin', (req, res, next) => {
             d => req.session.user = d || null,
             res.json
         ).catch(
+            tap(log),
             match
                 .case('The ID does not exist')(
                     _ => 'The ID does not exist'

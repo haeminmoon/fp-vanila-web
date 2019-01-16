@@ -181,7 +181,7 @@ app.post('/api/advertiser/adv_signup', (req, res, next) => {
 /**
  * 광고주 아이디 중복체크
  */
-app.post('/api/advertiser/adv_checkId', (req, res, next) => {
+app.post('/api/advertiser/adv_check_id', (req, res, next) => {
     go(
         req.body.id,
         pipeT(
