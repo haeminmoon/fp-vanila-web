@@ -1,0 +1,68 @@
+@charset "utf-8";
+.info_wrap{
+	position: relative;
+	background-color: white;
+	box-shadow: 0 1px 4px 0 #e5e9f2;
+	border-radius: 5px;
+}
+#main .info_wrap{margin-top: 50px;}
+.info_wrap > div{
+	margin: 0 25px;
+	height: 90px;
+	line-height: 90px;
+}
+.info_wrap > div *{
+	display: inline-block;
+	font-size: 14px;
+}
+.info_wrap span{
+	font-size: 16px;
+	font-weight: bold;
+	margin-right: 20px;
+}
+.info_pd{
+	border-bottom: 1px solid #eee;
+}
+.pd_img img{
+	width: 35px;
+	height: 35px;
+	vertical-align: middle;
+}
+.info_wrap p{
+	color: #666666;
+}
+.modify{
+	position: relative;
+	left: 13px;
+	font-size: 14px;
+	color: #ff7800;
+	font-weight: bold;
+}
+.modify:after{
+	position: absolute;
+	right: -15px;
+	top:50%;
+	transform: translateY(-50%);
+	display: block;
+	content: '';
+	width: 10px;
+	height: 15px;
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/arrow_color.png)no-repeat;
+	background-size: 8px;
+}
+.list_wrap{
+	position: relative;
+	background-color: white;
+	box-shadow: 0 1px 4px 0 #e5e9f2;
+	border-radius: 5px;
+}
+/*table*/
+.infu_name p{
+	padding-left: 40px;
+}
+.infu_name img{
+	position: absolute;
+	top: 20px;
+	width: 35px;
+	height: 35px;
+}

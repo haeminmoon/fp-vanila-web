@@ -5,21 +5,11 @@ app.get('/common/signin', (req, res) => {
         css: `
             <link rel="stylesheet" href="/front/css/common/signin.css">
         `,
-        header: TMPL.layout.header(),
+        header: TMPL.layout.accountHeader('signin'),
         main: `
             <div id="main">
                 <div class="signin_box">
                     <p class="login_tit">SIGN IN</p>
-                    <div class="select_wrap">
-                        <span class="select_box">
-                            <input type="radio" name="select_role" value="supplier" id="supplier" checked>
-                            <label for="supplier">${__('supplier')}</label>
-                        </span>
-                        <span class="select_box">
-                            <input type="radio" name="select_role" value="influencer" id="influencer">
-                            <label for="influencer">${__('influencer')}</label>
-                        </span>
-                    </div>
                     <div class="signin_wrap">
                         <input type="text" class="id" class="id" placeholder="${__('id')}">
                         <input type="password" class="pw" placeholder="${__('pw')}">
@@ -79,7 +69,7 @@ app.post('/api/common/signin', (req, res, next) => {
     go(
         req.body,
         pipeT(
-            a => QUERY `SELECT * FROM users WHERE id = ${a.id}`,
+            a => QUERY`SELECT * FROM users WHERE id = ${a.id}`,
             b => {
                 if (b.length === 0) throw 'The ID does not exist';
                 return b;

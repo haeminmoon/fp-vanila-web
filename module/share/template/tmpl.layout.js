@@ -39,13 +39,14 @@
         script
     });
 
-    TMPL.layout.header = _ => `
+    TMPL.layout.accountHeader = (title) => ` 
         <div id="header">
             <h1 class="logo">
                 <a href="/">
                 <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo%403x.png" class="logo" alt="spinprotocol_logo">
                 </a>
             </h1>
+            <p class="title">${__(title)}</p>
         </div>
     `;
 
@@ -60,7 +61,7 @@
                         </span>
                     </a>
                 </li>
-                <li class="gnb_myinfo">
+                <li class="gnb_my_info">
                     <a>
                         <span class="my_name">{광고주 이름}</span>
                         <span class="my_img">프로필 이미지</span>
@@ -81,7 +82,7 @@
                         </span>
                     </a>
                 </li>
-                <li class="gnb_myinfo">
+                <li class="gnb_my_info">
                     <a>
                         <span class="my_name">{광고주 이름}</span>
                         <span class="my_img">프로필 이미지</span>
@@ -94,7 +95,7 @@
     TMPL.layout.advNav = _ => `
         <div id="nav">
             <h1 class="logo">
-                <a>SPIN Protocol</a>
+                <a href="/"><img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin_logo-2.png" alt="SPIN Protocol"></a>
             </h1>
             <ul>
                 <li class="nav_on"><a>캠페인 관리</a></li>
@@ -111,7 +112,7 @@
     TMPL.layout.infNav = _ => `
         <div id="nav">
             <h1 class="logo">
-                <a>SPIN Protocol</a>
+                <a href="/"><img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin_logo-2.png" alt="SPIN Protocol"></a>
             </h1>
             <ul>
                 <li class="nav_on"><a>캠페인 관리</a></li>
@@ -126,7 +127,7 @@
 
     TMPL.layout.footer = _ => `
         <div id="footer">
-            ${__('copyright')}
+            <p>${__('copyright')}</p>
         </div>
     `;
 }();
