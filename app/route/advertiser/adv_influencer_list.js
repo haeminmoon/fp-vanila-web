@@ -3,8 +3,8 @@ app.get('/advertiser/adv_influencer_list', (req, res) => {
 
     res.send(TMPL.layout.hnmf({
         css: ``,
-        header: ``,
-        nav: ``,
+        header: TMPL.layout.advHeader(),
+        nav: TMPL.layout.advNav(),
         main: `
             인플루언서 목록
         `,

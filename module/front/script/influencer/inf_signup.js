@@ -187,7 +187,7 @@
         }),
 
         openInstagramLogin: $.on('click', _ => {
-            $.openPopup('/influencer/inf_signup_connect_instagram', "connect_instagram");
+            $.openPopup('influencer/inf_signup_connect_instagram', "connect_instagram");
         }),
 
         readyImage: $.on('change', e => {

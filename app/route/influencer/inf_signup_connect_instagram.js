@@ -113,7 +113,3 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
         `
     }));
 });
-
-app.post('/api/influencer/inf_signup_connect_instagram', async (req, res, next) => {
-    log(req.body);
-});

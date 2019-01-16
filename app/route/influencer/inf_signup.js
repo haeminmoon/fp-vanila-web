@@ -1,16 +1,16 @@
-const {config, Group} = require('coolsms-sdk-v4');
+// const {config, Group} = require('coolsms-sdk-v4');
 
 const getHash = require('../../../module/back/util/encryption');
 const getRandomInt6 = require('../../../module/back/util/getRandomInt');
-const coolsms = require('../../../config/coolsms');
+// const coolsms = require('../../../config/coolsms');
 
 app.get('/influencer/inf_signup', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
-            <link rel="stylesheet" href="/front/css/common/signup.css">
+            <link rel="stylesheet" href="/front/css/common/common_signup.css">
             <link rel="stylesheet" href="/front/css/influencer/inf_signup.css">
          `,
-        header: TMPL.layout.header(),
+        header: TMPL.layout.accountHeader('signup'),
         main: `
             <div id="main">
                 <div class="container">
@@ -22,7 +22,7 @@ app.get('/influencer/inf_signup', (req, res) => {
                                     <div class="input_wrap"> 
                                         <label for="profile_pic">사진(1MB 이하)<sup>*</sup></label>
                                         <input type="file" name="profile_pic" id="profile_pic">
-                                        <img id="profile_image" src="#" width="50" height="50" alt="your image" />
+                                        <img id="profile_image" src="#" width="50" height="50" alt="your image"/>
                                     </div>
                                     <div class="input_wrap">
                                         <label for="name">이름(본명)</label>
@@ -37,7 +37,7 @@ app.get('/influencer/inf_signup', (req, res) => {
                                     </div>
                                     <div class="input_wrap">
                                         <label for="birth">생년월일<sup>*</sup></label>
-                                        <input type="text" name="birth" id="birth">
+                                        <input type="text" name="birth" id="birth" placeholder="생년월일 8자리">
                                     </div>
 
                                     <div class="select_box">
@@ -60,7 +60,7 @@ app.get('/influencer/inf_signup', (req, res) => {
                                 <div class="form">
                                     <div class="input_wrap">
                                         <label for="id">ID<sup>*</sup></label>
-                                        <input type="text" name="id" class="id" id="id">
+                                        <input type="text" name="id" class="id" id="id" placeholder="sample@sample.com">
                                         <button type="button" class="id_chk_btn">중복확인</button>
                                         <p class="error id_error"></p>
                                     </div>
@@ -197,12 +197,12 @@ app.post('/api/influencer/inf_signup', (req, res, next) => {
             return a;
         },
         pipeT(
-            b => QUERY `INSERT INTO users ${VALUES(b)}`,
+            b => QUERY`INSERT INTO users ${VALUES(b)}`,
             res.json
         ).catch(
             match
-                .case ({constraint: 'tb_user_pkey'})(_ => 'id')
-                .else (_ => ''),
+                .case({ constraint: 'tb_user_pkey' })(_ => 'id')
+                .else(_ => ''),
             m => new Error(m),
             next
         )
@@ -216,9 +216,9 @@ app.post('/api/influencer/inf_checkId', (req, res, next) => {
     go(
         req.body.id,
         pipeT(
-            a => QUERY `SELECT * FROM users WHERE id = ${a}`,
+            a => QUERY`SELECT * FROM users WHERE id = ${a}`,
             b => {
-                if (b.length !== 0){
+                if (b.length !== 0) {
                     throw 'The ID is already exist';
                 }
                 return b;
@@ -226,8 +226,8 @@ app.post('/api/influencer/inf_checkId', (req, res, next) => {
             res.json
         ).catch(
             match
-                .case ('The ID is already exist')(_ => 'The ID is already exist')
-                .else (_ => ''),
+                .case('The ID is already exist')(_ => 'The ID is already exist')
+                .else(_ => ''),
             m => new Error(m),
             next
         )
@@ -238,27 +238,26 @@ app.post('/api/influencer/inf_checkId', (req, res, next) => {
  * 인플런서 인증번호 발송
  */
 app.post('/api/influencer/inf_checkBn', (req, res, next) => {
-    const code = String(getRandomInt6());
+    // const code = String(getRandomInt6());
 
-    config.init({
-        apiKey: coolsms.apiKey,
-        apiSecret: coolsms.apiSecret
-    });
-
-    go(
-        req.body.phone_num,
-        a  => {
-            return { text: `spin-protocol 에서 발송한 인증번호 ${code} 입니다.`,
-                type: coolsms.type,
-                to: a,
-                from: coolsms.from };
-        },
-        pipeT(
-            // b => Group.sendSimpleMessage(b),
-            _ => res.json({code : code})
-        ).catch(
-            m => new Error(m),
-            next
-        )
-    )
+    // config.init({
+    //     apiKey: coolsms.apiKey,
+    //     apiSecret: coolsms.apiSecret
+    // });
+    // go(
+    //     req.body.phone_num,
+    //     a  => {
+    //         return { text: `spin-protocol 에서 발송한 인증번호 ${code} 입니다.`,
+    //             type: coolsms.type,
+    //             to: a,
+    //             from: coolsms.from };
+    //     },
+    //     pipeT(
+    //         b => Group.sendSimpleMessage(b),
+    //         _ => res.json({code : code})
+    //     ).catch(
+    //         m => new Error(m),
+    //         next
+    //     )
+    // )
 });
