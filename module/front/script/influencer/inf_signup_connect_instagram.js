@@ -38,6 +38,7 @@
             window.close();
         }),
 
+        cancel: $.on('click', _ => window.close())
     }
     global.InfSignupConnectInstagram = {
         Do

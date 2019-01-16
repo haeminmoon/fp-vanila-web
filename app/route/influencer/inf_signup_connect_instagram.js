@@ -6,7 +6,7 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
         <link rel="stylesheet" href="/front/css/common/signup.css">
         <link rel="stylesheet" href="/front/css/influencer/inf_signup.css">
         `,
-        header: TMPL.layout.header(),
+        header: TMPL.layout.accountHeader('signup'),
         main: `
             <div id="main">
                 <div class="input_wrap">    
@@ -30,8 +30,9 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                     <label class="inst_profile" name="inst_follows_count"></label>
                     <input type="hidden" name="inst_access_token" class="inst_access_token">
                     <input type="hidden" name="inst_user_id" class="inst_user_id">
+                    <label class="inst_profile">지금 보이는 프로필이 맞나요?</label> 
                     <button class="inst_profile_btn">확인</button>
-                    <button class="inst_profile_btn">취소</button>
+                    <button class="cancel">취소</button>
                 </div>
             </div>
         `,
@@ -39,9 +40,10 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
         `,
         script: `
             <script src="/front/script/common/signin.js"></script>
-            <script src="/front/script/influencer/inf_signup_connect_instagram.js"></script> 
+            <script src="/front/script/influencer/inf_signup_connect_instagram.js"></script>
             <script>
                 go('.inst_profile_btn', $, InfSignupConnectInstagram.Do.sendInstagramProfile);
+                go('.cancel', $, InfSignupConnectInstagram.Do.cancel);
                 InfSignupConnectInstagram.Do.init();
                 
                 function statusLogin () {
