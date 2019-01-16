@@ -2,17 +2,12 @@
 
 /*캠페인 등록 공통사항*/
 .hide{display: none;}
-/* ============ wrap ============ */
-#wrap{
-    margin-left: 220px;
-}
-
 /* ============ main ============ */
 #main{
+	margin-left: 220px;
 	padding: 0 20px 200px;
 }
 .breadcrumbs{
-	font-size: 15px;
 	line-height: 70px;
 	height: 70px;
 	position: relative;
@@ -23,7 +18,9 @@
 .breadcrumbs a{
 	position: relative;
 	padding-right: 23px;
-	color: #ccc;
+	color: #1f263e;
+	font-weight: 600;
+    font-size: 13px;
 }
 .breadcrumbs a:after{
 	content: '';
@@ -36,7 +33,7 @@
 	opacity: 0.2;
 }
 .breadcrumbs a:last-child{
-	color: #00dbbf;
+	color: #627efe;
 }
 .breadcrumbs a:last-child:after{
 	content: none;

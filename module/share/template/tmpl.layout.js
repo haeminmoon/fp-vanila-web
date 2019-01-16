@@ -30,11 +30,11 @@
         css,
         body: html`
             ${nav}
-            <div id="wrap">
+    
             ${header}
             ${main}
             ${footer}
-            </div>
+ 
         `,
         script
     });
