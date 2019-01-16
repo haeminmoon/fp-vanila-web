@@ -10,26 +10,37 @@
                 gender: go(dt, $.findAll('[name="gender"]'), filter(a => a.checked === true), first, $.val),
                 phone_num: go(dt, $.find('[name="phone_num_cer"]'), $.trim),
                 certification_num: go(dt, $.find('[name="certification_num"]'), $.trim),
-
+                insta_id: go(dt, $.find('[name="inst_user_id"]'), a => a.innerText)
             },
             pipeT(
                 a => {
+                    if (a.insta_id === '') {}
                     for (key in a) {
-                        if (a[key] === '') {
+                        if (a[key] === '') { 
                             throw 'No content'
                         }
                     }
                     delete a.certification_num;
+                    delete a.insta_id;
                     return a;
                 },
                 ({id, pw, ...info}) => {
+                    let snsInfo = {
+                        insta_id: go(dt, $.find('[name="inst_user_id"]'), a => a.innerText),
+                        insta_access_token: go(dt, $.find('[name="inst_access_token"]'), a => a.innerText),
+                        insta_username: go(dt, $.find('[name="inst_username"]'), a => a.innerText),
+                        insta_followers: go(dt, $.find('[name="inst_followers_count"]'), a => a.innerText),
+                        insta_follows: go(dt, $.find('[name="inst_follows_count"]'), a => a.innerText),
+                        insta_profile_img: go(dt, $.find('[name="inst_profile_img"]'), a => a.src)
+                    };
                     return {
-                        id: id,
-                        pw: pw,
-                        info: JSON.stringify(info),
-                        auth: 'influencer',
-                        created_at: new Date()
-                    }
+                            id: id,
+                            pw: pw,
+                            info: JSON.stringify(info),
+                            auth: 'influencer',
+                            created_at: new Date(),
+                            sns_info: JSON.stringify(snsInfo)
+                    };
                 },
                 $.post('/api/influencer/inf_signup'),
                 _ => location.href = '/'
@@ -90,6 +101,7 @@
                 $.post('/api/influencer/inf_checkBn'),
                 result => {
                     $('.user_code').value = result.code;
+                    log(result.code);
                     alert('인증번호가 발송되었습니다.');
                 }).catch(
                 _ => alert('핸드폰 번호를 입력해주세요')
@@ -166,11 +178,16 @@
             }
         }),
 
-        showCode: $.on('click', _ => {
+        showCodePhone: $.on('click', _ => {
             if (go($('.phone_num_cer'), $.trim) !== '') {
-                $.all('.input_wrap')[8].classList.remove("hidden");
+                log($.all('.input_wrap'));
+                $.all('.input_wrap')[9].classList.remove("hidden");
 
             }
+        }),
+
+        openInstagramLogin: $.on('click', _ => {
+            $.openPopup('/influencer/inf_signup_connect_instagram', "connect_instagram");
         }),
 
         readyImage: $.on('change', e => {

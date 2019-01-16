@@ -30,6 +30,7 @@ require('./influencer/inf_campaign_apply');
 require('./influencer/inf_campaign_management');
 require('./influencer/inf_signup');
 require('./influencer/inf_signup_complete');
+require('./influencer/inf_signup_connect_instagram');
 
 /**
 * Admin router
