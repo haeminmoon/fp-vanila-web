@@ -19,7 +19,7 @@ app.get('/influencer/inf_signup', (req, res) => {
                         <!-- 개인정보 입력 폼 -->
                             <h2 class="form_tit">개인정보 입력</h2>
                                 <div class="form_left">
-                                    <div class="input_wrap">
+                                    <div class="input_wrap"> 
                                         <label for="profile_pic">사진(1MB 이하)<sup>*</sup></label>
                                         <input type="file" name="profile_pic" id="profile_pic">
                                         <img id="profile_image" src="#" width="50" height="50" alt="your image"/>
@@ -85,9 +85,19 @@ app.get('/influencer/inf_signup', (req, res) => {
                         <!-- sns 연동 -->
                         <div class="sns_con">
                             <h2 class="form_tit">SNS</h2>
-                                <div class="form">
-                                    <button type="button" class="inst_con_btn">instagram 연결하기</button>
-                                </div>
+                                    <div class="form">
+                                        <button type="button" class="inst_con_btn">instagram 연결하기</button>
+                                        <div class="input_wrap hidden">
+                                            <label for="inst_profile">Instagram Profile</label>
+                                            <img src="" class="inst_profile" name="inst_profile_img" height="100" width="100"/>
+                                            <label class="inst_profile" name="inst_username"></label>
+                                            <label class="inst_profile" name="inst_media_count"></label>
+                                            <label class="inst_profile" name="inst_followers_count"></label>                                
+                                            <label class="inst_profile" name="inst_follows_count"></label>
+                                            <input type="hidden" name="inst_access_token" class="inst_access_token">
+                                            <input type="hidden" name="inst_user_id" class="inst_user_id">                                                                        
+                                        </div>
+                                    </div>
                         </div>
                         <!-- sns 끝 -->
                         <div class="phone_cer">
@@ -169,7 +179,8 @@ app.get('/influencer/inf_signup', (req, res) => {
             go('#password_chk', $, InfSignup.Do.validateCheckPw);
             go('#phone_num_cer', $, InfSignup.Do.validatePhoneNumber);
             go('#certification_num', $, InfSignup.Do.validateCheckCode);
-            go('.phone_chk_btn', $, InfSignup.Do.showCode)
+            go('.phone_chk_btn', $, InfSignup.Do.showCodePhone);
+            go('.inst_con_btn', $, InfSignup.Do.openInstagramLogin);
         </script>
          `
     }));
@@ -233,7 +244,6 @@ app.post('/api/influencer/inf_checkBn', (req, res, next) => {
     //     apiKey: coolsms.apiKey,
     //     apiSecret: coolsms.apiSecret
     // });
-
     // go(
     //     req.body.phone_num,
     //     a  => {
