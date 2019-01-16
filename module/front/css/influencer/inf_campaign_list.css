@@ -1,1 +1,30 @@
 @charset "utf-8";
+body{
+    background-color: #f5f6fa;
+}
+#wrap{
+    margin-left: 220px;
+}
+
+/* main */
+
+#main{
+    width: 100%;
+}
+.container{
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.campaign{
+    position: absolute;
+    float: left;
+    width: 350px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+.campaign > img{
+    width: 100%;
+    border-radius: 15px;
+}
