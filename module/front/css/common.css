@@ -14,6 +14,10 @@ ol, ul{
 input[type="checkbox"], input[type="radio"]{
     vertical-align: middle;
 }
+input::placeholder{
+    font-size: 12px;
+    color: #acacac;
+}
 
 input:focus{
     outline: none;
@@ -30,6 +34,7 @@ button:focus{
 a{
 	cursor: pointer;
 }
+
 /* 체크박스 디자인 */
 input[type="checkbox"]{
     position: absolute;

@@ -4,6 +4,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_campaign.css" />
+            <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
         `,
         header: TMPL.layout.advHeader(),
         nav: TMPL.layout.advNav(),
@@ -11,7 +12,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
             <div id="main">
                 <div class="container">
                     <div class="breadcrumbs">
-                        <a>홈</a>
+                        <a href="/">홈</a>
                         <span>캠페인 리스트</span>
                     </div>
                     <div class="state_wrap">
@@ -101,7 +102,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">1</td>
                                     <td class="product_name">
-                                        <img src="/front/img/product_name_1.jpg" />
+                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션"/>
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
@@ -114,7 +115,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">2</td>
                                     <td class="product_name">
-                                        <img src="/front/img/product_name_1.jpg" />
+                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션" />
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
@@ -127,7 +128,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">3</td>
                                     <td class="product_name">
-                                        <img src="/front/img/product_name_1.jpg" />
+                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션" />
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
@@ -140,7 +141,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">4</td>
                                     <td class="product_name">
-                                        <img src="/front/img/product_name_1.jpg" />
+                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="헤라 블랙 쿠션" />
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>

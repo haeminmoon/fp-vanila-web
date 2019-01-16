@@ -5,7 +5,7 @@ app.get('/common/signin', (req, res) => {
         css: `
             <link rel="stylesheet" href="/front/css/common/signin.css">
         `,
-        header: TMPL.layout.header.account('signin'),
+        header: TMPL.layout.accountHeader('signin'),
         main: `
             <div id="main">
                 <div class="signin_box">
