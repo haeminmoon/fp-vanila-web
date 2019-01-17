@@ -10,7 +10,7 @@
                 gender: go(dt, $.findAll('[name="gender"]'), filter(a => a.checked === true), first, $.val),
                 // phone_num: go(dt, $.find('[name="phone_num_cer"]'), $.trim),
                 // certification_num: go(dt, $.find('[name="certification_num"]'), $.trim),
-                insta_id: go(dt, $.find('[name="inst_user_id"]'), a => a.innerText)
+                insta_id: go(dt, $.find('[name="instagram_user_id"]'), a => a.innerText)
             },
             pipeT(
                 a => {
@@ -26,12 +26,12 @@
                 },
                 ({id, pw, ...info}) => {
                     let snsInfo = {
-                        insta_id: go(dt, $.find('[name="inst_user_id"]'), a => a.innerText),
-                        insta_access_token: go(dt, $.find('[name="inst_access_token"]'), a => a.innerText),
-                        insta_username: go(dt, $.find('[name="inst_username"]'), a => a.innerText),
-                        insta_followers: go(dt, $.find('[name="inst_followers_count"]'), a => a.innerText),
-                        insta_follows: go(dt, $.find('[name="inst_follows_count"]'), a => a.innerText),
-                        insta_profile_img: go(dt, $.find('[name="inst_profile_img"]'), a => a.src)
+                        insta_id: go(dt, $.find('[name="instagram_user_id"]'), a => a.innerText),
+                        insta_access_token: go(dt, $.find('[name="instagram_access_token"]'), a => a.innerText),
+                        insta_username: go(dt, $.find('[name="instagram_username"]'), a => a.innerText),
+                        insta_followers: go(dt, $.find('[name="instagram_followers_count"]'), a => a.innerText),
+                        insta_follows: go(dt, $.find('[name="instagram_follows_count"]'), a => a.innerText),
+                        insta_profile_img: go(dt, $.find('[name="instagram_profile_img"]'), a => a.src)
                     };
                     return {
                             id: id,

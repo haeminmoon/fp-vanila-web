@@ -1,3 +1,5 @@
+// const request = require('request');
+
 app.get('/advertiser/adv_influencer_list', (req, res) => {
     // if (req.session.user.auth !== 'advertiser') return res.redirect('/');
 
