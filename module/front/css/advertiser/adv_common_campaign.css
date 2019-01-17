@@ -2,17 +2,13 @@
 
 /*캠페인 등록 공통사항*/
 .hide{display: none;}
-/* ============ wrap ============ */
-#wrap{
-    margin-left: 220px;
-}
-
 /* ============ main ============ */
 #main{
+	background-color: #f5f6fa;
 	padding: 0 20px 200px;
+	margin-left: 220px;
 }
 .breadcrumbs{
-	font-size: 15px;
 	line-height: 70px;
 	height: 70px;
 	position: relative;
@@ -23,7 +19,9 @@
 .breadcrumbs a{
 	position: relative;
 	padding-right: 23px;
-	color: #ccc;
+	color: #1f263e;
+	font-weight: 600;
+    font-size: 13px;
 }
 .breadcrumbs a:after{
 	content: '';
@@ -36,7 +34,7 @@
 	opacity: 0.2;
 }
 .breadcrumbs a:last-child{
-	color: #00dbbf;
+	color: #627efe;
 }
 .breadcrumbs a:last-child:after{
 	content: none;
@@ -50,7 +48,7 @@ h2{
 
 .list_wrap{
 	position: relative;
-	background-color: white;
+	background-color: #fff;
 	box-shadow: 0 1px 4px 0 #e5e9f2;
 	border-radius: 5px;
 }
@@ -61,7 +59,13 @@ h2{
 /*캠페인 등록 공통사항 ====> 끝*/
 
 
-/* table공통사항 */
+/* list_wrap 공통사항 */
+.list_wrap{
+	position: relative;
+	background-color: #fff;
+	box-shadow: 0 1px 4px 0 #e5e9f2;
+	border-radius: 5px;
+}
 caption{
 	position: absolute;
 	text-indent: -99999px;
@@ -84,9 +88,8 @@ thead:after{
 }
 tbody td{
 	position: relative;
-	padding: 30px 0;
+	padding: 30px 10px;
 	font-size: 15px;
-	line-height: 15px;
 	font-weight: bold;
 	z-index: 100;
 }
@@ -95,13 +98,13 @@ tbody tr{
 	width: 100%;
 	top: 0; right: 0; bottom: 0; left: 0;
 }
-tbody tr.tr_on:after{
+.tr_on:after{
 	content: '';
 	position: absolute;
 	left: 0;
 	width: 100%;
 	height: 86px;
-	background-color: #f6fcfb;;
+	background-color: #fafbff;
 	z-index: 10;
 }
 tbody tr *{
@@ -116,4 +119,50 @@ thead .ud:after{
 	vertical-align: top;
 	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/btn-list-filter/btn-list-filter.png)no-repeat;
 }
-/* table공통사항 끝 */
+.infu_name p{
+	padding-left: 40px;
+}
+.infu_name img{
+	position: absolute;
+	top: 25px;
+	width: 35px;
+	height: 35px;
+}
+.product_name p{
+	padding-left: 40px;
+}
+.product_name img{
+	position: absolute;
+	top: 25px;
+	width: 35px;
+	height: 35px;
+	border: 1px solid rgba(229, 233, 242, 0.5);
+	
+}
+.camp_state span{
+	display: block;
+	font-size: 11px;
+	line-height: 12px;
+	border-radius: 20px;
+	padding: 5px 0;
+	width: 50px;
+	text-align: center;
+}
+.check1{
+	border: 2px solid #627efe;
+	color: #627efe;
+}
+.check2{
+	border: 2px solid #5d38db;
+	color: #5d38db;
+}
+.check3{
+	border: 2px solid #ccc;
+	color: #ccc;
+}
+.camp_state .check4{
+	width: 60px;
+	border: 2px solid #999;
+	color: #999;
+}
+/* list_wrap 공통사항 ==>끝 */

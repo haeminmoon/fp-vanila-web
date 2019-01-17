@@ -75,7 +75,7 @@
     const template_campaign_list = (list) => go(
             list,
             map(item => html`
-            <tr>
+            <tr class="tr_on">
                 <td class="num">${item.id}</td>
                 <td class="product_name">
                     <img src=${item.img} alt="대표 이미지"/>

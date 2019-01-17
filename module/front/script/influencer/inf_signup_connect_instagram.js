@@ -24,15 +24,15 @@
         }),
 
         sendInstagramProfile: $.on('click', _ => {
-            $.find('[name="inst_profile_img"]', window.opener.document).src = $.find('[name="inst_profile_img"]', document).src;
-            $.find('[name="inst_username"]', window.opener.document).innerText = $.find('[name="inst_username"]', document).innerText;
-            $.find('[name="inst_media_count"]', window.opener.document).innerText = $.find('[name="inst_media_count"]', document).innerText;
-            $.find('[name="inst_followers_count"]', window.opener.document).innerText = $.find('[name="inst_followers_count"]', document).innerText;
-            $.find('[name="inst_follows_count"]', window.opener.document).innerText = $.find('[name="inst_follows_count"]', document).innerText;
-            $.find('[name="inst_access_token"]', window.opener.document).innerText = $.find('[name="inst_access_token"]', document).innerText;
-            $.find('[name="inst_user_id"]', window.opener.document).innerText = $.find('[name="inst_user_id"]', document).innerText;
-            
-            $.find('.inst_con_btn', window.opener.document).classList.add("hidden");
+            $.find('[name="instagram_profile_img"]', window.opener.document).src = $.find('[name="instagram_profile_img"]', document).src;
+            $.find('[name="instagram_username"]', window.opener.document).innerText = $.find('[name="instagram_username"]', document).innerText;
+            $.find('[name="instagram_media_count"]', window.opener.document).innerText = $.find('[name="instagram_media_count"]', document).innerText;
+            $.find('[name="instagram_followers_count"]', window.opener.document).innerText = $.find('[name="instagram_followers_count"]', document).innerText;
+            $.find('[name="instagram_follows_count"]', window.opener.document).innerText = $.find('[name="instagram_follows_count"]', document).innerText;
+            $.find('[name="instagram_access_token"]', window.opener.document).innerText = $.find('[name="instagram_access_token"]', document).innerText;
+            $.find('[name="instagram_user_id"]', window.opener.document).innerText = $.find('[name="instagram_user_id"]', document).innerText;
+            $.find('[name="instagram_user_birthday"]', window.opener.document).innerText = $.find('[name="instagram_user_birthday"]', document).innerText;
+            $.find('.instagram_con_btn', window.opener.document).classList.add("hidden");
             $.all('.input_wrap', window.opener.document)[7].classList.remove("hidden");
 
             window.close();

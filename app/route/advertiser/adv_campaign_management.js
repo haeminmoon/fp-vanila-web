@@ -86,14 +86,6 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
                         <h2>캠페인 리스트</h2>
                         <table>
                             <caption>캠페인 리스트 등록안내 게시판</caption>
-                            <colgroup>
-                                <col style="width: 70px">
-                                <col style="width: 280px">
-                                <col style="width: 250px">
-                                <col style="width: 150px">
-                                <col style="width: 200px">
-                                <col style="width: 100px">
-                            </colgroup>
                             <thead>
                                 <tr>
                                     <th scope="col" class="num">NO</th>
