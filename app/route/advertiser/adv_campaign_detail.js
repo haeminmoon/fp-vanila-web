@@ -12,16 +12,16 @@ app.get('/advertiser/adv_campaign_detail', (req, res) => {
             <div id="main">
                 <div class="container">
                     <div class="breadcrumbs">
-                        <a>홈</a>
-                        <a>캠페인 리스트</a>
-                        <span>캠페인 상세</span>
+                        <a href="/">홈</a>
+                        <a href="/advertiser/adv_campaign_management">캠페인 리스트</a>
+                        <a href="/advertiser/adv_campaign_detail">캠페인 상세</a>
                     </div>
                     <div class="info_wrap">
                         <h2>캠페인 상품정보</h2>
                         <div class="info_pd">
                             <span>상품</span>
                             <div class="pd_img">
-                            <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/product_name_1.jpg" alt="크리니크 치크팝 베스트" />
+                            <img src="https://www.cliniquekorea.co.kr/media/export/cms/products/402x464/clq_7THL17_402x464.png" alt="크리니크 치크팝 베스트" />
                             </div>
                             <p>[한정수량]크리니크 치크팝 베스트/처비스틱 외 색조 모음전</p>
                             <a class="modify">수정하기</a>
@@ -58,7 +58,7 @@ app.get('/advertiser/adv_campaign_detail', (req, res) => {
                                 <tr>
                                     <td class="num">1</td>
                                     <td class="infu_name">
-                                    <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/infu_img.jpg" alt="인플루언서 사진"/>
+                                    <img src="http://www.newsfreezone.co.kr/news/photo/201808/73247_61537_3656.jpg" alt="인플루언서 사진"/>
                                         <p>나리지연</p>
                                     </td>
                                     <td class="price">22,500원</td>
@@ -67,7 +67,7 @@ app.get('/advertiser/adv_campaign_detail', (req, res) => {
                                 <tr>
                                     <td class="num">2</td>
                                     <td class="infu_name">
-                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/infu_img.jpg" alt="인플루언서 사진"/>
+                                        <img src="http://www.newsfreezone.co.kr/news/photo/201808/73247_61537_3656.jpg" alt="인플루언서 사진"/>
                                         <p>나리지연</p>
                                     </td>
                                     <td class="price">22,500원</td>
@@ -76,7 +76,7 @@ app.get('/advertiser/adv_campaign_detail', (req, res) => {
                                 <tr>
                                     <td class="num">3</td>
                                     <td class="infu_name">
-                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/infu_img.jpg" alt="인플루언서 사진"/>
+                                        <img src="http://www.newsfreezone.co.kr/news/photo/201808/73247_61537_3656.jpg" alt="인플루언서 사진"/>
                                         <p>나리지연</p>
                                     </td>
                                     <td class="price">22,500원</td>

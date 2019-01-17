@@ -43,7 +43,7 @@
         <div id="header">
             <h1 class="logo">
                 <a href="/">
-                <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/logo%403x.png" class="logo" alt="spinprotocol_logo">
+                <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%403x.png" class="logo" alt="spinprotocol_logo">
                 </a>
             </h1>
             <p class="title">${__(title)}</p>
@@ -51,60 +51,48 @@
     `;
 
     TMPL.layout.advHeader = _ => `
-        <div id="header">
-            <ul class="header_gnb">
-                <li class="gnb_notice">
-                    <a>
-                        <span class="gnb_icon">알림</span>
-                        <span class="circle_cnt">
-                            <span class="notice_cnt">3</span>
-                        </span>
-                    </a>
-                </li>
-                <li class="gnb_my_info">
-                    <a>
-                        <span class="my_name">{광고주 이름}</span>
-                        <span class="my_img">프로필 이미지</span>
-                    </a>
-                </li>
-            </ul>
+    <div id="header">
+        <div class="header_gnb">
+            <button type="button" class="notice_msg">
+                <div class="circle_cnt">1</div>
+                <img class="gnb_icon" src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/notice_icon/baseline-search-24-px-copy.svg" alt="notice icon">
+            </button>
         </div>
+    </div>
     `;
 
     TMPL.layout.infHeader = _ => `
         <div id="header">
-            <ul class="header_gnb">
-                <li class="gnb_notice">
-                    <a>
-                        <span class="gnb_icon">알림</span>
-                        <span class="circle_cnt">
-                            <span class="notice_cnt">3</span>
-                        </span>
-                    </a>
-                </li>
-                <li class="gnb_my_info">
-                    <a>
-                        <span class="my_name">{광고주 이름}</span>
-                        <span class="my_img">프로필 이미지</span>
-                    </a>
-                </li>
-            </ul>
+            <div class="header_gnb">
+                <button type="button" class="notice_msg">
+                    <div class="circle_cnt">1</div>
+                    <img class="gnb_icon" src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/notice_icon/baseline-search-24-px-copy.svg" alt="notice icon">
+                </button>
+            </div>
         </div>
     `;
 
     TMPL.layout.advNav = _ => `
         <div id="nav">
             <h1 class="logo">
-                <a href="/"><img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin_logo-2.png" alt="SPIN Protocol"></a>
+                <a href="/">
+                    <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%403x.png" class="logo" alt="spinprotocol_logo">
+                </a>
             </h1>
-            <ul>
+            <div class="profile">
+                <div class="image">
+                    <img src="http://file2.nocutnews.co.kr/newsroom/image/2018/07/18/20180718120948825781_0_420_600.jpg" alt="profile image">
+                </div>
+                <p class="user_name">아이유</p>
+            </div>
+            <ul class="nav_gnb">
                 <li class="nav_on"><a href="/advertiser/adv_campaign_management">캠페인 관리</a></li>
                 <li><a href="/advertiser/adv_campaign_registration">캠페인 등록</a></li>
-                <li><a href="/advertiser/adv_influencer_list">인플루언서 조회</a></li>
-                <li><a href="/advertiser/adv_my_info">나의 정보</a></li>
+                <li><a href="/advertiser/adv_influencer_list">인플루언서 리스트</a></li> 
+                <li class="setting"><a href="/advertiser/adv_my_info">설정</a></li>
             </ul>
             <div class="btn_wrap">
-                <button type="button" class="signout_btn">로그아웃</button>
+                <a href="/common/signout">로그아웃</a>
             </div>
         </div>
     `;
@@ -112,15 +100,23 @@
     TMPL.layout.infNav = _ => `
         <div id="nav">
             <h1 class="logo">
-                <a href="/"><img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin_logo-2.png" alt="SPIN Protocol"></a>
+                <a href="/">
+                    <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%403x.png" class="logo" alt="spinprotocol_logo">
+                </a>
             </h1>
-            <ul>
+            <div class="profile">
+                <div class="image">
+                    <img src="http://file2.nocutnews.co.kr/newsroom/image/2018/07/18/20180718120948825781_0_420_600.jpg" alt="profile image">
+                </div>
+                <p class="user_name">아이유</p>
+            </div>
+            <ul class="nav_gnb">
                 <li class="nav_on"><a href="/influencer/inf_campaign_management">캠페인 관리</a></li>
                 <li><a href="/influencer/inf_campaign_list">캠페인 목록</a></li>
-                <li><a href="/influencer/inf_my_info">나의 정보</a></li>
+                <li class="setting"><a href="/influencer/inf_my_info">설정</a></li>
             </ul>
             <div class="btn_wrap">
-                <button type="button" class="signout_btn">로그아웃</button>
+                <a href="/common/signout">로그아웃</a>
             </div>
         </div>
     `;

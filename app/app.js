@@ -36,6 +36,7 @@
     const logger = require('morgan');
     const compress = require('compression');
     const session = require('express-session');
+    const redisStore = require('connect-redis')(session);
     const bodyParser = require('body-parser');
     const cookieParser = require('cookie-parser');
 
@@ -50,6 +51,7 @@
 
     app.use(session({
         secret: 'eatable',
+        store: new redisStore({host:'spin-redis.ib55gn.ng.0001.apn2.cache.amazonaws.com', port: 6379}),
         saveUninitialized: false,
         rolling: true,
         resave: false,

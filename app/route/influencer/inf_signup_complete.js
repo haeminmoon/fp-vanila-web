@@ -15,7 +15,7 @@ app.get('/influencer/inf_signup_complete', (req, res) => {
                 </div>
                 <div class="welcome_notice">
                         <div class="welcome_txt">
-                            <span>{user.name} 님</span><br>
+                            <p class="txt_color">{user.name} 님</p>
                             로그인 하신 후 정상적으로 이용하실 수 있습니다.
                         </div>
                         <div class="sns_txt">
