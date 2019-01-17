@@ -31,7 +31,7 @@
             $.find('[name="instagram_follows_count"]', window.opener.document).innerText = $.find('[name="instagram_follows_count"]', document).innerText;
             $.find('[name="instagram_access_token"]', window.opener.document).innerText = $.find('[name="instagram_access_token"]', document).innerText;
             $.find('[name="instagram_user_id"]', window.opener.document).innerText = $.find('[name="instagram_user_id"]', document).innerText;
-            
+            $.find('[name="instagram_user_birthday"]', window.opener.document).innerText = $.find('[name="instagram_user_birthday"]', document).innerText;
             $.find('.instagram_con_btn', window.opener.document).classList.add("hidden");
             $.all('.input_wrap', window.opener.document)[7].classList.remove("hidden");
 
