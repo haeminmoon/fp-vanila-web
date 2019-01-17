@@ -22,18 +22,6 @@
 	line-height: 33px;
 	display: block;
 }
-.camp_btn{
-	position: absolute;
-	right: 0;
-	bottom: -65px;
-	display: block;
- 	width: 160px;
-	height: 50px;
-  	border-radius: 5px;
-	background-color: #627efe;
-	color: white;
-	border-style: none;
-}
 .search_wrap{
 	position: relative;
 	background-color: white;
@@ -81,23 +69,20 @@
 	background-size: 18px 18px;
 }
 .check_tab input[type="checkbox"]{
-	width: 20px;
-	height: 20px;
+	width: 15px;
+	height: 15px;
 	background: #fff;
-	vertical-align: text-top;
+	vertical-align: middle;
 }
 .check_tab input[type="checkbox"] + label:before {
     width: 15px;
     height: 15px;
     line-height: 15px;
-    margin: -2px 6px 0 0;
     background: #fff;
     border-radius: 2px;
-	border: 1px solid #dddddd;
+	border: 1px solid #627efe;
 }
-.check_tab.on input[type="checkbox"] + label:before {
-	border: 2px solid #00dbbf;
-}
+
 .check_tab{
 	display: inline-block;
 	line-height: 45px;
