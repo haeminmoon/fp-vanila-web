@@ -8,7 +8,7 @@ app.get('/influencer/inf_campaign_management', (req, res) => {
         main: `
             캠페인 관리
         `,
-        footer: ``,
+        footer: TMPL.layout.footer(),
         script: ``
     }));
 });

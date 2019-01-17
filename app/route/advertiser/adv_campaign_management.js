@@ -43,14 +43,13 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 </a>
                             </li>
                         </ul>
-                        <button type="button" class="camp_btn">캠페인 만들기</button>
                     </div>
                     <div class="search_wrap">
                         <h2>상세검색</h2>
                         <div class="search_word">
                             <span>검색어</span>
                             <div class="search_inbox">
-                                <input type="text" class="search_txt" placeholder="인플루언서 계정(아이디), 상품명, 검색어, 상품번호, 브랜드, 제조사, 상품 브랜드">
+                                <input type="text" class="search_txt" name="search" placeholder="인플루언서 계정(아이디), 상품명, 검색어, 상품번호, 브랜드, 제조사, 상품 브랜드">
                                 <button type="button" class="search_icon"></button>
                             </div>
                         </div>
@@ -80,14 +79,6 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                         <h2>캠페인 리스트</h2>
                         <table>
                             <caption>캠페인 리스트 등록안내 게시판</caption>
-                            <colgroup>
-                                <col style="width: 70px">
-                                <col style="width: 280px">
-                                <col style="width: 250px">
-                                <col style="width: 150px">
-                                <col style="width: 200px">
-                                <col style="width: 100px">
-                            </colgroup>
                             <thead>
                                 <tr>
                                     <th scope="col" class="num">NO</th>
@@ -99,10 +90,10 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr class="tr_on">
                                     <td class="num">1</td>
                                     <td class="product_name">
-                                        <img src="http://img.danawa.com/prod_img/500000/648/004/img/5004648_1.jpg?shrink=500:500&_v=20180514164715" alt="헤라 블랙 쿠션"/>
+                                        <img src="http://image.auction.co.kr/itemimage/14/4e/f5/144ef5b811.jpg" alt="헤라 블랙 쿠션"/>
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
@@ -115,7 +106,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">2</td>
                                     <td class="product_name">
-                                        <img src="http://img.danawa.com/prod_img/500000/648/004/img/5004648_1.jpg?shrink=500:500&_v=20180514164715" alt="헤라 블랙 쿠션" />
+                                        <img src="http://image.auction.co.kr/itemimage/14/4e/f5/144ef5b811.jpg" alt="헤라 블랙 쿠션"/>
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
@@ -128,7 +119,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">3</td>
                                     <td class="product_name">
-                                        <img src="http://img.danawa.com/prod_img/500000/648/004/img/5004648_1.jpg?shrink=500:500&_v=20180514164715" alt="헤라 블랙 쿠션" />
+                                        <img src="http://image.auction.co.kr/itemimage/14/4e/f5/144ef5b811.jpg" alt="헤라 블랙 쿠션"/>
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
@@ -141,7 +132,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <td class="num">4</td>
                                     <td class="product_name">
-                                        <img src="http://img.danawa.com/prod_img/500000/648/004/img/5004648_1.jpg?shrink=500:500&_v=20180514164715" alt="헤라 블랙 쿠션" />
+                                        <img src="http://image.auction.co.kr/itemimage/14/4e/f5/144ef5b811.jpg" alt="헤라 블랙 쿠션"/>
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
                                     <td class="slae_term">2018-12-12 ~ 2019-01-01</td>

@@ -30,11 +30,11 @@
         css,
         body: html`
             ${nav}
-            <div id="wrap">
+    
             ${header}
             ${main}
             ${footer}
-            </div>
+ 
         `,
         script
     });
@@ -91,8 +91,8 @@
                 <li><a href="/advertiser/adv_influencer_list">인플루언서 리스트</a></li> 
                 <li class="setting"><a href="/advertiser/adv_my_info">설정</a></li>
             </ul>
-            <div class="btn_wrap">
-                <a href="/common/signout">로그아웃</a>
+            <div class="logout_btn_wrap">
+                <a class="logout_btn" href="/common/signout">로그아웃</a>
             </div>
         </div>
     `;
@@ -115,8 +115,8 @@
                 <li><a href="/influencer/inf_campaign_list">캠페인 목록</a></li>
                 <li class="setting"><a href="/influencer/inf_my_info">설정</a></li>
             </ul>
-            <div class="btn_wrap">
-                <a href="/common/signout">로그아웃</a>
+            <div class="logout_btn_wrap">
+                <a class="logout_btn" href="/common/signout">로그아웃</a>
             </div>
         </div>
     `;

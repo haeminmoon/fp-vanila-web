@@ -1,6 +1,8 @@
 !function () {
     const Init = {
-        event: window.resize
+        event: $.on('resize', _ => {
+
+        })
     };
 
     global.InfCampaignList = {

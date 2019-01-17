@@ -1,0 +1,96 @@
+@charset "utf-8";
+body{
+    background-color: #f5f6fa;
+}
+#main{
+    margin-left: 220px;
+}
+
+.container{
+    padding: 20px 50px;
+}
+
+.campaign_main{
+    position: relative;
+    width: 100%;
+    height: 550px;
+    overflow: hidden;
+}
+.campaign_main > img{
+    width: 100%;
+}
+.mask{
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 50%;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%)
+}
+.mask  *{
+    color: #fff;
+    text-align: center;
+}
+.brand_tit{
+    font-size: 1.9em;
+    line-height: 2.3em;
+}
+.campaign_tit{
+    font-size: 1.7em;
+    line-height: 2em;
+}
+.campaign_info > li{
+    margin-top: 10px;
+}
+.campaign_info > li > p {
+    display: inline-block;
+}
+.campaign_info > li > p:nth-child(odd){
+    width: 150px;
+    position: relative;
+}
+.campaign_info > li > p:nth-child(odd)::after{
+    content: '\2600';
+    position: absolute;
+    right: 0;
+    color: #fff;;
+}
+.campaign_info > li > p:nth-child(even){
+    width: 150px;
+    text-align: center;
+}
+
+.campaign_article{
+    height: auto;
+}
+.detail_tit{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    margin: 20px 0;
+    font-size: 1.3em;
+    border-bottom: 1px solid #293150;
+    color: #293150;
+}
+.detail_content > img{
+    width: 100%;
+}
+.pd_info {
+    white-space: pre-line;
+    padding: 0 20px;
+}
+
+.btn_wrap{
+    text-align: center;
+    margin-top: 70px;
+    margin-bottom: 40px;
+}
+.submit_btn{
+    width: 370px;
+    height: 40px;
+    border-radius: 30px;
+    border: none;
+    color: #fff;
+    background-color: #627efe;
+}
