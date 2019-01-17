@@ -1,58 +1,7 @@
 @charset "utf-8";
 /*캠페인 등록 공통사항*/
 .hide{position: absolute; text-indent: -9999px;}
-#nav{
-	position: fixed;
-	width: 220px;
-	background-color: #1f263e;
-	font-size: 16px;
-	min-height: 100%;
-}
-.logo{
-	width: 148px;
-	margin: 30px auto 40px;
-}
-.logo a{
-	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin_logo-2.png) no-repeat;
-	background-size: 148px 100px;
-	background-position: center;
-	display: block;
-	width: 148px;
-	height: 100px;
-	text-indent: -999999px;
-}
-#nav li{
-	position: relative;
-	padding: 16px 0 17px 30px;
-}
-#nav a{
-	font-size: 16px;
-	color: rgba(255,255,255,0.7);
-}
-#nav .nav_on:before{
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 5px;
-	height: 53px;
-	border-left: 5px solid #627efe;
-}
-.btn_wrap{
-	border-top: 1px solid rgba(255,255,255,0.1);
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 175px;
-	padding: 15px 8px;
-}
-.logout_btn{
-	background: none;
-	border: none;
-	color: rgba(255,255,255,0.7);
-	font-size: 16px;
-}
+
 /* ============ wrap ============ */
 #header{
 	position: relative;

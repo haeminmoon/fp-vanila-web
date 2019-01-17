@@ -184,7 +184,6 @@ caption{
 .inf_id{width: 140px;}
 .inf_level{width: 140px;}
 .inf_follow{width: 140px;}
-.inf_rate{width: 180px;}
 .inf_category{width: 250px;}
 .inf_check input[type="checkbox"]{
 	width: 20px;
@@ -201,11 +200,6 @@ caption{
     border-radius: 2px;
 	border: 1px solid #ccc;
 }
-.inf_rate em{
-	color: #666;
-	font-style: normal;
-	font-size: 12px;
-}
 .please .inf_category li{
 	display: inline-block;
 	font-size: 12px;
@@ -219,7 +213,7 @@ caption{
 }
 .click_hidden{
 /*자바스크립트 해야할것*/
-	display: none;
+	/* display: none; */
 	position: relative;
 	height: 480px;
 	margin-top: 80px;
@@ -264,7 +258,9 @@ caption{
 }
 .click_img img:nth-child(2n){margin-left: 2px;}
 
-
+.hidden{
+    display: none;
+}
 
 
 
