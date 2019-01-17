@@ -50,19 +50,7 @@
 	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/arrow_color.png)no-repeat;
 	background-size: 8px;
 }
-.list_wrap{
-	position: relative;
-	background-color: white;
-	box-shadow: 0 1px 4px 0 #e5e9f2;
-	border-radius: 5px;
-}
-/*table*/
-.infu_name p{
-	padding-left: 40px;
-}
-.infu_name img{
-	position: absolute;
-	top: 20px;
-	width: 35px;
-	height: 35px;
-}
+.num{width:80px;}
+.infu_name{width:180px}
+.price{width:150px;}
+.date_camp{width:250px;}
