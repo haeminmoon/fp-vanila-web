@@ -7,23 +7,23 @@ const awsS3 = {
     acl: 'public-read-write',
     url: 'https://spin-protocol-resource.s3.ap-northeast-2.amazonaws.com/campaign',
 
-    getS3Bucket(){
+    getS3Bucket() {
         return this.bucketName;
     },
 
-    getS3URL(){
+    getS3URL() {
         return this.url;
     },
 
-    getS3ACL(){
-      return this.acl;
+    getS3ACL() {
+        return this.acl;
     },
 
-    convertImgPath(id, user_id, fileName){
+    convertImgPath(id, user_id, fileName) {
         return `/campaign_${id}_${user_id}/${fileName}`;
     },
 
-    mainImgParams(file, imgPath){
+    mainImgParams(file, imgPath) {
         return {
             Bucket: this.getS3Bucket(),
             ACL: this.getS3ACL(), // 접근 권한
@@ -33,7 +33,7 @@ const awsS3 = {
         }
     },
 
-    insertImgToS3(file, imgPath){
+    insertImgToS3(file, imgPath) {
         s3.putObject(this.mainImgParams(file, imgPath), (err, data) => {
             if (err) {
                 return;
