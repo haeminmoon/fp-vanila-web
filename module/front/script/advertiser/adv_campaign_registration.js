@@ -11,11 +11,6 @@
                     break;
                 }
             }
-            // 상세 이미지 파일 개수 체크
-            if($('.sub_img').files.length > 5) {
-                alert('파일의 최대 개수를 지켜주세요.');
-                return;
-            }
             (!isEmpty) ? form.submit() : alert('빈칸을 채워주세요');
 
         }),

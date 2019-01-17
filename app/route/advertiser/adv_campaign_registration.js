@@ -1,6 +1,6 @@
 const multer = require('multer');
 const upload = multer({storage: multer.memoryStorage()});
-const cpUpload = upload.fields([{name: 'main_img'}, {name: 'sub_img', maxCount: 5}]);
+const cpUpload = upload.fields([{name: 'main_img'}, {name: 'sub_img'}]);
 const awsS3 = require('../../../module/back/util/fileUpload.js');
 
 app.get('/advertiser/adv_campaign_registration', (req, res) => {
@@ -71,9 +71,11 @@ app.get('/advertiser/adv_campaign_registration', (req, res) => {
                             </div>
                             <div class="input_wrap">
                                 <label for="sub_img">상세 이미지<sup>*</sup></label>
-                                <input type="file" name="sub_img" accept="image/*" multiple class="sub_img">
+                                <input type="file" name="sub_img" accept="image/*"  class="sub_img">
+                                <input type="file" name="sub_img" accept="image/*"  class="sub_img">
+                                <input type="file" name="sub_img" accept="image/*"  class="sub_img">
                                 <p> 캠페인 상세 페이지에 등록 될 이미지 </p>
-                                <p> 최대 개수: 5개 </p>
+                                <p> 최대 개수: 3개 </p>
                             </div>
                             <div class="input_wrap">
                                 <label for="date">캠페인 일정<sup>*</sup></label>
