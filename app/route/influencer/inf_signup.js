@@ -86,16 +86,17 @@ app.get('/influencer/inf_signup', (req, res) => {
                         <div class="sns_con">
                             <h2 class="form_tit">SNS</h2>
                                     <div class="form">
-                                        <button type="button" class="inst_con_btn">instagram 연결하기</button>
+                                        <button type="button" class="instagram_con_btn">instagram 연결하기</button>
                                         <div class="input_wrap hidden">
-                                            <label for="inst_profile">Instagram Profile</label>
-                                            <img src="" class="inst_profile" name="inst_profile_img" height="100" width="100"/>
-                                            <label class="inst_profile" name="inst_username"></label>
-                                            <label class="inst_profile" name="inst_media_count"></label>
-                                            <label class="inst_profile" name="inst_followers_count"></label>                                
-                                            <label class="inst_profile" name="inst_follows_count"></label>
-                                            <input type="hidden" name="inst_access_token" class="inst_access_token">
-                                            <input type="hidden" name="inst_user_id" class="inst_user_id">                                                                        
+                                            <label for="instagram_profile">Instagram Profile</label>
+                                            <img src="" class="instagram_profile" name="instagram_profile_img" height="100" width="100"/>
+                                            <label class="instagram_profile" name="instagram_username"></label>
+                                            <label class="instagram_profile" name="instagram_media_count"></label>
+                                            <label class="instagram_profile" name="instagram_followers_count"></label>                                
+                                            <label class="instagram_profile" name="instagram_follows_count"></label>
+                                            <input type="hidden" name="instagram_access_token" class="instagram_access_token">
+                                            <input type="hidden" name="instagram_user_id" class="instagram_user_id">
+                                            <input type="hidden" name="instagram_user_birthday" class="instagram_user_birthday">                                                                    
                                         </div>
                                     </div>
                         </div>
@@ -180,7 +181,7 @@ app.get('/influencer/inf_signup', (req, res) => {
             go('#phone_num_cer', $, InfSignup.Do.validatePhoneNumber);
             go('#certification_num', $, InfSignup.Do.validateCheckCode);
             go('.phone_chk_btn', $, InfSignup.Do.showCodePhone);
-            go('.inst_con_btn', $, InfSignup.Do.openInstagramLogin);
+            go('.instagram_con_btn', $, InfSignup.Do.openInstagramLogin);
         </script>
          `
     }));
