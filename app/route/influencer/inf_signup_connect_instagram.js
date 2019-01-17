@@ -23,7 +23,7 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                 </div>
                 <div class="input_wrap hidden">
                     <label for="inst_profile">Instagram Profile</label>
-                    <img src="" class="inst_profile" name="inst_profile_img" height="100" width="100" />
+                    <img src="" class="inst_profile" name="inst_profile_img" height="100" width="100"/>
                     <label class="inst_profile" name="inst_username"></label>
                     <label class="inst_profile" name="inst_media_count"></label>
                     <label class="inst_profile" name="inst_followers_count"></label>                                
