@@ -120,7 +120,6 @@ app.get('/influencer/inf_campaign_detail', (req, res) => {
                             </p>
                         </div>
                     </div>
-                    
                     <div class="btn_wrap">
                         <button type="button" class="submit_btn">신청하기</button>
                     </div>
@@ -128,6 +127,11 @@ app.get('/influencer/inf_campaign_detail', (req, res) => {
             </div>
         `,
         footer: TMPL.layout.footer(),
-        script: ``
+        script: `
+            <script src="/front/script/influencer/inf_campaign_confirm.js"></script>
+            <script>
+                go('.submit_btn', $, Confirm.Route.infConfirm);
+            </script>
+        `
     }));
 });
