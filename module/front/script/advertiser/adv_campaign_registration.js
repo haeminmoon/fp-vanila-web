@@ -4,7 +4,7 @@
             const form = $('#camp_form');
             const formData = new FormData(form);
             let isEmpty = false;
-            // 빈 칸 체크
+            // 데이터 빈 값 체크
             for(let value of formData.values()) {
                 if(value === ''){
                     isEmpty = true;
