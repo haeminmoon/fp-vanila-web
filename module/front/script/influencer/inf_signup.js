@@ -8,8 +8,8 @@
                 nickname: go(dt, $.find('[name="nickname"]'), $.trim),
                 birth: go(dt, $.find('[name="birth"]'), $.trim),
                 gender: go(dt, $.findAll('[name="gender"]'), filter(a => a.checked === true), first, $.val),
-                phone_num: go(dt, $.find('[name="phone_num_cer"]'), $.trim),
-                certification_num: go(dt, $.find('[name="certification_num"]'), $.trim),
+                // phone_num: go(dt, $.find('[name="phone_num_cer"]'), $.trim),
+                // certification_num: go(dt, $.find('[name="certification_num"]'), $.trim),
                 insta_id: go(dt, $.find('[name="inst_user_id"]'), a => a.innerText)
             },
             pipeT(
@@ -20,7 +20,7 @@
                             throw 'No content'
                         }
                     }
-                    delete a.certification_num;
+                    // delete a.certification_num;
                     delete a.insta_id;
                     return a;
                 },
@@ -43,7 +43,7 @@
                     };
                 },
                 $.post('/api/influencer/inf_signup'),
-                _ => location.href = '/'
+                _ => location.href = '/common/signin'
             ).catch(
                 a => match(a)
                     .case(a => a === 'No content')
@@ -88,25 +88,25 @@
             )
         )),
 
-        checkBn: $.on('click', '.phone_chk_btn', ({delegateTarget: dt}) => go(
-            {
-                phone_num: go(dt, $.find('[name="phone_num_cer"]'), $.trim)
-            },
-            pipeT(
-                data => {
-                    if(get(data, 'phone_num') === '')
-                        throw 'No content';
-                    return data;
-                },
-                $.post('/api/influencer/inf_checkBn'),
-                result => {
-                    $('.user_code').value = result.code;
-                    log(result.code);
-                    alert('인증번호가 발송되었습니다.');
-                }).catch(
-                _ => alert('핸드폰 번호를 입력해주세요')
-            )
-        )),
+        checkBn: $.on('click', '.phone_chk_btn', ({delegateTarget: dt}) => alert('인증번호 발송 비활성화 상태입니다.')),
+        // checkBn: $.on('click', '.phone_chk_btn', ({delegateTarget: dt}) => go(
+        //     {
+        //         phone_num: go(dt, $.find('[name="phone_num_cer"]'), $.trim)
+        //     },
+        //     pipeT(
+        //         data => {
+        //             if(get(data, 'phone_num') === '')
+        //                 throw 'No content';
+        //             return data;
+        //         },
+        //         $.post('/api/influencer/inf_checkBn'),
+        //         result => {
+        //             $('.user_code').value = result.code;
+        //             alert('인증번호가 발송되었습니다.');
+        //         }).catch(
+        //         _ => alert('핸드폰 번호를 입력해주세요')
+        //     )
+        // )),
 
         validateEmail: $.on('change', _ => {
             const id = go($('#id'), $.trim);
