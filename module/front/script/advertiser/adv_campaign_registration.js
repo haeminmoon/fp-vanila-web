@@ -14,6 +14,9 @@
             (!isEmpty) ? form.submit() : alert('빈칸을 채워주세요');
 
         }),
+
+        cancelCampaign: $.on('click', _ => location.href = '/advertiser/adv_campaign_management'),
+
         readyImage: $.on('change', ({currentTarget: ct}) => {
             if (ct.files && ct.files[0]) {
                 let reader = new FileReader();

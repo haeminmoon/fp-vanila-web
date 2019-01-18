@@ -1,7 +1,7 @@
 app.get('/advertiser/adv_campaign_management', async (req, res) => {
     // if (req.session.user.auth !== 'advertiser') return res.redirect('/');
     let searchTerm = `%${req.query.searchTerm}%`;
-    let campaignList = (!req.query.searchTerm) ? await QUERY `SELECT * FROM campaign ORDER BY id DESC` : await QUERY `SELECT * FROM campaign WHERE name Like ${searchTerm} ORDER BY id DESC`;
+    let campaignList = (!req.query.searchTerm) ? await QUERY `SELECT * FROM campaign WHERE advertiser_id = 'test' ORDER BY id DESC` : await QUERY `SELECT * FROM campaign WHERE name Like ${searchTerm} AND advertiser_id = 'test'ORDER BY id DESC`;
 
     campaignList = go(
         campaignList,
@@ -32,25 +32,25 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
                             <li>
                                 <a>
                                     <span class="state">전체</span>
-                                    <span>823 건</span>
+                                    <span class="state_all"></span>
                                 </a>
                             </li>
                             <li>
                                 <a>
-                                    <span class="state">완료</span>
-                                    <span>500 건</span>
+                                    <span class="state">대기중</span>
+                                    <span class="state_wait"></span>
                                 </a>
                             </li>
                             <li>
                                 <a>
                                     <span class="state">진행중</span>
-                                    <span>200 건</span>
+                                    <span class="state_progress"></span>
                                 </a>
                             </li>
                             <li>
                                 <a>
-                                    <span class="state">취소</span>
-                                    <span>123 건</span>
+                                    <span class="state">완료</span>
+                                    <span class="state_complete"></span>
                                 </a>
                             </li>
                         </ul>
@@ -84,7 +84,7 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
                     </div>
                     <div class="list_wrap">
                         <h2>캠페인 리스트</h2>
-                        <table>
+                        <table class="camp_table">
                             <caption>캠페인 리스트 등록안내 게시판</caption>
                             <thead>
                                 <tr>
@@ -108,6 +108,7 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
         <script src="/front/script/advertiser/adv_campaign_management.js"></script>
         <script>
         AdvCampaignManagement.Do.campaignList(${JSON.stringify(campaignList)});
+        go('.camp_list', $, AdvCampaignManagement.Route.campaignDetail);
         go('.check_box', $, AdvCampaignManagement.Do.event);        
         go('.search_inbox', $, AdvCampaignManagement.Do.searchTerm);
         </script>

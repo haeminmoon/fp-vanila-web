@@ -3,6 +3,14 @@
     let campaign_list, campaign_state_w, campaign_state_p, campaign_state_c, campagin_state_template, campagin_sort_template;
     let count = 0, reverse, state = '';
 
+    const Route = {
+        campaignDetail: $.on('click', el => go(
+            {
+                id: el.target.parentNode.querySelector('.num').innerText
+            },
+            a => location.href = `/advertiser/adv_campaign_detail?id=${a.id}`
+        ))
+    };
 
     const Do = {
         campaignList: (campaignList) => {
@@ -18,6 +26,11 @@
             campaign_state_w = filter(a => a.state === 'wait', campaignList);
             campaign_state_p = filter(a => a.state === 'progress', campaignList);
             campaign_state_c = filter(a => a.state === 'complete', campaignList);
+
+            $('.state_all').innerHTML = campaignList.length;
+            $('.state_wait').innerHTML = campaign_state_w.length;
+            $('.state_progress').innerHTML = campaign_state_p.length;
+            $('.state_complete').innerHTML = campaign_state_c.length;
 
             // state 탬플릿
             campagin_state_template = (campaign_state_list) => go(campaign_state_list, a => template_campaign_list(a), b => b.join(''));
@@ -81,9 +94,9 @@
                     <img src=${item.img} alt="대표 이미지"/>
                     <p>${item.name}</p>
                 </td>
-                <td class="slae_term">${formatDate(item.post_start_date)} ~ ${formatDate(item.post_end_date)}</td>
+                <td class="slae_term">${formatFrontDate(item.post_start_date)} ~ ${formatFrontDate(item.post_end_date)}</td>
                 <td class="inf" style="text-align: center;">${item.count} 명</td>
-                <td class="start_date">${formatDate(item.created_at)}</td>
+                <td class="start_date">${formatFrontDate(item.created_at)}</td>
                 <td class="camp_state">
                     <span class="check1">${formatState(item.state)}</span>
                 </td>
@@ -92,6 +105,6 @@
         );
 
     global.AdvCampaignManagement = {
-        Do
+        Do, Route
     };
 }();

@@ -124,6 +124,7 @@ app.get('/advertiser/adv_campaign_registration', (req, res) => {
         <script src="/front/script/advertiser/adv_campaign_registration.js"></script>
         <script>
             go('.camp_register_btn', $, AdvCampaignRegistration.Do.registerCampaign);
+            go('.camp_cancel_btn', $, AdvCampaignRegistration.Do.cancelCampaign);
             go('.main_img', $, AdvCampaignRegistration.Do.readyImage);
 
         </script>
@@ -177,6 +178,6 @@ app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
             }),
             c => QUERY `UPDATE campaign SET sub_img = ${JSON.stringify(c)} WHERE id = ${campaign_id}`
         ),
-        _ => setTimeout(() => {res.redirect('/advertiser/adv_campaign_management')}, 500)
+        _ => setTimeout(() => {res.redirect('/advertiser/adv_campaign_management')}, 1500)
     )
 });

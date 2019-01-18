@@ -1,10 +1,10 @@
 !function(global){
 
-    const formatDate = (date) => {
+    const formatFrontDate = (date) => {
         return date.split('T')[0]
     };
 
-    const formatDateYYYYMMDD = (date) => {
+    const formatBackDate = (date) => {
         return date.getFullYear() + '-' +
             toString(date.getMonth()+1).padStart(2, "0") + '-'+
             toString(date.getDate()).padStart(2, "0")
@@ -47,6 +47,6 @@
     };
 
     global.Formatter = {
-        formatDate, formatDateYYYYMMDD, isEmptyObj, formatState, sortObjKey
+        formatFrontDate, formatBackDate, isEmptyObj, formatState, sortObjKey
     }
 }(typeof window != 'undefined'? window : global);
