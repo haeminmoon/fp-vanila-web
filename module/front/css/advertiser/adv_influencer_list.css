@@ -224,8 +224,6 @@ caption{
 	background-color: #f3f4f7;
 }
 .click_hidden{
-/*자바스크립트 해야할것*/
-	/* display: none; */
 	position: relative;
 	height: 480px;
 	margin-top: 80px;
@@ -235,7 +233,7 @@ caption{
 	top: 10px;
 	left: 62px;
 }
-.click_hidden td > img{
+.click_hidden td > a > img{
 	position: absolute;
 	top: 0;
 	width: 364px;
