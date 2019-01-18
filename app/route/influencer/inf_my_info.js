@@ -1,7 +1,7 @@
 app.get('/influencer/inf_my_info', async (req, res) => {
     if (!req.session.user) return res.redirect('/common/signin');
-    const user = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
-
+    const { user } = req.session;;
+    console.log(user);
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/influencer/inf_my_info.css" />
@@ -18,7 +18,7 @@ app.get('/influencer/inf_my_info', async (req, res) => {
                         </h2>
                         <div class="setting">
                             <label for="id">아이디</label>
-                            <input type="text" name="id" id="id" readonly >
+                            <input type="text" name="id" id="id" readonly value="${user.id}">
                             <label for="password">기존 비밀번호</label>
                             <input type="text" name="password" id="password">
                             <label for="new_password">비밀번호</label>
@@ -41,11 +41,11 @@ app.get('/influencer/inf_my_info', async (req, res) => {
                         </h2>
                         <div class="setting">
                             <label for="nick">닉네임</label>
-                            <input type="text" name="nickname" id="nickname" placeholder="활동 시 사용이름">
+                            <input type="text" name="nickname" id="nickname" placeholder="활동 시 사용이름"  value="${user.info.nickname}">
                             <label for="name">이름</label>
-                            <input type="text" name="name" id="name" placeholder="본명">
+                            <input type="text" name="name" id="name" placeholder="본명" value="${user.info.name}">
                             <label for="birth">생년월일</label>
-                            <input type="text" name="birth" id="birth" placeholder="ex. 19900216">
+                            <input type="text" name="birth" id="birth" placeholder="ex. 19900216" value="${user.info.birth}">
                         </div>
                         <div class="btn_wrap">
                             <button type="button" class="nickname_modify">변경하기</button>
