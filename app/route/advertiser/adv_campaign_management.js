@@ -45,7 +45,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                         </ul>
                     </div>
                     <div class="search_wrap">
-                        <h2>상세검색</h2>
+                        <h2 class="section_tit">캠페인 검색</h2>
                         <div class="search_word">
                             <span>검색어</span>
                             <div class="search_inbox">

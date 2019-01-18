@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+#main{
+    margin-left: 220px;
+}
+.container{
+    padding: 20px 50px;
+}
+.set_tit{
+    height: 70px;
+    line-height: 70px;
+    font-size: 1.3em;
+}
+.setting > input{
+    width: 350px;
+    height: 45px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    display: block;
+    margin-bottom: 10px;
+}
+label{
+    display: block;
+    padding-bottom: 5px;
+    color: #92949c;
+    font-size: 12px;
+}
+.notice{
+    margin-top: 20px;
+}
+.notice,.notice li{
+    font-size: 12px;
+    color: #74767d;
+}
+
+button{
+    width: 340px;
+    height: 40px;
+    background-color: #627efe;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+}
+.btn_wrap{
+    margin-top: 30px;
+}

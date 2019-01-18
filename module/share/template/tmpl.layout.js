@@ -113,7 +113,9 @@
             <ul class="nav_gnb">
                 <li class="nav_on"><a href="/influencer/inf_campaign_management">캠페인 관리</a></li>
                 <li><a href="/influencer/inf_campaign_list">캠페인 목록</a></li>
-                <li class="setting"><a href="/influencer/inf_my_info">설정</a></li>
+                <li class="setting">
+                    <a href="/influencer/inf_my_info">설정</a>
+                </li>
             </ul>
             <div class="logout_btn_wrap">
                 <a class="logout_btn" href="/common/signout">로그아웃</a>
