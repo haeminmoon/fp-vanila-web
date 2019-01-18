@@ -1,7 +1,7 @@
 app.get('/advertiser/adv_campaign_detail', async (req, res) => {
     if (!req.session.user) return res.redirect('/common/signin');
 
-    let [campaignDetail] = await QUERY `SELECT * FROM campaign WHERE id = ${req.query.id}`;
+    let [campaignDetail] = await QUERY`SELECT * FROM campaign WHERE id = ${req.query.id}`;
 
     res.send(TMPL.layout.hnmf({
         css: `
@@ -23,7 +23,7 @@ app.get('/advertiser/adv_campaign_detail', async (req, res) => {
                         <div class="info_pd">
                             <span>캠페인</span>
                             <div class="pd_img">
-                            <img src=${campaignDetail.img} alt="크리니크 치크팝 베스트" />
+                            <img src=${campaignDetail.img} alt="캠페인이미지" />
                             </div>
                             <p>${campaignDetail.name}</p>
                             <a class="modify">수정하기</a>

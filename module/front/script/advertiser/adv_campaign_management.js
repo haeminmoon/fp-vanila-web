@@ -39,18 +39,18 @@
 
             // 인플런서 신청자수 정렬
             $('.inf').addEventListener('click', el => {
-                count ++;
+                count++;
                 reverse = (count % 2 === 1) ? true : false;
-                for (checkbox of $.all('.checkbox')){
+                for (checkbox of $.all('.checkbox')) {
                     if (checkbox.checked === true) {
                         state = checkbox.value;
                     }
                 }
                 match(state)
-                    .case(a => a === '')(_ => $('.camp_list').innerHTML =go( campaignList, a=> campagin_sort_template(a, reverse)))
-                    .case(a => a === 'wait')(_ => $('.camp_list').innerHTML =go(campaign_state_w, a=> campagin_sort_template(a, reverse)))
-                    .case(a => a === 'progress')(_ => $('.camp_list').innerHTML =go(campaign_state_p, a=> campagin_sort_template(a, reverse)))
-                    .case(a => a === 'sale_complete')(_ => $('.camp_list').innerHTML =go(campaign_state_c, a=> campagin_sort_template(a, reverse)))
+                    .case(a => a === '')(_ => $('.camp_list').innerHTML = go(campaignList, a => campagin_sort_template(a, reverse)))
+                    .case(a => a === 'wait')(_ => $('.camp_list').innerHTML = go(campaign_state_w, a => campagin_sort_template(a, reverse)))
+                    .case(a => a === 'progress')(_ => $('.camp_list').innerHTML = go(campaign_state_p, a => campagin_sort_template(a, reverse)))
+                    .case(a => a === 'sale_complete')(_ => $('.camp_list').innerHTML = go(campaign_state_c, a => campagin_sort_template(a, reverse)))
                     .else(_ => alert('준비'))
             });
 
@@ -70,10 +70,10 @@
                 .case(c => c === 'progress')(_ => $('.camp_list').innerHTML = go(campaign_state_p, a => campagin_sort_template(a)))
                 .case(c => c === 'sale_complete')(_ => $('.camp_list').innerHTML = go(campaign_state_c, a => campagin_sort_template(a)))
                 .else(_ => '')
-            )
+        )
         ),
 
-        searchTerm: $.on('click', '.search_icon', ({delegateTarget: dt}) => go(
+        searchTerm: $.on('click', '.search_icon', ({ delegateTarget: dt }) => go(
             {
                 searchTerm: go(dt, $.find('[name="search_txt"]'), $.trim)
             },
@@ -86,9 +86,9 @@
     };
 
     const template_campaign_list = (list) => go(
-            list,
-            map(item => html`
-            <tr class="tr_on">
+        list,
+        map(item => html`
+            <tr>
                 <td class="num">${item.id}</td>
                 <td class="campaign_name">
                     <img src=${item.img} alt="대표 이미지"/>
@@ -102,7 +102,7 @@
                 </td>
             </tr>
         `),
-        );
+    );
 
     global.AdvCampaignManagement = {
         Do, Route

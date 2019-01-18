@@ -1,0 +1,233 @@
+@charset "utf-8";
+
+#main{
+    margin-left: 220px;
+}
+.container{
+    padding: 20px;
+}
+.breadcrumbs{
+	line-height: 70px;
+	height: 70px;
+}
+.breadcrumbs a{
+	position: relative;
+	padding-right: 23px;
+	color: #cccccc;
+	font-weight: 600;
+    font-size: 13px;
+}
+.breadcrumbs a:after{
+	content: '';
+	position: absolute;
+	top:3px; right: 4px;
+	width: 10px;
+	height: 15px;
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/arrow.png)no-repeat;
+	background-size: 8px;
+	opacity: 0.2;
+}
+.breadcrumbs a:last-child{
+	color: #627efe;
+}
+.breadcrumbs a:last-child:after{
+	content: none;
+}
+
+.hide, caption{
+    display: none;
+}
+
+/* 캠페인 상태  */
+.state_box{
+    width: 100%;
+    height: 126px;
+}
+.state_box > li{
+    float: left;
+    width: calc(95%/4);
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 0 1px 4px 0 #e5e9f2;
+    margin-left: 15px;
+    border-radius: 5px;
+}
+.state_box > li > a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+}
+.state_num{
+    font-size: 2.5em;
+    font-weight: 600;
+}
+.state{
+    color: #999999;
+}
+.state_box > .all{
+    background-color: #3c4061;
+}   
+.all  *{
+    color: #fff;
+}
+
+.section_tit{
+    position: absolute;
+    top: -40px;
+    left: 0;
+    font-size: 1.2em;
+}
+
+.search_wrap{
+    position: relative;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px 0 #e5e9f2;
+    padding: 20px;
+    margin-top: 80px;
+}
+
+.search_wrap > div{
+	position: relative;
+	height: 55px;
+}
+.search_wrap > div > div{
+	position: absolute;
+	left: 93px;
+	top: 0;
+}
+.search_wrap > div > span{
+	line-height: 45px;
+	font-weight: bold;
+}
+.search_inbox .search_txt{
+	width: 544px;
+	font-size: 14px;
+	line-height: 40px;
+  	border-radius: 4px;
+	border: 1px solid #ddd;
+	padding-left: 15px;
+	letter-spacing: -1px;
+}
+.search_icon{
+	position: relative;
+	left: -34px;
+	top: 4px;
+	width: 18px;
+	height: 18px;
+	border: none;
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/search.png)no-repeat;
+	background-size: 18px 18px;
+}
+.check_tab input[type="checkbox"]{
+	width: 15px;
+	height: 15px;
+	background: #fff;
+	vertical-align: middle;
+}
+.check_tab input[type="checkbox"] + label:before {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    background: #fff;
+    border-radius: 2px;
+	border: 1px solid #627efe;
+}
+
+.check_tab{
+	display: inline-block;
+	line-height: 45px;
+	margin-right: 30px;
+	font-size: 14px;
+}
+
+/* list_wrap 공통사항 */
+.list_wrap{
+	position: relative;
+	background-color: #fff;
+	box-shadow: 0 1px 4px 0 #e5e9f2;
+    border-radius: 5px;
+    margin-top: 80px;
+}
+table{
+	border-collapse: collapse;
+	width: 100%;
+}
+tr, th, td{
+    text-align: center;
+}
+thead th{
+	padding: 20px;
+	font-size: 15px;
+	position: relative;
+	color: #666;
+}
+thead:after{
+	content: '';
+	position: absolute;
+	left: 0;
+	width: 100%;
+	border-bottom: 1px solid #eeeeee;
+	z-index: 20;
+}
+tbody td{
+	position: relative;
+	padding: 30px;
+	font-size: 15px;
+	font-weight: bold;
+	z-index: 100;
+}
+tbody tr{
+	width: 100%;
+	cursor: pointer;
+}
+.tr_on{
+	background-color: #f0f3ff;
+}
+tbody tr *{
+	color: #222;
+}
+
+thead .ud:after{
+	content: '';
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/btn-list-filter/btn-list-filter.png)no-repeat;
+}
+
+.product_name p{
+	padding-left: 40px;
+}
+.product_name img{
+    position: absolute;
+    left: 20px;
+	top: 25px;
+	width: 35px;
+	height: 35px;
+	border: 1px solid rgba(229, 233, 242, 0.5);
+	
+}
+.camp_state span{
+	display: inline-block;
+	font-size: 11px;
+	line-height: 12px;
+	border-radius: 20px;
+	padding: 5px 0;
+	width: 50px;
+	text-align: center;
+}
+.proceeding{
+	border: 2px solid #627efe;
+	color: #627efe;
+}
+.waiting{
+	border: 2px solid #5d38db;
+	color: #5d38db;
+}
+.complete{
+	border: 2px solid #ccc;
+	color: #ccc;
+}
+/* list_wrap 공통사항 ==>끝 */

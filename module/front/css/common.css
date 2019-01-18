@@ -8,6 +8,9 @@
     color: #222222;
     text-decoration: none;
 }
+body{
+	background-color: #f5f6fa;
+}
 ol, ul{
     list-style: none;
 }
@@ -172,6 +175,11 @@ input[type="radio"]:checked + label:before {
     padding: 0 35px;
     color: #ccced6;
 }
+/* .sub_gnb > li > a{
+    display: block;
+    padding: 0 45px;
+    color: #ccced6;
+} */
 .logout_btn_wrap{
     position: absolute;
     width: 100%;

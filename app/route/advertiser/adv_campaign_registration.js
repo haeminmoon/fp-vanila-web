@@ -1,6 +1,6 @@
 const multer = require('multer');
-const upload = multer({storage: multer.memoryStorage()});
-const cpUpload = upload.fields([{name: 'main_img'}, {name: 'sub_img'}]);
+const upload = multer({ storage: multer.memoryStorage() });
+const cpUpload = upload.fields([{ name: 'main_img' }, { name: 'sub_img' }]);
 const awsS3 = require('../../../module/back/util/fileUpload.js');
 
 app.get('/advertiser/adv_campaign_registration', (req, res) => {
@@ -16,8 +16,8 @@ app.get('/advertiser/adv_campaign_registration', (req, res) => {
             <div id="main">
                 <div class="container">
                     <div class="breadcrumbs">
-                        <a>홈</a>
-                        <span>캠페인 등록</span>
+                        <a href="/">홈</a>
+                        <a href="/advertiser/adv_campaign_registration">캠페인 등록</a>
                     </div>
                     <div class="camp_wrap">
                         <form id="camp_form" action="/api/advertiser/adv_campaign_registration" method="post" enctype="multipart/form-data" >
@@ -133,7 +133,7 @@ app.get('/advertiser/adv_campaign_registration', (req, res) => {
 });
 
 app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
-    const {camp_name, sns_type, category, apply_due_date, notice_date, post_date, ...info} = req.body;
+    const { camp_name, sns_type, category, apply_due_date, notice_date, post_date, ...info } = req.body;
 
     const data = {
         name: camp_name,
@@ -151,11 +151,11 @@ app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
     };
     const newMainImg = req.files['main_img'];
     const newSubImgs = req.files['sub_img'];
-    let fileName = null, campaign_id = null, index=0;
+    let fileName = null, campaign_id = null, index = 0;
 
     go(
         data,
-        a => QUERY `INSERT INTO campaign ${VALUES(a)} RETURNING id`,
+        a => QUERY`INSERT INTO campaign ${VALUES(a)} RETURNING id`,
         first,
         b => campaign_id = b.id,
         // 대표 이미지 업로드
@@ -164,20 +164,20 @@ app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
             map((file) => {
                 fileName = 'campaign_mainImage'; // 대표 이미지 파일명
                 awsS3.insertImgToS3(file, awsS3.convertImgPath(campaign_id, 'test', fileName));
-                return awsS3.getS3URL() + awsS3.convertImgPath(campaign_id, 'test',fileName);
+                return awsS3.getS3URL() + awsS3.convertImgPath(campaign_id, 'test', fileName);
             }),
-            ([c]) => QUERY `UPDATE campaign SET img = ${c} WHERE id = ${campaign_id}`
+            ([c]) => QUERY`UPDATE campaign SET img = ${c} WHERE id = ${campaign_id}`
         ),
         // 상세 다중 이미지 업로드
         _ => go(
             newSubImgs,
             map((file) => {
-                fileName = `campaign_subImage_${index+= 1}`; // 상세 이미지 파일명
-                awsS3.insertImgToS3(file, awsS3.convertImgPath(campaign_id, 'test',fileName));
-                return awsS3.getS3URL() + awsS3.convertImgPath(campaign_id, 'test',fileName);
+                fileName = `campaign_subImage_${index += 1}`; // 상세 이미지 파일명
+                awsS3.insertImgToS3(file, awsS3.convertImgPath(campaign_id, 'test', fileName));
+                return awsS3.getS3URL() + awsS3.convertImgPath(campaign_id, 'test', fileName);
             }),
-            c => QUERY `UPDATE campaign SET sub_img = ${JSON.stringify(c)} WHERE id = ${campaign_id}`
+            c => QUERY`UPDATE campaign SET sub_img = ${JSON.stringify(c)} WHERE id = ${campaign_id}`
         ),
-        _ => setTimeout(() => {res.redirect('/advertiser/adv_campaign_management')}, 1500)
+        _ => setTimeout(() => { res.redirect('/advertiser/adv_campaign_management') }, 1500)
     )
 });
