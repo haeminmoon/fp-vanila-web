@@ -95,7 +95,8 @@ app.get('/influencer/inf_signup', (req, res) => {
                                             <label class="instagram_profile" name="instagram_followers_count"></label>                                
                                             <label class="instagram_profile" name="instagram_follows_count"></label>
                                             <input type="hidden" name="instagram_access_token" class="instagram_access_token">
-                                            <input type="hidden" name="instagram_user_id" class="instagram_user_id">                                                                        
+                                            <input type="hidden" name="instagram_user_id" class="instagram_user_id">
+                                            <input type="hidden" name="instagram_user_birthday" class="instagram_user_birthday">                                                                    
                                         </div>
                                     </div>
                         </div>
