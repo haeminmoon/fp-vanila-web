@@ -3,37 +3,51 @@ const fbClientInfo = require('../../../config/fb_client_info');
 app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
-        <link rel="stylesheet" href="/front/css/common/common_signup.css">
-        <link rel="stylesheet" href="/front/css/influencer/inf_signup.css">
+        <link rel="stylesheet" href="/front/css/influencer/inf_signup_connect_instagram.css">
         `,
-        header: TMPL.layout.accountHeader('signup'),
+        header: ``,
         main: `
             <div id="main">
                 <div class="input_wrap">    
-                    <label for="discript_inst">
-                    현재 인스타그램 비즈니스 계정만 가입이 가능합니다. 인스타 비즈니스 계정과 연결된 페이스북 아이디(ID)를 입력해주세요.
-                    </label>
-                    <div class="fb-login-button" 
-                    scope="user_birthday, user_location, manage_pages, instagram_basic"
-                    onlogin="statusLogin();"
-                    data-max-rows="1" 
-                    data-size="large" 
-                    data-button-type="continue_with"></div>
+                    <div class="facebook_wrap">
+                        <div class="header">SNS 연동하기</div>
+                        <label for="discript_inst" class="txt">
+                            <p class="txt_top">현재 인스타그램 비즈니스 계정만 가입이 가능합니다.</p>
+                            <p class="txt_mid">인스타 비즈니스 계정과</p>
+                            <p>연결된 페이스북 아이디(ID)를 입력해주세요.</p>
+                        </label>
+                        <div class="fb_login_btn">
+                            <div class="fb-login-button" 
+                                scope="user_birthday, user_location, manage_pages, instagram_basic"
+                                onlogin="statusLogin();"
+                                data-max-rows="1" 
+                                data-size="large"
+                                data-button-type="continue_with">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="input_wrap hidden">
-                    <label for="instagram_profile">Instagram Profile</label>
-                    <img src="" class="instagram_profile" name="instagram_profile_img" height="100" width="100"/>
-                    <label class="instagram_profile" name="instagram_username"></label>
-                    <label class="instagram_profile" name="instagram_media_count"></label>
-                    <label class="instagram_profile" name="instagram_followers_count"></label>                                
-                    <label class="instagram_profile" name="instagram_follows_count"></label>
-                    <input type="hidden" name="instagram_access_token" class="instagram_access_token">
-                    <input type="hidden" name="instagram_user_id" class="instagram_user_id">
-                    <input type="hidden" name="instagram_user_age" class="instagram_user_age">
-                    <input type="hidden" name="instagram_user_birthday" class="instagram_user_birthday">
-                    <label class="instagram_profile">지금 보이는 프로필이 맞나요?</label> 
-                    <button class="instagram_profile_btn">확인</button>
-                    <button class="cancel">취소</button>
+                    <div class="insta_correct">
+                        <div class="header">SNS 연동하기</div>
+                            <img class="instagram_profile_img" name="instagram_profile_img"/>
+                            <div class="profile_txt">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png" alt="인스타그램 로고">
+                                <span class="username" name="instagram_username"></span>
+                                <strong class="media_count" name="instagram_media_count"></strong>
+                                <strong class="followers_count" name="instagram_followers_count"></strong>
+                                <strong class="follows_count" name="instagram_follows_count"></strong>
+                                <input type="hidden" name="instagram_access_token">
+                                <input type="hidden" name="instagram_user_id">
+                                <input type="hidden" name="instagram_user_birthday">
+                            </div>
+                            <div class="profile_cor">
+                                <span class="instagram_profile">지금 보이는 프로필이 맞나요?</span> 
+                                <button class="instagram_profile_btn">확인</button>
+                                <button class="cancel">취소</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         `,
@@ -74,14 +88,15 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                             log(userBirthday);
                             $.find('[name="instagram_profile_img"]', document).src = instagramProfile.profile_picture_url;
                             $.find('[name="instagram_username"]', document).innerText = instagramProfile.username;
-                            $.find('[name="instagram_media_count"]', document).innerText = instagramProfile.media_count;
-                            $.find('[name="instagram_followers_count"]', document).innerText = instagramProfile.followers_count;
-                            $.find('[name="instagram_follows_count"]', document).innerText = instagramProfile.follows_count;
+                            $.find('[name="instagram_media_count"]', document).innerText = "게시물 "+instagramProfile.media_count;
+                            $.find('[name="instagram_followers_count"]', document).innerText = "팔로워 "+instagramProfile.followers_count;
+                            $.find('[name="instagram_follows_count"]', document).innerText = "팔로우 "+instagramProfile.follows_count;
                             $.find('[name="instagram_access_token"]', document).innerText = longTermToken;
                             $.find('[name="instagram_user_id"]', document).innerText = instagramProfile.id;
                             $.find('[name="instagram_user_birthday"]', document).innerText = JSON.stringify(userBirthday);
                             
                             let input_wraps = $.all('.input_wrap');
+                            log(input_wraps);
                             input_wraps[0].classList.add('hidden');
                             input_wraps[1].classList.remove('hidden');
                         } else {

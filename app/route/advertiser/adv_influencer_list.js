@@ -6,7 +6,7 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
     const updateInfSnsInfo = await go(
         QUERY `SELECT id, sns_info FROM users WHERE auth = 'influencer' and sns_info is not null`,
         map(async a => {
-            let instagramMedia = await getInstagramMedia(a.sns_info.instagram_id, a.sns_info.instagram_access_token, 6).then(data => data);
+            let instagramMedia = await getInstagramMedia(a.sns_info.instagram_id, a.sns_info.instagram_access_token, 7).then(data => data);
             a.sns_info.instagram_followers = instagramMedia.followers_count;
             a.sns_info.instagram_follows = instagramMedia.follows_count;
             a.sns_info.instagram_profile_img = instagramMedia.profile_picture_url;
@@ -42,7 +42,7 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                     <span>캠페인 리스트</span>
                 </div>
                 <div class="terms_wrap">
-                    <button type="button" class="terms_btn">조건 초기화</button>
+                    <button type="button" class="terms_clear_btn">조건 초기화</button>
                     <h3>검색조건</h3>
                     <table class="terms">
                         <tr>
@@ -57,95 +57,67 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                                 </select>
                             </td>
                             <td>
-                                <select title="카테고리 대분류" class="form">
+                                <select title="카테고리 중분류" class="form">
                                     <option>중분류</option>
-                                    <option>뷰티샵</option>
-                                    <option>패션샵</option>
-                                    <option>푸드건강</option>
-                                    <option>라이프</option>
+                                    <option>대분류를 선택해주세요</option> 
                                 </select>
                             </td>
                             <td>
-                                <select title="카테고리 대분류" class="form">
+                                <select title="카테고리 소분류" class="form">
                                     <option>소분류</option>
-                                    <option>뷰티샵</option>
-                                    <option>패션샵</option>
-                                    <option>푸드건강</option>
-                                    <option>라이프</option>
+                                    <option>중분류를 선택해주세요</option>                                    
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <th>연령대</th>
                             <td>
-                                <select title="연령대에서" class="form">
-                                    <option>전체</option>
-                                    <option>10대</option>
-                                    <option>20대</option>
-                                    <option>30대</option>
-                                    <option>40대</option>
-                                    <option>50대</option>
-                                    <option>60대</option>
+                                <select title="연령대에서" class="form" name="ages_min">
+                                    <option value="0">전체</option>
+                                    <option value="10">10대</option>
+                                    <option value="20">20대 초반</option>
+                                    <option value="24">20대 중반</option>
+                                    <option value="27">20대 후반</option>
+                                    <option value="30">30대</option>
                                 </select>
                                 <em>~</em>
-                                <select title="연령대까지" class="form">
-                                    <option>전체</option>
-                                    <option>10대</option>
-                                    <option>20대</option>
-                                    <option>30대</option>
-                                    <option>40대</option>
-                                    <option>50대</option>
-                                    <option>60대</option>
+                                <select title="연령대까지" class="form" name="ages_max">
+                                    <option value="all">전체</option>
+                                    <option value="20">10대</option>
+                                    <option value="24">20대 초반</option>
+                                    <option value="27">20대 중반</option>
+                                    <option value="30">20대 후반</option>
+                                    <option value="40">30대</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <th>팔로우 수</th>
                             <td>
-                                <select title="팔로우수에서" class="form">
-                                    <option>500</option>
-                                    <option>1,000</option>
-                                    <option>5,000</option>
-                                    <option>10,000</option>
-                                    <option>15,000</option>
-                                    <option>20,000</option>
-                                    <option>25,000</option>
-                                    <option>30,000</option>
-                                    <option>35,000</option>
-                                    <option>40,000</option>
-                                    <option>45,000</option>
-                                    <option>50,000</option>
+                                <select title="팔로우수에서" class="form" name="follower_min">
+                                    <option value="0">0</option>
+                                    <option value="10">10</option>
+                                    <option value="50">50</option>
                                 </select>
                                 <em>~</em>
-                                <select title="팔로우수까지" class="form">
-                                    <option>500</option>
-                                    <option>1,000</option>
-                                    <option>5,000</option>
-                                    <option>10,000</option>
-                                    <option>15,000</option>
-                                    <option>20,000</option>
-                                    <option>25,000</option>
-                                    <option>30,000</option>
-                                    <option>35,000</option>
-                                    <option>40,000</option>
-                                    <option>45,000</option>
-                                    <option>50,000</option>
+                                <select title="팔로우수까지" class="form" name="follower_max">
+                                    <option value="all">전체</option>
+                                    <option value="10">10</option>
+                                    <option value="50">50</option>
                                 </select>
+                                <button class="terms_search_btn">검색</button>
                             </td>
                         </tr>
                     </table>
                 </div>
-                <div class="please_wrap">
+                <div class="inf_list_make_wrap">
                     <h3>인플루언서 리스트</h3>
                     <button type="button" class="make_btn">캠페인만들기</button>
-                    <select title="정열 옵션" class="list_form">
-                        <option>정열 옵션</option> 
-                        <option>전체</option>
-                        <option>레벨 높은 순</option>
-                        <option>팔로우 많은 순</option>
-                        <option>구매전환율 높은 순</option>
+                    <select title="정열 옵션" class="list_form select_sort_opt">
+                        <option>정열 옵션</option>
+                        <option value="inf_follow">팔로우 많은 순</option>
                     </select>
-                    <table class="please">
+                    <table class="inf_list_make">
                         <caption>캠페인 리스트 등록안내 게시판</caption>
                         <thead>
                             <tr>
@@ -168,14 +140,14 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                 </div>
             </div>
         </div>
-    </div>
         `,
         footer: ``,
         script: `
             <script src="/front/script/advertiser/adv_influencer_list.js"></script>
             <script>
-                //log($.all('.target'))
                 go('#click_wrap', $, AdvInfluencerList.Do.clickTarget);
+                go('.select_sort_opt', $, AdvInfluencerList.Do.selectOptionSort);
+                go('.terms_search_btn', $, AdvInfluencerList.Do.clickSearchFilter);
             </script>
         `
     }));
@@ -183,21 +155,22 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
 
 const getInstagramMedia = async (id, accessToken, limit) => {
     !limit ? limit = 3 : limit;
-    return new Promise((resolve, reject) => request.get(`https://graph.facebook.com/v3.2/${id}/?fields=media.limit(${limit})%7Bcaption%2Ccomments_count%2Clike_count%2Cmedia_url%2Ctimestamp%2Cthumbnail_url%7D%2Cfollowers_count%2Cfollows_count%2Cprofile_picture_url&limit=3&access_token=${accessToken}`, 
+    return new Promise((resolve, reject) => request.get(`https://graph.facebook.com/v3.2/${id}/?fields=media.limit(${limit})%7Bcaption%2Ccomments_count%2Clike_count%2Cmedia_url%2Ctimestamp%2Cpermalink%2Cthumbnail_url%2Cmedia_type%7D%2Cfollowers_count%2Cfollows_count%2Cprofile_picture_url&access_token=${accessToken}`, 
         (err, res, body) => resolve(JSON.parse(body)))
     );
 }
-
 const infList = data => go(
     JSON.parse(data),
-    map(a => writeInfList(a.id, a.sns_info.instagram_followers, ['IT','패션'], a.sns_info.instagram_media[0].like_count, a.sns_info.instagram_media[0].comments_count, a.sns_info.instagram_media[0].caption, a.sns_info.instagram_media[0].media_url, go(a.sns_info.instagram_media, map(a => a.media_url))))
+    map(a => writeInfList(a.id, a.sns_info.instagram_followers, ['IT','패션'], JSON.parse(a.sns_info.instagram_user_birthday), a.sns_info.instagram_media[0].like_count, a.sns_info.instagram_media[0].comments_count, a.sns_info.instagram_media[0].caption, a.sns_info.instagram_media[0].media_url, a.sns_info.instagram_media[0].permalink,  go(a.sns_info.instagram_media, map(a => ({"media_url" : a.media_url, "instagram_link":a.permalink}))))),
+    b => html`${b}`
 )
 
-const writeInfList = (id, followers, category, firstPostLike, firstPostComment, firstPostCaption, firstPostImg, postImg) => {
+const writeInfList = (id, followers, category, birthday, firstPostLike, firstPostComment, firstPostCaption, firstPostImg, firstPostLink, postImg) => {
     let htmlCategoryList = go(
         category,
         map(a => html`
-        <li>${a}</li>`)
+        <li>${a}</li>`),
+        b => html`${b}`
     );
     let htmlImgList;
     if (postImg.length > 1) {
@@ -207,12 +180,14 @@ const writeInfList = (id, followers, category, firstPostLike, firstPostComment, 
                 let result;
                 for (let i = 1; i < a.length; i++) {
                     result += html`
-                    <img src=${a[i]}>`
+                    <a href=${a[i].instagram_link}><img src=${a[i].media_url}></a>`
                 }
                 return result;
-            }
+            },
+            b => html`${b}`
         );
     }
+    let age = new Date().getFullYear() - parseInt(birthday.year) + 1;
     return html`
     <tr class="target" target="${id}">
         <td class="inf_check">
@@ -228,10 +203,11 @@ const writeInfList = (id, followers, category, firstPostLike, firstPostComment, 
                 ${htmlCategoryList}
             </ul>
         </td>
+        <td class="inf_ages" value=${age}>${matchAges(age)}</td>
     </tr>
     <tr class="click_hidden hidden" name="${id}">
         <td>
-            <img src=${firstPostImg} alt="인스타그램 이미지">
+            <a href=${firstPostLink}><img src=${firstPostImg} alt="인스타그램 이미지"></a>
             <div class="click_txt">
                 <strong class="like">좋아요 ${firstPostLike}개</strong>
                 <strong>댓글수 ${firstPostComment}개</strong>
@@ -244,4 +220,12 @@ const writeInfList = (id, followers, category, firstPostLike, firstPostComment, 
             </div>
         </td>
     </tr>`
+}
+
+const matchAges = age => {
+    if ( age < 20 ) return "10대";
+    else if ( age < 24 ) return "20대 초반";
+    else if ( age < 27 ) return "20대 중반";
+    else if ( age < 30 ) return "20대 후반";
+    else if ( age < 40 ) return "30대";
 }

@@ -19,10 +19,6 @@
             } (document, 'script', 'facebook-jssdk'));
         },
 
-        logIn: $.on('click', ({delegateTarget: dt}) => {
-            
-        }),
-
         sendInstagramProfile: $.on('click', _ => {
             $.find('[name="instagram_profile_img"]', window.opener.document).src = $.find('[name="instagram_profile_img"]', document).src;
             $.find('[name="instagram_username"]', window.opener.document).innerText = $.find('[name="instagram_username"]', document).innerText;

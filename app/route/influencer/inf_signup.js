@@ -85,20 +85,22 @@ app.get('/influencer/inf_signup', (req, res) => {
                         <!-- sns 연동 -->
                         <div class="sns_con">
                             <h2 class="form_tit">SNS</h2>
-                                    <div class="form">
-                                        <button type="button" class="instagram_con_btn">instagram 연결하기</button>
-                                        <div class="input_wrap hidden">
-                                            <label for="instagram_profile">Instagram Profile</label>
-                                            <img src="" class="instagram_profile" name="instagram_profile_img" height="100" width="100"/>
-                                            <label class="instagram_profile" name="instagram_username"></label>
-                                            <label class="instagram_profile" name="instagram_media_count"></label>
-                                            <label class="instagram_profile" name="instagram_followers_count"></label>                                
-                                            <label class="instagram_profile" name="instagram_follows_count"></label>
-                                            <input type="hidden" name="instagram_access_token" class="instagram_access_token">
-                                            <input type="hidden" name="instagram_user_id" class="instagram_user_id">
-                                            <input type="hidden" name="instagram_user_birthday" class="instagram_user_birthday">                                                                    
-                                        </div>
+                            <div class="form">
+                                <button type="button" class="instagram_con_btn">instagram 연결하기</button>
+                                <div class="input_wrap hidden sns_wrap">
+                                    <img class="instagram_profile_img" name="instagram_profile_img"/>
+                                    <div class="profile_txt">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png" alt="인스타그램 로고">
+                                        <span class="username" name="instagram_username"></span>
+                                        <strong class="media_count" name="instagram_media_count"></strong>
+                                        <strong class="followers_count" name="instagram_followers_count"></strong>
+                                        <strong class="follows_count" name="instagram_follows_count"></strong>
+                                        <input type="hidden" name="instagram_access_token" class="instagram_access_token">
+                                        <input type="hidden" name="instagram_user_id" class="instagram_user_id">
+                                        <input type="hidden" name="instagram_user_birthday" class="instagram_user_birthday">    
                                     </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- sns 끝 -->
                         <div class="phone_cer">
