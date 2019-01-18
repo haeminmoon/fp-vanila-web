@@ -5,7 +5,7 @@
             <head>
                 <meta charset="utf-8">
                 <title>Vanila-web based FP</title>
-                 <link rel="stylesheet" href="/front/css/common.css"> 
+                <link rel="stylesheet" href="/front/css/common.css"> 
                 ${css}
             </head>
             <body>

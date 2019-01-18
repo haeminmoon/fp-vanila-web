@@ -1,5 +1,6 @@
 app.get('/advertiser/adv_campaign_management', async (req, res) => {
-    // if (req.session.user.auth !== 'advertiser') return res.redirect('/');
+    if (!req.session.user) return res.redirect('/common/signin');
+
     let searchTerm = `%${req.query.searchTerm}%`;
     let campaignList = (!req.query.searchTerm) ? await QUERY `SELECT * FROM campaign WHERE advertiser_id = 'test' ORDER BY id DESC` : await QUERY `SELECT * FROM campaign WHERE name Like ${searchTerm} AND advertiser_id = 'test'ORDER BY id DESC`;
 
@@ -89,9 +90,9 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
                             <thead>
                                 <tr>
                                     <th scope="col" class="num">NO</th>
-                                    <th scope="col" class="product_name">상품</th>
-                                    <th scope="col" class="slae_term">판매기간</th>
-                                    <th scope="col" class="inf ud">인플루언서</th>
+                                    <th scope="col" class="campaign_name">캠페인 명</th>
+                                    <th scope="col" class="apply_term">신청기간</th>
+                                    <th scope="col" class="apply_count ud">신청인원</th>
                                     <th scope="col" class="start_date">캠페인 등록일</th>
                                     <th scope="col" class="camp_state ud">상태</th>
                                 </tr>

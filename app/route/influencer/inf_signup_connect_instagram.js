@@ -37,8 +37,7 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                 </div>
             </div>
         `,
-        footer: `
-        `,
+        footer: ``,
         script: `
             <script src="/front/script/common/signin.js"></script>
             <script src="/front/script/influencer/inf_signup_connect_instagram.js"></script>

@@ -1,7 +1,7 @@
 const request = require('request');
 
 app.get('/advertiser/adv_influencer_list', async (req, res) => {
-    // if (req.session.user.auth !== 'advertiser') return res.redirect('/');
+    if (!req.session.user) return res.redirect('/common/signin');
 
     const updateInfSnsInfo = await go(
         QUERY `SELECT id, sns_info FROM users WHERE auth = 'influencer' and sns_info is not null`,

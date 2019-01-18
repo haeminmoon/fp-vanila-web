@@ -43,7 +43,42 @@
                     (_ => alert('서버 에러입니다.'))
             )
         ))
+
+        // signin1: $.on('keyup', '.pw', e => match(e).case(e.originalEvent.keyCode === 13)(
+        //     ({ delegateTarget: dt }) => go(
+        //         {
+        //             id: go(dt, $.find('.id'), $.trim),
+        //             pw: go(dt, $.find('.pw'), $.trim)
+        //         },
+        //         pipeT(
+        //             $.post('/api/common/signin'),
+        //             a => match(a.auth)
+        //                 .case('influencer')(
+        //                     _ => location.href = '/influencer/inf_campaign_management'
+        //                 )
+        //                 .case('advertiser')(
+        //                     _ => location.href = '/advertiser/adv_campaign_management'
+        //                 )
+        //                 // .case('admin')(
+        //                 //     _ => location.href = '/admin/'
+        //                 // )
+        //                 .else(
+        //                     _ => location.href = '/'
+        //                 )
+        //         ).catch(
+        //             res => res.text(),
+        //             match
+        //                 .case('id')
+        //                 (_ => alert('아이디가 올바르지 않습니다.'))
+        //                 .case('pw')
+        //                 (_ => alert('비밀번호가 올바르지 않습니다.'))
+        //                 .else
+        //                 (_ => alert('서버 에러입니다.'))
+        //         )
+        //     )
+        // ).else(e => log(e.originalEvent.keyCode)))
     };
+
 
     global.Signin = {
         Route, Do
