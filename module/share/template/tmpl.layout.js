@@ -14,8 +14,10 @@
                 <script src="/share/base/global.js"></script>
                 <script src="/share/base/ff.js"></script>
                 <script src="/share/base/ttl.js"></script>
+                <script src="/share/base/formatter.js"></script>
                 <script>Object.assign(window, FF);</script>
                 <script>Object.assign(window, TTL);</script>
+                <script>Object.assign(window, Formatter);</script>
 
                 <script src="/front/base/$.js"></script>
                 <script src="/share/template/tmpl.js"></script>

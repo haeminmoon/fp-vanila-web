@@ -1,5 +1,6 @@
-app.get('/advertiser/adv_campaign_detail', (req, res) => {
+app.get('/advertiser/adv_campaign_detail', async (req, res) => {
     // if (req.session.user.auth !== 'advertiser') return res.redirect('/');
+    let [campaignDetail] = await QUERY`SELECT * FROM campaign WHERE id = ${req.query.id}`;
 
     res.send(TMPL.layout.hnmf({
         css: `
@@ -21,21 +22,21 @@ app.get('/advertiser/adv_campaign_detail', (req, res) => {
                         <div class="info_pd">
                             <span>상품</span>
                             <div class="pd_img">
-                            <img src="https://www.cliniquekorea.co.kr/media/export/cms/products/402x464/clq_7THL17_402x464.png" alt="크리니크 치크팝 베스트" />
+                            <img src=${campaignDetail.img} alt="캠페인이미지" />
                             </div>
-                            <p>[한정수량]크리니크 치크팝 베스트/처비스틱 외 색조 모음전</p>
+                            <p>${campaignDetail.name}</p>
                             <a class="modify">수정하기</a>
                         </div>
                         <div class="info_day">
-                            <span>기간</span>
-                            <p>2018-12-12 ~ 2019-01-01</p>
+                            <span>기간
+                            <p>${formatBackDate(campaignDetail.created_at)} ~ ${formatBackDate(campaignDetail.apply_end_date)}</p>
                             <a class="modify">수정하기</a>
                         </div>
                     </div>
                     <div class="list_wrap">
                         <h2>
                             참여 인플루언서:
-                            <span class="infu_count">9</span>명
+                            <span class="infu_count">${JSON.parse(campaignDetail.influencer_id).length}</span>명
                             <a class="modify">수정하기</a>
                         </h2>
                         <table>

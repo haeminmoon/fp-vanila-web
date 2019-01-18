@@ -33,7 +33,7 @@
                     }
                 },
                 $.post('/api/advertiser/adv_signup'),
-                _ => location.href = '/common/signin'
+                _ => location.href = '/advertiser/adv_signup_complete'
             ).catch(
                 a => match(a)
                     .case(a => a === 'No content')
