@@ -1,5 +1,6 @@
-app.get('/advertiser/adv_campaign_detail', (req, res) => {
+app.get('/advertiser/adv_campaign_detail', async (req, res) => {
     // if (req.session.user.auth !== 'advertiser') return res.redirect('/');
+    let [campaignDetail] = await QUERY `SELECT * FROM campaign WHERE id = ${req.query.id}`;
 
     res.send(TMPL.layout.hnmf({
         css: `
@@ -21,69 +22,90 @@ app.get('/advertiser/adv_campaign_detail', (req, res) => {
                         <div class="info_pd">
                             <span>상품</span>
                             <div class="pd_img">
-                            <img src="https://www.cliniquekorea.co.kr/media/export/cms/products/402x464/clq_7THL17_402x464.png" alt="크리니크 치크팝 베스트" />
+                            <img src=${campaignDetail.img} alt="크리니크 치크팝 베스트" />
                             </div>
-                            <p>[한정수량]크리니크 치크팝 베스트/처비스틱 외 색조 모음전</p>
+                            <p>${campaignDetail.name}</p>
                             <a class="modify">수정하기</a>
                         </div>
                         <div class="info_day">
-                            <span>기간</span>
-                            <p>2018-12-12 ~ 2019-01-01</p>
+                            <span>기간
+                            <p>${formatBackDate(campaignDetail.created_at)} ~ ${formatBackDate(campaignDetail.apply_end_date)}</p>
                             <a class="modify">수정하기</a>
                         </div>
                     </div>
                     <div class="list_wrap">
                         <h2>
                             참여 인플루언서:
-                            <span class="infu_count">9</span>명
+                            <span class="infu_count">${JSON.parse(campaignDetail.influencer_id).length}</span>명
                             <a class="modify">수정하기</a>
                         </h2>
                         <table>
-                            <caption>캠페인 참여 인플루언서 게시판</caption>
-                            <colgroup>
-                                <col style="width: 70px">
-                                <col style="width: 180px">
-                                <col style="width: 150px">
-                                <col style="width: 250px">
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="num">NO</th>
-                                    <th scope="col" class="infu_name">인플루언서 이름</th>
-                                    <th scope="col" class="price ud">판매 금액</th>
-                                    <th scope="col" class="date_camp ud">캠페인 선택일자</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="num">1</td>
-                                    <td class="infu_name">
-                                    <img src="http://www.newsfreezone.co.kr/news/photo/201808/73247_61537_3656.jpg" alt="인플루언서 사진"/>
-                                        <p>나리지연</p>
-                                    </td>
-                                    <td class="price">22,500원</td>
-                                    <td class="date_camp">2018-12-12 ~ 2019-01-01</td>
-                                </tr>
-                                <tr>
-                                    <td class="num">2</td>
-                                    <td class="infu_name">
-                                        <img src="http://www.newsfreezone.co.kr/news/photo/201808/73247_61537_3656.jpg" alt="인플루언서 사진"/>
-                                        <p>나리지연</p>
-                                    </td>
-                                    <td class="price">22,500원</td>
-                                    <td class="date_camp">2018-12-12 ~ 2019-01-01</td>
-                                </tr>
-                                <tr>
-                                    <td class="num">3</td>
-                                    <td class="infu_name">
-                                        <img src="http://www.newsfreezone.co.kr/news/photo/201808/73247_61537_3656.jpg" alt="인플루언서 사진"/>
-                                        <p>나리지연</p>
-                                    </td>
-                                    <td class="price">22,500원</td>
-                                    <td class="date_camp">2018-12-12 ~ 2019-01-01</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <caption>캠페인 리스트 전체 인플루언서 게시판</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col" class="num">NO</th>
+                                <th scope="col" class="infu_name">인플루언서 이름</th>
+                                <th scope="col" class="price ud">판매 금액</th>
+                                <th scope="col" class="price ud">판매 수량</th>
+                                <th scope="col" class="date_camp ud">캠페인 선택일자</th>
+                                <th scope="col" class="camp_state ud">상태</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tr_on">
+                                <td class="num">1</td>
+                                <td class="infu_name">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUrL8BHB7O4aPxelRrBvYb4zr2RIx_CU8ppu8gpE4HRgwT2Ma8" alt="인플루언서 사진"/>
+                                    <p>나리지연</p>
+                                </td>
+                                <td class="price">22,500원</td>
+                                <td class="price_num">15</td>
+                                <td class="date_camp">2018-12-12 10:10:10</td>
+                                <td class="camp_state">
+                                    <span class="check1">판매중</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="num">2</td>
+                                <td class="infu_name">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUrL8BHB7O4aPxelRrBvYb4zr2RIx_CU8ppu8gpE4HRgwT2Ma8" alt="인플루언서 사진"/>
+                                    <p>나리지연</p>
+                                </td>
+                                <td class="price">22,500원</td>
+                                <td class="price_num">20</td>
+                                <td class="date_camp">2018-12-12 10:10:10</td>
+                                <td class="camp_state">
+                                    <span class="check1">판매중</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="num">3</td>
+                                <td class="infu_name">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUrL8BHB7O4aPxelRrBvYb4zr2RIx_CU8ppu8gpE4HRgwT2Ma8" alt="인플루언서 사진"/>
+                                    <p>나리지연</p>
+                                </td>
+                                <td class="price">22,500원</td>
+                                <td class="price_num">40</td>
+                                <td class="date_camp">2018-12-12 10:10:10</td>
+                                <td class="camp_state">
+                                    <span class="check1">판매중</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="num">4</td>
+                                <td class="infu_name">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUrL8BHB7O4aPxelRrBvYb4zr2RIx_CU8ppu8gpE4HRgwT2Ma8" alt="인플루언서 사진"/>
+                                    <p>나리지연</p>
+                                </td>
+                                <td class="price">22,500원</td>
+                                <td class="price_num">145</td>
+                                <td class="date_camp">2018-12-12 10:10:10</td>
+                                <td class="camp_state">
+                                    <span class="check1">판매중</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     </div>
                 </div>
             </div>
