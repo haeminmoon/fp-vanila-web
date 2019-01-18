@@ -6,13 +6,30 @@
 .container{
     padding: 20px 50px;
 }
+/* .container > div:nth-child(odd){
+    float: left;
+}
+.container > div:nth-child(even){
+    float: right;
+} */
+.container > div{
+    float: left;
+    display: inline-block;
+    height: 520px;  
+    width: 760px;
+    padding: 0px 70px 30px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+}
 .set_tit{
     height: 70px;
     line-height: 70px;
     font-size: 1.3em;
 }
 .setting > input{
-    width: 350px;
+    width: 100%;
     height: 45px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -35,7 +52,7 @@ label{
 }
 
 button{
-    width: 340px;
+    width: 100%;
     height: 40px;
     background-color: #627efe;
     border: none;
@@ -44,4 +61,8 @@ button{
 }
 .btn_wrap{
     margin-top: 30px;
+}
+
+.name_wrap  input{
+    margin-bottom: 10px;
 }

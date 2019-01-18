@@ -1,5 +1,6 @@
-app.get('/influencer/inf_my_info', (req, res) => {
-    // if (req.session.user.auth !== 'influencer') return res.redirect('/');
+app.get('/influencer/inf_my_info', async (req, res) => {
+    if (!req.session.user) return res.redirect('/common/signin');
+    const user = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
 
     res.send(TMPL.layout.hnmf({
         css: `
@@ -11,11 +12,13 @@ app.get('/influencer/inf_my_info', (req, res) => {
             <div id="main">
                 <div class="container">
 
-                    <div class="password_wrap">
+                    <div class="account_wrap">
                         <h2 class="set_tit">
-                            비밀번호 변경
+                            계정정보
                         </h2>
                         <div class="setting">
+                            <label for="id">아이디</label>
+                            <input type="text" name="id" id="id" readonly >
                             <label for="password">기존 비밀번호</label>
                             <input type="text" name="password" id="password">
                             <label for="new_password">비밀번호</label>
@@ -32,24 +35,17 @@ app.get('/influencer/inf_my_info', (req, res) => {
                         </div>
                     </div>
 
-                    <div class="address_wrap">
+                    <div class="name_wrap">
                         <h2 class="set_tit">
-                            배송지 관리
+                            개인정보
                         </h2>
                         <div class="setting">
-                            <input type="text" name="address" id="address" placeholder="배송지 이름">
-                        </div>
-                        <div class="btn_wrap">
-                            <button type="button" class="add_address">배송지 추가</button>
-                        </div>
-                    </div>
-
-                    <div class="nickname_wrap">
-                        <h2 class="set_tit">
-                            닉네임 변경
-                        </h2>
-                        <div class="setting">
-                            <input type="text" name="nick" id="name">
+                            <label for="nick">닉네임</label>
+                            <input type="text" name="nickname" id="nickname" placeholder="활동 시 사용이름">
+                            <label for="name">이름</label>
+                            <input type="text" name="name" id="name" placeholder="본명">
+                            <label for="birth">생년월일</label>
+                            <input type="text" name="birth" id="birth" placeholder="ex. 19900216">
                         </div>
                         <div class="btn_wrap">
                             <button type="button" class="nickname_modify">변경하기</button>
@@ -63,3 +59,4 @@ app.get('/influencer/inf_my_info', (req, res) => {
         script: ``
     }));
 });
+

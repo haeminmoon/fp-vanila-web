@@ -56,7 +56,7 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
                         </ul>
                     </div>
                     <div class="search_wrap">
-                        <h2 class="section_tit">캠페인 검색</h2>
+                        <h2>상세검색</h2>
                         <div class="search_word">
                             <span>검색어</span>
                             <div class="search_inbox">
@@ -96,59 +96,7 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
                                     <th scope="col" class="camp_state ud">상태</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="tr_on">
-                                    <td class="num">1</td>
-                                    <td class="product_name">
-                                        <img src="http://image.auction.co.kr/itemimage/14/4e/f5/144ef5b811.jpg" alt="헤라 블랙 쿠션"/>
-                                        <p>[무료배송]헤라 블랙 쿠션</p>
-                                    </td>
-                                    <td class="sale_term">2018-12-12 ~ 2019-01-01</td>
-                                    <td class="inf">409명</td>
-                                    <td class="start_date">2018-12-12 10:00:00</td>
-                                    <td class="camp_state">
-                                        <span class="check1">판매중</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="num">2</td>
-                                    <td class="product_name">
-                                        <img src="http://image.auction.co.kr/itemimage/14/4e/f5/144ef5b811.jpg" alt="헤라 블랙 쿠션"/>
-                                        <p>[무료배송]헤라 블랙 쿠션</p>
-                                    </td>
-                                    <td class="sale_term">2018-12-12 ~ 2019-01-01</td>
-                                    <td class="inf">409명</td>
-                                    <td class="start_date">2018-12-12 10:00:00</td>
-                                    <td class="camp_state">
-                                        <span class="check2">진행중</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="num">3</td>
-                                    <td class="product_name">
-                                        <img src="http://image.auction.co.kr/itemimage/14/4e/f5/144ef5b811.jpg" alt="헤라 블랙 쿠션"/>
-                                        <p>[무료배송]헤라 블랙 쿠션</p>
-                                    </td>
-                                    <td class="sale_term">2018-12-12 ~ 2019-01-01</td>
-                                    <td class="inf">409명</td>
-                                    <td class="start_date">2018-12-12 10:00:00</td>
-                                    <td class="camp_state">
-                                        <span class="check3">취소</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="num">4</td>
-                                    <td class="product_name">
-                                        <img src="http://image.auction.co.kr/itemimage/14/4e/f5/144ef5b811.jpg" alt="헤라 블랙 쿠션"/>
-                                        <p>[무료배송]헤라 블랙 쿠션</p>
-                                    </td>
-                                    <td class="sale_term">2018-12-12 ~ 2019-01-01</td>
-                                    <td class="inf">409명</td>
-                                    <td class="start_date">2018-12-12 10:00:00</td>
-                                    <td class="camp_state">
-                                        <span class="check4">판매완료</span>
-                                    </td>
-                                </tr>
+                            <tbody class="camp_list">
                             </tbody>
                         </table>
                     </div>

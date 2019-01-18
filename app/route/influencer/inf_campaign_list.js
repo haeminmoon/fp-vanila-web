@@ -47,7 +47,7 @@ app.get('/influencer/inf_campaign_list', (req, res) => {
                 </div>
             </div>
         `,
-        footer: TMPL.layout.footer(),
+        footer: ``,
         script: `
             <script src="/front/script/influencer/inf_campaign_list.js"></script>
         `
