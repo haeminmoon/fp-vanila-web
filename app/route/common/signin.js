@@ -33,38 +33,6 @@ app.get('/common/signin', (req, res) => {
     }));
 });
 
-// app.post('/api/common/signin', (req, res, next) => {
-//     go(
-//         req.body,
-//         pipeT(
-//             a => QUERY`SELECT * FROM users WHERE id = ${a.id}`,
-//             b => {
-//                 if (b.length === 0) throw 'The ID does not exist';
-//                 return b;
-//             },
-//             first,
-//             c => {
-//                 if (c.pw !== getHash(req.body.pw)) throw 'The password is incorrect';
-//                 return c;
-//             },
-//             d => req.session.user = d || null,
-//             res.json
-//         ).catch(
-//             match
-//                 .case('The ID does not exist')(
-//                     _ => 'id'
-//                 )
-//                 .case('The password is incorrect')(
-//                      _ => 'pw'
-//                 )
-//                 .else(_ => ''),
-//             m => new Error(m),
-//             next
-//         )
-//     )
-// });
-
-// Signin test code
 app.post('/api/common/signin', (req, res, next) => {
     go(
         req.body,
@@ -95,35 +63,3 @@ app.post('/api/common/signin', (req, res, next) => {
         )
     )
 });
-
-// Signin test code
-// app.post('/api/common/signin', (req, res, next) => {
-//     go(
-//         req.body,
-//         pipeT(
-//             a => QUERY `SELECT * FROM users WHERE id = ${a.id}`,
-//             b => {
-//                 if (b.length === 0) throw 'The ID does not exist';
-//                 return b;
-//             },
-//             first,
-//             c => {
-//                 if (c.pw !== req.body.pw) throw 'The password is incorrect';
-//                 return c;
-//             },
-//             d => req.session.user = d || null,
-//             res.json
-//         ).catch(
-//             match
-//                 .case('The ID does not exist')(
-//                     _ => 'id'
-//                 )
-//                 .case('The password is incorrect')(
-//                     _ => 'pw'
-//                 )
-//                 .else(_ => ''),
-//             m => new Error(m),
-//             next
-//         )
-//     )
-// });
