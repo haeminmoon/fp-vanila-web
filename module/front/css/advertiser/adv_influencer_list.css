@@ -39,7 +39,7 @@ h3{
 .terms_wrap{
 	position: relative;
 }
-.terms_btn{
+.terms_clear_btn{
 	width: 90px;
 	height: 40px;
 	position: absolute;
@@ -49,6 +49,17 @@ h3{
 	text-indent: -999999px;
 	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/group-3-copy/group-3-copy.png)no-repeat;
 }
+.terms_search_btn{
+	width: 90px;
+	height: 40px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	/* text-indent: -999999px; */
+	/* background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/group-3-copy/group-3-copy.png)no-repeat; */
+}
+
 .terms{
 	width: 100%;
 	background-color: white;
@@ -99,7 +110,7 @@ h3{
 
 
 /*  제발  */
-.please_wrap{
+.inf_list_make_wrap{
 	width: 100%;
 	position: relative;
 	margin-top: 100px;
@@ -127,7 +138,7 @@ h3{
 	border: 1px solid #ecedef;
 	border-radius: 3px;
 }
-.please_wrap h3{
+.inf_list_make_wrap h3{
 	position: absolute;
 	top: -50px;
 }
@@ -138,15 +149,15 @@ caption{
 	position: absolute;
 	text-indent: -99999px;
 }
-.please table{border-collapse: collapse;}
-.please tr{text-align: left;}
-.please thead th{
+.inf_list_make table{border-collapse: collapse;}
+.inf_list_make tr{text-align: left;}
+.inf_list_make thead th{
 	padding: 10px 0 11px;
 	font-size: 15px;
 	position: relative;
 	color: #666;
 }
-.please thead:after{
+.inf_list_make thead:after{
 	content: '';
 	position: absolute;
 	left: 0;
@@ -154,21 +165,21 @@ caption{
 	border-bottom: 1px solid #eeeeee;
 	z-index: 20;
 }
-.please tbody td{
+.inf_list_make tbody td{
 	position: relative;
 	padding: 11px 0;
 	font-size: 15px;
 	z-index: 100;
 }
-.please tbody tr{
+.inf_list_make tbody tr{
 	position: relative;
 	width: 100%;
 	top: 0; right: 0; bottom: 0; left: 0;
 }
-.please tbody tr *{
+.inf_list_make tbody tr *{
 	color: #666666;
 }
-.please tbody tr.tr_on:after{
+.inf_list_make tbody tr.tr_on:after{
 	content: '';
 	position: absolute;
 	left: 0;
@@ -179,11 +190,12 @@ caption{
 	box-shadow: 0 1px 19px -5px rgba(60, 60, 60, 0.2);
 	z-index: 10;
 }
-.please .inf_check{width: 60px; padding-left: 20px;}
+.inf_list_make .inf_check{width: 60px; padding-left: 20px;}
 .inf_img{width: 60px; }
-.inf_id{width: 140px;}
+.inf_id{width: 190px;}
 .inf_level{width: 140px;}
 .inf_follow{width: 140px;}
+.inf_ages{width: 140px;}
 .inf_category{width: 250px;}
 .inf_check input[type="checkbox"]{
 	width: 20px;
@@ -200,7 +212,7 @@ caption{
     border-radius: 2px;
 	border: 1px solid #ccc;
 }
-.please .inf_category li{
+.inf_list_make .inf_category li{
 	display: inline-block;
 	font-size: 12px;
 	line-height: 20px;
@@ -212,8 +224,6 @@ caption{
 	background-color: #f3f4f7;
 }
 .click_hidden{
-/*자바스크립트 해야할것*/
-	/* display: none; */
 	position: relative;
 	height: 480px;
 	margin-top: 80px;
@@ -223,7 +233,7 @@ caption{
 	top: 10px;
 	left: 62px;
 }
-.click_hidden td > img{
+.click_hidden td > a > img{
 	position: absolute;
 	top: 0;
 	width: 364px;

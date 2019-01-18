@@ -124,10 +124,10 @@ thead .ud:after{
 	width: 35px;
 	height: 35px;
 }
-.product_name p{
+.campaign_name p{
 	padding-left: 40px;
 }
-.product_name img{
+.campaign_name img{
 	position: absolute;
 	top: 25px;
 	width: 35px;

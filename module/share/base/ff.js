@@ -137,7 +137,6 @@
     const flatMap = curry(pipe(mapL, flat));
 
     const rangeL = function *(l) {
-      log('minwoo zzaang');
       let i = -1;
       while (++i < l) yield i;
     };

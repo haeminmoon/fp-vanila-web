@@ -2,6 +2,7 @@ app.get('/influencer/inf_my_info', async (req, res) => {
     if (!req.session.user) return res.redirect('/common/signin');
     const { user } = req.session;;
     console.log(user);
+
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/influencer/inf_my_info.css" />
