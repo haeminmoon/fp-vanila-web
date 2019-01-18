@@ -8,6 +8,9 @@
     color: #222222;
     text-decoration: none;
 }
+body{
+	background-color: #f5f6fa;
+}
 ol, ul{
     list-style: none;
 }

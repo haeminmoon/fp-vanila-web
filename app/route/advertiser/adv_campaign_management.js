@@ -83,7 +83,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                 <tr>
                                     <th scope="col" class="num">NO</th>
                                     <th scope="col" class="product_name">상품</th>
-                                    <th scope="col" class="slae_term">판매기간</th>
+                                    <th scope="col" class="sale_term">판매기간</th>
                                     <th scope="col" class="inf ud">인플루언서</th>
                                     <th scope="col" class="start_date">캠페인 등록일</th>
                                     <th scope="col" class="camp_state ud">상태</th>
@@ -96,7 +96,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                         <img src="http://image.auction.co.kr/itemimage/14/4e/f5/144ef5b811.jpg" alt="헤라 블랙 쿠션"/>
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
-                                    <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
+                                    <td class="sale_term">2018-12-12 ~ 2019-01-01</td>
                                     <td class="inf">409명</td>
                                     <td class="start_date">2018-12-12 10:00:00</td>
                                     <td class="camp_state">
@@ -109,7 +109,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                         <img src="http://image.auction.co.kr/itemimage/14/4e/f5/144ef5b811.jpg" alt="헤라 블랙 쿠션"/>
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
-                                    <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
+                                    <td class="sale_term">2018-12-12 ~ 2019-01-01</td>
                                     <td class="inf">409명</td>
                                     <td class="start_date">2018-12-12 10:00:00</td>
                                     <td class="camp_state">
@@ -122,7 +122,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                         <img src="http://image.auction.co.kr/itemimage/14/4e/f5/144ef5b811.jpg" alt="헤라 블랙 쿠션"/>
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
-                                    <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
+                                    <td class="sale_term">2018-12-12 ~ 2019-01-01</td>
                                     <td class="inf">409명</td>
                                     <td class="start_date">2018-12-12 10:00:00</td>
                                     <td class="camp_state">
@@ -135,7 +135,7 @@ app.get('/advertiser/adv_campaign_management', (req, res) => {
                                         <img src="http://image.auction.co.kr/itemimage/14/4e/f5/144ef5b811.jpg" alt="헤라 블랙 쿠션"/>
                                         <p>[무료배송]헤라 블랙 쿠션</p>
                                     </td>
-                                    <td class="slae_term">2018-12-12 ~ 2019-01-01</td>
+                                    <td class="sale_term">2018-12-12 ~ 2019-01-01</td>
                                     <td class="inf">409명</td>
                                     <td class="start_date">2018-12-12 10:00:00</td>
                                     <td class="camp_state">

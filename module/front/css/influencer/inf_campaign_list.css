@@ -1,8 +1,4 @@
 @charset "utf-8";
-body{
-    background-color: #f5f6fa;
-}
-
 /* main */
 #main{
     margin-left: 220px;
@@ -21,7 +17,7 @@ body{
 .breadcrumbs a{
 	position: relative;
 	padding-right: 23px;
-    color: #1f263e;
+    color: #cccccc;
     font-weight: 600;
     font-size: 13px;
 }

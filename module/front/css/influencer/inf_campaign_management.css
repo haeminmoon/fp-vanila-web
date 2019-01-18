@@ -1,20 +1,14 @@
 @charset "utf-8";
 
-/*캠페인 등록 공통사항*/
-.hide{display: none;}
-/* ============ main ============ */
 #main{
-	padding: 0 20px 200px;
-	margin-left: 220px;
+    margin-left: 220px;
 }
-
-.container > div:nth-child(1),.container > div:nth-child(2) {margin-top: 0px;}
-.container > div{margin-top: 75px;}
-
+.container{
+    padding: 20px;
+}
 .breadcrumbs{
 	line-height: 70px;
 	height: 70px;
-	position: relative;
 }
 .breadcrumbs a{
 	position: relative;
@@ -39,45 +33,84 @@
 .breadcrumbs a:last-child:after{
 	content: none;
 }
-.container {width: 100%;}
-h2{
-	font-size: 17px;
-	line-height: 25px;
-	color: #222;
+
+.hide, caption{
+    display: none;
 }
 
-.list_wrap{
-	position: relative;
-	background-color: #fff;
-	box-shadow: 0 1px 4px 0 #e5e9f2;
-	border-radius: 5px;
+/* 캠페인 상태  */
+.state_box{
+    width: 100%;
+    height: 126px;
 }
-.container h2{
-	position: absolute;
-	top: -40px;
+.state_box > li{
+    float: left;
+    width: calc(95%/4);
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 0 1px 4px 0 #e5e9f2;
+    margin-left: 15px;
+    border-radius: 5px;
 }
-/*캠페인 등록 공통사항 ====> 끝*/
+.state_box > li > a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+}
+.state_num{
+    font-size: 2.5em;
+    font-weight: 600;
+}
+.state{
+    color: #999999;
+}
+.state_box > .all{
+    background-color: #3c4061;
+}   
+.all  *{
+    color: #fff;
+}
 
+.search_box{
+    width: 100%;
+    height: 70px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin-top: 50px;
+}
+input{
+    width: 226px;
+    height: 40px;
+    border: 1px solid #d9d9d9;
+    padding: 20px;
+}
+.search_box > button{
+    width: 90px;
+    height: 40px;
+    background-color: #3c4061;
+    border: none;
+    border-radius: 2px;
+    color: #fff
+}
 
 /* list_wrap 공통사항 */
 .list_wrap{
 	position: relative;
 	background-color: #fff;
 	box-shadow: 0 1px 4px 0 #e5e9f2;
-	border-radius: 5px;
-}
-caption{
-	position: absolute;
-	text-indent: -99999px;
+    border-radius: 5px;
 }
 table{
 	border-collapse: collapse;
 	width: 100%;
 }
-tr{text-align: left;}
+tr, th, td{
+    text-align: center;
+}
 thead th{
-	text-align: left;
-	padding: 20px 30px;
+	padding: 20px;
 	font-size: 15px;
 	position: relative;
 	color: #666;
@@ -115,20 +148,13 @@ thead .ud:after{
 	height: 24px;
 	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/btn-list-filter/btn-list-filter.png)no-repeat;
 }
-.infu_name p{
-	padding-left: 40px;
-}
-.infu_name img{
-	position: absolute;
-	top: 25px;
-	width: 35px;
-	height: 35px;
-}
+
 .product_name p{
 	padding-left: 40px;
 }
 .product_name img{
-	position: absolute;
+    position: absolute;
+    left: 20px;
 	top: 25px;
 	width: 35px;
 	height: 35px;
@@ -136,7 +162,7 @@ thead .ud:after{
 	
 }
 .camp_state span{
-	display: block;
+	display: inline-block;
 	font-size: 11px;
 	line-height: 12px;
 	border-radius: 20px;
@@ -144,21 +170,22 @@ thead .ud:after{
 	width: 50px;
 	text-align: center;
 }
-.check1{
+.proceeding{
 	border: 2px solid #627efe;
 	color: #627efe;
 }
-.check2{
+.complete{
 	border: 2px solid #5d38db;
 	color: #5d38db;
 }
-.check3{
+.cancel{
 	border: 2px solid #ccc;
 	color: #ccc;
 }
-.camp_state .check4{
-	width: 60px;
-	border: 2px solid #999;
-	color: #999;
-}
 /* list_wrap 공통사항 ==>끝 */
+
+#footer{
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+}

@@ -100,7 +100,7 @@
 	border: 1px solid rgba(229, 233, 242, 0.5);
 }
 .camp_state span{
-	display: block;
+	display: inline-block;
 	font-size: 11px;
 	line-height: 12px;
 	border-radius: 20px;
