@@ -72,3 +72,50 @@
 .hidden{
     display: none;
 }
+
+.sns_con{
+	background-color: white;
+	border-radius: 8px;
+}
+.form_tit{
+	font-size: 22px;
+	margin-bottom: 10px;
+}
+.form{
+	position: relative;
+/*	border: 2px solid blue;*/
+}
+
+.instagram_profile_img{
+	position: relative;
+	top: -47px;
+	left: -150px;
+	width: 100px;
+	height: 100px;
+}
+.profile_txt{
+	width: 300px;
+	position: absolute;
+	top: 30px;
+	left: 160px;
+	text-align: left;
+	font-size: 0;
+}
+.profile_txt img{
+	position: relative;
+	left: 0; top: 25px;
+	width: 25px;
+	height: 25px;
+}
+.profile_txt .username{
+	display: block;
+	text-align: left;
+	font-size: 15px;
+	font-weight: bold;
+	margin-bottom: 15px;
+	margin-left: 35px;
+}
+.profile_txt strong{
+	display: inline-block;
+	width: 33.33333%;
+}
