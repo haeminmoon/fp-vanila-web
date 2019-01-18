@@ -1,6 +1,6 @@
 const multer = require('multer');
 const upload = multer({storage: multer.memoryStorage()});
-const cpUpload = upload.fields([{name: 'main_img'}, {name: 'sub_img', maxCount: 5}]);
+const cpUpload = upload.fields([{name: 'main_img'}, {name: 'sub_img'}]);
 const awsS3 = require('../../../module/back/util/fileUpload.js');
 
 app.get('/advertiser/adv_campaign_registration', (req, res) => {
@@ -71,9 +71,11 @@ app.get('/advertiser/adv_campaign_registration', (req, res) => {
                             </div>
                             <div class="input_wrap">
                                 <label for="sub_img">상세 이미지<sup>*</sup></label>
-                                <input type="file" name="sub_img" accept="image/*" multiple class="sub_img">
+                                <input type="file" name="sub_img" accept="image/*"  class="sub_img">
+                                <input type="file" name="sub_img" accept="image/*"  class="sub_img">
+                                <input type="file" name="sub_img" accept="image/*"  class="sub_img">
                                 <p> 캠페인 상세 페이지에 등록 될 이미지 </p>
-                                <p> 최대 개수: 5개 </p>
+                                <p> 최대 개수: 3개 </p>
                             </div>
                             <div class="input_wrap">
                                 <label for="date">캠페인 일정<sup>*</sup></label>
@@ -122,6 +124,7 @@ app.get('/advertiser/adv_campaign_registration', (req, res) => {
         <script src="/front/script/advertiser/adv_campaign_registration.js"></script>
         <script>
             go('.camp_register_btn', $, AdvCampaignRegistration.Do.registerCampaign);
+            go('.camp_cancel_btn', $, AdvCampaignRegistration.Do.cancelCampaign);
             go('.main_img', $, AdvCampaignRegistration.Do.readyImage);
 
         </script>
@@ -144,7 +147,7 @@ app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
         notice_date: notice_date,
         post_start_date: post_date[0],
         post_end_date: post_date[1],
-        advertiser_id: 'test' // req.session.user,id
+        advertiser_id: 'test' // req.session.user.id
     };
     const newMainImg = req.files['main_img'];
     const newSubImgs = req.files['sub_img'];
@@ -175,6 +178,6 @@ app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
             }),
             c => QUERY `UPDATE campaign SET sub_img = ${JSON.stringify(c)} WHERE id = ${campaign_id}`
         ),
-        _ => setTimeout(() => {res.redirect('/advertiser/adv_campaign_management')}, 500)
+        _ => setTimeout(() => {res.redirect('/advertiser/adv_campaign_management')}, 1500)
     )
 });

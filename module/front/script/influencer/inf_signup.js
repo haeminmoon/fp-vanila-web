@@ -44,7 +44,7 @@
                     };
                 },
                 $.post('/api/influencer/inf_signup'),
-                _ => location.href = '/common/signin'
+                _ => location.href = '/influencer/inf_signup_complete'
             ).catch(
                 a => match(a)
                     .case(a => a === 'No content')
