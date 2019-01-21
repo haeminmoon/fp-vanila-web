@@ -1,17 +1,16 @@
 app.get('/advertiser/adv_campaign_management', async (req, res) => {
-    // if (!req.session.user) return res.redirect('/common/signin');
+    if (!req.session.user) return res.redirect('/common/signin');
 
-    // let searchTerm = `%${req.query.searchTerm}%`;
-    // let campaignList = (!req.query.searchTerm) ? await QUERY`SELECT * FROM campaign WHERE advertiser_id = 'test' ORDER BY id DESC` : await QUERY`SELECT * FROM campaign WHERE name Like ${searchTerm} AND advertiser_id = 'test'ORDER BY id DESC`;
+    let searchTerm = `%${req.query.searchTerm}%`;
+    let campaignList = (!req.query.searchTerm) ? await QUERY`SELECT * FROM campaign WHERE advertiser_id = 'test' ORDER BY id DESC` : await QUERY`SELECT * FROM campaign WHERE name Like ${searchTerm} AND advertiser_id = 'test'ORDER BY id DESC`;
 
-    // campaignList = go(
-    //     campaignList,
-    //     map((item) => {
-    //         item.count = JSON.parse(item.influencer_id).length;
-    //         return item;
-    //     })
-    // );
-
+    campaignList = go(
+        campaignList,
+        map((item) => {
+            item.count = Object.keys(item.influencer_id).length;
+            return item;
+        })
+    );
 
     res.send(TMPL.layout.hnmf({
         css: `
@@ -106,13 +105,13 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
         `,
         footer: ``,
         script: `
-        <script src="/front/script/advertiser/adv_campaign_management.js"></script>
-        <script>
-        
-        go('.camp_list', $, AdvCampaignManagement.Route.campaignDetail);
-        go('.check_box', $, AdvCampaignManagement.Do.event);        
-        go('.search_inbox', $, AdvCampaignManagement.Do.searchTerm);
-        </script>
+            <script src="/front/script/advertiser/adv_campaign_management.js"></script>
+            <script>
+                AdvCampaignManagement.Do.campaignList(${JSON.stringify(campaignList)});
+                go('.camp_list', $, AdvCampaignManagement.Route.campaignDetail);
+                go('.check_box', $, AdvCampaignManagement.Do.event);        
+                go('.search_inbox', $, AdvCampaignManagement.Do.searchTerm);
+            </script>
         `
         // AdvCampaignManagement.Do.campaignList(${JSON.stringify(campaignList)});
     }));

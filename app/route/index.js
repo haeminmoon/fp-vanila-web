@@ -11,7 +11,7 @@ require('./common/find_user');
  * Advertiser router
  */
 require('./advertiser/adv_my_info');
-require('./advertiser/adv_campaign_registration');
+require('./advertiser/adv_campaign_registeration');
 require('./advertiser/adv_campaign_management');
 require('./advertiser/adv_campaign_modify');
 require('./advertiser/adv_campaign_detail');

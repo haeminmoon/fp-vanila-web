@@ -119,8 +119,9 @@
         })
 
     };
+}
 
-    global.AdvMyInfo = {
-        editInfo, validate
-    };
+global.AdvMyInfo = {
+    editInfo, validate
+};
 }();

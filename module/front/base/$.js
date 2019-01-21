@@ -42,6 +42,8 @@
 
     $.text = el => el.textContent;
 
+    $.html = el => el.innerHTML;
+
     $.setVal = curry((value, el) => el.value = value);
     $.setText = curry((value, el) => el.textContent = value);
     $.setHtml = curry((value, el) => el.innerHTML = value);

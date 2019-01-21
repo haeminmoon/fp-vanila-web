@@ -8,9 +8,9 @@
                 nickname: go(dt, $.find('[name="nickname"]'), $.trim),
                 birth: go(dt, $.find('[name="birth"]'), $.trim),
                 gender: go(dt, $.findAll('[name="gender"]'), filter(a => a.checked === true), first, $.val),
-                // phone_num: go(dt, $.find('[name="phone_num"]'), $.trim),
-                // certification_num: go(dt, $.find('[name="phone_certification_num"]'), $.trim),
-                instagram_id: go(dt, $.find('[name="instagram_user_id"]'), a => a.innerText)
+                // phone_num: go(dt, $.find('[name="phone_num_cer"]'), $.trim),
+                // certification_num: go(dt, $.find('[name="certification_num"]'), $.trim),
+                //instagram_id: go(dt, $.find('[name="instagram_user_id"]'), a => a.innerText)
             },
             pipeT(
                 a => {
@@ -44,7 +44,7 @@
                     };
                 },
                 $.post('/api/influencer/inf_signup'),
-                _ => location.href = '/influencer/inf_signup_complete'
+                a => location.href = `/influencer/inf_signup_complete?name=${a.info.name}&created_at=${a.created_at}`
             ).catch(
                 a => match(a)
                     .case(a => a === 'No content')

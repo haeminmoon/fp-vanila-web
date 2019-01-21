@@ -37,8 +37,12 @@
                 gender: go(dt, $.findAll('[name="gender"]'), filter(a => a.checked === true), first, $.val)
             },
             tap(log),
-            $.put('/api/inf_my_info/modify_ps_info'),
-            _ => alert('계정정보가 수정되었습니다.')
+            a => {
+                if (confirm('수정하시겠습니까?') === true) {
+                    $.put('/api/inf_my_info/modify_ps_info', a);
+                    alert('계정정보가 수정되었습니다.');
+                }
+            }
         )),
     };
 
@@ -81,3 +85,5 @@
         editInfo, validate
     };
 }();
+
+
