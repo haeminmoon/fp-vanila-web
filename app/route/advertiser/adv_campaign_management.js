@@ -7,7 +7,7 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
     campaignList = go(
         campaignList,
         map((item) => {
-            item.count = JSON.parse(item.influencer_id).length;
+            item.count = Object.keys(item.influencer_id).length;
             return item;
         })
     );

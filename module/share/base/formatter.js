@@ -18,6 +18,22 @@
         return true;
     };
 
+    const formatStateClass = (state) => {
+        let stateClass;
+        switch(state){
+            case 'wait':
+                stateClass = 'check1';
+                break;
+            case 'progress':
+                stateClass = 'check2';
+                break;
+            case 'complete':
+                stateClass = 'check3';
+                break;
+        }
+        return stateClass;
+    };
+
     const formatState = (state) => {
         let stateKo;
         switch(state){
@@ -47,6 +63,6 @@
     };
 
     global.Formatter = {
-        formatFrontDate, formatBackDate, isEmptyObj, formatState, sortObjKey
+        formatFrontDate, formatBackDate, isEmptyObj, formatStateClass, formatState, sortObjKey
     }
 }(typeof window != 'undefined'? window : global);

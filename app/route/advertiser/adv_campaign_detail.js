@@ -32,7 +32,7 @@ app.get('/advertiser/adv_campaign_detail', async (req, res) => {
                     <div class="list_wrap">
                         <h2>
                             참여 인플루언서:
-                            <span class="infu_count">${JSON.parse(campaignDetail.influencer_id).length}</span>명
+                            <span class="infu_count">${Object.keys(campaignDetail.influencer_id).length}</span>명
                             <a class="modify">수정하기</a>
                         </h2>
                         <table>

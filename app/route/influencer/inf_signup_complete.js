@@ -1,4 +1,5 @@
 app.get('/influencer/inf_signup_complete', (req, res) => {
+
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/common/common_signup.css">
@@ -15,12 +16,12 @@ app.get('/influencer/inf_signup_complete', (req, res) => {
                 </div>
                 <div class="welcome_notice">
                         <div class="welcome_txt">
-                            <p class="txt_color">{user.name} 님</p>
+                            <p class="txt_color">${req.query.name} 님</p>
                             로그인 하신 후 정상적으로 이용하실 수 있습니다.
                         </div>
                         <div class="sns_txt">
-                            <p>SMS 수신 동의 : <span>{user.create_at}</span></p>  
-                            <p>E-mail 수신 동의 : <span>{user.create_at}</span></p>
+                            <p>SMS 수신 동의 : <span>${formatFrontDate(req.query.created_at)}</span></p>  
+                            <p>E-mail 수신 동의 : <span>${formatFrontDate(req.query.created_at)}</span></p>
                         </div>
                     </div>
                 <div class="main_btn">

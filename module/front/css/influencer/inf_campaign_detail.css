@@ -54,7 +54,7 @@
     color: #fff;;
 }
 .campaign_info > li > p:nth-child(even){
-    width: 150px;
+    width: 250px;
     text-align: center;
 }
 

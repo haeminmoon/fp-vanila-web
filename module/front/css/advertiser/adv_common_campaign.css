@@ -19,9 +19,9 @@
 .breadcrumbs a{
 	position: relative;
 	padding-right: 23px;
-	color: #cccccc;
-	font-weight: 600;
-    font-size: 13px;
+	color: #1f263e;
+	font-size: 13px;
+	font-weight: bold;
 }
 .breadcrumbs a:after{
 	content: '';
@@ -34,7 +34,9 @@
 	opacity: 0.2;
 }
 .breadcrumbs a:last-child{
-	color: #627efe;
+	color: #00dbbf;
+	font-size: 13px;
+	font-weight: bold;
 }
 .breadcrumbs a:last-child:after{
 	content: none;
@@ -149,8 +151,8 @@ thead .ud:after{
 	color: #627efe;
 }
 .check2{
-	border: 2px solid #5d38db;
-	color: #5d38db;
+	border: 2px solid #00dbbf;
+	color: #00dbbf;
 }
 .check3{
 	border: 2px solid #ccc;
