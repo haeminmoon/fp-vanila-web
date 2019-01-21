@@ -39,6 +39,7 @@
                     .case(a => a === 'No content')
                     (_ => alert('입력란을 채워주세요.'))
                     .else(_ => a),
+
                 b => b.text(),
                 match
                     .case('id')

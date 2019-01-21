@@ -1,5 +1,4 @@
 !function () {
-
     const editInfo = {
         password: $.on('click', '.modify_password_btn', ({ delegateTarget: dt }) => go(
             {
@@ -9,7 +8,7 @@
             },
             pipeT(
                 tap(log),
-                $.post('/api/inf_my_info/modifyPw'),
+                $.put('/api/inf_my_info/modify_password'),
                 _ => alert('비밀번호가 변경되었습니다. 다시 로그인 해주세요.'),
                 _ => location.href = '/logout'
             ).catch(
@@ -38,7 +37,7 @@
                 gender: go(dt, $.findAll('[name="gender"]'), filter(a => a.checked === true), first, $.val)
             },
             tap(log),
-            $.post('/api/inf_my_info/modifyPsInfo'),
+            $.put('/api/inf_my_info/modify_ps_info'),
             _ => alert('계정정보가 수정되었습니다.')
         )),
     };

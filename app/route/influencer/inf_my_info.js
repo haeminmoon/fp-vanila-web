@@ -74,6 +74,13 @@ app.get('/influencer/inf_my_info', async (req, res) => {
                         </div>
                     </div>
 
+                    <div class="sns_wrap">
+                        <h2 class="set_tit">
+                            SNS 연동
+                        </h2>
+                
+                    </div>
+
                 </div>
             </div>
         `,
@@ -91,7 +98,7 @@ app.get('/influencer/inf_my_info', async (req, res) => {
 });
 
 
-app.post('/api/inf_my_info/modifyPw', (req, res, next) => {
+app.put('/api/inf_my_info/modify_password', (req, res, next) => {
     const { user } = req.session;
     const textDate = req.body;
     go(
@@ -125,7 +132,7 @@ app.post('/api/inf_my_info/modifyPw', (req, res, next) => {
     )
 });
 
-app.post('/api/inf_my_info/modifyPsInfo', (req, res) => {
+app.put('/api/inf_my_info/modify_ps_info', (req, res) => {
     const { user } = req.session;
     const textDate = req.body;
     const object = { info: { "name": textDate.name, "nickname": textDate.nickname, "birth": textDate.birth, "gender": textDate.gender } };

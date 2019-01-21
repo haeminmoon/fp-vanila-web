@@ -1,4 +1,4 @@
-!function() {      
+!function () {
     function $(sel, parent = document) {
         return parent.querySelector(sel);
     }
@@ -23,10 +23,10 @@
 
     $.prepend = curry((parent, child) => parent.insertBefore(child, parent.firstChild));
 
-    $.on = function(el, event, sel, f, ...opts) {
-        if (typeof el == 'string') {return el => $.on(el, ...arguments);}
-        if (typeof sel != 'string') {return el.addEventListener(event, sel, f);}
-        
+    $.on = function (el, event, sel, f, ...opts) {
+        if (typeof el == 'string') { return el => $.on(el, ...arguments); }
+        if (typeof sel != 'string') { return el.addEventListener(event, sel, f); }
+
         el.addEventListener(event, e => go(
             el,
             $.findAll(sel),
@@ -39,7 +39,7 @@
     };
 
     $.remove = el => el.parentNode.removeChild(el);
-    
+
     $.text = el => el.textContent;
 
     $.setVal = curry((value, el) => el.value = value);
@@ -63,13 +63,13 @@
         (_) => extend(..._)
     );
 
-    const resJSON = function(res) {
+    const resJSON = function (res) {
         return res.ok ? res.json() : Promise.reject(res);
     };
 
     const fetchBaseOpt = {
         headers: { "Content-Type": "application/json" },
-        credentials: 'same-origin', 
+        credentials: 'same-origin',
     };
 
     const fetchWithBody = method => curry((url, data) => go(
@@ -77,7 +77,7 @@
             method: method,
             body: JSON.stringify(data)
         }, fetchBaseOpt)),
-    resJSON));
+        resJSON));
 
     $.get = curry((url, paramObj) => go(
         fetch(
@@ -90,7 +90,7 @@
     $.put = fetchWithBody('PUT');
     $.delete = $.del = fetchWithBody('DELETE');
 
-    $.param = pipe(entriesL, mapL(([k, v])=> `${k}=${v}`), join('&'));
+    $.param = pipe(entriesL, mapL(([k, v]) => `${k}=${v}`), join('&'));
 
     $.Status = {};
 
@@ -99,12 +99,12 @@
     $.statusSelector = s => isString(s) ? s : $.elToStatusSelector(s);
 
     $.elToStatusSelector = (el, s = '') =>
-        match ($.attr('status', el))
-            .case(a => a) (
+        match($.attr('status', el))
+            .case(a => a)(
                 match
-                    .case(/^\s*>/) (s1 => $.elToStatusSelector(el.parentNode, s1 + s))
+                    .case(/^\s*>/)(s1 => $.elToStatusSelector(el.parentNode, s1 + s))
                     .else(s1 => s1 + s))
-            .else (
+            .else(
                 _ => el,
                 $.closest('[status]'),
                 el => $.elToStatusSelector(el, s));
@@ -124,5 +124,5 @@
     $.routing = (url) => _ => location.href = url;
 
     window.$ = $;
-} ();
+}();
 
