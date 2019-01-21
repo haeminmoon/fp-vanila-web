@@ -32,7 +32,7 @@
 	opacity: 0.2;
 }
 .breadcrumbs a:last-child{
-	color: #627efe;
+	color: #222;
 }
 .breadcrumbs a:last-child:after{
 	content: none;

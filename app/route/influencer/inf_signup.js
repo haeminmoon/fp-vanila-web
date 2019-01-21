@@ -90,7 +90,7 @@ app.get('/influencer/inf_signup', (req, res) => {
                                 <div class="input_wrap hidden sns_wrap">
                                     <img class="instagram_profile_img" name="instagram_profile_img"/>
                                     <div class="profile_txt">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png" alt="인스타그램 로고">
+                                        <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/instagram/instagram_color.png" alt="인스타그램 로고">
                                         <span class="username" name="instagram_username"></span>
                                         <strong class="media_count" name="instagram_media_count"></strong>
                                         <strong class="followers_count" name="instagram_followers_count"></strong>
@@ -107,14 +107,14 @@ app.get('/influencer/inf_signup', (req, res) => {
                             <h2 class="form_tit">휴대폰 인증</h2>
                                 <div class="form">
                                     <div class="input_wrap">
-                                        <label for="phone_num_cer">휴대폰 번호<sup>*</sup></label>
-                                        <input type="text" name="phone_num_cer" id="phone_num_cer" class="phone_num_cer">
+                                        <label for="phone_num">휴대폰 번호<sup>*</sup></label>
+                                        <input type="text" name="phone_num" id="phone_num" class="phone_num">
                                         <button type="button" class="phone_chk_btn">본인인증</button>
                                         <p class="error phone_num_error"></p>
                                     </div>
                                     <div class="input_wrap hidden">
-                                        <label for="certification_num">인증번호<sup>*</sup></label>
-                                        <input type="text" name="certification_num" id="certification_num" class="certification_num">
+                                        <label for="phone_phone_certification_num">인증번호<sup>*</sup></label>
+                                        <input type="text" name="phone_certification_num" id="phone_certification_num" class="phone_certification_num">
                                         <span class="error code_error"></span>
                                         <input type="hidden" name="user_code" class="user_code">
                                     </div>
@@ -180,8 +180,8 @@ app.get('/influencer/inf_signup', (req, res) => {
             go('#id', $, InfSignup.Do.validateEmail);
             go('#password', $, InfSignup.Do.validatePw);
             go('#password_chk', $, InfSignup.Do.validateCheckPw);
-            go('#phone_num_cer', $, InfSignup.Do.validatePhoneNumber);
-            go('#certification_num', $, InfSignup.Do.validateCheckCode);
+            go('#phone_num', $, InfSignup.Do.validatePhoneNumber);
+            go('#phone_certification_num', $, InfSignup.Do.validateCheckCode);
             go('.phone_chk_btn', $, InfSignup.Do.showCodePhone);
             go('.instagram_con_btn', $, InfSignup.Do.openInstagramLogin);
         </script>
