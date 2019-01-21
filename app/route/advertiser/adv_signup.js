@@ -1,6 +1,7 @@
 const getHash = require('../../../module/back/util/encryption');
 
 app.get('/advertiser/adv_signup', (req, res) => {
+
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/common/common_signup.css">
@@ -164,7 +165,9 @@ app.post('/api/advertiser/adv_signup', (req, res, next) => {
             return a;
         },
         pipeT(
-            b => QUERY`INSERT INTO users ${VALUES(b)}`,
+            b => QUERY`INSERT INTO users ${VALUES(b)} RETURNING info`,
+            first,
+            c => c.info.ceo_name,
             res.json
         ).catch(
             match

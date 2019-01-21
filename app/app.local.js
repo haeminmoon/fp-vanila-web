@@ -16,7 +16,8 @@
 
     require('../module/share/template/tmpl');
     require('../module/share/template/tmpl.layout');
-    
+    require('../module/share/template/influencer/inf_campaign_list');
+
     /**
      * DB - Query builder setting
      */

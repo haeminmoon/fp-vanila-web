@@ -6,9 +6,7 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
     campaignList = go(
         campaignList,
         map((item) => {
-            // 현재 민우형이 작업중이신거같아서 일단 주석처리하고 합니다 혹시 충돌나면 지워주시면됩니다~
-            // item.count = JSON.parse(item.influencer_id).length;
-            item.count = 0;
+            item.count = Object.keys(item.influencer_id).length;
             return item;
         })
     );
@@ -107,13 +105,13 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
         `,
         footer: ``,
         script: `
-        <script src="/front/script/advertiser/adv_campaign_management.js"></script>
-        <script>
-        AdvCampaignManagement.Do.campaignList(${JSON.stringify(campaignList)});
-        go('.camp_list', $, AdvCampaignManagement.Route.campaignDetail);
-        go('.check_box', $, AdvCampaignManagement.Do.event);        
-        go('.search_inbox', $, AdvCampaignManagement.Do.searchTerm);
-        </script>
+            <script src="/front/script/advertiser/adv_campaign_management.js"></script>
+            <script>
+                AdvCampaignManagement.Do.campaignList(${JSON.stringify(campaignList)});
+                go('.camp_list', $, AdvCampaignManagement.Route.campaignDetail);
+                go('.check_box', $, AdvCampaignManagement.Do.event);        
+                go('.search_inbox', $, AdvCampaignManagement.Do.searchTerm);
+            </script>
         `
     }));
 });

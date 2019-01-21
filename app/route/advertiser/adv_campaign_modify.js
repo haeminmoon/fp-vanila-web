@@ -13,6 +13,7 @@ app.get('/advertiser/adv_campaign_modidfy', async (req, res) => {
         nav: TMPL.layout.advNav(),
         main: `
             <div id="main">
+                <label>캠페인 명 </label><input type="text" class="campaign_title" value=${campaign.name}>
                 <div class="main_img_wrap">
                     <p>대표이미지</p>
                     <img src=${campaign.img} class="main_img" name="main_img" height="200" width="200">
@@ -28,7 +29,7 @@ app.get('/advertiser/adv_campaign_modidfy', async (req, res) => {
         script: `
             <script src="/front/script/advertiser/adv_campaign_modify.js"></script>
             <script>
-                go('.img_url', $.all, AdvCampaignModify.Do.readyImage);
+                go('#main', $, AdvCampaignModify.Do.readyImage);
             </script>
         `
     }));

@@ -108,20 +108,3 @@
 	width: 50px;
 	text-align: center;
 }
-.check1{
-	border: 2px solid #627efe;
-	color: #627efe;
-}
-.check2{
-	border: 2px solid #5d38db;
-	color: #5d38db;
-}
-.check3{
-	border: 2px solid #ccc;
-	color: #ccc;
-}
-.camp_state .check4{
-	width: 60px;
-	border: 2px solid #999;
-	color: #999;
-}

@@ -21,6 +21,8 @@
 
                 <script src="/front/base/$.js"></script>
                 <script src="/share/template/tmpl.js"></script>
+                <script src="/share/template/influencer/inf_campaign_list.js"></script>
+                <script src="/share/template/advertiser/adv_campaign_management.js"></script>
                 <script>Object.assign(window, TMPL);</script>
                 
                 ${script}
