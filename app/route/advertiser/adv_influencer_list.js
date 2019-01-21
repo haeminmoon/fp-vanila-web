@@ -1,4 +1,4 @@
-const request = require('request');
+const { get } = require('../../../module/back/util/request'); 
 
 app.get('/advertiser/adv_influencer_list', async (req, res) => {
     if (!req.session.user) return res.redirect('/common/signin');
@@ -155,9 +155,19 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
 
 const getInstagramMedia = async (id, accessToken, limit) => {
     !limit ? limit = 3 : limit;
-    return new Promise((resolve, reject) => request.get(`https://graph.facebook.com/v3.2/${id}/?fields=media.limit(${limit})%7Bcaption%2Ccomments_count%2Clike_count%2Cmedia_url%2Ctimestamp%2Cpermalink%2Cthumbnail_url%2Cmedia_type%7D%2Cfollowers_count%2Cfollows_count%2Cprofile_picture_url&access_token=${accessToken}`, 
-        (err, res, body) => resolve(JSON.parse(body)))
-    );
+    // return new Promise((resolve, reject) => 
+    //     request.get(`https://graph.facebook.com/v3.2/${id}/?fields=media.limit(${limit})%7Bcaption%2Ccomments_count%2Clike_count%2Cmedia_url%2Ctimestamp%2Cpermalink%2Cthumbnail_url%2Cmedia_type%7D%2Cfollowers_count%2Cfollows_count%2Cprofile_picture_url&access_token=${accessToken}`, 
+    //     (err, res, body) => resolve(JSON.parse(body)))
+    // );
+
+    /**
+     * 1. First parameter, end point
+     * 2. Second parameter, header
+     */
+    return get(
+        `https://graph.facebook.com/v3.2/${id}/?fields=media.limit(${limit})%7Bcaption%2Ccomments_count%2Clike_count%2Cmedia_url%2Ctimestamp%2Cpermalink%2Cthumbnail_url%2Cmedia_type%7D%2Cfollowers_count%2Cfollows_count%2Cprofile_picture_url&access_token=${accessToken}`, 
+        ``
+    )
 }
 const infList = data => go(
     JSON.parse(data),

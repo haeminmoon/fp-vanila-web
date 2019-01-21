@@ -15,7 +15,6 @@
 
     require('../module/share/template/tmpl');
     require('../module/share/template/tmpl.layout');
-    // require('../module/share/template/common/home');
 
     /**
      * DB - Query builder setting
