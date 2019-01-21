@@ -165,7 +165,9 @@ app.post('/api/advertiser/adv_signup', (req, res, next) => {
             return a;
         },
         pipeT(
-            b => QUERY`INSERT INTO users ${VALUES(b)}`,
+            b => QUERY`INSERT INTO users ${VALUES(b)} RETURNING info`,
+            first,
+            c => c.info.ceo_name,
             res.json
         ).catch(
             match
