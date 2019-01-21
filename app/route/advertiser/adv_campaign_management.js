@@ -1,13 +1,14 @@
 app.get('/advertiser/adv_campaign_management', async (req, res) => {
     if (!req.session.user) return res.redirect('/common/signin');
-
     let searchTerm = `%${req.query.searchTerm}%`;
     let campaignList = (!req.query.searchTerm) ? await QUERY`SELECT * FROM campaign WHERE advertiser_id = 'test' ORDER BY id DESC` : await QUERY`SELECT * FROM campaign WHERE name Like ${searchTerm} AND advertiser_id = 'test'ORDER BY id DESC`;
 
     campaignList = go(
         campaignList,
         map((item) => {
-            item.count = JSON.parse(item.influencer_id).length;
+            // 현재 민우형이 작업중이신거같아서 일단 주석처리하고 합니다 혹시 충돌나면 지워주시면됩니다~
+            // item.count = JSON.parse(item.influencer_id).length;
+            item.count = 0;
             return item;
         })
     );
