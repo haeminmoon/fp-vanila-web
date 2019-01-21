@@ -117,11 +117,9 @@
                 $('.modify_password_btn').disabled = 'disabled';
             }
         })
-
     };
-}
 
-global.AdvMyInfo = {
-    editInfo, validate
-};
+    global.AdvMyInfo = {
+        editInfo, validate
+    };
 }();
