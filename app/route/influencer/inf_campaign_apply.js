@@ -1,5 +1,6 @@
-app.get('/influencer/inf_campaign_apply', (req, res) => {
+app.get('/influencer/inf_campaign_apply', async (req, res) => {
     if (!req.session.user) return res.redirect('/common/signin');
+    const [campaignItem] = await QUERY`SELECT * FROM campaign WHERE state = 'progress' AND id = ${req.query.id}`;
 
     res.send(TMPL.layout.hnmf({
         css: `
@@ -11,8 +12,8 @@ app.get('/influencer/inf_campaign_apply', (req, res) => {
             <div id="main">
                 <div class="container">
                     <div class="campaign_info">
-                        <h1 class="brand_tit">캠페인 광고주</h1>
-                        <p class="campaign_tit">캠페인 제목</p>
+                        <h1 class="brand_tit" id=${campaignItem.id}>${campaignItem.advertiser_id}</h1>
+                        <p class="campaign_tit">${campaignItem.name}</p>
                     </div>
                     
                     <div class="confirm_info">
@@ -20,7 +21,7 @@ app.get('/influencer/inf_campaign_apply', (req, res) => {
                             신청한 SNS
                         </h2>
                         <div class="confirm_content">
-                            <p class="inf_info">인스타 아이디</p>
+                            <p class="inf_info user_id">${req.session.user.id}</p>
                             <textarea name="memo" id="memo" class="memo" placeholder="유저아이디의 메모를 작성해주세요."></textarea>
                         </div>
                     </div>
@@ -30,7 +31,7 @@ app.get('/influencer/inf_campaign_apply', (req, res) => {
                             연락처
                         </h2>
                         <div class="confirm_content">
-                            <p class="inf_info">신청자 번호</p>
+                            <p class="inf_info phone_num">${req.session.user.info.phone_num}</p>
                         </div>
                     </div>
 
@@ -39,7 +40,7 @@ app.get('/influencer/inf_campaign_apply', (req, res) => {
                             받는 분 이름
                         </h2>
                         <div class="confirm_content">
-                            <p class="inf_info">신청자 이름</p>
+                            <p class="inf_info name">${req.session.user.info.name}</p>
                         </div>
                     </div>
 
@@ -48,7 +49,9 @@ app.get('/influencer/inf_campaign_apply', (req, res) => {
                             배송지 주소
                         </h2>
                         <div class="confirm_content">
-                            <p class="inf_info">배송지 주소</p>
+                            <input type="text" name="post_code" class="post_code" id="post_code">
+                            <button type="button" class="sch_add_btn">주소검색</button>
+                            <input type="text" name="address" class="address">       
                         </div>
                     </div>
 
@@ -108,6 +111,26 @@ app.get('/influencer/inf_campaign_apply', (req, res) => {
             </div>
         `,
         footer: ``,
-        script: ``
+        script: `
+        <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+        <script src="/front/script/influencer/inf_campagin_apply.js"></script>
+        <script>
+            go('.sch_add_btn', $, InfCampaignApply.Do.showPost);
+            go('.container', $, InfCampaignApply.Do.campaignAgree);
+        </script>
+        `
     }));
+});
+
+app.post('/api/influencer/inf_campaign_apply', (req, res, next) => {
+    go(
+        req.body,
+        pipeT(
+            a => QUERY`UPDATE campaign SET influencer_id = influencer_id || ${a.info} WHERE id = ${a.id} `,
+            res.json
+        ).catch(
+            m => new Error(m),
+            next
+        )
+    )
 });

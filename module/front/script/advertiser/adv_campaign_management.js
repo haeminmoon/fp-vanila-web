@@ -16,7 +16,7 @@
         campaignList: (campaignList) => {
             campaign_list = go(
                 campaignList,
-                a => template_campaign_list(a),
+                a => TMPL.AdvCampaignManagement.list(a),
                 b => b.join('')
             );
 
@@ -33,12 +33,12 @@
             $('.state_complete').innerHTML = campaign_state_c.length;
 
             // state 탬플릿
-            campagin_state_template = (campaign_state_list) => go(campaign_state_list, a => template_campaign_list(a), b => b.join(''));
+            campagin_state_template = (campaign_state_list) => go(campaign_state_list, a => TMPL.AdvCampaignManagement.list(a), b => b.join(''));
             // 정렬 템플릿
-            campagin_sort_template = (campaign_list, reverse) => go(sortObjKey(campaign_list, 'count', reverse), b => template_campaign_list(b), c => c.join(''));
+            campagin_sort_template = (campaign_list, reverse) => go(sortObjKey(campaign_list, 'count', reverse), b => TMPL.AdvCampaignManagement.list(b), c => c.join(''));
 
             // 인플런서 신청자수 정렬
-            $('.inf').addEventListener('click', el => {
+            $('.apply_count').addEventListener('click', el => {
                 count++;
                 reverse = (count % 2 === 1) ? true : false;
                 for (checkbox of $.all('.checkbox')) {
@@ -84,26 +84,6 @@
             b => location.href = `/advertiser/adv_campaign_management?searchTerm=${b.searchTerm}`
         ))
     };
-
-    const template_campaign_list = (list) => go(
-        list,
-        map(item => html`
-            <tr>
-                <td class="num">${item.id}</td>
-                <td class="campaign_name">
-                    <img src=${item.img} alt="대표 이미지"/>
-                    <p>${item.name}</p>
-                </td>
-                <td class="apply_term">${formatFrontDate(item.post_start_date)} ~ ${formatFrontDate(item.post_end_date)}</td>
-                <td class="inf" style="text-align: center;">${item.count} 명</td>
-                <td class="start_date">${formatFrontDate(item.created_at)}</td>
-                <td class="camp_state">
-                    <span class="check1">${formatState(item.state)}</span>
-                </td>
-            </tr>
-        `),
-    );
-
     global.AdvCampaignManagement = {
         Do, Route
     };
