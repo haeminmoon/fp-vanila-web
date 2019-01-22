@@ -1,4 +1,13 @@
 @charset "utf-8";
+.hide{display: none;}
+
+/* ============ main ============ */
+#main{
+	background-color: #f5f6fa;
+	padding: 0 20px 200px;
+	margin-left: 220px;
+}
+
 .breadcrumbs{
 	line-height: 70px;
 	height: 70px;
@@ -56,6 +65,8 @@ h3{
 	top: 0;
 	right: 0;
 	border: none;
+	padding: 0 !important;
+	color: #fff;
 	/* text-indent: -999999px; */
 	/* background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/group-3-copy/group-3-copy.png)no-repeat; */
 }
@@ -268,9 +279,6 @@ caption{
 }
 .click_img img:nth-child(2n){margin-left: 2px;}
 
-.hidden{
-    display: none;
+td{
+	cursor: pointer;
 }
-
-
-

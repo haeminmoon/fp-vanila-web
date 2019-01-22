@@ -1,13 +1,15 @@
 app.get('/influencer/inf_campaign_apply', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
+    const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
+
     const [campaignItem] = await QUERY`SELECT * FROM campaign WHERE state = 'progress' AND id = ${req.query.id}`;
 
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/influencer/inf_campaign_apply.css">
         `,
-        header: TMPL.layout.infHeader(),
-        nav: TMPL.layout.infNav(),
+        header: TMPL.layout.infHeader(user.info.name),
+        nav: TMPL.layout.infNav(user.info.name),
         main: `
             <div id="main">
                 <div class="container">
@@ -15,7 +17,7 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
                         <h1 class="brand_tit" id=${campaignItem.id}>${campaignItem.advertiser_id}</h1>
                         <p class="campaign_tit">${campaignItem.name}</p>
                     </div>
-                    
+
                     <div class="confirm_info">
                         <h2 class="confirm_tit">
                             신청한 SNS
@@ -51,7 +53,7 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
                         <div class="confirm_content">
                             <input type="text" name="post_code" class="post_code" id="post_code">
                             <button type="button" class="sch_add_btn">주소검색</button>
-                            <input type="text" name="address" class="address">       
+                            <input type="text" name="address" class="address">
                         </div>
                     </div>
 
