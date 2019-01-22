@@ -2,16 +2,17 @@
 const awsS3 = require('../../../module/back/util/fileUpload.js');
 
 app.get('/advertiser/adv_campaign_modify', async (req, res) => {
-    
     if (!req.session.user) return res.redirect('/common/signin');
+
+    const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
     let [campaign] = await QUERY`SELECT * FROM campaign WHERE id = ${req.query.id}`;
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
             <link rel="stylesheet" href="/front/css/advertiser/adv_campaign_detail.css" />
         `,
-        header: TMPL.layout.advHeader(),
-        nav: TMPL.layout.advNav(),
+        header: TMPL.layout.advHeader(user.info.company_name),
+        nav: TMPL.layout.advNav(user.info.company_name),
         main: `
             <div id="main">
                 <label>캠페인 명 </label><input type="text" class="campaign_title" value=${campaign.name}>
@@ -32,8 +33,8 @@ app.get('/advertiser/adv_campaign_modify', async (req, res) => {
                 </div>
                 <div class="main_img_wrap">
                     <p>대표이미지</p>
-                    <img src=${campaign.img} class="main_img non_modified" name="main_img" file_name=${campaign.img.split('/')[campaign.img.split('/').length-1]} sub_order=0 height="200" width="200">
-                    <input type="file" target="${campaign.img.split('/')[campaign.img.split('/').length-1]}" accept=".jpg, .jpeg, .png" class="img_url" name="img_url">
+                    <img src=${campaign.img} class="main_img non_modified" name="main_img" file_name=${campaign.img.split('/')[campaign.img.split('/').length - 1]} sub_order=0 height="200" width="200">
+                    <input type="file" target="${campaign.img.split('/')[campaign.img.split('/').length - 1]}" accept=".jpg, .jpeg, .png" class="img_url" name="img_url">
                 </div>
                 <div class="sub_img_wrap">
                     <p>서브이미지</p>
@@ -121,28 +122,28 @@ app.get('/advertiser/adv_campaign_modify', async (req, res) => {
     }));
 });
 
-app.post('/api/advertiser/adv_campaign_modify', async(req, res) => {
-    
+app.post('/api/advertiser/adv_campaign_modify', async (req, res) => {
+
     const campaignId = req.body.campaign_id;
     const [campaign] = await QUERY`SELECT * FROM campaign WHERE id = ${campaignId}`;
 
     // 바뀐사진 찾아서 S3에 업데이트 및 데이터베이스에 적재
     return go(
         req.body.modified_files,
-        map(async(a) => {
+        map(async (a) => {
             const fileName = a.file_name;
             // S3에 저장하기위해 임의의 파일명을 지정
-            const newFileName = fileName.split('at')[0]+"at"+getDateMMDDHHMMSS(new Date());
+            const newFileName = fileName.split('at')[0] + "at" + getDateMMDDHHMMSS(new Date());
 
             // Buffer와 file의 type을 지정
             let file = {
-                "buffer" : new Buffer(a.url.replace(/^data:image\/\w+;base64,/, ""), 'base64'),
-                "mimetype" : a.url.split(';')[0].split('/')[1]
+                "buffer": new Buffer(a.url.replace(/^data:image\/\w+;base64,/, ""), 'base64'),
+                "mimetype": a.url.split(';')[0].split('/')[1]
             }
             // 기존 파일 삭제 후 생성
             awsS3.deleteImgToS3(awsS3.convertImgPath(campaignId, 'test', fileName));
             awsS3.insertImgToS3(file, awsS3.convertImgPath(campaignId, 'test', newFileName));
-            return ({"src": awsS3.getS3URL() + awsS3.convertImgPath(campaignId, 'test', newFileName), "order": a.order});
+            return ({ "src": awsS3.getS3URL() + awsS3.convertImgPath(campaignId, 'test', newFileName), "order": a.order });
         }),
         b => {
             b.push(...req.body.non_modified);
@@ -179,8 +180,8 @@ const writeHtmlSubImg = subImgArr => {
     return go(
         subImgArr,
         map(a => html`
-            <img src=${a} class="sub_img non_modified" name="sub_img" file_name=${a.split('/')[a.split('/').length-1]} sub_order=${order++} height="200" width="200">
-            <input type="file" target="${a.split('/')[a.split('/').length-1]}" accept="image/*" class="img_url" name="img_url">
+            <img src=${a} class="sub_img non_modified" name="sub_img" file_name=${a.split('/')[a.split('/').length - 1]} sub_order=${order++} height="200" width="200">
+            <input type="file" target="${a.split('/')[a.split('/').length - 1]}" accept="image/*" class="img_url" name="img_url">
         `),
         b => b + writeHtmlEmtySubImg(b)
     )
@@ -194,8 +195,8 @@ const writeHtmlEmtySubImg = subImgArr => go(
             result += `
                 <button class="sub_img_plus" index=${i}>+</button>
                 <div class="sub_img_wrap_${i} hidden">
-                    <img src=null class="sub_img non_modified" name="sub_img" file_name="campaign_subImage_${i+1}" sub_order=${i} height="200" width="200">
-                    <input type="file" target="campaign_subImage_${i+1}" accept=".jpg, .jpeg, .png" class="img_url" name="img_url">
+                    <img src=null class="sub_img non_modified" name="sub_img" file_name="campaign_subImage_${i + 1}" sub_order=${i} height="200" width="200">
+                    <input type="file" target="campaign_subImage_${i + 1}" accept=".jpg, .jpeg, .png" class="img_url" name="img_url">
                 </div>
             `
         }
@@ -203,8 +204,8 @@ const writeHtmlEmtySubImg = subImgArr => go(
     }
 )
 
-const convertDate2String = date => `${date.getFullYear()}-${toString(date.getMonth()+1).padStart(2,'0')}-${toString(date.getDate()).padStart(2,'0')}`;
-const getDateMMDDHHMMSS = date => `${toString(date.getMonth()+1).padStart(2,'0')}${toString(date.getDate()).padStart(2,'0')}${date.getHours()}${date.getSeconds()}`
+const convertDate2String = date => `${date.getFullYear()}-${toString(date.getMonth() + 1).padStart(2, '0')}-${toString(date.getDate()).padStart(2, '0')}`;
+const getDateMMDDHHMMSS = date => `${toString(date.getMonth() + 1).padStart(2, '0')}${toString(date.getDate()).padStart(2, '0')}${date.getHours()}${date.getSeconds()}`
 
 const updateDB = (column, value, id) => {
     switch (column) {

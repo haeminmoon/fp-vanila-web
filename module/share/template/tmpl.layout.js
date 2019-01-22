@@ -69,7 +69,7 @@
                 </div>
             </li>
             <li>
-                <p>${userName} 님</p>
+                <p>${userName}님</p>
             </li>
         </ul>
     </div>
@@ -96,7 +96,7 @@
         </div>
     `;
 
-    TMPL.layout.advNav = _ => `
+    TMPL.layout.advNav = userName => `
         <div id="nav">
             <h1 class="logo">
                 <a href="/">
@@ -107,14 +107,13 @@
                 <div class="image">
                     <img src="http://file2.nocutnews.co.kr/newsroom/image/2018/07/18/20180718120948825781_0_420_600.jpg" alt="profile image">
                 </div>
-                <p class="user_name">아이유</p>
+                <p class="user_name">${userName}</p>
             </div>
             <ul class="nav_gnb">
                 <li class="nav_on"><a href="/advertiser/adv_campaign_management">캠페인 관리</a></li>
                 <li><a href="/advertiser/adv_campaign_registration">캠페인 등록</a></li>
                 <li><a href="/advertiser/adv_influencer_list">인플루언서 리스트</a></li> 
-                <li class="setting"><a href="/advertiser/adv_my
-                _info">설정</a></li>
+                <li class="setting"><a href="/advertiser/adv_my_info">설정</a></li>
             </ul>
             <div class="logout_btn_wrap">
                 <a class="logout_btn" href="/common/signout">로그아웃</a>
@@ -122,7 +121,7 @@
         </div>
     `;
 
-    TMPL.layout.infNav = _ => `
+    TMPL.layout.infNav = userName => `
         <div id="nav">
             <h1 class="logo">
                 <a href="/">
@@ -133,7 +132,7 @@
                 <div class="image">
                     <img src="http://file2.nocutnews.co.kr/newsroom/image/2018/07/18/20180718120948825781_0_420_600.jpg" alt="profile image">
                 </div>
-                <p class="user_name">아이유</p>
+                <p class="user_name">${userName}</p>
             </div>
             <ul class="nav_gnb">
                 <li class="nav_on"><a href="/influencer/inf_campaign_management">캠페인 관리</a></li>

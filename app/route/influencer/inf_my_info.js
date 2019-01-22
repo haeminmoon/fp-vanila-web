@@ -1,22 +1,21 @@
 const getHash = require('../../../module/back/util/encryption');
 const { get } = require('../../../module/back/util/request');
-// const getInstagramInfo = (id, accessToken) => get(`https://graph.facebook.com/v3.2/${id}?fields=followers_count%2Cfollows_count%2Cmedia_count%2Cprofile_picture_url%2Cusername%2Cname&access_token=${accessToken}`, ``);
-// const instagramInfo = getInstagramInfo(id, accessToken);
 
 app.get('/influencer/inf_my_info', async (req, res) => {
     if (!req.session.user) return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
+    const getInstagramInfo = (id, accessToken) => get(`https://graph.facebook.com/v3.2/${id}?fields=followers_count%2Cfollows_count%2Cmedia_count%2Cprofile_picture_url%2Cusername%2Cname&access_token=${accessToken}`, ``);
+    const instagramInfo = await getInstagramInfo(user.sns_info.instagram_id, user.sns_info.instagram_access_token);
 
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/influencer/inf_my_info.css" />
         `,
-        header: TMPL.layout.infHeader(),
-        nav: TMPL.layout.infNav(),
+        header: TMPL.layout.infHeader(user.info.name),
+        nav: TMPL.layout.infNav(user.info.name),
         main: `
             <div id="main">
                 <div class="container">
-
                     <div class="account_wrap">
                         <h2 class="set_tit">
                             계정정보
@@ -76,11 +75,26 @@ app.get('/influencer/inf_my_info', async (req, res) => {
                         </div>
                     </div>
 
-                    <div class="sns_wrap">
+                    <div class="sns_warp">
                         <h2 class="set_tit">
                             SNS 연동
                         </h2>
-                
+                        <div class="setting">
+                            <div class="profile_img">
+                                <img src="${instagramInfo.profile_picture_url}" alt="instagram_profile_img">
+                            </div>
+                            <div class="profile_info">
+                                <div class="info_1">
+                                    <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/instagram/instagram_color.png" alt="instagramLogo">
+                                    <h1>${instagramInfo.username}</h1>
+                                </div>
+                                <ul class="info_2">
+                                    <li>게시물 <strong>${instagramInfo.media_count}</strong></li>
+                                    <li>팔로워 <strong>${instagramInfo.followers_count}</strong></li>
+                                    <li>팔로우 <strong>${instagramInfo.follows_count}</strong></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

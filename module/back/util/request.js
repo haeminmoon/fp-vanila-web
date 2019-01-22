@@ -5,7 +5,7 @@ const get = (endPoint, header) => new Promise((resolve, reject) => {
         headers: header
     }, (err, res, result) => {
         (res.statusCode === 200) ? resolve(JSON.parse(result)) :
-        (isUndefined(err) ? reject(JSON.parse(result)) : reject(err))
+            (isUndefined(err) ? reject(JSON.parse(result)) : reject(err))
     });
 });
 

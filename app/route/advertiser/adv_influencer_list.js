@@ -1,9 +1,11 @@
-const { get } = require('../../../module/back/util/request'); 
+const { get } = require('../../../module/back/util/request');
 
 app.get('/advertiser/adv_influencer_list', async (req, res) => {
     if (!req.session.user) return res.redirect('/common/signin');
+    const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
+
     const updateInfSnsInfo = await go(
-        QUERY `SELECT id, sns_info FROM users WHERE auth = 'influencer' and sns_info is not null`,
+        QUERY`SELECT id, sns_info FROM users WHERE auth = 'influencer' and sns_info is not null`,
         map(async a => {
             let instagramMedia = await getInstagramMedia(a.sns_info.instagram_id, a.sns_info.instagram_access_token, 7).then(data => data);
             a.sns_info.instagram_followers = instagramMedia.followers_count;
@@ -18,21 +20,20 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                         commentC += iter.comments_count;
                         likeC += iter.like_count;
                     }
-                    return [Math.ceil(commentC/a.length), Math.ceil(likeC/a.length)];
+                    return [Math.ceil(commentC / a.length), Math.ceil(likeC / a.length)];
                 }
             );
-            Object.assign(a.sns_info, {"instagram_media" : instagramMedia.media.data}, {"instagram_comment_average" : commentAverage}, {"instagram_like_average" : likeAverage});
-            QUERY `UPDATE users SET sns_info = ${JSON.stringify(a.sns_info)} WHERE id = ${a.id}`;
+            Object.assign(a.sns_info, { "instagram_media": instagramMedia.media.data }, { "instagram_comment_average": commentAverage }, { "instagram_like_average": likeAverage });
+            QUERY`UPDATE users SET sns_info = ${JSON.stringify(a.sns_info)} WHERE id = ${a.id}`;
             return a;
         })
     )
     res.send(TMPL.layout.hnmf({
         css: `
-            <link rel="stylesheet" href="/front/css/advertiser/adv_influencer_list_common.css"/>
             <link rel="stylesheet" href="/front/css/advertiser/adv_influencer_list.css"/>
         `,
-        header: TMPL.layout.advHeader(),
-        nav: TMPL.layout.advNav(),
+        header: TMPL.layout.advHeader(user.info.company_name),
+        nav: TMPL.layout.advNav(user.info.company_name),
         main: `
         <div id="main">
             <div class="container">
@@ -159,14 +160,14 @@ const getInstagramMedia = async (id, accessToken, limit) => {
      * 2. Second parameter, header
      */
     return get(
-        `https://graph.facebook.com/v3.2/${id}/?fields=media.limit(${limit})%7Bcaption%2Ccomments_count%2Clike_count%2Cmedia_url%2Ctimestamp%2Cpermalink%2Cthumbnail_url%2Cmedia_type%7D%2Cfollowers_count%2Cfollows_count%2Cprofile_picture_url&access_token=${accessToken}`, 
+        `https://graph.facebook.com/v3.2/${id}/?fields=media.limit(${limit})%7Bcaption%2Ccomments_count%2Clike_count%2Cmedia_url%2Ctimestamp%2Cpermalink%2Cthumbnail_url%2Cmedia_type%7D%2Cfollowers_count%2Cfollows_count%2Cprofile_picture_url&access_token=${accessToken}`,
         ``
     );
 }
 
 const infList = data => go(
     JSON.parse(data),
-    map(a => writeInfList(a.id, a.sns_info.instagram_followers, ['IT','패션'], JSON.parse(a.sns_info.instagram_user_birthday), a.sns_info.instagram_media[0].like_count, a.sns_info.instagram_media[0].comments_count, a.sns_info.instagram_media[0].caption, a.sns_info.instagram_media[0].media_url, a.sns_info.instagram_media[0].permalink,  go(a.sns_info.instagram_media, map(a => ({"media_url" : a.media_url, "instagram_link":a.permalink}))))),
+    map(a => writeInfList(a.id, a.sns_info.instagram_followers, ['IT', '패션'], JSON.parse(a.sns_info.instagram_user_birthday), a.sns_info.instagram_media[0].like_count, a.sns_info.instagram_media[0].comments_count, a.sns_info.instagram_media[0].caption, a.sns_info.instagram_media[0].media_url, a.sns_info.instagram_media[0].permalink, go(a.sns_info.instagram_media, map(a => ({ "media_url": a.media_url, "instagram_link": a.permalink }))))),
     b => html`${b}`
 )
 
@@ -228,9 +229,9 @@ const writeInfList = (id, followers, category, birthday, firstPostLike, firstPos
 }
 
 const matchAges = age => {
-    if ( age < 20 ) return "10대";
-    else if ( age < 24 ) return "20대 초반";
-    else if ( age < 27 ) return "20대 중반";
-    else if ( age < 30 ) return "20대 후반";
-    else if ( age < 40 ) return "30대";
+    if (age < 20) return "10대";
+    else if (age < 24) return "20대 초반";
+    else if (age < 27) return "20대 중반";
+    else if (age < 30) return "20대 후반";
+    else if (age < 40) return "30대";
 }

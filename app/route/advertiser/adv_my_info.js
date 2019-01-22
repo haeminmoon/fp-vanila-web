@@ -8,8 +8,8 @@ app.get('/advertiser/adv_my_info', async (req, res) => {
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_my_info.css"/>
         `,
-        header: TMPL.layout.advHeader(),
-        nav: TMPL.layout.advNav(),
+        header: TMPL.layout.advHeader(user.info.company_name),
+        nav: TMPL.layout.advNav(user.info.company_name),
         main: `
         <div id="main">
             <div class="container">

@@ -1,5 +1,6 @@
 app.get('/advertiser/adv_campaign_management', async (req, res) => {
     if (!req.session.user) return res.redirect('/common/signin');
+    const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
     let searchTerm = `%${req.query.searchTerm}%`;
     let campaignList = (!req.query.searchTerm) ? await QUERY`SELECT * FROM campaign WHERE advertiser_id = 'test' ORDER BY id DESC` : await QUERY`SELECT * FROM campaign WHERE name Like ${searchTerm} AND advertiser_id = 'test'ORDER BY id DESC`;
 
@@ -16,8 +17,8 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
             <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
             <link rel="stylesheet" href="/front/css/advertiser/adv_campaign_management.css" />
         `,
-        header: TMPL.layout.advHeader(),
-        nav: TMPL.layout.advNav(),
+        header: TMPL.layout.advHeader(user.info.company_name),
+        nav: TMPL.layout.advNav(user.info.company_name),
         main: `
             <div id="main">
                 <div class="container">

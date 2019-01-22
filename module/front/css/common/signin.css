@@ -58,7 +58,7 @@ body{
     position: absolute;
     width: 48px;
     height: 1px;
-    background-color: #4864e2;
+    background-color: #00aa87;
     bottom: -0;
     margin-left: 25px;
 }
@@ -78,7 +78,7 @@ body{
     padding: 20px;
 }
 .signin_wrap > input:focus{
-    border-bottom: 1px solid #4864e2;
+    border-bottom: 1px solid #00aa87;
     transition: 0.5s ease;
 }
 .signin_wrap > button{
@@ -86,7 +86,7 @@ body{
     height: 58px;
     border: none;
     margin-top: 30px;
-    background-color: #445abc;
+    background-color: #00aa87;
     color: #fff;
 }
 .other_wrap{
