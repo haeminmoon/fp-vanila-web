@@ -1,7 +1,7 @@
 const { sendMail } =  require('../../../module/back/util/mailer');
 
 app.get('/influencer/inf_campaign_apply', async (req, res) => {
-    if (!req.session.user) return res.redirect('/common/signin');
+    if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
     const [campaignItem] = await QUERY`SELECT * FROM campaign WHERE state = 'progress' AND id = ${req.query.id}`;
 
     res.send(TMPL.layout.hnmf({
