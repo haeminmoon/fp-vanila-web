@@ -1,5 +1,5 @@
 app.get('/influencer/inf_campaign_management', async (req, res) => {
-    if (!req.session.user) return res.redirect('/common/signin');
+    if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
 
     res.send(TMPL.layout.hnmf({

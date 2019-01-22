@@ -1,11 +1,11 @@
-
 const awsS3 = require('../../../module/back/util/fileUpload.js');
 
 app.get('/advertiser/adv_campaign_modify', async (req, res) => {
-    if (!req.session.user) return res.redirect('/common/signin');
 
+    if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
     let [campaign] = await QUERY`SELECT * FROM campaign WHERE id = ${req.query.id}`;
+
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />

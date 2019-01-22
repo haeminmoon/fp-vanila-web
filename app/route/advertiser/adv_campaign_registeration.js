@@ -4,7 +4,7 @@ const cpUpload = upload.fields([{ name: 'main_img' }, { name: 'sub_img' }]);
 const awsS3 = require('../../../module/back/util/fileUpload.js');
 
 app.get('/advertiser/adv_campaign_registration', async (req, res) => {
-    if (!req.session.user) return res.redirect('/common/signin');
+    if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
 
     res.send(TMPL.layout.hnmf({

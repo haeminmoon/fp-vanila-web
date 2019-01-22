@@ -1,5 +1,5 @@
 app.get('/influencer/inf_campaign_list', async (req, res) => {
-    if (!req.session.user) return res.redirect('/common/signin');
+    if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
     const campaignList = await QUERY`SELECT * FROM campaign WHERE influencer_id->> ${req.session.user.id} IS NULL AND state = 'progress'`;
 

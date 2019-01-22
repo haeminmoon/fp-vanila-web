@@ -1,7 +1,7 @@
 const { get } = require('../../../module/back/util/request');
 
 app.get('/advertiser/adv_influencer_list', async (req, res) => {
-    if (!req.session.user) return res.redirect('/common/signin');
+    if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
 
     const updateInfSnsInfo = await go(
@@ -59,13 +59,13 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                             <td>
                                 <select title="카테고리 중분류" class="form">
                                     <option>중분류</option>
-                                    <option>대분류를 선택해주세요</option> 
+                                    <option>대분류를 선택해주세요</option>
                                 </select>
                             </td>
                             <td>
                                 <select title="카테고리 소분류" class="form">
                                     <option>소분류</option>
-                                    <option>중분류를 선택해주세요</option>                                    
+                                    <option>중분류를 선택해주세요</option>
                                 </select>
                             </td>
                         </tr>
