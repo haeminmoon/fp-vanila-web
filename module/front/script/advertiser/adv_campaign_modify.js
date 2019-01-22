@@ -40,7 +40,8 @@
                         return arr;
                     })
                 }),
-                $.post('/api/advertiser/adv_campaign_modify')
+                $.post('/api/advertiser/adv_campaign_modify'),
+                tap(log+"log임당")
             )
         }),
 
