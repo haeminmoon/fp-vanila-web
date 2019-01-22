@@ -28,6 +28,7 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
             return a;
         })
     )
+    
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_influencer_list.css"/>

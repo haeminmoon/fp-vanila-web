@@ -1,0 +1,240 @@
+@charset "utf-8";
+.container{position: relative;}
+.breadcrumbs{
+	line-height: 70px;
+	height: 70px;
+	position: relative;
+}
+.breadcrumbs a{
+	position: relative;
+	padding-right: 23px;
+	color: #1f263e;
+	font-size: 13px;
+	font-weight: bold;
+}
+.breadcrumbs a:after{
+	content: '';
+	position: absolute;
+	top:3px; right: 4px;
+	width: 10px;
+	height: 15px;
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/arrow.png)no-repeat;
+	background-size: 8px;
+	opacity: 0.2;
+}
+.breadcrumbs span{
+	color: #00dbbf;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+
+
+
+.wrap{
+	border: 1px solid #ddd;
+	border-bottom: none;
+	border-radius: 4px;
+	background-color: white;
+}
+.wrap > .input_wrap{
+	position: relative;
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+}
+.wrap > .input_wrap:after{content: ''; display: block; clear: both;}
+.wrap > .input_wrap > label{
+	float: left;
+	width: 25%;
+	font-size: 15px;
+	line-height: 67px;
+	text-align: right;
+	padding-right: 20px;
+	color: #222;
+}
+sup{
+	font-weight: bold;
+	font-size: 5px;
+	vertical-align: middle;
+	margin-left: 8px;
+}
+.wrap > .input_wrap > div{
+	float: left;
+	width: 75%;
+	padding: 0 15px;
+	border-left: 1px solid #ddd;
+}
+.campaign_wrap {height: 70px;}
+.date_wrap {height: 140px;}
+.main_img_wrap {height: 240px;}
+.sub_img_wrap {height: 270px;}
+
+.campaign_title{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+	height: 40px;
+	padding-left: 5px;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 14px;
+	border: 1px solid #ddd;
+}
+.date_wrap ul{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.date_wrap li{
+	width: 800px;
+	height: 33px;
+	padding-left: 10px;
+	margin-bottom: 6px;
+}
+.date_wrap input{
+	background-color: #dedede;
+	padding-left: 10px;
+	border: none;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 30px;
+	height: 30px;
+	margin-right: 6px;
+	width: 200px;
+	color: #555;
+}
+.date_wrap label{
+	display: inline-block;
+	width: 80px;
+}
+.main_img_wrap img {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 200px;
+	height: 200px;
+}
+.sub_img_wrap img {
+	position: relative;
+	top: 45%;
+	transform: translateY(-50%);
+	width: 200px;
+	height: 200px;
+}
+.main_img_wrap input, .sub_img_wrap input{
+	position: relative;
+	bottom: -13px;
+    left: 0px
+}
+.sub_img_wrap input{
+	top: 25px;
+	width: 200px;
+	overflow: hidden;
+}
+/* 넓이 높이값 주는건지 아닌지 확인 */
+
+
+
+
+
+.info_wrap{
+	position: relative;
+	margin-top: 100px;
+	border: 1px solid #ddd;
+	border-bottom: none;
+	border-radius: 4px;
+	background-color: white;
+}
+.info_wrap  h2{
+	position: absolute;
+	top: -40px;
+	left: 10px;
+	font-size: 20px;
+	line-height: 20px;
+}
+.info_wrap > .input_wrap{
+	position: relative;
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+}
+.info_wrap > .input_wrap:after{content: ''; display: block; clear: both;}
+.info_wrap > .input_wrap > label{
+	float: left;
+	width: 25%;
+	font-size: 15px;
+	line-height: 67px;
+	text-align: right;
+	padding-right: 20px;
+	color: #222;
+}
+.info_wrap > .input_wrap > div{
+	float: left;
+	width: 75%;
+	padding: 0 15px;
+	border-left: 1px solid #ddd;
+}
+select{
+	border: 1px solid #ddd;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+	height: 40px;
+	padding-left: 5px;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 14px;
+}
+textarea{
+	width: 100%;
+	height: 135px;
+	padding: 10px;
+	margin-top: 15px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+.hash_tag{
+	border: 1px solid #ddd;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+	height: 40px;
+	padding-left: 10px;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 14px;
+}
+
+.sns_wrap{height: 70px;}
+.sex_wrap{height: 70px;}
+.age_wrap{height: 70px;}
+.category_wrap{height: 70px;}
+.camp_description_wrap{height: 165px;}
+.mission_description_wrap{height: 165px;}
+.benefit_description_wrap{height: 165px;}
+.hash_tag_wrap{height: 70px;}
+
+.btn_box{
+	position: absolute;
+	left: 0; right: 0;
+	bottom: -100px;
+	text-align: center;
+}
+.btn_box > button{
+	width: 90px;
+	height: 35px;
+	margin-left: 10px;
+	border: 1px solid #a8a8a8;
+	border-radius: 5px;
+	background-color: white;
+}
+.btn_box > button:hover{
+	background-color: #a8a8a8;
+	color: white;
+}
+.sub_img_wrap {
+    float: left;
+    width: 250px;
+}

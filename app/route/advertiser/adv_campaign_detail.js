@@ -24,7 +24,7 @@ app.get('/advertiser/adv_campaign_detail', async (req, res) => {
                         <div class="info_pd">
                             <span>캠페인</span>
                             <div class="pd_img">
-                            <img src=${campaignDetail.img} alt="캠페인이미지" />
+                            <img src="${campaignDetail.img}?${new Date()}" alt="캠페인이미지" />
                             </div>
                             <p>${campaignDetail.name}</p>
                             <a class="modify" href="/advertiser/adv_campaign_modify?id=${req.query.id}">수정하기</a>
