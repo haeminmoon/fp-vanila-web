@@ -1,12 +1,13 @@
-app.get('/influencer/inf_campaign_management', (req, res) => {
+app.get('/influencer/inf_campaign_management', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
+    const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
 
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/influencer/inf_campaign_management.css" />
         `,
-        header: TMPL.layout.infHeader(),
-        nav: TMPL.layout.infNav(),
+        header: TMPL.layout.infHeader(user.info.name),
+        nav: TMPL.layout.infNav(user.info.name),
         main: `
             <div id="main">
                 <div class="container">

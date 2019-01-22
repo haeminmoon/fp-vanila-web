@@ -9,8 +9,8 @@ app.get('/advertiser/adv_campaign_detail', async (req, res) => {
             <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
             <link rel="stylesheet" href="/front/css/advertiser/adv_campaign_detail.css" />
         `,
-        header: TMPL.layout.advHeader(),
-        nav: TMPL.layout.advNav(),
+        header: TMPL.layout.advHeader(user.info.company_name),
+        nav: TMPL.layout.advNav(user.info.company_name),
         main: `
             <div id="main">
                 <div class="container">
@@ -27,13 +27,13 @@ app.get('/advertiser/adv_campaign_detail', async (req, res) => {
                             <img src=${campaignDetail.img} alt="캠페인이미지" />
                             </div>
                             <p>${campaignDetail.name}</p>
-                            <a class="modify">수정하기</a>
+                            <a class="modify" href="/advertiser/adv_campaign_modify?id=${req.query.id}">수정하기</a>
                         </div>
                     </div>
                     <div class="list_wrap">
                         <h2>
                             참여 인플루언서:
-                            <span class="infu_count">${Object.keys(campaignDetail.influencer_id).length}</span>명
+                            <span class="infu_count">${Object.keys(campaignDetail.influencer_id).length} 명</span>
                             <a class="modify">수정하기</a>
                         </h2>
                         <table>

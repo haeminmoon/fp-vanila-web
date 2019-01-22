@@ -39,6 +39,15 @@ const awsS3 = {
                 return;
             }
         })
+    },
+
+    deleteImgToS3(imgPath) {
+        s3.deleteObject({
+            Bucket: this.getS3Bucket(),
+            Key: `campaign${imgPath}`
+        }, (err, data) => {
+            if (err) log(err);
+        })
     }
 };
 

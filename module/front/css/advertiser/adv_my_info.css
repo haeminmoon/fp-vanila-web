@@ -10,6 +10,7 @@
 .container > div{
     float: left;
     display: inline-block;  
+    width: 760px;
     padding: 0px 70px 30px;
     margin-bottom: 30px;
     margin-left: 20px;
