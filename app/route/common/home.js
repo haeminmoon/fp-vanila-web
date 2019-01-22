@@ -69,15 +69,11 @@ app.get('/', (req, res) => {
                     </ul>
                     <ul class="video_box">
                         <li class="video">
-                            <video controls>
-                                <source src="https://www.youtube.com/watch?time_continue=1&v=-iv2hmo8HRM" />
-                            </video>
+                            <iframe src="https://www.youtube.com/embed/-iv2hmo8HRM" frameborder="0"></iframe>
                             <span>스핀프로토콜 소개 영상</span>
                         </li>
                         <li class="video">
-                            <video controls>
-                                <source src="https://www.youtube.com/watch?time_continue=1&v=-iv2hmo8HRM" />
-                            </video>
+                            <iframe src="https://www.youtube.com/embed/1ps74564f1U" frameborder="0"></iframe>
                             <span>프로토타입 영상</span>
                         </li>
                     </ul>
