@@ -1,14 +1,18 @@
+const awsS3 = require('../../../module/back/util/fileUpload.js');
+
 app.get('/advertiser/adv_campaign_modify', async (req, res) => {
+
     if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
-    
+    const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
     let [campaign] = await QUERY`SELECT * FROM campaign WHERE id = ${req.query.id}`;
+
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
             <link rel="stylesheet" href="/front/css/advertiser/adv_campaign_modify.css" />
         `,
-        header: TMPL.layout.advHeader(),
-        nav: TMPL.layout.advNav(),
+        header: TMPL.layout.advHeader(user.info.company_name),
+        nav: TMPL.layout.advNav(user.info.company_name),
         main: `
             <div id="main">
                 <div class="container">
@@ -161,8 +165,8 @@ app.get('/advertiser/adv_campaign_modify', async (req, res) => {
     }));
 });
 
-app.post('/api/advertiser/adv_campaign_modify', async(req, res) => {
-    
+app.post('/api/advertiser/adv_campaign_modify', async (req, res) => {
+
     const campaignId = req.body.campaign_id;
     const [campaign] = await QUERY`SELECT * FROM campaign WHERE id = ${campaignId}`;
 
@@ -176,8 +180,8 @@ app.post('/api/advertiser/adv_campaign_modify', async(req, res) => {
 
             // Buffer와 file의 type을 지정
             let file = {
-                "buffer" : new Buffer(a.url.replace(/^data:image\/\w+;base64,/, ""), 'base64'),
-                "mimetype" : a.url.split(';')[0].split('/')[1]
+                "buffer": new Buffer(a.url.replace(/^data:image\/\w+;base64,/, ""), 'base64'),
+                "mimetype": a.url.split(';')[0].split('/')[1]
             }
             // 기존 파일 삭제 후 생성 --> 기존 파일 덮어쓰기
             // awsS3.deleteImgToS3(awsS3.convertImgPath(campaignId, 'test', fileName));
@@ -256,7 +260,6 @@ const writeHtmlEmtySubImg = subImgArr => go(
 )
 
 const convertDate2String = date => `${date.getFullYear()}-${toString(date.getMonth()+1).padStart(2,'0')}-${toString(date.getDate()).padStart(2,'0')}`;
-const getDateMMDDHHMMSSMS = date => `${toString(date.getFullYear()).substr(2,2)}${toString(date.getMonth()+1).padStart(2,'0')}${toString(date.getDate()).padStart(2,'0')}${date.getHours()}${date.getSeconds()}${date.getMilliseconds()}`
 const getFileName = fileUrl => fileUrl.split('/')[fileUrl.split('/').length-1].split('?')[0];
 const updateDB = (column, value, id) => {
     switch (column) {

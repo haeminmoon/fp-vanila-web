@@ -73,3 +73,34 @@ button{
     color: red;
     font-size: 12px;
 }
+
+.profile_img{
+    float: left;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    margin-left: 80px;
+}
+.profile_img > img{
+    width: 100%;
+}
+.profile_info{
+    float: left;
+    padding: 10px 30px;
+}
+.info_1 > img{
+    vertical-align: middle;
+}
+.info_1 > h1{
+    display: inline-block;
+    padding: 0 10px;
+    line-height: 25px;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+.info_2 > li{
+    float: left;
+    padding: 20px 20px;
+}
