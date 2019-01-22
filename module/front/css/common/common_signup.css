@@ -142,7 +142,7 @@ button{
 .form{
     padding: 0 40px;
 }
-.id, .phone_num_cer{
+.id, .phone_num{
     width: 290px !important;
 }
 .notice{

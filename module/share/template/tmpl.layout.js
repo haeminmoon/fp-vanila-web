@@ -90,7 +90,7 @@
                     </div>
                 </li>
                 <li>
-                    <p>${userName} 님</p>
+                    <p>반가워요, ${userName}님</p>
                 </li>
             </ul>
         </div>

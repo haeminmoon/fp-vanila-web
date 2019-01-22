@@ -1,5 +1,7 @@
 const getHash = require('../../../module/back/util/encryption');
 const { get } = require('../../../module/back/util/request');
+// const getInstagramInfo = (id, accessToken) => get(`https://graph.facebook.com/v3.2/${id}?fields=followers_count%2Cfollows_count%2Cmedia_count%2Cprofile_picture_url%2Cusername%2Cname&access_token=${accessToken}`, ``);
+// const instagramInfo = getInstagramInfo(id, accessToken);
 
 app.get('/influencer/inf_my_info', async (req, res) => {
     if (!req.session.user) return res.redirect('/common/signin');
