@@ -27,7 +27,7 @@ app.get('/advertiser/adv_campaign_detail', async (req, res) => {
                             <img src=${campaignDetail.img} alt="캠페인이미지" />
                             </div>
                             <p>${campaignDetail.name}</p>
-                            <a class="modify" href="/advertiser/adv_campaign_modidfy?id=${req.query.id}">수정하기</a>
+                            <a class="modify" href="/advertiser/adv_campaign_modify?id=${req.query.id}">수정하기</a>
                         </div>
                     </div>
                     <div class="list_wrap">

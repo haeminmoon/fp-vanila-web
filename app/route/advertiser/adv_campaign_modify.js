@@ -1,7 +1,8 @@
 
 const awsS3 = require('../../../module/back/util/fileUpload.js');
 
-app.get('/advertiser/adv_campaign_modidfy', async (req, res) => {
+app.get('/advertiser/adv_campaign_modify', async (req, res) => {
+    
     if (!req.session.user) return res.redirect('/common/signin');
     let [campaign] = await QUERY`SELECT * FROM campaign WHERE id = ${req.query.id}`;
     res.send(TMPL.layout.hnmf({
@@ -121,16 +122,17 @@ app.get('/advertiser/adv_campaign_modidfy', async (req, res) => {
 });
 
 app.post('/api/advertiser/adv_campaign_modify', async(req, res) => {
+    
     const campaignId = req.body.campaign_id;
     const [campaign] = await QUERY`SELECT * FROM campaign WHERE id = ${campaignId}`;
 
     // 바뀐사진 찾아서 S3에 업데이트 및 데이터베이스에 적재
-    await go(
+    return go(
         req.body.modified_files,
         map(async(a) => {
             const fileName = a.file_name;
             // S3에 저장하기위해 임의의 파일명을 지정
-            const newFileName = fileName.split('33')[0]+"33"+getDateMMDDHHMMSS(new Date());
+            const newFileName = fileName.split('at')[0]+"at"+getDateMMDDHHMMSS(new Date());
 
             // Buffer와 file의 type을 지정
             let file = {
@@ -164,11 +166,11 @@ app.post('/api/advertiser/adv_campaign_modify', async(req, res) => {
                 let arr = [];
                 for (const key in a) if (JSON.stringify(campaign[key]) != JSON.stringify(a[key])) arr.push(key);
                 // 일치하지 않는 컬럼 찾아서 업데이트
-                await go(arr, map(b => updateDB(b, a[b], campaignId)));
+                return go(arr, map(b => updateDB(b, a[b], campaignId)));
             }
-        ),
+        )
         // 캠패인 관리 페이지로 이동
-        _ => res.redirect('/advertiser/adv_campaign_management')
+        //_ => res.redirect('/advertiser/adv_campaign_management')
     )
 })
 
@@ -207,46 +209,46 @@ const getDateMMDDHHMMSS = date => `${toString(date.getMonth()+1).padStart(2,'0')
 const updateDB = (column, value, id) => {
     switch (column) {
         case "name":
-            QUERY`UPDATE campaign SET name = ${value} WHERE id = ${id}`
+            QUERY`UPDATE campaign SET name = ${value} WHERE id = ${id} RETURNING true`
             break;
         case "sns_type":
-            QUERY`UPDATE campaign SET sns_type = ${value} WHERE id = ${id}`
+            QUERY`UPDATE campaign SET sns_type = ${value} WHERE id = ${id} RETURNING true`
             break;
         case "category":
-            QUERY`UPDATE campaign SET category = ${value} WHERE id = ${id}`
+            QUERY`UPDATE campaign SET category = ${value} WHERE id = ${id} RETURNING true`
             break;
         case "state":
-            QUERY`UPDATE campaign SET state = ${value} WHERE id = ${id}`
+            QUERY`UPDATE campaign SET state = ${value} WHERE id = ${id} RETURNING true`
             break;
         case "img":
-            QUERY`UPDATE campaign SET img = ${value} WHERE id = ${id}`
+            QUERY`UPDATE campaign SET img = ${value} WHERE id = ${id} RETURNING true`
             break;
         case "info":
-            QUERY`UPDATE campaign SET info = ${value} WHERE id = ${id}`
+            QUERY`UPDATE campaign SET info = ${value} WHERE id = ${id} RETURNING true`
             break;
         case "updated_at":
-            QUERY`UPDATE campaign SET updated_at = ${value} WHERE id = ${id}`
+            QUERY`UPDATE campaign SET updated_at = ${value} WHERE id = ${id} RETURNING true`
             break;
         case "apply_start_date":
-            QUERY`UPDATE campaign SET apply_start_date = ${value} WHERE id = ${id}`
+            QUERY`UPDATE campaign SET apply_start_date = ${value} WHERE id = ${id} RETURNING true`
             break;
         case "apply_end_date":
-            QUERY`UPDATE campaign SET apply_end_date = ${value} WHERE id = ${id}`
+            QUERY`UPDATE campaign SET apply_end_date = ${value} WHERE id = ${id} RETURNING true`
             break;
         case "post_start_date":
-            QUERY`UPDATE campaign SET post_start_date = ${value} WHERE id = ${id}`
+            QUERY`UPDATE campaign SET post_start_date = ${value} WHERE id = ${id} RETURNING true`
             break;
         case "post_end_date":
-            QUERY`UPDATE campaign SET post_end_date = ${value} WHERE id = ${id}`
+            QUERY`UPDATE campaign SET post_end_date = ${value} WHERE id = ${id} RETURNING true`
             break;
         case "notice_date":
-            QUERY`UPDATE campaign SET notice_date = ${value} WHERE id = ${id}`
+            QUERY`UPDATE campaign SET notice_date = ${value} WHERE id = ${id} RETURNING true`
             break;
         case "sub_img":
-            QUERY`UPDATE campaign SET sub_img = ${value} WHERE id = ${id}`
+            QUERY`UPDATE campaign SET sub_img = ${value} WHERE id = ${id} RETURNING true`
             break;
         case "influencer_id":
-            QUERY`UPDATE campaign SET influencer_id = ${value} WHERE id = ${id}`
+            QUERY`UPDATE campaign SET influencer_id = ${value} WHERE id = ${id} RETURNING true`
             break;
         default:
             break;
