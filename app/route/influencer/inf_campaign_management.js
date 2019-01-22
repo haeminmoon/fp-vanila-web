@@ -1,5 +1,5 @@
 app.get('/influencer/inf_campaign_management', (req, res) => {
-    // if (req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
+    if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
 
     res.send(TMPL.layout.hnmf({
         css: `

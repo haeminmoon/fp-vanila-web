@@ -113,8 +113,7 @@
                 <li class="nav_on"><a href="/advertiser/adv_campaign_management">캠페인 관리</a></li>
                 <li><a href="/advertiser/adv_campaign_registration">캠페인 등록</a></li>
                 <li><a href="/advertiser/adv_influencer_list">인플루언서 리스트</a></li> 
-                <li class="setting"><a href="/advertiser/adv_my
-                _info">설정</a></li>
+                <li class="setting"><a href="/advertiser/adv_my_info">설정</a></li>
             </ul>
             <div class="logout_btn_wrap">
                 <a class="logout_btn" href="/common/signout">로그아웃</a>
