@@ -6,7 +6,9 @@
     const Route = {
         campaignDetail: $.on('click', el => go(
             {
-                id: el.target.parentNode.querySelector('.num').innerText
+                id: (el.target.nodeName === 'IMG' || el.target.nodeName === 'P') ?
+                    el.target.parentNode.parentNode.children[0].innerHTML :
+                    el.target.parentNode.children[0].innerHTML
             },
             a => location.href = `/advertiser/adv_campaign_detail?id=${a.id}`
         ))
