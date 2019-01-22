@@ -79,7 +79,6 @@ app.get('/advertiser/adv_campaign_registration', async (req, res) => {
                                 <label for="main_img" class="mimg_wrap">대표 이미지<sup>*</sup></label>
                                 <div class="wrap_right mimg_wrap">
                                     <input type="file" name="main_img" accept="image/*" class="main_img">
-                                    <img id="campaign_image" src="#" width="70" alt="your image" />
                                     <p>메인 페이지에 노출될 대표 이미지</p>
                                 </div>
                             </div>
@@ -150,15 +149,14 @@ app.get('/advertiser/adv_campaign_registration', async (req, res) => {
         <script>
             go('.camp_register_btn', $, AdvCampaignRegistration.Do.registerCampaign);
             go('.camp_cancel_btn', $, AdvCampaignRegistration.Do.cancelCampaign);
-            go('.main_img', $, AdvCampaignRegistration.Do.readyImage);
-
         </script>
         `
     }));
 });
 
 app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
-    const { camp_name, sns_type, category, apply_due_date, notice_date, post_date, ...info } = req.body;
+    const {camp_name, sns_type, category, apply_due_date, notice_date, post_date, ...info} = req.body;
+    const userId = req.session.user.id;
 
     const data = {
         name: camp_name,
@@ -172,7 +170,7 @@ app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
         notice_date: notice_date,
         post_start_date: post_date[0],
         post_end_date: post_date[1],
-        advertiser_id: 'test' // req.session.user.id
+        advertiser_id: userId
     };
     const newMainImg = req.files['main_img'];
     const newSubImgs = req.files['sub_img'];
@@ -188,8 +186,8 @@ app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
             newMainImg,
             map((file) => {
                 fileName = 'campaign_mainImage'; // 대표 이미지 파일명
-                awsS3.insertImgToS3(file, awsS3.convertImgPath(campaign_id, 'test', fileName));
-                return awsS3.getS3URL() + awsS3.convertImgPath(campaign_id, 'test', fileName);
+                awsS3.insertImgToS3(file, awsS3.convertImgPath(campaign_id, userId, fileName));
+                return awsS3.getS3URL() + awsS3.convertImgPath(campaign_id, userId, fileName);
             }),
             ([c]) => QUERY`UPDATE campaign SET img = ${c} WHERE id = ${campaign_id}`
         ),
@@ -198,8 +196,8 @@ app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
             newSubImgs,
             map((file) => {
                 fileName = `campaign_subImage_${index += 1}`; // 상세 이미지 파일명
-                awsS3.insertImgToS3(file, awsS3.convertImgPath(campaign_id, 'test', fileName));
-                return awsS3.getS3URL() + awsS3.convertImgPath(campaign_id, 'test', fileName);
+                awsS3.insertImgToS3(file, awsS3.convertImgPath(campaign_id, userId, fileName));
+                return awsS3.getS3URL() + awsS3.convertImgPath(campaign_id, userId, fileName);
             }),
             c => QUERY`UPDATE campaign SET sub_img = ${JSON.stringify(c)} WHERE id = ${campaign_id}`
         ),

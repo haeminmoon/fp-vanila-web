@@ -1,3 +1,5 @@
+const {sendMail} = require('../../../module/back/util/mailer');
+
 app.get('/influencer/inf_campaign_apply', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
@@ -15,7 +17,7 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
                 <div class="container">
                     <div class="campaign_info">
                         <h1 class="brand_tit" id=${campaignItem.id}>${campaignItem.advertiser_id}</h1>
-                        <p class="campaign_tit">${campaignItem.name}</p>
+                        <p class="campaign_tit"}>${campaignItem.name}</p>
                     </div>
 
                     <div class="confirm_info">
@@ -23,7 +25,7 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
                             신청한 SNS
                         </h2>
                         <div class="confirm_content">
-                            <p class="inf_info user_id">${req.session.user.id}</p>
+                            <p class="inf_info user_id" followers = ${req.session.user.sns_info.instagram_followers}>${req.session.user.id}</p>
                             <textarea name="memo" id="memo" class="memo" placeholder="유저아이디의 메모를 작성해주세요."></textarea>
                         </div>
                     </div>
@@ -125,12 +127,24 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
 });
 
 app.post('/api/influencer/inf_campaign_apply', (req, res, next) => {
+    const userId = Object.keys(req.body.info)[0];
     go(
         req.body,
         pipeT(
-            a => QUERY`UPDATE campaign SET influencer_id = influencer_id || ${a.info} WHERE id = ${a.id} `,
+            async a => {
+                await sendMail(
+                    '스핀 프로토콜에서 보내는 메일입니다',
+                    `${a.campaign_name} 캠페인에 ${a.info[userId].followers}명의 팔로워 수를 가진 ${a.info[userId].name} 인플런서 님께서 신청하셨습니다.`,
+                    a.advertiser_id
+                ).catch(err => {
+                    throw err;
+                });
+                return a;
+            },
+            b => QUERY`UPDATE campaign SET influencer_id = influencer_id || ${b.info} WHERE id = ${b.id}`,
             res.json
         ).catch(
+            tap(log),
             m => new Error(m),
             next
         )

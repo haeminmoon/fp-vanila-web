@@ -1,13 +1,16 @@
 !function () {
     const Do = {
         campaignAgree: $.on('click', '.campaign_agree_btn', ({delegateTarget: dt}) => go({
-                id: go(dt, $.find('.brand_tit'), $.attr('id')),
+                campaign_id: go(dt, $.find('.brand_tit'), $.attr('id')),
+                campaign_name: go(dt, $.find('.campaign_tit'), $.html),
+                advertiser_id: go(dt, $.find('.brand_tit'), $.html),
                 user_id: go(dt, $.find('.user_id'), $.html),
                 memo: go(dt, $.find('.memo'), $.trim),
                 phone_num: go(dt, $.find('.phone_num'), $.html),
                 name: go(dt, $.find('.name'), $.html),
                 post_code: go(dt, $.find('[name="post_code"]'), $.trim),
-                address: go(dt, $.find('[name="address"]'), $.trim)
+                address: go(dt, $.find('[name="address"]'), $.trim),
+                followers: go(dt, $.find('.user_id'), $.attr('followers'))
             },
             pipeT(
                 a => {
@@ -16,11 +19,13 @@
                     }
                     return a;
                 },
-                ({id, user_id, ...user_info}) => {
+                ({campaign_id, campaign_name, advertiser_id, user_id, ...user_info}) => {
                     let info = {};
                     info[user_id] = user_info;
                     return {
-                        id: id,
+                        id: campaign_id,
+                        campaign_name: campaign_name,
+                        advertiser_id: advertiser_id,
                         info: info
                     }
                 },

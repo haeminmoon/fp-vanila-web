@@ -1,7 +1,7 @@
 // const {config, Group} = require('coolsms-sdk-v4');
 
 const getHash = require('../../../module/back/util/encryption');
-const getRandomInt6 = require('../../../module/back/util/getRandomInt');
+const {getRandomInt6} = require('../../../module/back/util/getRandomInt');
 // const coolsms = require('../../../config/coolsms');
 
 app.get('/influencer/inf_signup', (req, res) => {
