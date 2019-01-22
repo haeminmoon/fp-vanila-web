@@ -54,25 +54,45 @@
         </div>
     `;
 
-    TMPL.layout.advHeader = _ => `
+    TMPL.layout.advHeader = userName => `
     <div id="header">
-        <div class="header_gnb">
-            <button type="button" class="notice_msg">
-                <div class="circle_cnt">1</div>
-                <img class="gnb_icon" src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/notice_icon/baseline-search-24-px-copy.svg" alt="notice icon">
-            </button>
-        </div>
-    </div>
-    `;
-
-    TMPL.layout.infHeader = _ => `
-        <div id="header">
-            <div class="header_gnb">
+        <ul class="header_gnb">
+            <li class="notice_icon">
                 <button type="button" class="notice_msg">
                     <div class="circle_cnt">1</div>
                     <img class="gnb_icon" src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/notice_icon/baseline-search-24-px-copy.svg" alt="notice icon">
                 </button>
-            </div>
+            </li>
+            <li class="header_profile_img">
+                <div class="header_img">
+                    <img src="http://file2.nocutnews.co.kr/newsroom/image/2018/07/18/20180718120948825781_0_420_600.jpg" alt="profile image">
+                </div>
+            </li>
+            <li>
+                <p>${userName} 님</p>
+            </li>
+        </ul>
+    </div>
+    `;
+
+    TMPL.layout.infHeader = userName => `
+        <div id="header">
+            <ul class="header_gnb">
+                <li class="notice_icon">
+                    <button type="button" class="notice_msg">
+                        <div class="circle_cnt">1</div>
+                        <img class="gnb_icon" src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/notice_icon/baseline-search-24-px-copy.svg" alt="notice icon">
+                    </button>
+                </li>
+                <li class="header_profile_img">
+                    <div class="header_img">
+                        <img src="http://file2.nocutnews.co.kr/newsroom/image/2018/07/18/20180718120948825781_0_420_600.jpg" alt="profile image">
+                    </div>
+                </li>
+                <li>
+                    <p>${userName} 님</p>
+                </li>
+            </ul>
         </div>
     `;
 
@@ -93,7 +113,8 @@
                 <li class="nav_on"><a href="/advertiser/adv_campaign_management">캠페인 관리</a></li>
                 <li><a href="/advertiser/adv_campaign_registration">캠페인 등록</a></li>
                 <li><a href="/advertiser/adv_influencer_list">인플루언서 리스트</a></li> 
-                <li class="setting"><a href="/advertiser/adv_my_info">설정</a></li>
+                <li class="setting"><a href="/advertiser/adv_my
+                _info">설정</a></li>
             </ul>
             <div class="logout_btn_wrap">
                 <a class="logout_btn" href="/common/signout">로그아웃</a>

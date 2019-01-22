@@ -19,7 +19,7 @@
 .breadcrumbs a{
 	position: relative;
 	padding-right: 23px;
-	color: #1f263e;
+	color: #ccc;
 	font-size: 13px;
 	font-weight: bold;
 }
@@ -34,7 +34,7 @@
 	opacity: 0.2;
 }
 .breadcrumbs a:last-child{
-	color: #00dbbf;
+	color: #222;
 	font-size: 13px;
 	font-weight: bold;
 }

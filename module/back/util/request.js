@@ -1,3 +1,5 @@
+const request = require('request');
+
 const get = (endPoint, header) => new Promise((resolve, reject) => {
     request.get({
         url: endPoint,

@@ -68,20 +68,6 @@
 	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/search.png)no-repeat;
 	background-size: 18px 18px;
 }
-.check_tab input[type="checkbox"]{
-	width: 15px;
-	height: 15px;
-	background: #fff;
-	vertical-align: middle;
-}
-.check_tab input[type="checkbox"] + label:before {
-    width: 15px;
-    height: 15px;
-    line-height: 15px;
-    background: #fff;
-    border-radius: 2px;
-	border: 1px solid #627efe;
-}
 
 .check_tab{
 	display: inline-block;

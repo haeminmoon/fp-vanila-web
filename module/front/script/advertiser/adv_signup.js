@@ -1,6 +1,6 @@
-!function (){
+!function () {
     const Do = {
-        signup: $.on('click', '.submit_btn', ({delegateTarget: dt}) => go(
+        signup: $.on('click', '.submit_btn', ({ delegateTarget: dt }) => go(
             {
                 id: go(dt, $.find('[name="id"]'), $.trim),
                 pw: go(dt, $.find('[name="password"]'), $.trim),
@@ -23,7 +23,7 @@
                     }
                     return a;
                 },
-                ({id, pw, auth, created_at, ...info}) => {
+                ({ id, pw, auth, created_at, ...info }) => {
                     return {
                         id: id,
                         pw: pw,
@@ -39,15 +39,16 @@
                     .case(a => a === 'No content')
                     (_ => alert('입력란을 채워주세요.'))
                     .else(_ => a),
+
                 b => b.text(),
                 match
                     .case('id')
-                    (_ => { $('.id_error').innerHTML ='아이디가 중복되었습니다.'; })
+                    (_ => { $('.id_error').innerHTML = '아이디가 중복되었습니다.'; })
                     .else(_ => alert('서버 에러입니다.'))
             )
         )),
 
-        checkId: $.on('click', '.id_chk_btn', ({delegateTarget: dt}) => go(
+        checkId: $.on('click', '.id_chk_btn', ({ delegateTarget: dt }) => go(
             {
                 id: go(dt, $.find('.id'), $.trim)
             },
@@ -124,7 +125,7 @@
 
         showPost: $.on('click', _ => {
             new daum.Postcode({
-                oncomplete: function(data) {
+                oncomplete: function (data) {
                     let fullAddr, extraAddr = '';
 
                     if (data.userSelectedType === 'R') {
@@ -133,14 +134,14 @@
                         fullAddr = data.jibunAddress;
                     }
 
-                    if(data.userSelectedType === 'R'){
-                        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    if (data.userSelectedType === 'R') {
+                        if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
                             extraAddr += data.bname;
                         }
-                        if(data.buildingName !== '' && data.apartment === 'Y'){
+                        if (data.buildingName !== '' && data.apartment === 'Y') {
                             extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                         }
-                        fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                        fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')' : '');
                     }
                     $('.post_code').value = data.zonecode;
                     $('.address').value = fullAddr;
@@ -153,4 +154,4 @@
     global.AdvSignUp = {
         Do
     }
-} ();
+}();
