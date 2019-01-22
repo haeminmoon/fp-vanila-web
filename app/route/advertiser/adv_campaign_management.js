@@ -11,7 +11,6 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
         })
     );
 
-
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
@@ -113,5 +112,6 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
                 go('.search_inbox', $, AdvCampaignManagement.Do.searchTerm);
             </script>
         `
+        // AdvCampaignManagement.Do.campaignList(${JSON.stringify(campaignList)});
     }));
 });
