@@ -1,5 +1,5 @@
 app.get('/advertiser/adv_campaign_detail', async (req, res) => {
-    if (!req.session.user) return res.redirect('/common/signin');
+    if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
 
     let [campaignDetail] = await QUERY`SELECT * FROM campaign WHERE id = ${req.query.id}`;
@@ -9,8 +9,8 @@ app.get('/advertiser/adv_campaign_detail', async (req, res) => {
             <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
             <link rel="stylesheet" href="/front/css/advertiser/adv_campaign_detail.css" />
         `,
-        header: TMPL.layout.advHeader(),
-        nav: TMPL.layout.advNav(),
+        header: TMPL.layout.advHeader(user.info.company_name),
+        nav: TMPL.layout.advNav(user.info.company_name),
         main: `
             <div id="main">
                 <div class="container">
@@ -24,10 +24,10 @@ app.get('/advertiser/adv_campaign_detail', async (req, res) => {
                         <div class="info_pd">
                             <span>캠페인</span>
                             <div class="pd_img">
-                            <img src=${campaignDetail.img} alt="캠페인이미지" />
+                            <img src="${campaignDetail.img}?${new Date()}" alt="캠페인이미지" />
                             </div>
                             <p>${campaignDetail.name}</p>
-                            <a class="modify" href="/advertiser/adv_campaign_modidfy?id=${req.query.id}">수정하기</a>
+                            <a class="modify" href="/advertiser/adv_campaign_modify?id=${req.query.id}">수정하기</a>
                         </div>
                     </div>
                     <div class="list_wrap">

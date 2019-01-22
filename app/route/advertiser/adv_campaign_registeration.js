@@ -1,18 +1,19 @@
 const multer = require('multer');
-const upload = multer({storage: multer.memoryStorage()});
-const cpUpload = upload.fields([{name: 'main_img'}, {name: 'sub_img'}]);
+const upload = multer({ storage: multer.memoryStorage() });
+const cpUpload = upload.fields([{ name: 'main_img' }, { name: 'sub_img' }]);
 const awsS3 = require('../../../module/back/util/fileUpload.js');
 
-app.get('/advertiser/adv_campaign_registration', (req, res) => {
-    if (!req.session.user) return res.redirect('/common/signin');
+app.get('/advertiser/adv_campaign_registration', async (req, res) => {
+    if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
+    const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
 
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
             <link rel="stylesheet" href="/front/css/advertiser/adv_campaign_registeration.css" />
         `,
-        header: TMPL.layout.advHeader(),
-        nav: TMPL.layout.advNav(),
+        header: TMPL.layout.advHeader(user.info.company_name),
+        nav: TMPL.layout.advNav(user.info.company_name),
         main: `
             <div id="main">
                 <div class="container">
@@ -157,7 +158,7 @@ app.get('/advertiser/adv_campaign_registration', (req, res) => {
 });
 
 app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
-    const {camp_name, sns_type, category, apply_due_date, notice_date, post_date, ...info} = req.body;
+    const { camp_name, sns_type, category, apply_due_date, notice_date, post_date, ...info } = req.body;
 
     const data = {
         name: camp_name,

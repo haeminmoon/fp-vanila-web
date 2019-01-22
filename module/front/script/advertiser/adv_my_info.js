@@ -7,7 +7,6 @@
                 password_chk: go(dt, $.find('[name="password_chk"]'), $.trim)
             },
             pipeT(
-                tap(log),
                 $.put('/api/adv_my_info/modify_password'),
                 _ => alert('비밀번호가 변경되었습니다. 다시 로그인 해주세요.'),
                 _ => location.href = '/logout'
@@ -38,9 +37,12 @@
                 industry: go(dt, $.find('[name="industry"]'), $.trim),
                 phone_num: go(dt, $.find('[name="phone_num"]'), $.trim)
             },
-            tap(log),
             a => {
                 if (confirm('수정하시겠습니까?') === true) {
+                    /**
+                     * TO-DO
+                     * 실패시 예외처리
+                     */
                     $.put('/api/adv_my_info/modify_ps_info', a);
                     alert('수정되었습니다.');
                 }
@@ -52,7 +54,10 @@
                 post_code: go(dt, $.find('[name="post_code"]'), $.trim),
                 address: go(dt, $.find('[name="address"]'), $.trim)
             },
-            tap(log),
+            /**
+             * TO-DO
+             * 실패시 예외처리
+             */
             $.put('/api/adv_my_info/modify_ad_info'),
             _ => alert('수정되었습니다.')
         )),

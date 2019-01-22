@@ -84,6 +84,7 @@
             b => location.href = `/advertiser/adv_campaign_management?searchTerm=${b.searchTerm}`
         ))
     };
+    
     global.AdvCampaignManagement = {
         Do, Route
     };

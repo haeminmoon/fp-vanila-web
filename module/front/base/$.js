@@ -79,7 +79,8 @@
             method: method,
             body: JSON.stringify(data)
         }, fetchBaseOpt)),
-        resJSON));
+        resJSON
+    ));
 
     $.get = curry((url, paramObj) => go(
         fetch(

@@ -29,8 +29,8 @@
                         instagram_id: go(dt, $.find('[name="instagram_user_id"]'), a => a.innerText),
                         instagram_access_token: go(dt, $.find('[name="instagram_access_token"]'), a => a.innerText),
                         instagram_username: go(dt, $.find('[name="instagram_username"]'), a => a.innerText),
-                        instagram_followers: go(dt, $.find('[name="instagram_followers_count"]'), a => a.innerText),
-                        instagram_follows: go(dt, $.find('[name="instagram_follows_count"]'), a => a.innerText),
+                        instagram_followers: go(dt, $.find('[name="instagram_followers_count"]'), a => a.innerText, b => b.replace(/[^0-9]/g, "")),
+                        instagram_follows: go(dt, $.find('[name="instagram_follows_count"]'), a => a.innerText, b => b.replace(/[^0-9]/g, "")),
                         instagram_profile_img: go(dt, $.find('[name="instagram_profile_img"]'), a => a.src),
                         instagram_user_birthday: go(dt, $.find('[name="instagram_user_birthday"]'), a => a.innerText)
                     };

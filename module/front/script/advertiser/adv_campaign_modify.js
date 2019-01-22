@@ -40,7 +40,14 @@
                         return arr;
                     })
                 }),
-                $.post('/api/advertiser/adv_campaign_modify')
+                $.post('/api/advertiser/adv_campaign_modify'),
+                c => {
+                    if (!c.id) alert('전송 에러입니다');
+                    else{
+                        alert('수정 완료')
+                        location.href = `/advertiser/adv_campaign_detail/?id=${c.id}`
+                    }
+                }
             )
         }),
 
