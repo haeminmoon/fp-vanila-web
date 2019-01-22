@@ -155,8 +155,6 @@ app.get('/', (req, res) => {
             </div>
         `,
         script: `
-            <script src="/front/script/common/home.js"></script>
-            <script>go('.signin_btn', $, Home.Route.signin)</script>
         `
     }));
 });
