@@ -1,6 +1,6 @@
 !function () {
     const Do = {
-        signup: $.on('click', '.submit_btn', ({delegateTarget : dt}) => go(
+        signup: $.on('click', '.submit_btn', ({ delegateTarget: dt }) => go(
             {
                 id: go(dt, $.find('[name="id"]'), $.trim),
                 pw: go(dt, $.find('[name="password"]'), $.trim),
@@ -10,13 +10,13 @@
                 gender: go(dt, $.findAll('[name="gender"]'), filter(a => a.checked === true), first, $.val),
                 // phone_num: go(dt, $.find('[name="phone_num_cer"]'), $.trim),
                 // certification_num: go(dt, $.find('[name="certification_num"]'), $.trim),
-                instagram_id: go(dt, $.find('[name="instagram_user_id"]'), a => a.innerText)
+                //instagram_id: go(dt, $.find('[name="instagram_user_id"]'), a => a.innerText)
             },
             pipeT(
                 a => {
-                    if (a.instagram_id === '') {}
+                    if (a.instagram_id === '') { }
                     for (key in a) {
-                        if (a[key] === '') { 
+                        if (a[key] === '') {
                             throw 'No content'
                         }
                     }
@@ -24,7 +24,7 @@
                     delete a.instagram_id;
                     return a;
                 },
-                ({id, pw, ...info}) => {
+                ({ id, pw, ...info }) => {
                     let snsInfo = {
                         instagram_id: go(dt, $.find('[name="instagram_user_id"]'), a => a.innerText),
                         instagram_access_token: go(dt, $.find('[name="instagram_access_token"]'), a => a.innerText),
@@ -35,16 +35,16 @@
                         instagram_user_birthday: go(dt, $.find('[name="instagram_user_birthday"]'), a => a.innerText)
                     };
                     return {
-                            id: id,
-                            pw: pw,
-                            info: JSON.stringify(info),
-                            auth: 'influencer',
-                            created_at: new Date(),
-                            sns_info: JSON.stringify(snsInfo)
+                        id: id,
+                        pw: pw,
+                        info: JSON.stringify(info),
+                        auth: 'influencer',
+                        created_at: new Date(),
+                        sns_info: JSON.stringify(snsInfo)
                     };
                 },
                 $.post('/api/influencer/inf_signup'),
-                _ => location.href = '/influencer/inf_signup_complete'
+                a => location.href = `/influencer/inf_signup_complete?name=${a.info.name}&created_at=${a.created_at}`
             ).catch(
                 a => match(a)
                     .case(a => a === 'No content')
@@ -53,12 +53,12 @@
                 b => b.text(),
                 match
                     .case('id')
-                    (_ => { $('.id_error').innerHTML = '아이디가 중복되었습니다';})
+                    (_ => { $('.id_error').innerHTML = '아이디가 중복되었습니다'; })
                     .else(_ => alert('서버 에러입니다'))
             )
         )),
 
-        checkId: $.on('click', '.id_chk_btn', ({delegateTarget: dt}) => go(
+        checkId: $.on('click', '.id_chk_btn', ({ delegateTarget: dt }) => go(
             {
                 id: go(dt, $.find('.id'), $.trim)
             },
@@ -89,7 +89,7 @@
             )
         )),
 
-        checkBn: $.on('click', '.phone_chk_btn', ({delegateTarget: dt}) => alert('인증번호 발송 비활성화 상태입니다.')),
+        checkBn: $.on('click', '.phone_chk_btn', ({ delegateTarget: dt }) => alert('인증번호 발송 비활성화 상태입니다.')),
         // checkBn: $.on('click', '.phone_chk_btn', ({delegateTarget: dt}) => go(
         //     {
         //         phone_num: go(dt, $.find('[name="phone_num_cer"]'), $.trim)

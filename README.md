@@ -3,9 +3,10 @@
 
 ## Stack
 - Point language : ES6+
-- Back & Middle : Node.js, express
-- Front : Vanila.js
-- DB : PostgreSQL
+- Back & Middle : Node.js 8.10, express
+- Front : VanilaJS
+- DB : Amazone RDS with PostgreSQL
+- Cache Store : Session store - express session -> Elastic cache with Redis
 - Infra : Serverless ( API Gateway - Lambda ) built serverless framework
 
 ## Pre - Installation & Setup

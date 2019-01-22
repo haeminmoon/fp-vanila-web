@@ -1,8 +1,7 @@
-const request = require('request');
+const { get } = require('../../../module/back/util/request'); 
 
 app.get('/advertiser/adv_influencer_list', async (req, res) => {
-    // if (req.session.user.auth !== 'advertiser') return res.redirect('/');
-
+    if (!req.session.user) return res.redirect('/common/signin');
     const updateInfSnsInfo = await go(
         QUERY `SELECT id, sns_info FROM users WHERE auth = 'influencer' and sns_info is not null`,
         map(async a => {
@@ -154,19 +153,24 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
 });
 
 const getInstagramMedia = async (id, accessToken, limit) => {
-    !limit ? limit = 3 : limit;
-    return new Promise((resolve, reject) => request.get(`https://graph.facebook.com/v3.2/${id}/?fields=media.limit(${limit})%7Bcaption%2Ccomments_count%2Clike_count%2Cmedia_url%2Ctimestamp%2Cthumbnail_url%7D%2Cfollowers_count%2Cfollows_count%2Cprofile_picture_url&limit=3&access_token=${accessToken}`, 
-        (err, res, body) => resolve(JSON.parse(body)))
+    !limit ? limit = 7 : limit;
+    /**
+     * 1. First parameter, end point
+     * 2. Second parameter, header
+     */
+    return get(
+        `https://graph.facebook.com/v3.2/${id}/?fields=media.limit(${limit})%7Bcaption%2Ccomments_count%2Clike_count%2Cmedia_url%2Ctimestamp%2Cpermalink%2Cthumbnail_url%2Cmedia_type%7D%2Cfollowers_count%2Cfollows_count%2Cprofile_picture_url&access_token=${accessToken}`, 
+        ``
     );
 }
 
 const infList = data => go(
     JSON.parse(data),
-    map(a => writeInfList(a.id, a.sns_info.instagram_followers, ['IT','패션'], JSON.parse(a.sns_info.instagram_user_birthday), a.sns_info.instagram_media[0].like_count, a.sns_info.instagram_media[0].comments_count, a.sns_info.instagram_media[0].caption, a.sns_info.instagram_media[0].media_url, go(a.sns_info.instagram_media, map(a => a.media_url)))),
+    map(a => writeInfList(a.id, a.sns_info.instagram_followers, ['IT','패션'], JSON.parse(a.sns_info.instagram_user_birthday), a.sns_info.instagram_media[0].like_count, a.sns_info.instagram_media[0].comments_count, a.sns_info.instagram_media[0].caption, a.sns_info.instagram_media[0].media_url, a.sns_info.instagram_media[0].permalink,  go(a.sns_info.instagram_media, map(a => ({"media_url" : a.media_url, "instagram_link":a.permalink}))))),
     b => html`${b}`
 )
 
-const writeInfList = (id, followers, category, birthday, firstPostLike, firstPostComment, firstPostCaption, firstPostImg, postImg) => {
+const writeInfList = (id, followers, category, birthday, firstPostLike, firstPostComment, firstPostCaption, firstPostImg, firstPostLink, postImg) => {
     let htmlCategoryList = go(
         category,
         map(a => html`
@@ -181,7 +185,7 @@ const writeInfList = (id, followers, category, birthday, firstPostLike, firstPos
                 let result;
                 for (let i = 1; i < a.length; i++) {
                     result += html`
-                    <img src=${a[i]}>`
+                    <a href=${a[i].instagram_link}><img src=${a[i].media_url}></a>`
                 }
                 return result;
             },
@@ -208,7 +212,7 @@ const writeInfList = (id, followers, category, birthday, firstPostLike, firstPos
     </tr>
     <tr class="click_hidden hidden" name="${id}">
         <td>
-            <img src=${firstPostImg} alt="인스타그램 이미지">
+            <a href=${firstPostLink}><img src=${firstPostImg} alt="인스타그램 이미지"></a>
             <div class="click_txt">
                 <strong class="like">좋아요 ${firstPostLike}개</strong>
                 <strong>댓글수 ${firstPostComment}개</strong>

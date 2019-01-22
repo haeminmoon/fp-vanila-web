@@ -1,6 +1,8 @@
 app.get('/advertiser/adv_campaign_detail', async (req, res) => {
-    // if (req.session.user.auth !== 'advertiser') return res.redirect('/');
-    let [campaignDetail] = await QUERY `SELECT * FROM campaign WHERE id = ${req.query.id}`;
+    if (!req.session.user) return res.redirect('/common/signin');
+    const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
+
+    let [campaignDetail] = await QUERY`SELECT * FROM campaign WHERE id = ${req.query.id}`;
 
     res.send(TMPL.layout.hnmf({
         css: `
@@ -18,25 +20,20 @@ app.get('/advertiser/adv_campaign_detail', async (req, res) => {
                         <a href="/advertiser/adv_campaign_detail">캠페인 상세</a>
                     </div>
                     <div class="info_wrap">
-                        <h2>캠페인 상품정보</h2>
+                        <h2>캠페인 정보</h2>
                         <div class="info_pd">
-                            <span>상품</span>
+                            <span>캠페인</span>
                             <div class="pd_img">
-                            <img src=${campaignDetail.img} alt="크리니크 치크팝 베스트" />
+                            <img src=${campaignDetail.img} alt="캠페인이미지" />
                             </div>
                             <p>${campaignDetail.name}</p>
-                            <a class="modify">수정하기</a>
-                        </div>
-                        <div class="info_day">
-                            <span>기간
-                            <p>${formatBackDate(campaignDetail.created_at)} ~ ${formatBackDate(campaignDetail.apply_end_date)}</p>
-                            <a class="modify">수정하기</a>
+                            <a class="modify" href="/advertiser/adv_campaign_modidfy?id=${req.query.id}">수정하기</a>
                         </div>
                     </div>
                     <div class="list_wrap">
                         <h2>
                             참여 인플루언서:
-                            <span class="infu_count">${JSON.parse(campaignDetail.influencer_id).length}</span>명
+                            <span class="infu_count">${Object.keys(campaignDetail.influencer_id).length} 명</span>
                             <a class="modify">수정하기</a>
                         </h2>
                         <table>

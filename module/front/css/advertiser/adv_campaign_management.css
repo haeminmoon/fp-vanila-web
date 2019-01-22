@@ -30,7 +30,7 @@
   	box-shadow: 0 1px 4px 0 #e5e9f2;
 	padding: 25px 0 0 25px;
 }
-.search_wrap > h2{
+.section_tit{
 	position: absolute;
 	top: -40px;
 	left: 0;
@@ -68,20 +68,6 @@
 	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/search.png)no-repeat;
 	background-size: 18px 18px;
 }
-.check_tab input[type="checkbox"]{
-	width: 15px;
-	height: 15px;
-	background: #fff;
-	vertical-align: middle;
-}
-.check_tab input[type="checkbox"] + label:before {
-    width: 15px;
-    height: 15px;
-    line-height: 15px;
-    background: #fff;
-    border-radius: 2px;
-	border: 1px solid #627efe;
-}
 
 .check_tab{
 	display: inline-block;
@@ -89,10 +75,10 @@
 	margin-right: 30px;
 	font-size: 14px;
 }
-.product_name p{
+.campaign_name p{
 	padding-left: 40px;
 }
-.product_name img{
+.campaign_name img{
 	position: absolute;
 	top: 25px;
 	width: 35px;
@@ -100,28 +86,11 @@
 	border: 1px solid rgba(229, 233, 242, 0.5);
 }
 .camp_state span{
-	display: block;
+	display: inline-block;
 	font-size: 11px;
 	line-height: 12px;
 	border-radius: 20px;
 	padding: 5px 0;
 	width: 50px;
 	text-align: center;
-}
-.check1{
-	border: 2px solid #627efe;
-	color: #627efe;
-}
-.check2{
-	border: 2px solid #5d38db;
-	color: #5d38db;
-}
-.check3{
-	border: 2px solid #ccc;
-	color: #ccc;
-}
-.camp_state .check4{
-	width: 60px;
-	border: 2px solid #999;
-	color: #999;
 }

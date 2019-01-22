@@ -7,7 +7,7 @@
 .breadcrumbs a{
 	position: relative;
 	padding-right: 23px;
-	color: #1f263e;
+	color: #ccc;
 	font-size: 13px;
 	font-weight: bold;
 }
@@ -22,7 +22,7 @@
 	opacity: 0.2;
 }
 .breadcrumbs span{
-	color: #00dbbf;
+	color: #222;
 	font-size: 13px;
 	font-weight: bold;
 }
@@ -224,8 +224,6 @@ caption{
 	background-color: #f3f4f7;
 }
 .click_hidden{
-/*자바스크립트 해야할것*/
-	/* display: none; */
 	position: relative;
 	height: 480px;
 	margin-top: 80px;
@@ -235,7 +233,7 @@ caption{
 	top: 10px;
 	left: 62px;
 }
-.click_hidden td > img{
+.click_hidden td > a > img{
 	position: absolute;
 	top: 0;
 	width: 364px;

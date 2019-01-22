@@ -32,7 +32,7 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                         <div class="header">SNS 연동하기</div>
                             <img class="instagram_profile_img" name="instagram_profile_img"/>
                             <div class="profile_txt">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png" alt="인스타그램 로고">
+                                <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/instagram/instagram_color.png" alt="인스타그램 로고">
                                 <span class="username" name="instagram_username"></span>
                                 <strong class="media_count" name="instagram_media_count"></strong>
                                 <strong class="followers_count" name="instagram_followers_count"></strong>
@@ -51,8 +51,7 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                 </div>
             </div>
         `,
-        footer: `
-        `,
+        footer: ``,
         script: `
             <script src="/front/script/common/signin.js"></script>
             <script src="/front/script/influencer/inf_signup_connect_instagram.js"></script>

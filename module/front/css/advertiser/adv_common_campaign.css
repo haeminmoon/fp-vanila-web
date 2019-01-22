@@ -4,24 +4,24 @@
 .hide{display: none;}
 /* ============ main ============ */
 #main{
-	background-color: #f5f6fa;
 	padding: 0 20px 200px;
 	margin-left: 220px;
 }
+
+.container > div:nth-child(1),.container > div:nth-child(2) {margin-top: 0px;}
+.container > div{margin-top: 75px;}
+
 .breadcrumbs{
 	line-height: 70px;
 	height: 70px;
 	position: relative;
 }
-.container > div:nth-child(1),.container > div:nth-child(2) {margin-top: 0px;}
-.container > div{margin-top: 75px;}
-
 .breadcrumbs a{
 	position: relative;
 	padding-right: 23px;
-	color: #1f263e;
-	font-weight: 600;
-    font-size: 13px;
+	color: #ccc;
+	font-size: 13px;
+	font-weight: bold;
 }
 .breadcrumbs a:after{
 	content: '';
@@ -34,7 +34,9 @@
 	opacity: 0.2;
 }
 .breadcrumbs a:last-child{
-	color: #627efe;
+	color: #222;
+	font-size: 13px;
+	font-weight: bold;
 }
 .breadcrumbs a:last-child:after{
 	content: none;
@@ -70,10 +72,14 @@ caption{
 	position: absolute;
 	text-indent: -99999px;
 }
-table{border-collapse: collapse;}
+table{
+	border-collapse: collapse;
+	width: 100%;
+}
 tr{text-align: left;}
 thead th{
-	padding: 14px 0 15px;
+	text-align: left;
+	padding: 20px 30px;
 	font-size: 15px;
 	position: relative;
 	color: #666;
@@ -88,35 +94,27 @@ thead:after{
 }
 tbody td{
 	position: relative;
-	padding: 30px 10px;
+	padding: 30px;
 	font-size: 15px;
 	font-weight: bold;
 	z-index: 100;
 }
 tbody tr{
-	position: relative;
 	width: 100%;
-	top: 0; right: 0; bottom: 0; left: 0;
+	cursor: pointer;
 }
-.tr_on:after{
-	content: '';
-	position: absolute;
-	left: 0;
-	width: 100%;
-	height: 86px;
-	background-color: #fafbff;
-	z-index: 10;
+tbody tr:hover{
+	background-color: #f0f3ff;
 }
 tbody tr *{
 	color: #222;
 }
-.num{padding-left: 20px;}
+
 thead .ud:after{
 	content: '';
-	display: inline-block;
+	position: absolute;
 	width: 24px;
 	height: 24px;
-	vertical-align: top;
 	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/btn-list-filter/btn-list-filter.png)no-repeat;
 }
 .infu_name p{
@@ -128,10 +126,10 @@ thead .ud:after{
 	width: 35px;
 	height: 35px;
 }
-.product_name p{
+.campaign_name p{
 	padding-left: 40px;
 }
-.product_name img{
+.campaign_name img{
 	position: absolute;
 	top: 25px;
 	width: 35px;
@@ -153,8 +151,8 @@ thead .ud:after{
 	color: #627efe;
 }
 .check2{
-	border: 2px solid #5d38db;
-	color: #5d38db;
+	border: 2px solid #00dbbf;
+	color: #00dbbf;
 }
 .check3{
 	border: 2px solid #ccc;

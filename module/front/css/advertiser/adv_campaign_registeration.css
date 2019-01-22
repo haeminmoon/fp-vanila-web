@@ -1,0 +1,154 @@
+/*camp_wrap*/
+.camp_wrap{
+    position: relative;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    border-radius: 4px;
+    background-color: white;
+}
+.input_wrap{
+    width: 100%;
+}
+.input_wrap:after{content: ''; display: block; clear: both;}
+.input_wrap > label{
+    float: left;
+    width: 25%;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    font-size: 15px;
+    line-height: 70px;
+    text-align: right;
+    padding-right: 20px;
+    color: #222;
+}
+.input_wrap > .wrap_right{
+    float: left;
+    border-bottom: 1px solid #ddd;
+    width: 75%;
+    padding: 0 15px;
+}
+sup{
+    font-weight: bold;
+    font-size: 5px;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+.input_wrap .sns_wrap {height: 70px;}
+.input_wrap .sex_wrap{height: 70px;}
+.input_wrap .age_wrap{height: 70px;}
+.input_wrap .camp_name_wrap{height: 70px;}
+.input_wrap .category_wrap{height: 70px;}
+
+.input_wrap .mimg_wrap{height: 90px;}
+.wrap_right.mimg_wrap{padding: 15px;}
+
+.input_wrap .sub_wrap{height: 80px;}
+.wrap_right.sub_wrap{padding: 15px;}
+
+.input_wrap .date_wrap{height: 140px;}
+.wrap_right.date_wrap{padding: 15px;}
+
+.input_wrap .camp_description_wrap{height: 165px;}
+.input_wrap .mission_description_wrap{height: 165px;}
+.input_wrap .benefit_description_wrap{height: 165px;}
+.input_wrap .hash_tag_wrap{height: 70px;}
+
+select{
+    border: 1px solid #ddd;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 40px;
+    padding-left: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 14px;
+}
+.camp_name{
+    border: 1px solid #ddd;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 14px;
+}
+.input_wrap input [type="file"]{
+    /*	border: 10px solid violet;*/
+}
+#campaign_image{
+    font-size: 13px;
+    margin-left: 10px;
+}
+.wrap_right p{
+    margin-top: 8px;
+    font-size: 13px;
+    color: #858585;
+}
+.date_wrap > div{
+    width: 800px;
+    height: 33px;
+    padding-left: 10px;
+    margin-bottom: 6px;
+}
+.date_wrap > div > input{
+    background-color: #dedede;
+    padding-left: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 30px;
+    height: 30px;
+    margin-right: 6px;
+    width: 200px;
+    color: #555;
+}
+.date_wrap > div > label{
+    display: inline-block;
+    width: 80px;
+}
+textarea{
+    width: 100%;
+    height: 135px;
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.hash_tag{
+    border: 1px solid #ddd;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.camp_wrap > div{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -100px;
+    text-align: center;
+    /*	border: 3px solid blue;*/
+}
+.camp_wrap > div > input{
+    width: 90px;
+    height: 35px;
+    margin-left: 10px;
+    border: 1px solid #a8a8a8;
+    border-radius: 5px;
+    background-color: white;
+}
+.camp_wrap > div > input:hover{
+    background-color: #a8a8a8;
+    color: white;
+}

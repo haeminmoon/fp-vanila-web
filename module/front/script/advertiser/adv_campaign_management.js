@@ -16,7 +16,7 @@
         campaignList: (campaignList) => {
             campaign_list = go(
                 campaignList,
-                a => template_campaign_list(a),
+                a => TMPL.AdvCampaignManagement.list(a),
                 b => b.join('')
             );
 
@@ -33,24 +33,24 @@
             $('.state_complete').innerHTML = campaign_state_c.length;
 
             // state 탬플릿
-            campagin_state_template = (campaign_state_list) => go(campaign_state_list, a => template_campaign_list(a), b => b.join(''));
+            campagin_state_template = (campaign_state_list) => go(campaign_state_list, a => TMPL.AdvCampaignManagement.list(a), b => b.join(''));
             // 정렬 템플릿
-            campagin_sort_template = (campaign_list, reverse) => go(sortObjKey(campaign_list, 'count', reverse), b => template_campaign_list(b), c => c.join(''));
+            campagin_sort_template = (campaign_list, reverse) => go(sortObjKey(campaign_list, 'count', reverse), b => TMPL.AdvCampaignManagement.list(b), c => c.join(''));
 
             // 인플런서 신청자수 정렬
-            $('.inf').addEventListener('click', el => {
-                count ++;
+            $('.apply_count').addEventListener('click', el => {
+                count++;
                 reverse = (count % 2 === 1) ? true : false;
-                for (checkbox of $.all('.checkbox')){
+                for (checkbox of $.all('.checkbox')) {
                     if (checkbox.checked === true) {
                         state = checkbox.value;
                     }
                 }
                 match(state)
-                    .case(a => a === '')(_ => $('.camp_list').innerHTML =go( campaignList, a=> campagin_sort_template(a, reverse)))
-                    .case(a => a === 'wait')(_ => $('.camp_list').innerHTML =go(campaign_state_w, a=> campagin_sort_template(a, reverse)))
-                    .case(a => a === 'progress')(_ => $('.camp_list').innerHTML =go(campaign_state_p, a=> campagin_sort_template(a, reverse)))
-                    .case(a => a === 'sale_complete')(_ => $('.camp_list').innerHTML =go(campaign_state_c, a=> campagin_sort_template(a, reverse)))
+                    .case(a => a === '')(_ => $('.camp_list').innerHTML = go(campaignList, a => campagin_sort_template(a, reverse)))
+                    .case(a => a === 'wait')(_ => $('.camp_list').innerHTML = go(campaign_state_w, a => campagin_sort_template(a, reverse)))
+                    .case(a => a === 'progress')(_ => $('.camp_list').innerHTML = go(campaign_state_p, a => campagin_sort_template(a, reverse)))
+                    .case(a => a === 'sale_complete')(_ => $('.camp_list').innerHTML = go(campaign_state_c, a => campagin_sort_template(a, reverse)))
                     .else(_ => alert('준비'))
             });
 
@@ -70,10 +70,10 @@
                 .case(c => c === 'progress')(_ => $('.camp_list').innerHTML = go(campaign_state_p, a => campagin_sort_template(a)))
                 .case(c => c === 'sale_complete')(_ => $('.camp_list').innerHTML = go(campaign_state_c, a => campagin_sort_template(a)))
                 .else(_ => '')
-            )
+        )
         ),
 
-        searchTerm: $.on('click', '.search_icon', ({delegateTarget: dt}) => go(
+        searchTerm: $.on('click', '.search_icon', ({ delegateTarget: dt }) => go(
             {
                 searchTerm: go(dt, $.find('[name="search_txt"]'), $.trim)
             },
@@ -84,26 +84,6 @@
             b => location.href = `/advertiser/adv_campaign_management?searchTerm=${b.searchTerm}`
         ))
     };
-
-    const template_campaign_list = (list) => go(
-            list,
-            map(item => html`
-            <tr class="tr_on">
-                <td class="num">${item.id}</td>
-                <td class="product_name">
-                    <img src=${item.img} alt="대표 이미지"/>
-                    <p>${item.name}</p>
-                </td>
-                <td class="slae_term">${formatFrontDate(item.post_start_date)} ~ ${formatFrontDate(item.post_end_date)}</td>
-                <td class="inf" style="text-align: center;">${item.count} 명</td>
-                <td class="start_date">${formatFrontDate(item.created_at)}</td>
-                <td class="camp_state">
-                    <span class="check1">${formatState(item.state)}</span>
-                </td>
-            </tr>
-        `),
-        );
-
     global.AdvCampaignManagement = {
         Do, Route
     };
