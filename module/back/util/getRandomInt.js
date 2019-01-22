@@ -4,4 +4,10 @@ getRandomInt6 = _ => {
     return result;
 };
 
-module.exports = getRandomInt6;
+getRandomInt8 = _ => {
+    let result = Math.floor(Math.random() * 100000000) + 10000000;
+    if(result > 100000000) result= result - 10000000;
+    return result;
+};
+
+module.exports = {getRandomInt8, getRandomInt6};

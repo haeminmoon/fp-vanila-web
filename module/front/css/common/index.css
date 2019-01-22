@@ -125,7 +125,7 @@ body{
 	height: 300px;
 	box-shadow: 0 0 20px rgba(0,0,0,0.2)
 }
-video{
+iframe{
 	width: 500px;
 	height: 300px;
 }
@@ -139,9 +139,6 @@ video{
 	font-weight: 500;
 	line-height: 20px;
 }
-
-
-
 
 .paper_wrap{
 	position: relative;
