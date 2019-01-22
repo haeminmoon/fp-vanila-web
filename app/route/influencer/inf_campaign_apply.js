@@ -1,4 +1,4 @@
-const { sendMail } =  require('../../../module/back/util/mailer');
+const {sendMail} = require('../../../module/back/util/mailer');
 
 app.get('/influencer/inf_campaign_apply', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
@@ -15,7 +15,7 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
                 <div class="container">
                     <div class="campaign_info">
                         <h1 class="brand_tit" id=${campaignItem.id}>${campaignItem.advertiser_id}</h1>
-                        <p class="campaign_tit" name=${campaignItem.name}>${campaignItem.name}</p>
+                        <p class="campaign_tit"}>${campaignItem.name}</p>
                     </div>
                     
                     <div class="confirm_info">
@@ -129,16 +129,20 @@ app.post('/api/influencer/inf_campaign_apply', (req, res, next) => {
     go(
         req.body,
         pipeT(
-            a => QUERY`UPDATE campaign SET influencer_id = influencer_id || ${a.info} WHERE id = ${a.id}`,
-            async _ => await sendMail(
-                '스핀 프로토콜에서 보내는 메일입니다',
-                `${req.body.campaign_name} 캠페인에 ${req.body.info[userId].followers}명의 팔로워 수를 가진 ${req.body.info[userId].name} 인플런서 님께서 신청하셨습니다.`,
-                userId
+            async a => {
+                await sendMail(
+                    '스핀 프로토콜에서 보내는 메일입니다',
+                    `${a.campaign_name} 캠페인에 ${a.info[userId].followers}명의 팔로워 수를 가진 ${a.info[userId].name} 인플런서 님께서 신청하셨습니다.`,
+                    a.advertiser_id
                 ).catch(err => {
                     throw err;
-            }),
+                });
+                return a;
+            },
+            b => QUERY`UPDATE campaign SET influencer_id = influencer_id || ${b.info} WHERE id = ${b.id}`,
             res.json
         ).catch(
+            tap(log),
             m => new Error(m),
             next
         )
