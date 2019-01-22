@@ -1,3 +1,5 @@
+const { sendMail } =  require('../../../module/back/util/mailer');
+
 app.get('/influencer/inf_campaign_apply', async (req, res) => {
     if (!req.session.user) return res.redirect('/common/signin');
     const [campaignItem] = await QUERY`SELECT * FROM campaign WHERE state = 'progress' AND id = ${req.query.id}`;
@@ -13,7 +15,7 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
                 <div class="container">
                     <div class="campaign_info">
                         <h1 class="brand_tit" id=${campaignItem.id}>${campaignItem.advertiser_id}</h1>
-                        <p class="campaign_tit">${campaignItem.name}</p>
+                        <p class="campaign_tit" name=${campaignItem.name}>${campaignItem.name}</p>
                     </div>
                     
                     <div class="confirm_info">
@@ -21,7 +23,7 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
                             신청한 SNS
                         </h2>
                         <div class="confirm_content">
-                            <p class="inf_info user_id">${req.session.user.id}</p>
+                            <p class="inf_info user_id" followers = ${req.session.user.sns_info.instagram_followers}>${req.session.user.id}</p>
                             <textarea name="memo" id="memo" class="memo" placeholder="유저아이디의 메모를 작성해주세요."></textarea>
                         </div>
                     </div>
@@ -123,10 +125,18 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
 });
 
 app.post('/api/influencer/inf_campaign_apply', (req, res, next) => {
+    const userId = Object.keys(req.body.info)[0];
     go(
         req.body,
         pipeT(
-            a => QUERY`UPDATE campaign SET influencer_id = influencer_id || ${a.info} WHERE id = ${a.id} `,
+            a => QUERY`UPDATE campaign SET influencer_id = influencer_id || ${a.info} WHERE id = ${a.id}`,
+            async _ => await sendMail(
+                '스핀 프로토콜에서 보내는 메일입니다',
+                `${req.body.campaign_name} 캠페인에 ${req.body.info[userId].followers}명의 팔로워 수를 가진 ${req.body.info[userId].name} 인플런서 님께서 신청하셨습니다.`,
+                userId
+                ).catch(err => {
+                    throw err;
+            }),
             res.json
         ).catch(
             m => new Error(m),
