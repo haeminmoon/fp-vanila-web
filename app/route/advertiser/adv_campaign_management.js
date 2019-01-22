@@ -1,6 +1,5 @@
 app.get('/advertiser/adv_campaign_management', async (req, res) => {
     if (!req.session.user) return res.redirect('/common/signin');
-
     let searchTerm = `%${req.query.searchTerm}%`;
     let campaignList = (!req.query.searchTerm) ? await QUERY`SELECT * FROM campaign WHERE advertiser_id = 'test' ORDER BY id DESC` : await QUERY`SELECT * FROM campaign WHERE name Like ${searchTerm} AND advertiser_id = 'test'ORDER BY id DESC`;
 
