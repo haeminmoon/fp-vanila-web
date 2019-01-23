@@ -16,16 +16,6 @@
         }),
 
         cancelCampaign: $.on('click', _ => location.href = '/advertiser/adv_campaign_management'),
-
-        readyImage: $.on('change', ({currentTarget: ct}) => {
-            if (ct.files && ct.files[0]) {
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                    $('#campaign_image').src = e.target.result;
-                };
-                reader.readAsDataURL(ct.files[0]);
-            }
-        })
     };
 
 
