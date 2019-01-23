@@ -3,32 +3,9 @@ const { get } = require('../../../module/back/util/request');
 app.get('/advertiser/adv_influencer_list', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
-
-    const updateInfSnsInfo = await go(
-        QUERY`SELECT id, sns_info FROM users WHERE auth = 'influencer' and sns_info is not null`,
-        map(async a => {
-            let instagramMedia = await getInstagramMedia(a.sns_info.instagram_id, a.sns_info.instagram_access_token, 7).then(data => data);
-            a.sns_info.instagram_followers = instagramMedia.followers_count;
-            a.sns_info.instagram_follows = instagramMedia.follows_count;
-            a.sns_info.instagram_profile_img = instagramMedia.profile_picture_url;
-            let [commentAverage, likeAverage] = go(
-                instagramMedia.media.data,
-                a => {
-                    let commentC = 0;
-                    let likeC = 0;
-                    for (const iter of a) {
-                        commentC += iter.comments_count;
-                        likeC += iter.like_count;
-                    }
-                    return [Math.ceil(commentC / a.length), Math.ceil(likeC / a.length)];
-                }
-            );
-            Object.assign(a.sns_info, { "instagram_media": instagramMedia.media.data }, { "instagram_comment_average": commentAverage }, { "instagram_like_average": likeAverage });
-            QUERY`UPDATE users SET sns_info = ${JSON.stringify(a.sns_info)} WHERE id = ${a.id}`;
-            return a;
-        })
-    )
     
+    const infList = await QUERY`SELECT id, sns_info FROM users WHERE auth = 'influencer' and sns_info is not null`;
+
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_influencer_list.css"/>
@@ -134,7 +111,7 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                             </tr>
                         </thead>
                         <tbody id="click_wrap">
-                            ${infList(JSON.stringify(updateInfSnsInfo))}
+                            ${go(infList, map(a => getHtmlInfList(a)), b => html`${b}`)}
                         </tbody>
                     </table>
                 </div>
@@ -153,79 +130,81 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
     }));
 });
 
+app.post('/api/advertiser/adv_influencer_list', async (req, res) => {
+    let id = req.body.id;
+    let [userSnsInfo] = await QUERY`SELECT sns_info FROM users WHERE id = ${id}`;
+    if (!userSnsInfo) res.json({"res":"fail to read database"});
+    
+    let instagramMedia = await getInstagramMedia(userSnsInfo.sns_info.instagram_id, userSnsInfo.sns_info.instagram_access_token, 7).then(data => data);
+    if (!instagramMedia) res.json({"res":"fail to get API return"});
+
+    userSnsInfo.sns_info.instagram_followers = instagramMedia.followers_count;
+    userSnsInfo.sns_info.instagram_follows = instagramMedia.follows_count;
+    userSnsInfo.sns_info.instagram_profile_img = instagramMedia.profile_picture_url;
+    let [commentAverage, likeAverage] = go(
+        instagramMedia.media.data,
+        a => {
+            let commentC = 0;
+            let likeC = 0;
+            for (const iter of a) {
+                commentC += iter.comments_count;
+                likeC += iter.like_count;
+            }
+            return [Math.ceil(commentC / userSnsInfo.length), Math.ceil(likeC / userSnsInfo.length)];
+        }
+    )
+    Object.assign(userSnsInfo.sns_info, { "instagram_media": instagramMedia.media.data }, { "instagram_comment_average": commentAverage }, { "instagram_like_average": likeAverage });
+    let [updateResult] = await QUERY`UPDATE users SET sns_info = ${JSON.stringify(userSnsInfo.sns_info)} WHERE id = ${id} RETURNING TRUE`;
+    if (!updateResult.bool) res.json({"res":"fail to update at database"});
+
+    go(
+        {
+            "res" : "success to load media data",
+            "media" : instagramMedia.media.data,
+            "followers" : instagramMedia.followers_count
+        },
+        res.json
+    )
+    
+})
+
 const getInstagramMedia = async (id, accessToken, limit) => {
     !limit ? limit = 7 : limit;
-    /**
-     * 1. First parameter, end point
-     * 2. Second parameter, header
-     */
     return get(
         `https://graph.facebook.com/v3.2/${id}/?fields=media.limit(${limit})%7Bcaption%2Ccomments_count%2Clike_count%2Cmedia_url%2Ctimestamp%2Cpermalink%2Cthumbnail_url%2Cmedia_type%7D%2Cfollowers_count%2Cfollows_count%2Cprofile_picture_url&access_token=${accessToken}`,
         ``
     );
 }
 
-const infList = data => go(
-    JSON.parse(data),
-    map(a => writeInfListHtml(a.id, a.sns_info.instagram_followers, ['IT', '패션'], JSON.parse(a.sns_info.instagram_user_birthday), a.sns_info.instagram_media[0].like_count, a.sns_info.instagram_media[0].comments_count, a.sns_info.instagram_media[0].caption, a.sns_info.instagram_media[0].media_url, a.sns_info.instagram_media[0].permalink, go(a.sns_info.instagram_media, map(a => ({ "media_url": a.media_url, "instagram_link": a.permalink }))))),
-    b => html`${b}`
-)
-
-const writeInfListHtml = (id, followers, category, birthday, firstPostLike, firstPostComment, firstPostCaption, firstPostImg, firstPostLink, postImg) => {
+const getHtmlInfList = data => {
+    // 아직 카테고리에 대해 구현된 사항이 없어서 임의의 카테고리 지정
+    let category = ["IT", "패션"];
     let htmlCategoryList = go(
         category,
         map(a => html`
         <li>${a}</li>`),
         b => html`${b}`
     );
-    let htmlImgList;
-    if (postImg.length > 1) {
-        htmlImgList = go(
-            postImg,
-            a => {
-                let result;
-                for (let i = 1; i < a.length; i++) {
-                    result += html`
-                    <a href=${a[i].instagram_link}><img src=${a[i].media_url}></a>`
-                }
-                return result;
-            },
-            b => html`${b}`
-        );
-    }
-    let age = new Date().getFullYear() - parseInt(birthday.year) + 1;
+    let age = new Date().getFullYear() - parseInt(data.sns_info.instagram_user_birthday.year) + 1;
     return html`
-    <tr class="target" target="${id}">
-        <td class="inf_check">
-            <input type="checkbox" name="sale_chk" id="inf_click1" value="progress">
-            <label for="inf_click1"></label>
-        </td>
-        <td class="inf_img"><img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/instagram/instagram.png"></td>
-        <td class="inf_id">${id}</td>
-        <td class="inf_level">Master</td>
-        <td class="inf_follow">${followers}</td>
-        <td class="inf_category">
-            <ul>
-                ${htmlCategoryList}
-            </ul>
-        </td>
-        <td class="inf_ages" value=${age}>${matchAges(age)}</td>
-    </tr>
-    <tr class="click_hidden hidden" name="${id}">
-        <td>
-            <a href=${firstPostLink}><img src=${firstPostImg} alt="인스타그램 이미지"></a>
-            <div class="click_txt">
-                <strong class="like">좋아요 ${firstPostLike}개</strong>
-                <strong>댓글수 ${firstPostComment}개</strong>
-                <div class="click_main">
-                    <strong class="click_comment">${firstPostCaption}</strong>
-                </div>
-            </div>
-            <div class="click_img">
-                ${htmlImgList}
-            </div>
-        </td>
-    </tr>`
+        <tr class="target" target="${data.id}">
+            <td class="inf_check">
+                <input type="checkbox" name="sale_chk" id="inf_click1" value="progress">
+                <label for="inf_click1"></label>
+            </td>
+            <td class="inf_img"><img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/instagram/instagram.png"></td>
+            <td class="inf_id">${data.id}</td>
+            <td class="inf_level">Master</td>
+            <td class="inf_follow">${data.sns_info.instagram_followers}</td>
+            <td class="inf_category">
+                <ul>
+                    ${htmlCategoryList}
+                </ul>
+            </td>
+            <td class="inf_ages" value=${age}>${matchAges(age)}</td>
+        </tr>
+        <tr class="click_hidden hidden" name="${data.id}"></tr>
+    `
 }
 
 const matchAges = age => {

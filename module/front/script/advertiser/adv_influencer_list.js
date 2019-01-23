@@ -5,8 +5,20 @@
         clickTarget: $.on('click', '.target', ({currentTarget : ct}) => {
             let targetId = $.attr('target', ct);
             let target = $.find(`[name="${targetId}"]`, document);
-            if (target.classList[1] === "hidden") target.classList.remove("hidden");
-            else target.classList.add("hidden");
+            if (target.classList[1] !== "hidden") target.classList.add("hidden");
+            else if (target.innerHTML !== "") target.classList.remove("hidden");
+            else go(
+                {"id":targetId},
+                $.post('/api/advertiser/adv_influencer_list'),
+                a => {
+                    if (a.res !== "success to load media data") alert(a.res);
+                    else {
+                        $('.inf_follow', ct).innerText = a.followers;
+                        target.innerHTML = writeInstagramMediaHtml(a.media);
+                        target.classList.remove("hidden");
+                    }
+                }
+            )
         }),
 
         selectOptionSort: $.on('change', ({currentTarget : ct}) => {
@@ -17,7 +29,7 @@
                 return ({"target": a, "click_hidden": clickHidden});
             }));
             infList.sort((a, b) => $.find(`.${selectedOption}`, b.target).innerText - $.find(`.${selectedOption}`, a.target).innerText);
-            go(infList, infListWriteAtHtml);
+            go(infList, reloadInfListByInfArray);
         }),
 
         clickSearchFilter: $.on('click', ({delegateTarget : dt}) => {
@@ -42,7 +54,7 @@
     }
 
     const findSelectedOption = selecter => selecter.options[selecter.selectedIndex].value;
-    const infListWriteAtHtml = infListArray => {
+    const reloadInfListByInfArray = infListArray => {
         let infListHtml = $.find('#click_wrap', document);
         infListHtml.innerHTML = "";
         go(infListArray, map(a => {
@@ -50,7 +62,42 @@
             infListHtml.innerHTML += `<tr class="click_hidden hidden" name="${$.attr('target', a.target)}">${a.click_hidden.innerHTML}</div>`
         }));
     }
-    // const infHideAtHtml
+    
+    const writeInstagramMediaHtml = media => {
+        let firstMedia = media[0];
+        let RemainMediaList;
+        if (media.length > 1) {
+            RemainMediaList = go(
+                media,
+                a => {
+                    let result;
+                    for (let i = 1; i < a.length; i++) {
+                        result += html`
+                        <a href=${a[i].instagram_link}><img src=${a[i].media_url}></a>`
+                    }
+                    return result;
+                },
+                b => html`${b}`
+            );
+        }
+        return `
+        <td>
+            <a href=${firstMedia.permalink}><img src=${firstMedia.media_url} alt="인스타그램 이미지"></a>
+            <div class="click_txt">
+                <strong class="like">게시일 ${convertDateToMMDD(new Date(firstMedia.timestamp))}</strong>
+                <strong class="like">좋아요 ${firstMedia.like_count}개</strong>
+                <strong>댓글수 ${firstMedia.comments_count}개</strong>
+                <div class="click_main">
+                    <strong class="click_comment">${firstMedia.caption}</strong>
+                </div>
+            </div>
+            <div class="click_img">
+                ${RemainMediaList}
+            </div>
+        </td>`
+    }
+    const convertDateToMMDD = date => `${toString(date.getMonth()+1).padStart(2,'0')}-${toString(date.getDate()).padStart(2,'0')}`;
+
     global.AdvInfluencerList = {
         Do
     };
