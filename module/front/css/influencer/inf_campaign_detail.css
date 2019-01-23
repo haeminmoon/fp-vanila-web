@@ -91,3 +91,7 @@
     color: #fff;
     background-color: #627efe;
 }
+
+.hidden{
+    display: none;
+}

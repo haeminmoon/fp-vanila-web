@@ -4,7 +4,7 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
 
-    const [campaignItem] = await QUERY`SELECT * FROM campaign WHERE state = 'progress' AND id = ${req.query.id}`;
+    const [campaignItem] = await QUERY`SELECT * FROM campaign WHERE advertiser_state = 'progress' AND id = ${req.query.id}`;
 
     res.send(TMPL.layout.hnmf({
         css: `
@@ -144,7 +144,6 @@ app.post('/api/influencer/inf_campaign_apply', (req, res, next) => {
             b => QUERY`UPDATE campaign SET influencer_id = influencer_id || ${b.info} WHERE id = ${b.id}`,
             res.json
         ).catch(
-            tap(log),
             m => new Error(m),
             next
         )

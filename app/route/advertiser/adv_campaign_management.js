@@ -5,7 +5,7 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
 
     let campaignList = (!req.query.searchTerm) ?
         await QUERY`SELECT * FROM campaign WHERE advertiser_id = ${req.session.user.id} ORDER BY id DESC` :
-        await QUERY`SELECT * FROM campaign WHERE name Like ${searchTerm} AND advertiser_id = ${req.session.user.id} ORDER BY id DESC`;
+        await QUERY`SELECT * FROM campaign WHERE name LIKE ${searchTerm} AND advertiser_id = ${req.session.user.id} ORDER BY id DESC`;
 
     campaignList = go(
         campaignList,
@@ -63,7 +63,7 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
                         <div class="search_word">
                             <span>검색어</span>
                             <div class="search_inbox">
-                                <input type="text" name="search_txt" class="search_txt" placeholder="인플루언서 계정(아이디), 상품명, 검색어, 상품번호, 브랜드, 제조사, 상품 브랜드">
+                                <input type="text" name="search_txt" class="search_txt" placeholder="상품명 검색">
                                 <button type="button" class="search_icon"></button>
                             </div>
                         </div>
