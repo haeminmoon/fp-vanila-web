@@ -4,7 +4,7 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
     
-    const infList = await QUERY`SELECT id, sns_info FROM users WHERE auth = 'influencer' and sns_info is not null`;
+    const infList = await QUERY`SELECT id, info, sns_info FROM users WHERE auth = 'influencer' and sns_info is not null`;
 
     res.send(TMPL.layout.hnmf({
         css: `
@@ -48,10 +48,20 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                             </td>
                         </tr>
                         <tr>
+                            <th>성별</th>
+                            <td>
+                                <select title="성별" class="form" name="gender">
+                                    <option value="all">전체</option>
+                                    <option value="man">남성</option>
+                                    <option value="woman">여성</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
                             <th>연령대</th>
                             <td>
                                 <select title="연령대에서" class="form" name="ages_min">
-                                    <option value="0">전체</option>
+                                    <option value="0">0</option>
                                     <option value="10">10대</option>
                                     <option value="20">20대 초반</option>
                                     <option value="24">20대 중반</option>
@@ -75,13 +85,14 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                                 <select title="팔로우수에서" class="form" name="follower_min">
                                     <option value="0">0</option>
                                     <option value="10">10</option>
-                                    <option value="50">50</option>
+                                    <option value="100">100</option>
                                 </select>
                                 <em>~</em>
                                 <select title="팔로우수까지" class="form" name="follower_max">
                                     <option value="all">전체</option>
                                     <option value="10">10</option>
-                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="200">200</option>
                                 </select>
                                 <button class="terms_search_btn">검색</button>
                             </td>
@@ -106,7 +117,8 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                                 <th scope="col" class="inf_id">아이디</th>
                                 <th scope="col" class="inf_level">레벨</th>
                                 <th scope="col" class="inf_follow">총 팔로워수</th>
-                                <th scope="col" class="inf_category">카테고리</th>
+                                <th scope="col" class="inf_gender">성별</th>
+                                <th scope="col" class="inf_category">카테고리</th>                        
                                 <th scope="col" class="inf_category">연령대</th>
                             </tr>
                         </thead>
@@ -131,13 +143,17 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
 });
 
 app.post('/api/advertiser/adv_influencer_list', async (req, res) => {
+    // 클릭한 유저의 id를 받음
     let id = req.body.id;
+    // 해당 id의 instagram id 와 instagram access token 을 얻기위해 데이터베이스 조회
     let [userSnsInfo] = await QUERY`SELECT sns_info FROM users WHERE id = ${id}`;
     if (!userSnsInfo) res.json({"res":"fail to read database"});
     
+    // 얻은 id 와 access token 을 통해 facebook Graph api에 필요한 정보 요청
     let instagramMedia = await getInstagramMedia(userSnsInfo.sns_info.instagram_id, userSnsInfo.sns_info.instagram_access_token, 7).then(data => data);
     if (!instagramMedia) res.json({"res":"fail to get API return"});
 
+    // 데이터베이스의 데이터 갱신을 위해 갱신이 필요한 정보들을 api에서 받아온 정보로 업데이트
     userSnsInfo.sns_info.instagram_followers = instagramMedia.followers_count;
     userSnsInfo.sns_info.instagram_follows = instagramMedia.follows_count;
     userSnsInfo.sns_info.instagram_profile_img = instagramMedia.profile_picture_url;
@@ -154,17 +170,18 @@ app.post('/api/advertiser/adv_influencer_list', async (req, res) => {
         }
     )
     Object.assign(userSnsInfo.sns_info, { "instagram_media": instagramMedia.media.data }, { "instagram_comment_average": commentAverage }, { "instagram_like_average": likeAverage });
-    let [updateResult] = await QUERY`UPDATE users SET sns_info = ${JSON.stringify(userSnsInfo.sns_info)} WHERE id = ${id} RETURNING TRUE`;
-    if (!updateResult.bool) res.json({"res":"fail to update at database"});
 
-    go(
-        {
+    // 데이터베이스에 업데이트
+    let [updateResult] = await QUERY`UPDATE users SET sns_info = ${JSON.stringify(userSnsInfo.sns_info)} WHERE id = ${id} RETURNING TRUE`;
+    if (!updateResult || !updateResult.bool) res.json({"res":"fail to update at database"});
+    // 호출 결과와 필요한 데이터를 json형태로 응답
+    go( {
             "res" : "success to load media data",
             "media" : instagramMedia.media.data,
             "followers" : instagramMedia.followers_count
         },
         res.json
-    )
+    );
     
 })
 
@@ -185,7 +202,7 @@ const getHtmlInfList = data => {
         <li>${a}</li>`),
         b => html`${b}`
     );
-    let age = new Date().getFullYear() - parseInt(data.sns_info.instagram_user_birthday.year) + 1;
+    let age = new Date().getFullYear() - parseInt(JSON.parse(data.sns_info.instagram_user_birthday).year) + 1;
     return html`
         <tr class="target" target="${data.id}">
             <td class="inf_check">
@@ -196,6 +213,7 @@ const getHtmlInfList = data => {
             <td class="inf_id">${data.id}</td>
             <td class="inf_level">Master</td>
             <td class="inf_follow">${data.sns_info.instagram_followers}</td>
+            <td class="inf_gender" value="${data.info.gender}">${matchGender(data.info.gender)}</td>
             <td class="inf_category">
                 <ul>
                     ${htmlCategoryList}
@@ -206,7 +224,7 @@ const getHtmlInfList = data => {
         <tr class="click_hidden hidden" name="${data.id}"></tr>
     `
 }
-
+const matchGender = gender => (gender === "woman")? "여성" : "남성";
 const matchAges = age => {
     if (age < 20) return "10대";
     else if (age < 24) return "20대 초반";

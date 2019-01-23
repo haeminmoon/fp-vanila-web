@@ -35,6 +35,7 @@
         clickSearchFilter: $.on('click', ({delegateTarget : dt}) => {
             let selectFollowerMin = go($.find('[name="follower_min"]', dt), findSelectedOption);
             let selectFollowerMax = go($.find('[name="follower_max"]', dt), findSelectedOption);
+            let selectGender = go($.find('[name="gender"]', dt), findSelectedOption);
             let selectAgesMin = go($.find('[name="ages_min"]', dt), findSelectedOption);
             let selectAgesMax = go($.find('[name="ages_max"]', dt), findSelectedOption);
             if (selectFollowerMax === "all") selectFollowerMax = 10000000000;
@@ -46,7 +47,8 @@
             go(infList, map(a => {
                     let follower = parseInt($.find('.inf_follow', a).innerText);
                     let age = parseInt($.attr('value', $.find('.inf_ages', a)));
-                    if ((selectFollowerMin <= follower) && (follower < selectFollowerMax) && (selectAgesMin <= age) && (age < selectAgesMax)) a.classList.remove("hidden");
+                    let gender = $.attr('value', $.find('.inf_gender', a))
+                    if ((selectFollowerMin <= follower) && (follower < selectFollowerMax) && (selectAgesMin <= age) && (age < selectAgesMax) && ((selectGender === "all")? true : toString(selectGender) === toString(gender))) a.classList.remove("hidden");
                     else a.classList.add("hidden");
                 })
             );

@@ -207,7 +207,8 @@ caption{
 .inf_level{width: 140px;}
 .inf_follow{width: 140px;}
 .inf_ages{width: 140px;}
-.inf_category{width: 250px;}
+.inf_category{width: 210px;}
+.inf_gender{width: 100px;}
 .inf_check input[type="checkbox"]{
 	width: 20px;
 	height: 20px;
