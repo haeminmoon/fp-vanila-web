@@ -113,7 +113,6 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                 </div>
                 <div class="inf_list_make_wrap">
                     <h3>인플루언서 리스트</h3>
-                    <button type="button" class="make_btn">캠페인만들기</button>
                     <select title="정열 옵션" class="list_form select_sort_opt">
                         <option>정열 옵션</option>
                         <option value="inf_follow">팔로우 많은 순</option>
@@ -168,11 +167,11 @@ const getInstagramMedia = async (id, accessToken, limit) => {
 
 const infList = data => go(
     JSON.parse(data),
-    map(a => writeInfList(a.id, a.sns_info.instagram_followers, ['IT', '패션'], JSON.parse(a.sns_info.instagram_user_birthday), a.sns_info.instagram_media[0].like_count, a.sns_info.instagram_media[0].comments_count, a.sns_info.instagram_media[0].caption, a.sns_info.instagram_media[0].media_url, a.sns_info.instagram_media[0].permalink, go(a.sns_info.instagram_media, map(a => ({ "media_url": a.media_url, "instagram_link": a.permalink }))))),
+    map(a => writeInfListHtml(a.id, a.sns_info.instagram_followers, ['IT', '패션'], JSON.parse(a.sns_info.instagram_user_birthday), a.sns_info.instagram_media[0].like_count, a.sns_info.instagram_media[0].comments_count, a.sns_info.instagram_media[0].caption, a.sns_info.instagram_media[0].media_url, a.sns_info.instagram_media[0].permalink, go(a.sns_info.instagram_media, map(a => ({ "media_url": a.media_url, "instagram_link": a.permalink }))))),
     b => html`${b}`
 )
 
-const writeInfList = (id, followers, category, birthday, firstPostLike, firstPostComment, firstPostCaption, firstPostImg, firstPostLink, postImg) => {
+const writeInfListHtml = (id, followers, category, birthday, firstPostLike, firstPostComment, firstPostCaption, firstPostImg, firstPostLink, postImg) => {
     let htmlCategoryList = go(
         category,
         map(a => html`

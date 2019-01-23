@@ -282,3 +282,7 @@ caption{
 td{
 	cursor: pointer;
 }
+
+.hidden {
+	display: none;
+}

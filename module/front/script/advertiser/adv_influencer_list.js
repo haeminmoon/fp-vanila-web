@@ -12,8 +12,11 @@
         selectOptionSort: $.on('change', ({currentTarget : ct}) => {
             let selectedOption = findSelectedOption(ct);
             if (!selectedOption) return;
-            let infList = go($.all('.target', document), map(a => a));
-            infList.sort((a, b) => $.find(`.${selectedOption}`, b).innerText - $.find(`.${selectedOption}`, a).innerText);
+            let infList = go($.all('.target', document), map(a => {
+                let clickHidden = $.find(`[name="${$.attr('target', a)}"]`, document);
+                return ({"target": a, "click_hidden": clickHidden});
+            }));
+            infList.sort((a, b) => $.find(`.${selectedOption}`, b.target).innerText - $.find(`.${selectedOption}`, a.target).innerText);
             go(infList, infListWriteAtHtml);
         }),
 
@@ -42,7 +45,10 @@
     const infListWriteAtHtml = infListArray => {
         let infListHtml = $.find('#click_wrap', document);
         infListHtml.innerHTML = "";
-        go(infListArray, map(a => infListHtml.innerHTML += a.innerHTML));
+        go(infListArray, map(a => {
+            infListHtml.innerHTML += `<tr class="target" target="${$.attr('target', a.target)}">${a.target.innerHTML}</div>`;
+            infListHtml.innerHTML += `<tr class="click_hidden hidden" name="${$.attr('target', a.target)}">${a.click_hidden.innerHTML}</div>`
+        }));
     }
     // const infHideAtHtml
     global.AdvInfluencerList = {
