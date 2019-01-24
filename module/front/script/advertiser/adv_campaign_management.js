@@ -6,7 +6,9 @@
     const Route = {
         campaignDetail: $.on('click', el => go(
             {
-                id: el.target.parentNode.querySelector('.num').innerText
+                id: (el.target.nodeName === 'IMG' || el.target.nodeName === 'P') ?
+                    el.target.parentNode.parentNode.children[0].innerHTML :
+                    el.target.parentNode.children[0].innerHTML
             },
             a => location.href = `/advertiser/adv_campaign_detail?id=${a.id}`
         ))
@@ -23,9 +25,9 @@
             $('.camp_list').innerHTML = campaign_list;
 
             // state에 대한 리스트
-            campaign_state_w = filter(a => a.state === 'wait', campaignList);
-            campaign_state_p = filter(a => a.state === 'progress', campaignList);
-            campaign_state_c = filter(a => a.state === 'complete', campaignList);
+            campaign_state_w = filter(a => a.advertiser_state === 'wait', campaignList);
+            campaign_state_p = filter(a => a.advertiser_state === 'progress', campaignList);
+            campaign_state_c = filter(a => a.advertiser_state === 'complete', campaignList);
 
             $('.state_all').innerHTML = campaignList.length;
             $('.state_wait').innerHTML = campaign_state_w.length;

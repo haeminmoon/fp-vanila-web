@@ -55,11 +55,9 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
         script: `
             <script src="/front/script/common/signin.js"></script>
             <script src="/front/script/influencer/inf_signup_connect_instagram.js"></script>
-            <script src="/front/script/influencer/inf_my_info.js"></script>
             <script>
                 go('.instagram_profile_btn', $, InfSignupConnectInstagram.Do.sendInstagramProfile);
                 go('.instagram_profile_btn', $, InfSignupConnectInstagram.Do.sendInstagram);
-                go('.instagram_profile_btn', $, InfSignupConnectInstagram.Do.show);
                 go('.cancel', $, InfSignupConnectInstagram.Do.cancel);
 
                 /**

@@ -88,12 +88,25 @@
     color: #fff;
 }
 
-.confirm_content > input{
-    height: 30px;
-    padding: 10px;
+input[type="text"]{
+    width: 380px;
+    height: 35px;
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 1px solid ;
+    border-radius: 10px;
+    /* box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1); */
+    background-color: #fbfcff;
 }
+input:focus{
+    border: 1px solid #00aa87;
+}
+
 .sch_add_btn{
-    width: 70px;
-    height: 30px;
-    border: none;
+    width: 76px;
+    height: 40px;
+    margin-left: 10px;
+}
+.post_code{
+    width: 120px !important;
 }

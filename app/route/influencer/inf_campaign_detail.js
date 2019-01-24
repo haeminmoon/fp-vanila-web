@@ -1,7 +1,7 @@
 app.get('/influencer/inf_campaign_detail', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
-    const [campaignItem] = await QUERY`SELECT * FROM campaign WHERE state = 'progress' AND id = ${req.query.id}`;
+    const [campaignItem] = await QUERY`SELECT * FROM campaign WHERE advertiser_state IN ('progress','complete')  AND id = ${req.query.id}`;
 
     res.send(TMPL.layout.hnmf({
         css: `
@@ -37,6 +37,14 @@ app.get('/influencer/inf_campaign_detail', async (req, res) => {
                                 <li>
                                     <p>신청 기간</p>
                                     <p>${formatBackDate(campaignItem.apply_start_date)} ~ ${formatBackDate(campaignItem.apply_end_date)}</p>
+                                </li>
+                                <li>
+                                    <p>발표 일</p>
+                                    <p>${formatBackDate(campaignItem.notice_date)}</p>
+                                </li>
+                                <li>
+                                    <p>포스팅 기간</p>
+                                    <p>${formatBackDate(campaignItem.post_start_date)} ~ ${formatBackDate(campaignItem.post_end_date)}</p>
                                 </li>
                             </ul>
                         </div>
@@ -97,7 +105,7 @@ app.get('/influencer/inf_campaign_detail', async (req, res) => {
                         </div>
                     </div>
                     <div class="btn_wrap">
-                        <button type="button" class="submit_btn" campaign_id = ${campaignItem.id}>신청하기</button>
+                        <button type="button" class=${go(Object.keys(campaignItem.influencer_id), filter(id => id === user.id), a => a.length === 0) ? "submit_btn" : "hidden"} campaign_id = ${campaignItem.id}>신청하기</button>
                     </div>
                 </div>
             </div>
