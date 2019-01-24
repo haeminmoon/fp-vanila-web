@@ -34,9 +34,26 @@
             window.close();
         }),
 
+        sendInstagram: $.on('click', _ => {
+            $.find('.instagram_profile_img', window.opener.document).src = $.find('[name="instagram_profile_img"]', document).src;
+            $.find('.instagram_username', window.opener.document).innerText = $.find('[name="instagram_username"]', document).innerText;
+            $.find('.instagram_media_count', window.opener.document).innerText = $.find('[name="instagram_media_count"]', document).innerText;
+            $.find('.instagram_followers_count', window.opener.document).innerText = $.find('[name="instagram_followers_count"]', document).innerText;
+            $.find('.instagram_follows_count', window.opener.document).innerText = $.find('[name="instagram_follows_count"]', document).innerText;
+            $.find('[name="instagram_access_token"]', window.opener.document).innerText = $.find('[name="instagram_access_token"]', document).innerText;
+            $.find('[name="instagram_user_id"]', window.opener.document).innerText = $.find('[name="instagram_user_id"]', document).innerText;
+            $.find('[name="instagram_user_birthday"]', window.opener.document).innerText = $.find('[name="instagram_user_birthday"]', document).innerText;
+
+            window.close();
+        }),
+
+        show: $.on('click', _ => {
+            $.find('.sns_change_btn', window.opener.document).style.display = "block";
+        }),
+
         cancel: $.on('click', _ => window.close())
     }
-    
+
     global.InfSignupConnectInstagram = {
         Do
     };

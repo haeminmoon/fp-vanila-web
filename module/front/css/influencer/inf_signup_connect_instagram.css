@@ -42,8 +42,7 @@ body{background-color: #f5f8f8}
 	margin-left: 35px;
 }
 .profile_txt strong{
-	display: inline-block;
-	width: 33.33333%;
+	padding-right: 10px;
 }
 
 .profile_cor{

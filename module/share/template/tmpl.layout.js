@@ -94,6 +94,10 @@
                 </li>
             </ul>
         </div>
+        <div class="pop_content">
+            <div class="notification">
+            </div>
+        </div>
     `;
 
     TMPL.layout.advNav = userName => `

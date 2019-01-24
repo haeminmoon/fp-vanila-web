@@ -24,7 +24,7 @@
     width: 100%;
     margin: 10px 0;
     font-size: 1em;
-    color: #627efe;
+    color: #108a7a;
 }
 .inf_info{
     margin-bottom: 10px;
@@ -76,6 +76,24 @@
     height: 40px;
     border-radius: 30px;
     border: none;
+}
+.campaign_agree_btn:hover{
+    background-color: transparent;
+    color: #108a7a;
+    border: 2px solid #108a7a;
+    transition: all 0.3s ease;
+}
+.container button{
+    background-color: #9b9b9b;
     color: #fff;
-    background-color: #627efe;
+}
+
+.confirm_content > input{
+    height: 30px;
+    padding: 10px;
+}
+.sch_add_btn{
+    width: 70px;
+    height: 30px;
+    border: none;
 }

@@ -6,8 +6,8 @@ app.get('/influencer/inf_campaign_management', async (req, res) => {
         css: `
             <link rel="stylesheet" href="/front/css/influencer/inf_campaign_management.css" />
         `,
-        header: TMPL.layout.infHeader(user.info.name),
-        nav: TMPL.layout.infNav(user.info.name),
+        header: TMPL.layout.infHeader(user.info.nickname),
+        nav: TMPL.layout.infNav(user.info.nickname),
         main: `
             <div id="main">
                 <div class="container">

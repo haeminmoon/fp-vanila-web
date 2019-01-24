@@ -33,8 +33,7 @@
                 name: go(dt, $.find('[name="name"]'), $.trim),
                 nickname: go(dt, $.find('[name="nickname"]'), $.trim),
                 birth: go(dt, $.find('[name="birth"]'), $.trim),
-                // phone_num: go(dt, $.find('[name="phone_num"]'), $.trim),
-                gender: go(dt, $.findAll('[name="gender"]'), filter(a => a.checked === true), first, $.val)
+                // phone_num: go(dt, $.find('[name="phone_num"]'), $.trim)
             },
             tap(log),
             a => {
@@ -44,6 +43,30 @@
                 }
             }
         )),
+
+        openSnsPop: $.on('click', _ => {
+            if (confirm('인스타그램 연동을 해제하시겠습니까?') === true) {
+                $.openPopup('/influencer/inf_signup_connect_instagram', "connect_instagram", "width=500, height=353, menubar=no, status=no, toolbar=no")
+            }
+        }),
+
+        snsAccount: $.on('click', '.sns_change_btn', ({ delegateTarget: dt }) => go(
+            {
+                instagram_profile_img: go(dt, $.find('.instagram_profile_img'), a => a.src),
+                instagram_username: go(dt, $.find('.instagram_username'), a => a.innerText),
+                instagram_media_count: go(dt, $.find('.instagram_media_count'), a => a.innerText),
+                instagram_followers: go(dt, $.find('.instagram_followers_count'), a => a.innerText, b => b.replace(/[^0-9]/g, "")),
+                instagram_follows: go(dt, $.find('.instagram_follows_count'), a => a.innerText, b => b.replace(/[^0-9]/g, "")),
+                instagram_id: go(dt, $.find('[name="instagram_user_id"]'), $.trim),
+                instagram_access_token: go(dt, $.find('[name="instagram_access_token"]'), $.trim),
+                instagram_user_birthday: go(dt, $.find('[name="instagram_user_birthday"]'), a => a.innerText)
+            },
+            tap(log),
+            $.put('/api/inf_my_info/sns_account_info'),
+            tap(log),
+            _ => alert('연동 계정이 변경되었습니다.'),
+        )),
+
     };
 
     const validate = {

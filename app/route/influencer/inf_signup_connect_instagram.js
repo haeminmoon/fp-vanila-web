@@ -34,9 +34,9 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                             <div class="profile_txt">
                                 <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/instagram/instagram_color.png" alt="인스타그램 로고">
                                 <span class="username" name="instagram_username"></span>
-                                <strong class="media_count" name="instagram_media_count"></strong>
-                                <strong class="followers_count" name="instagram_followers_count"></strong>
-                                <strong class="follows_count" name="instagram_follows_count"></strong>
+                                <span>게시물<strong class="media_count" name="instagram_media_count"></strong></span>
+                                <span>팔로워<strong class="followers_count" name="instagram_followers_count"></strong></span>
+                                <span>팔로우<strong class="follows_count" name="instagram_follows_count"></strong></span>
                                 <input type="hidden" name="instagram_access_token">
                                 <input type="hidden" name="instagram_user_id">
                                 <input type="hidden" name="instagram_user_birthday">
@@ -55,14 +55,17 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
         script: `
             <script src="/front/script/common/signin.js"></script>
             <script src="/front/script/influencer/inf_signup_connect_instagram.js"></script>
+            <script src="/front/script/influencer/inf_my_info.js"></script>
             <script>
                 go('.instagram_profile_btn', $, InfSignupConnectInstagram.Do.sendInstagramProfile);
+                go('.instagram_profile_btn', $, InfSignupConnectInstagram.Do.sendInstagram);
+                go('.instagram_profile_btn', $, InfSignupConnectInstagram.Do.show);
                 go('.cancel', $, InfSignupConnectInstagram.Do.cancel);
 
                 /**
                  * TO-DO 
                  * Front script로 이관
-                 * sync 방식으로 Page rendering
+                 * sync 방식으로 Page renderingx
                  * Graph API - npm 모듈 존재하는지 확인
                  */
                 InfSignupConnectInstagram.Do.init();
@@ -87,9 +90,9 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                             log(userBirthday);
                             $.find('[name="instagram_profile_img"]', document).src = instagramProfile.profile_picture_url;
                             $.find('[name="instagram_username"]', document).innerText = instagramProfile.username;
-                            $.find('[name="instagram_media_count"]', document).innerText = "게시물 "+instagramProfile.media_count;
-                            $.find('[name="instagram_followers_count"]', document).innerText = "팔로워 "+instagramProfile.followers_count;
-                            $.find('[name="instagram_follows_count"]', document).innerText = "팔로우 "+instagramProfile.follows_count;
+                            $.find('[name="instagram_media_count"]', document).innerText = instagramProfile.media_count;
+                            $.find('[name="instagram_followers_count"]', document).innerText = instagramProfile.followers_count;
+                            $.find('[name="instagram_follows_count"]', document).innerText = instagramProfile.follows_count;
                             $.find('[name="instagram_access_token"]', document).innerText = longTermToken;
                             $.find('[name="instagram_user_id"]', document).innerText = instagramProfile.id;
                             $.find('[name="instagram_user_birthday"]', document).innerText = JSON.stringify(userBirthday);
