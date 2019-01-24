@@ -113,7 +113,7 @@ const writeInfListHtml = (profile_url, userName, snsName, followers, phoneNum, m
     <tr class="target" target="${userName}">
         <td class="inf_check">
             <input type="checkbox" name="inf_chk" id="${userName}" value="${userName}" status="${status}">
-            <label for="${userName}">${convertCheckBoxText(status)}</label>
+            <label for="${userName}"></label>
         </td>
         <td class="infu_name">
             <img src=${profile_url} class = "profile_img" alt="인플루언서 프로필"/>
@@ -143,7 +143,6 @@ const writeInfListHtml = (profile_url, userName, snsName, followers, phoneNum, m
 
 const convertStatus = status => toString(status) === "true"? "선정" : "미선정";
 const convertStatusBox = status => toString(status) === "true"? "check2" : "check1";
-const convertCheckBoxText = status => toString(status) === "true"? "제외" : "선택";
 const countSelectedInf = infList => {
     let count = 0;
     for (const key in infList) if (infList[key].selected === "true") count += 1;

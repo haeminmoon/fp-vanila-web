@@ -58,16 +58,6 @@
 	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/arrow_color.png)no-repeat;
 	background-size: 8px;
 }
-.inf_check{width:80px;}
-.infu_name{width:180px}
-.column{width:150px;}
-.date_camp{width:250px;}
-.hidden {display: none;}
-.column_phone{width: 230px;}
-.profile_img{
-	height: 50px;
-	width: 50px;
-}
 
 .list_wrap{position: relative;}
 .list_top{
@@ -103,7 +93,7 @@
     color: #6b6c74;
 }
 .inf_check{
-	width: 120px;
+	width: 80px;
 	padding-left: 20px;
 }
 .infu_name{width:300px}
@@ -157,4 +147,7 @@
 	color: #666;
 	font-weight: 100;
 	font-weight: 300;
+}
+.hidden{
+	display: none;
 }
