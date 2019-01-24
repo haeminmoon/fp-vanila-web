@@ -31,12 +31,20 @@
 .info_wrap p{
 	color: #666666;
 }
-.modify, .invite{
+.modify{
 	position: relative;
 	left: 13px;
 	font-size: 14px;
 	color: #ff7800;
 	font-weight: bold;
+}
+.submit{
+	display: inline-block;
+	text-align: center;
+	border: 2px solid #ff7800;
+	color: #ff7800;
+	border-radius: 20px;
+	width: 100px;
 }
 .modify:after{
 	position: absolute;
@@ -59,4 +67,94 @@
 .profile_img{
 	height: 50px;
 	width: 50px;
+}
+
+.list_wrap{position: relative;}
+.list_top{
+	position: absolute;
+	top: -40px;
+}
+.submit{
+	position: absolute;
+	left: 370px;
+	top: -3px;
+	width: 80px;
+	height:30px;
+	background: none;
+	border: none;
+}
+.submit:after{
+	position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    content: '';
+    width: 10px;
+    height: 15px;
+    background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/arrow_color.png)no-repeat;
+    background-size: 8px;
+}
+.list_top > div > p, .list_top > div > span, .list_top  em{
+	display: inline-block;
+	font-size: 17px;
+    line-height: 25px;
+    font-weight: 600;
+    color: #6b6c74;
+}
+.inf_check{
+	width: 120px;
+	padding-left: 20px;
+}
+.infu_name{width:300px}
+.column{width: 150px}
+.column_phone{width: 180px}
+.camp_state{width: 70px}
+.target_down{
+	position: relative;
+	top: 100px;
+	height: 100px;
+}
+.memo_wrap p{
+	position: absolute;
+	width: 60px;
+	height: 50px;
+	left: 60px;
+	top: 14px;
+	border-right: 1px solid #ddd;
+	font-size: 15px;
+	line-height: 50px;
+	color: #666;
+}
+.memo{
+	position: absolute;
+	top: 10px;
+	left: 150px;
+	width: 260px;
+	height: 60px;
+	overflow: hidden;
+	font-weight: 300;
+}
+
+.address_wrap p{
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	left: 350px;
+	top: 14px;
+	border-right: 1px solid #ddd;
+	font-size: 15px;
+	line-height: 50px;
+	color: #666;
+}
+.address{
+	position: absolute;
+	top: 10px;
+	left: 425px;
+	width: 260px;
+	height: 60px;
+	overflow: hidden;
+	color: #666;
+	font-weight: 100;
+	font-weight: 300;
 }

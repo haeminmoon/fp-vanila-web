@@ -168,7 +168,7 @@ tbody tr{
 	width: 100%;
 	cursor: pointer;
 }
-.tr_on{
+.target{
 	background-color: #f0f3ff;
 }
 tbody tr *{

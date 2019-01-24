@@ -10,7 +10,8 @@
                 name: go(dt, $.find('.name'), $.html),
                 post_code: go(dt, $.find('[name="post_code"]'), $.trim),
                 address: go(dt, $.find('[name="address"]'), $.trim),
-                followers: go(dt, $.find('.user_id'), $.attr('followers'))
+                followers: go(dt, $.find('.user_id'), $.attr('followers')),
+                selected: false
             },
             pipeT(
                 a => {

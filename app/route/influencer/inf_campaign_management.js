@@ -88,7 +88,7 @@ app.get('/influencer/inf_campaign_management', async (req, res) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="tr_on">
+                                <tr class="target">
                                     <td class="num">1</td>
                                     <td class="product_name">
                                         <img src="https://usercontents-c.styleshare.kr/images/i5b9730bf91673/700x700" alt="캠페인 이미지"/>
