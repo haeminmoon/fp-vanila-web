@@ -101,53 +101,7 @@ app.get('/influencer/inf_campaign_management', async (req, res) => {
                                     <th scope="col" class="camp_state ud">상태</th>
                                 </tr>
                             </thead>
-<<<<<<< HEAD
-                            <tbody>
-                                <tr class="target">
-                                    <td class="num">1</td>
-                                    <td class="product_name">
-                                        <img src="https://usercontents-c.styleshare.kr/images/i5b9730bf91673/700x700" alt="캠페인 이미지"/>
-                                        <p>아페리레 데이드림 커버 A쿠션</p>
-                                    </td>
-                                    <td class="sale_term">2018-12-12 ~ 2019-01-01</td>
-                                    <td class="sale_site">우먼스톡</td>
-                                    <td class="inf">포니</td>
-                                    <td class="start_date">2018-12-12 10:00:00</td>
-                                    <td class="camp_state">
-                                        <span class="proceeding">진행중</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="num">2</td>
-                                    <td class="product_name">
-                                        <img src="http://yd-donga.com/data/file/intern/3531283330_KJlSIR6H_f42cfa3ea285b452f163197079528545bc9d9742.jpg" alt="캠페인 이미지"/>
-                                        <p>신라호텔 뷔페 2인</p>
-                                    </td>
-                                    <td class="sale_term">2018-12-12 ~ 2019-01-01</td>
-                                    <td class="sale_site">우먼스톡</td>
-                                    <td class="inf">10명</td>
-                                    <td class="start_date">2018-12-12 10:00:00</td>
-                                    <td class="camp_state">
-                                        <span class="waiting">대기중</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="num">3</td>
-                                    <td class="product_name">
-                                        <img src="http://image.auction.co.kr/itemimage/14/4e/f5/144ef5b811.jpg" alt="캠페인 이미지"/>
-                                        <p>[무료배송]헤라 블랙 쿠션</p>
-                                    </td>
-                                    <td class="sale_term">2018-12-12 ~ 2019-01-01</td>
-                                    <td class="sale_site">우먼스톡</td>
-                                    <td class="inf">409명</td>
-                                    <td class="start_date">2018-12-12 10:00:00</td>
-                                    <td class="camp_state">
-                                        <span class="complete">완료</span>
-                                    </td>
-                                </tr>
-=======
                             <tbody class="camp_list">
->>>>>>> 2f33dbc18725189c7651e9c0d2db97e2b40889ee
                             </tbody>
                         </table>
                     </div>

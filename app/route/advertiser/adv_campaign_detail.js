@@ -118,7 +118,7 @@ const writeInfListHtml = (profile_url, userName, snsName, followers, phoneNum, m
         <td class="infu_name">
             <img src=${profile_url} class = "profile_img" alt="인플루언서 프로필"/>
             <p>${userName}</p>
-            <p>sns ${snsName}</p>
+            <p>${snsName}</p>
         </td>
         <td class="column">${followers}</td>
         <td class="column_phone">${phoneNum}</td>

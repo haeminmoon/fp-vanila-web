@@ -11,11 +11,8 @@
                 post_code: go(dt, $.find('[name="post_code"]'), $.trim),
                 address: go(dt, $.find('[name="address"]'), $.trim),
                 followers: go(dt, $.find('.user_id'), $.attr('followers')),
-<<<<<<< HEAD
-                selected: false
-=======
+                selected: 'false',
                 state: 'apply_complete'
->>>>>>> 2f33dbc18725189c7651e9c0d2db97e2b40889ee
             },
             pipeT(
                 a => {
