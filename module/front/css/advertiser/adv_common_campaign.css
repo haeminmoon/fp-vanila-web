@@ -56,7 +56,7 @@ h2{
 }
 .container h2{
 	position: absolute;
-	top: -40px;
+	top: -35px;
 }
 /*캠페인 등록 공통사항 ====> 끝*/
 
@@ -117,14 +117,31 @@ thead .ud:after{
 	height: 24px;
 	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/btn-list-filter/btn-list-filter.png)no-repeat;
 }
+thead .up:after{
+	content: '';
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/btn-list-filter/btn-list-filter.png)no-repeat;
+}
+thead .down:after{
+	content: '';
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/btn-list-filter/btn-list-filter.png)no-repeat;
+}
 .infu_name p{
 	padding-left: 40px;
 }
 .infu_name img{
 	position: absolute;
-	top: 25px;
+	width: 35px; height: 35px;
+	object-fit: cover;
+	border-radius: 50%;
+	/* top: 25px;
 	width: 35px;
-	height: 35px;
+	height: 35px; */
 }
 .campaign_name p{
 	padding-left: 40px;
