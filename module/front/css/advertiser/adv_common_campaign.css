@@ -146,6 +146,10 @@ thead .ud:after{
 	width: 50px;
 	text-align: center;
 }
+.check0{
+	border: 2px solid #FF9614;
+	color: #FF9614;
+}
 .check1{
 	border: 2px solid #627efe;
 	color: #627efe;

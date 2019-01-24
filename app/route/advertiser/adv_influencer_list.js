@@ -17,7 +17,7 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
             <div class="container">
                 <div class="breadcrumbs">
                     <a>홈</a>
-                    <span>캠페인 리스트</span>
+                    <a href="/advertiser/adv_influencer_list">인플런서 리스트</a>
                 </div>
                 <div class="terms_wrap">
                     <button type="button" class="terms_clear_btn">조건 초기화</button>
