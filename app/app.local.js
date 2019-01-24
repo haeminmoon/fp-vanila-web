@@ -41,6 +41,7 @@
     const session = require('express-session');
     const bodyParser = require('body-parser');
     const cookieParser = require('cookie-parser');
+    const scheduler = require('./schedule/scheduler');
 
     app.use(compress());
     app.use(bodyParser.json({ limit: '10mb' }));
@@ -83,7 +84,7 @@
     });
 
     require('./route');
-
+    scheduler();
     /**
      * Error handling middle ware
      */
