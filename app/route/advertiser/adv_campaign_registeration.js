@@ -18,7 +18,7 @@ app.get('/advertiser/adv_campaign_registration', async (req, res) => {
             <div id="main">
                 <div class="container">
                     <div class="breadcrumbs">
-                        <a href="/">홈</a>
+                        <a>홈</a>
                         <a href="/advertiser/adv_campaign_registeration">캠페인 등록</a>
                     </div>
                     <div class="camp_wrap">
@@ -162,7 +162,8 @@ app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
         name: camp_name,
         sns_type: sns_type,
         category: category,
-        state: 'wait', //wait, progress, complete
+        state: 'wait', //wait, progress, complete,
+        advertiser_state: 'wait',
         info: info,
         created_at: new Date(),
         apply_start_date: apply_due_date[0],

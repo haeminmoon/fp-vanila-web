@@ -38,6 +38,14 @@ app.get('/influencer/inf_campaign_detail', async (req, res) => {
                                     <p>신청 기간</p>
                                     <p>${formatBackDate(campaignItem.apply_start_date)} ~ ${formatBackDate(campaignItem.apply_end_date)}</p>
                                 </li>
+                                <li>
+                                    <p>발표 일</p>
+                                    <p>${formatBackDate(campaignItem.notice_date)}</p>
+                                </li>
+                                <li>
+                                    <p>포스팅 기간</p>
+                                    <p>${formatBackDate(campaignItem.post_start_date)} ~ ${formatBackDate(campaignItem.post_end_date)}</p>
+                                </li>
                             </ul>
                         </div>
                     </div>

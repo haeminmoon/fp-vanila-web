@@ -26,7 +26,7 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
             <div id="main">
                 <div class="container">
                     <div class="breadcrumbs">
-                        <a href="/">홈</a>
+                        <a>홈</a>
                         <a href="/advertiser/adv_campaign_management">캠페인 리스트</a>
                     </div>
                     <div class="state_wrap">

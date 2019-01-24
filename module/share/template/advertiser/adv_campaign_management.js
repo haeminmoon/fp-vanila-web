@@ -6,7 +6,7 @@
             <tr>
                 <td class="num">${item.id}</td>
                 <td class="campaign_name">
-                    <img src="${item.img}" alt="대표 이미지"/>
+                    <img src="${item.img}?${new Date()}" alt="대표 이미지"/>
                     <p>${item.name}</p>
                 </td>
                 <td class="apply_term">${formatFrontDate(item.apply_start_date)} ~ ${formatFrontDate(item.apply_end_date)}</td>

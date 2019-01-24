@@ -53,9 +53,10 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
                             배송지 주소
                         </h2>
                         <div class="confirm_content">
-                            <input type="text" name="post_code" class="post_code" id="post_code">
+                            <input type="text" name="post_code" class="post_code" id="post_code" placeholder="우편번호">
                             <button type="button" class="sch_add_btn">주소검색</button>
-                            <input type="text" name="address" class="address">
+                            <br>
+                            <input type="text" name="address" class="address" placeholder="주소를 입력해주세요.">
                         </div>
                     </div>
 

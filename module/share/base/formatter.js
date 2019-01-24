@@ -22,20 +22,16 @@
     };
 
     const formatStateClass = (state) => {
-        let stateClass;
-        switch(state){
-            case 'apply_complete':
-                stateClass = 'check0';
-                break;
-            case 'wait' && 'notice_waiting':
-                stateClass = 'check1';
-                break;
-            case 'progress' && 'posting_progress':
-                stateClass = 'check2';
-                break;
-            case 'complete' && 'complete':
-                stateClass = 'check3';
-                break;
+        let stateClass = '';
+
+        if (state === 'apply_complete') {
+            stateClass = 'check0';
+        } else if (state === 'wait' || state === 'notice_waiting') {
+            stateClass = 'check1';
+        } else if (state === 'progress' || state === 'posting_progress') {
+            stateClass = 'check2';
+        } else if (state === 'complete') {
+            stateClass = 'check3';
         }
         return stateClass;
     };

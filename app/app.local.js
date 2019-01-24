@@ -84,7 +84,7 @@
     });
 
     require('./route');
-    scheduler();
+    //scheduler();
     /**
      * Error handling middle ware
      */
