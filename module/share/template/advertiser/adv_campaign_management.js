@@ -9,11 +9,11 @@
                     <img src="${item.img}?${new Date()}" alt="대표 이미지"/>
                     <p>${item.name}</p>
                 </td>
-                <td class="apply_term">${formatFrontDate(item.post_start_date)} ~ ${formatFrontDate(item.post_end_date)}</td>
+                <td class="apply_term">${formatFrontDate(item.apply_start_date)} ~ ${formatFrontDate(item.apply_end_date)}</td>
                 <td class="inf" style="text-align: center;">${item.count} 명</td>
                 <td class="start_date">${formatFrontDate(item.created_at)}</td>
                 <td class="camp_state">
-                    <span class=${formatStateClass(item.state)}>${formatState(item.state)}</span>
+                    <span class=${formatStateClass(item.advertiser_state)}>${formatState(item.advertiser_state)}</span>
                 </td>
             </tr>
         `),

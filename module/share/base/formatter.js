@@ -1,7 +1,10 @@
 !function(global){
 
     const formatFrontDate = (date) => {
-        return date.split('T')[0]
+        const dateFormat = new Date(date);
+        return dateFormat.getFullYear() + '-' +
+            toString(dateFormat.getMonth()+1).padStart(2, "0") + '-'+
+            toString(dateFormat.getDate()).padStart(2, "0")
     };
 
     const formatBackDate = (date) => {
@@ -19,17 +22,16 @@
     };
 
     const formatStateClass = (state) => {
-        let stateClass;
-        switch(state){
-            case 'wait':
-                stateClass = 'check1';
-                break;
-            case 'progress':
-                stateClass = 'check2';
-                break;
-            case 'complete':
-                stateClass = 'check3';
-                break;
+        let stateClass = '';
+
+        if (state === 'apply_complete') {
+            stateClass = 'check0';
+        } else if (state === 'wait' || state === 'notice_waiting') {
+            stateClass = 'check1';
+        } else if (state === 'progress' || state === 'posting_progress') {
+            stateClass = 'check2';
+        } else if (state === 'complete') {
+            stateClass = 'check3';
         }
         return stateClass;
     };
@@ -46,6 +48,16 @@
             case 'complete':
                 stateKo = '완료';
                 break;
+            case 'apply_complete':
+                stateKo = '신청완료';
+                break;
+            case 'notice_waiting':
+                stateKo = '발표 대기중';
+                break;
+            case 'posting_progress':
+                stateKo = '홍보 진행중';
+                break;
+
         }
         return stateKo;
     };

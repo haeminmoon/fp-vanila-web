@@ -136,9 +136,12 @@ thead .down:after{
 }
 .infu_name img{
 	position: absolute;
-	top: 25px;
+	width: 35px; height: 35px;
+	object-fit: cover;
+	border-radius: 50%;
+	/* top: 25px;
 	width: 35px;
-	height: 35px;
+	height: 35px; */
 }
 .campaign_name p{
 	padding-left: 40px;
@@ -159,6 +162,10 @@ thead .down:after{
 	padding: 5px 0;
 	width: 50px;
 	text-align: center;
+}
+.check0{
+	border: 2px solid #FF9614;
+	color: #FF9614;
 }
 .check1{
 	border: 2px solid #627efe;

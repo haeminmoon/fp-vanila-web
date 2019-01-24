@@ -4,7 +4,7 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
 
-    const [campaignItem] = await QUERY`SELECT * FROM campaign WHERE state = 'progress' AND id = ${req.query.id}`;
+    const [campaignItem] = await QUERY`SELECT * FROM campaign WHERE advertiser_state = 'progress' AND id = ${req.query.id}`;
 
     res.send(TMPL.layout.hnmf({
         css: `
@@ -53,9 +53,10 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
                             배송지 주소
                         </h2>
                         <div class="confirm_content">
-                            <input type="text" name="post_code" class="post_code" id="post_code">
+                            <input type="text" name="post_code" class="post_code" id="post_code" placeholder="우편번호">
                             <button type="button" class="sch_add_btn">주소검색</button>
-                            <input type="text" name="address" class="address">
+                            <br>
+                            <input type="text" name="address" class="address" placeholder="주소를 입력해주세요.">
                         </div>
                     </div>
 
@@ -144,7 +145,6 @@ app.post('/api/influencer/inf_campaign_apply', (req, res, next) => {
             b => QUERY`UPDATE campaign SET influencer_id = influencer_id || ${b.info} WHERE id = ${b.id}`,
             res.json
         ).catch(
-            tap(log),
             m => new Error(m),
             next
         )

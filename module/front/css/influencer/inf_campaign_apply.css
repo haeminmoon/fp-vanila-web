@@ -77,5 +77,40 @@
     border-radius: 30px;
     border: none;
     color: #fff;
-    background-color: #627efe;
+    background-color: #00aa87;
+}
+
+.campaign_agree_btn:hover{
+    color: #00aa87;
+    background-color: #fff;
+}
+
+input[type="text"]{
+    width: 380px;
+    height: 35px;
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 1px solid ;
+    border-radius: 10px;
+    /* box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1); */
+    background-color: #fbfcff;
+}
+input:focus{
+    border: 1px solid #00aa87;
+}
+button{
+    text-align: center;
+    color: #fff;
+    border:none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #00aa87;
+}
+.sch_add_btn{
+    width: 76px;
+    height: 40px;
+    margin-left: 10px;
+}
+.post_code{
+    width: 120px !important;
 }
