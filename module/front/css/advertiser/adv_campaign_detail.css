@@ -31,7 +31,7 @@
 .info_wrap p{
 	color: #666666;
 }
-.modify{
+.modify, .invite{
 	position: relative;
 	left: 13px;
 	font-size: 14px;
@@ -50,8 +50,13 @@
 	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/arrow_color.png)no-repeat;
 	background-size: 8px;
 }
-.num{width:80px;}
+.inf_check{width:80px;}
 .infu_name{width:180px}
-.price{width:150px;}
+.column{width:150px;}
 .date_camp{width:250px;}
 .hidden {display: none;}
+.column_phone{width: 230px;}
+.profile_img{
+	height: 50px;
+	width: 50px;
+}
