@@ -37,6 +37,11 @@ app.get('/common/find_user', (req, res) => {
                             </div>
                             <button type="button" class="pw_find_btn">비밀번호 찾기</button>
                         </div>
+                        <div class="result_wrap hidden">
+                            <h4>결과 조회</h4>
+                            <p class="result_des"></p>
+                            <p class="result"></p>
+                        </div>
                     </div>
                 </div>
             </div>

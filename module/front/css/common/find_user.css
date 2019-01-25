@@ -45,6 +45,20 @@ body{
     border: 3px  blue;
 }
 .wrap:after{content: ''; display: block; clear: both;}
+.wrap > .result_wrap{
+    margin-top: 20px;
+    width: 820px;
+    height: 200px;
+}
+.wrap > .result_wrap > p{
+     text-align: center;
+     margin-top: 30px;
+ }
+.wrap > .result_wrap > .result{
+    margin-top: 20px;
+    font-size: 20px;
+    color: #00aa87;
+}
 .wrap > div{
     position: relative;
     width: 400px;
@@ -66,6 +80,7 @@ h2{
     text-align: center;
     margin-bottom: 10px;
 }
+
 label{
     display: block;
     text-align: left;
@@ -90,4 +105,7 @@ button{
     background-color: #00aa87;
     border: none;
     margin-top: 10px;
+}
+.hidden{
+    display: none;
 }
