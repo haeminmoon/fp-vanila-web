@@ -44,7 +44,7 @@
                     };
                 },
                 $.post('/api/influencer/inf_signup'),
-                a => location.href = `/influencer/inf_signup_complete?name=${a.info.name}&created_at=${a.created_at}`
+                a => location.href = `/influencer/inf_signup_complete?name=${a.info.nickname}&created_at=${a.created_at}`
             ).catch(
                 a => match(a)
                     .case(a => a === 'No content')
