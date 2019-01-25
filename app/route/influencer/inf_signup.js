@@ -1,7 +1,7 @@
 // const {config, Group} = require('coolsms-sdk-v4');
 
 const getHash = require('../../../module/back/util/encryption');
-const {getRandomInt6} = require('../../../module/back/util/getRandomInt');
+const getRandomInt6 = require('../../../module/back/util/getRandomInt');
 // const coolsms = require('../../../config/coolsms');
 
 app.get('/influencer/inf_signup', (req, res) => {
@@ -92,9 +92,9 @@ app.get('/influencer/inf_signup', (req, res) => {
                                     <div class="profile_txt">
                                         <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/instagram/instagram_color.png" alt="인스타그램 로고">
                                         <span class="username" name="instagram_username"></span>
-                                        <strong class="media_count" name="instagram_media_count"></strong>
-                                        <strong class="followers_count" name="instagram_followers_count"></strong>
-                                        <strong class="follows_count" name="instagram_follows_count"></strong>
+                                        <span>게시물<strong class="media_count" name="instagram_media_count"></strong></span>
+                                        <span>팔로워<strong class="followers_count" name="instagram_followers_count"></strong></span>
+                                        <span>팔로우<strong class="follows_count" name="instagram_follows_count"></strong></span>
                                         <input type="hidden" name="instagram_access_token" class="instagram_access_token">
                                         <input type="hidden" name="instagram_user_id" class="instagram_user_id">
                                         <input type="hidden" name="instagram_user_birthday" class="instagram_user_birthday">    

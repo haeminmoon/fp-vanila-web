@@ -30,10 +30,13 @@
 	background-size: 8px;
 	opacity: 0.2;
 }
-.breadcrumbs span{
+.breadcrumbs a:last-child{
 	color: #222;
 	font-size: 13px;
 	font-weight: bold;
+}
+.breadcrumbs a:last-child:after{
+	content: none;
 }
 
 h3{
@@ -116,8 +119,6 @@ h3{
 .sns td{
 	color: #b4b5bb;
 }
-
-
 
 
 /*  제발  */
