@@ -191,7 +191,7 @@ caption{
 .inf_list_make tbody tr *{
 	color: #666666;
 }
-.inf_list_make tbody tr.tr_on:after{
+.inf_list_make tbody tr.target:after{
 	content: '';
 	position: absolute;
 	left: 0;
