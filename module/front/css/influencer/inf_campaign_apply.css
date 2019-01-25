@@ -84,6 +84,7 @@
     transition: all 0.3s ease;
 }
 .container button{
+    border: none;
     background-color: #9b9b9b;
     color: #fff;
 }

@@ -45,7 +45,7 @@
         )),
 
         openSnsPop: $.on('click', _ => {
-            if (confirm('인스타그램 연동을 해제하시겠습니까?') === true) {
+            if (confirm('인스타그램 연동 정보를 변경하시겠습니까?') === true) {
                 $.openPopup('/influencer/inf_signup_connect_instagram', "connect_instagram", "width=500, height=353, menubar=no, status=no, toolbar=no")
             }
         }),
