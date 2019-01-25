@@ -56,7 +56,7 @@ app.post('/api/common/find_user/id', (req, res, next) => {
     go(
         req.body,
         pipeT(
-            a => QUERY`SELECT * FROM users WHERE info ->> 'name' = ${a.name} OR info ->> 'brand_name' = ${a.name} AND info --> 'phone_num' = ${a.phone_num}`,
+            a => QUERY`SELECT * FROM users WHERE info ->> 'name' = ${a.name} OR  info ->> 'brand_name' = ${a.name} AND info ->> 'phone_num' = ${a.phone_num}`,
             b => {
                 if (b.length === 0) {
                     throw 'the id does not exist';

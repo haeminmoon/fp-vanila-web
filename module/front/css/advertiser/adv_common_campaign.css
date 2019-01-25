@@ -176,12 +176,17 @@ thead .down:after{
 	color: #00dbbf;
 }
 .check3{
-	border: 2px solid #ccc;
-	color: #ccc;
+	 border: 2px solid #ccc;
+	 color: #ccc;
+ }
+
+.check4{
+	border: 2px solid #0000ff;
+	color: #0000ff;
 }
-.camp_state .check4{
-	width: 60px;
-	border: 2px solid #999;
-	color: #999;
+
+.check5{
+	border: 2px solid #ff0000;
+	color: #ff0000;
 }
 /* list_wrap 공통사항 ==>끝 */
