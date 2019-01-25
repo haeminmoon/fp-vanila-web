@@ -53,17 +53,17 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
         `,
         footer: ``,
         script: `
-            <script src="/front/script/influencer/inf_signup_connect_instagram.js"></script>
-            <script>
-                go('.instagram_profile_btn', $, InfSignupConnectInstagram.Do.sendInstagramProfile);
-                go('.instagram_profile_btn', $, InfSignupConnectInstagram.Do.sendInstagram);
-                go('.instagram_profile_btn', $, InfSignupConnectInstagram.Do.show);
-                go('.cancel', $, InfSignupConnectInstagram.Do.cancel);
+        <script src="/front/script/influencer/inf_signup_connect_instagram.js"></script>
+        <script>
+            go('.instagram_profile_btn', $, InfSignupConnectInstagram.Do.sendInstagramProfile);
+            go('.instagram_profile_btn', $, InfSignupConnectInstagram.Do.sendInstagram);
+            go('.instagram_profile_btn', $, InfSignupConnectInstagram.Do.show);
+            go('.cancel', $, InfSignupConnectInstagram.Do.cancel);
 
                 /**
                  * TO-DO 
                  * Front script로 이관
-                 * sync 방식으로 Page renderingx
+                 * sync 방식으로 Page rendering
                  * Graph API - npm 모듈 존재하는지 확인
                  */
                 InfSignupConnectInstagram.Do.init();
@@ -75,8 +75,12 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                             let id = await getFacebookId().then(data => data);
                             let instagramProfile = await go(
                                 id.id,
-                                a => getInstagramId(a).then(data => data),
-                                b => getInstagramProfile(b).then(data => data)
+                                a => getInstagramId(a).then(data => data).catch(e => e),
+                                b => {
+                                    if (!!b.message) throw b;
+                                    else return b;
+                                },
+                                c => getInstagramProfile(c).then(data => data)
                             );
                             let longTermToken = await go(
                                 response.authResponse.accessToken,
@@ -104,6 +108,7 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                         }
                     } catch (e) {
                         if (e.message === "Cannot read property 'id' of undefined") alert("인스타그램 계정과 연동된 페이스북 계정으로 로그인해주세요");
+                        else log(e)
                     }
                     });
                 }
@@ -119,7 +124,10 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                 function getInstagramId (id) {
                     return new Promise((resolve, reject) => {
                         FB.api('/'+id, 'GET', {"fields":"instagram_business_account"},
-                            response => resolve(response.instagram_business_account.id)
+                            response => {
+                                if (!response.instagram_business_account) reject(new Error("Cannot read property 'id' of undefined"));
+                                else resolve(response.instagram_business_account.id);
+                            }
                         );
                     });
                 }
