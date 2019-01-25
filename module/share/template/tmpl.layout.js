@@ -25,7 +25,8 @@
                 <script src="/share/template/advertiser/adv_campaign_management.js"></script>
                 <script src="/share/template/influencer/inf_campaign_management.js"></script>
                 <script>Object.assign(window, TMPL);</script>
-                
+
+                <script src="/front/script/common/common.js"></script>
                 ${script}
             </body>
         </html>

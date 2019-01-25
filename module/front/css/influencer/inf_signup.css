@@ -155,7 +155,6 @@
 	margin-left: 35px;
 }
 .profile_txt strong{
-	display: inline-block;
-	width: 33.33333%;
+	padding: 10px;
 }
 
