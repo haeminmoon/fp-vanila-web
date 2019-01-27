@@ -1,6 +1,6 @@
 const multer = require('multer');
-const upload = multer({ storage: multer.memoryStorage() });
-const cpUpload = upload.fields([{ name: 'main_img' }, { name: 'sub_img' }]);
+const upload = multer({storage: multer.memoryStorage()});
+const cpUpload = upload.fields([{name: 'main_img'}, {name: 'sub_img'}]);
 const awsS3 = require('../../../module/back/util/fileUpload.js');
 
 app.get('/advertiser/adv_campaign_registration', async (req, res) => {
@@ -22,7 +22,8 @@ app.get('/advertiser/adv_campaign_registration', async (req, res) => {
                         <a href="/advertiser/adv_campaign_registeration">캠페인 등록</a>
                     </div>
                     <div class="camp_wrap">
-                        <form id="camp_form" action="/api/advertiser/adv_campaign_registration" method="post" enctype="multipart/form-data" >
+                        <!--<form id="camp_form" action="/api/advertiser/adv_campaign_registration" method="post" enctype="multipart/form-data" >-->
+                           <form id="camp_form" enctype="multipart/form-data">
                             <div class="input_wrap">
                                 <label for="sns_type" class="sns_wrap">SNS 타입<sup>*</sup></label>
                                 <div class="wrap_right sns_wrap">
@@ -154,15 +155,13 @@ app.get('/advertiser/adv_campaign_registration', async (req, res) => {
     }));
 });
 
-app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
+app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res, next) => {
     const {camp_name, sns_type, category, apply_due_date, notice_date, post_date, ...info} = req.body;
     const userId = req.session.user.id;
-
     const data = {
         name: camp_name,
         sns_type: sns_type,
         category: category,
-        state: 'wait', //wait, progress, complete,
         advertiser_state: 'wait',
         info: info,
         created_at: new Date(),
@@ -173,37 +172,45 @@ app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res) => {
         post_end_date: post_date[1],
         advertiser_id: userId
     };
-    const newMainImg = req.files['main_img'];
-    const newSubImgs = req.files['sub_img'];
+    const newMainImg = req.files['main_img'] || ['no_img'];
+    const newSubImgs = req.files['sub_img'] || ['no_img'];
     let fileName = null, campaign_id = null, index = 0;
-
     go(
         data,
-        a => QUERY`INSERT INTO campaign ${VALUES(a)} RETURNING id`,
-        first,
-        b => campaign_id = b.id,
-        // 대표 이미지 업로드
-        _ => go(
-            newMainImg,
-            map((file) => {
-                fileName = 'campaign_mainImage'; // 대표 이미지 파일명
-                awsS3.insertImgToS3(file, awsS3.convertImgPath(campaign_id, userId, fileName));
-                return awsS3.getS3URL() + awsS3.convertImgPath(campaign_id, userId, fileName);
-            }),
-            ([c]) => QUERY`UPDATE campaign SET img = ${c} WHERE id = ${campaign_id}`
-        ),
-        // 상세 다중 이미지 업로드
-        _ => go(
-            newSubImgs,
-            map((file) => {
-                fileName = `campaign_subImage_${index += 1}`; // 상세 이미지 파일명
-                awsS3.insertImgToS3(file, awsS3.convertImgPath(campaign_id, userId, fileName));
-                return awsS3.getS3URL() + awsS3.convertImgPath(campaign_id, userId, fileName);
-            }),
-            c => QUERY`UPDATE campaign SET sub_img = ${JSON.stringify(c)} WHERE id = ${campaign_id}`
-        ),
-        _ => setTimeout(() => {
-            res.redirect('/advertiser/adv_campaign_management')
-        }, 1500)
+        pipeT(
+            a => QUERY`INSERT INTO campaign ${VALUES(a)} RETURNING id`,
+            first,
+            b => campaign_id = b.id,
+            // 대표 이미지 업로드
+            _ => go(
+                newMainImg,
+                map((file) => {
+                    if (file === 'no_img') {
+                        return 'https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin_logo-2.png';
+                    }
+                    fileName = 'campaign_mainImage'; // 대표 이미지 파일명
+                    awsS3.insertImgToS3(file, awsS3.convertImgPath(campaign_id, userId, fileName));
+                    return awsS3.getS3URL() + awsS3.convertImgPath(campaign_id, userId, fileName);
+                }),
+                ([c]) => QUERY`UPDATE campaign SET img = ${c} WHERE id = ${campaign_id}`
+            ),
+            // 상세 다중 이미지 업로드
+            _ => go(
+                newSubImgs,
+                map((file) => {
+                    if (file === 'no_img') {
+                        return 'https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin_logo-2.png';
+                    }
+                    fileName = `campaign_subImage_${index += 1}`; // 상세 이미지 파일명
+                    awsS3.insertImgToS3(file, awsS3.convertImgPath(campaign_id, userId, fileName));
+                    return awsS3.getS3URL() + awsS3.convertImgPath(campaign_id, userId, fileName);
+                }),
+                c => QUERY`UPDATE campaign SET sub_img = ${JSON.stringify(c)} WHERE id = ${campaign_id}`
+            ),
+            _ => res.json()
+        ).catch(
+            m => new Error(m),
+            next
+        )
     )
 });
