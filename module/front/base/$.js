@@ -82,6 +82,14 @@
         resJSON
     ));
 
+    const fetchWithFile = method => curry((url, data) => go(
+        fetch(url, Object.assign({
+            method: method,
+            body: data
+        }))
+    ));
+
+
     $.get = curry((url, paramObj) => go(
         fetch(
             url + (url.indexOf('?') == -1 ? '?' : '&') + $.param(paramObj),
@@ -90,6 +98,7 @@
     ));
 
     $.post = fetchWithBody('POST');
+    $.postFormData = fetchWithFile('POST');
     $.put = fetchWithBody('PUT');
     $.delete = $.del = fetchWithBody('DELETE');
 

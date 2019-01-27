@@ -32,6 +32,10 @@
             stateClass = 'check2';
         } else if (state === 'complete') {
             stateClass = 'check3';
+        } else if (state === 'selection') {
+            stateClass = 'check4';
+        } else if (state === 'noSelection') {
+            stateClass = 'check5';
         }
         return stateClass;
     };
@@ -57,7 +61,12 @@
             case 'posting_progress':
                 stateKo = '홍보 진행중';
                 break;
-
+            case 'selection':
+                stateKo = '선정';
+                break;
+            case 'noSelection':
+                stateKo = '미선정';
+                break;
         }
         return stateKo;
     };

@@ -89,7 +89,7 @@ app.get('/influencer/inf_campaign_detail', async (req, res) => {
                         </h2>
                         <div class="detail_content">
                             <p class="pd_info">
-                                #스핀프로토콜 #스핀최공 #스피너
+                                ${campaignItem.info.hash_tag}
                             </p>
                         </div>
                     </div>

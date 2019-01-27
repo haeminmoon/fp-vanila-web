@@ -1,4 +1,6 @@
 !function () {
+    const id_reg = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|io|)|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+
     const Do = {
         signup: $.on('click', '.submit_btn', ({ delegateTarget: dt }) => go(
             {
@@ -21,6 +23,11 @@
                             throw 'No content'
                         }
                     }
+                    for (checkbox of $.all('.chk')) {
+                        if (checkbox.checked === false) {
+                            throw 'No check';
+                        }
+                    }
                     return a;
                 },
                 ({ id, pw, auth, created_at, ...info }) => {
@@ -33,11 +40,13 @@
                     }
                 },
                 $.post('/api/advertiser/adv_signup'),
-                a => location.href = `/advertiser/adv_signup_complete/?name=${a}`
+                a => location.replace(`/advertiser/adv_signup_complete/?name=${a}`)
             ).catch(
                 a => match(a)
                     .case(a => a === 'No content')
                     (_ => alert('입력란을 채워주세요.'))
+                    .case(a => a === 'No check')
+                    (_ => alert('약관 동의에 대해 채크해주세요.'))
                     .else(_ => a),
 
                 b => b.text(),
@@ -54,8 +63,11 @@
             },
             pipeT(
                 a => {
-                    if (a.id === '')
+                    if (a.id === '') {
                         throw 'No content';
+                    } else if (!id_reg.test(a.id)) {
+                        throw 'No email validation';
+                    }
                     return a;
                 },
                 $.post('/api/advertiser/adv_check_id'),
@@ -65,6 +77,11 @@
                     .case(a => a === 'No content')
                     (_ => {
                         $('.id_error').innerHTML = '아이디를 입력해주세요';
+                        $('.submit_btn').disabled = 'disabled';
+                    })
+                    .case(a => a === 'No email validation')
+                    (_ => {
+                        $('.id_error').innerHTML = '이메일 형식을 맞춰주세요.';
                         $('.submit_btn').disabled = 'disabled';
                     })
                     .else(_ => a),
@@ -81,7 +98,6 @@
 
         validateEmail: $.on('change', _ => {
             const id = go($('#id'), $.trim);
-            const id_reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
             if (!id_reg.test(id)) {
                 $('.id_error').innerHTML = '이메일 형식을 맞춰주세요.';
@@ -148,10 +164,12 @@
                     $('.address').focus();
                 }
             }).open();
-        })
+        }),
+
+        checkAllAgree: $.on('click', ({currentTarget: ct}) => go($.all('[type="checkbox"]'), map(a => a.checked = ct.checked)))
     };
 
-    global.AdvSignUp = {
+global.AdvSignUp = {
         Do
     }
 }();

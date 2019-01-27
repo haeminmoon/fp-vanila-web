@@ -39,9 +39,6 @@ sup{
 .input_wrap .camp_name_wrap{height: 70px;}
 .input_wrap .category_wrap{height: 70px;}
 
-.input_wrap .mimg_wrap{height: 90px;}
-.wrap_right.mimg_wrap{padding: 15px;}
-
 .input_wrap .sub_wrap{height: 80px;}
 .wrap_right.sub_wrap{padding: 15px;}
 
@@ -76,9 +73,6 @@ select{
     border-radius: 4px;
     font-size: 14px;
     line-height: 14px;
-}
-.input_wrap input [type="file"]{
-    /*	border: 10px solid violet;*/
 }
 #campaign_image{
     font-size: 13px;
@@ -151,4 +145,50 @@ textarea{
 .camp_wrap > div > input:hover{
     background-color: #a8a8a8;
     color: white;
+}
+
+/* 파일 css */
+.input_wrap .mimg_wrap{height: 90px;}
+.wrap_right.mimg_wrap{padding: 15px;}
+
+.wrap_right.mimg_wrap label {
+    display: inline-block;
+    padding: .5em .75em;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+}
+
+.wrap_right.mimg_wrap input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+
+}
+
+.wrap_right.mimg_wrap .upload_name {
+    display: inline-block;
+    padding: .5em .75em; /* label의 패딩값과 일치 */
+    font-size: inherit;
+    font-family: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #f5f5f5;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+    -webkit-appearance: none; /* 네이티브 외형 감추기 */
+    -moz-appearance: none;
+    appearance: none;
 }

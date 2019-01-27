@@ -1,7 +1,7 @@
 const isSameDay = require('date-fns/is_same_day');
 const isYesterDay = require('date-fns/is_yesterday');
 const cron = require('node-cron');
-const { sendMail } = require('../../module/back/util/mailer');
+const {sendMail} = require('../../module/back/util/mailer');
 
 
 const scheduler = () => {
@@ -38,11 +38,26 @@ const scheduler = () => {
                     }
                 }
 
+                // 인플런서 -> 발표일일때 선정 결과
+                if (isSameDay(now, campaign.notice_date)) {
+                    for (userId in campaign.influencer_id) {
+                        const stateObj = `{"${userId}", "state"}`;
+                        const selectedObj = `{"${userId}", "selected"}`;
+                        await QUERY`UPDATE campaign SET "influencer_id" = jsonb_set("influencer_id", ${stateObj}, '"selection"', true) 
+                        WHERE id = ${campaign.id} AND "influencer_id" = jsonb_set("influencer_id", ${selectedObj}, '"true"', true)`;
+
+                        await QUERY`UPDATE campaign SET "influencer_id" = jsonb_set("influencer_id", ${stateObj}, '"noSelection"', true) 
+                        WHERE id = ${campaign.id} AND "influencer_id" = jsonb_set("influencer_id", ${selectedObj}, '"false"', true)`;
+                    }
+                }
+
                 // 인플런서 -> 발표 대기중 -> 홍보 진행중
                 if (isYesterDay(campaign.notice_date)) {
                     for (userId in campaign.influencer_id) {
                         const stateObj = `{"${userId}", "state"}`;
-                        await QUERY`UPDATE campaign SET "influencer_id" = jsonb_set("influencer_id", ${stateObj}, '"posting_progress"', true) WHERE id = ${campaign.id} `;
+                        const selectedObj = `{"${userId}", "selected"}`;
+                        await QUERY`UPDATE campaign SET "influencer_id" = jsonb_set("influencer_id", ${stateObj}, '"posting_progress"', true) 
+                         WHERE id = ${campaign.id} AND "influencer_id" = jsonb_set("influencer_id", ${selectedObj}, '"true"', true)`;
                     }
                 }
 
@@ -53,17 +68,21 @@ const scheduler = () => {
                         `등록하신 ${campaign.name} 켐페인이 마감되었습니다.`,
                         campaign.advertiser_id).catch(err => log(err));
 
-                    Object.keys(campaign.influencer_id).map(async (inf_id) => {
-                        await sendMail(
-                            '스핀 프로토콜에서 보내는 메일입니다',
-                            `포스팅하신 ${campaign.name} 켐페인이 마감되었습니다.`,
-                            inf_id).catch(err => log(err));
-                    });
-
+                    for (key in campaign.influencer_id) {
+                        if (campaign.influencer_id[key].state === 'posting_progress' && campaign.influencer_id[key].selected === 'true') {
+                            await sendMail(
+                                '스핀 프로토콜에서 보내는 메일입니다',
+                                `포스팅하신 ${campaign.name} 켐페인이 마감되었습니다.`,
+                                key).catch(err => log(err));
+                        }
+                    }
                     await QUERY`UPDATE campaign SET advertiser_state = 'complete' WHERE id = ${campaign.id}`;
                     for (userId in campaign.influencer_id) {
                         const stateObj = `{"${userId}", "state"}`;
-                        await QUERY`UPDATE campaign SET "influencer_id" = jsonb_set("influencer_id", ${stateObj}, '"complete"', true) WHERE id = ${campaign.id} `;
+                        const selectedObj = `{"${userId}", "selected"}`;
+                        await QUERY`UPDATE campaign SET "influencer_id" = jsonb_set("influencer_id", ${stateObj}, '"complete"', true) 
+                         WHERE id = ${campaign.id} AND "influencer_id" = jsonb_set("influencer_id", ${selectedObj}, '"true"', true)`;
+
                     }
                 }
             })
