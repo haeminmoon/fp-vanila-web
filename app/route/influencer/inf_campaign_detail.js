@@ -7,8 +7,8 @@ app.get('/influencer/inf_campaign_detail', async (req, res) => {
         css: `
             <link rel="stylesheet" href="/front/css/influencer/inf_campaign_detail.css">
         `,
-        header: TMPL.layout.infHeader(user.info.name),
-        nav: TMPL.layout.infNav(user.info.name),
+        header: TMPL.layout.infHeader(user.info.nickname),
+        nav: TMPL.layout.infNav(user.info.nickname),
         main: `
             <div id="main">
                 <div class="container">
@@ -89,7 +89,7 @@ app.get('/influencer/inf_campaign_detail', async (req, res) => {
                         </h2>
                         <div class="detail_content">
                             <p class="pd_info">
-                                #스핀프로토콜 #스핀최공 #스피너
+                                ${campaignItem.info.hash_tag}
                             </p>
                         </div>
                     </div>

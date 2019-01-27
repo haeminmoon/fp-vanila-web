@@ -1,4 +1,4 @@
-const {sendMail} = require('../../../module/back/util/mailer');
+const { sendMail } = require('../../../module/back/util/mailer');
 
 app.get('/influencer/inf_campaign_apply', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
@@ -10,8 +10,8 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
         css: `
             <link rel="stylesheet" href="/front/css/influencer/inf_campaign_apply.css">
         `,
-        header: TMPL.layout.infHeader(user.info.name),
-        nav: TMPL.layout.infNav(user.info.name),
+        header: TMPL.layout.infHeader(user.info.nickname),
+        nav: TMPL.layout.infNav(user.info.nickname),
         main: `
             <div id="main">
                 <div class="container">
@@ -26,7 +26,7 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
                         </h2>
                         <div class="confirm_content">
                             <p class="inf_info user_id" followers = ${req.session.user.sns_info.instagram_followers}>${req.session.user.id}</p>
-                            <textarea name="memo" id="memo" class="memo" placeholder="유저아이디의 메모를 작성해주세요."></textarea>
+                            <textarea name="memo" id="memo" class="memo" placeholder="${req.session.user.id}의 메모를 작성해주세요."></textarea>
                         </div>
                     </div>
 

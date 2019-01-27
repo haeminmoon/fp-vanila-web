@@ -86,9 +86,17 @@ body{
     height: 58px;
     border: none;
     margin-top: 30px;
-    background-color: #00aa87;
+    background-color: #108a7a;
     color: #fff;
 }
+.signin_wrap > button:hover{
+    background-color: transparent;
+    color: #9b9b9b;
+    font-weight: 600;
+    border: 2px solid #9b9b9b;
+    transition: all 0.3s ease;
+}
+
 .other_wrap{
     text-align: right;
     padding: 15px 40px;

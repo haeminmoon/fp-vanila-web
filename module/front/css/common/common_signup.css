@@ -1,8 +1,8 @@
 @charset "utf-8";
 
 .container{
-    width: 1600px;
-    min-width: 1600px;
+    width: 1470px;
+    min-width: 1470px;
     margin: 0 auto;
 }
 /* header */
@@ -94,7 +94,7 @@ button{
     border:none;
     cursor: pointer;
     border-radius: 4px;
-    background-color: #00aa87;
+    background-color: #9b9b9b;
 }
 
 .error{
@@ -165,4 +165,12 @@ button{
      width: 300px;
      height: 50px;
      border-radius: 30px;
+     background-color: #9b9b9b;
  }
+.submit_btn:hover{
+    background-color: transparent;
+    color: #108a7a;
+    font-weight: 600;
+    border: 2px solid #108a7a;
+    transition: all 0.3s ease;
+}

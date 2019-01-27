@@ -89,16 +89,13 @@
     border-radius: 30px;
     border: none;
     color: #fff;
-    background-color: #00aa87;
+    background-color: #9b9b9b;
 }
-
 .submit_btn:hover{
-    width: 370px;
-    height: 40px;
-    border-radius: 30px;
-    border: none;
-    color: #00aa87;
-    background-color: #fff;
+    background-color: transparent;
+    color: #108a7a;
+    border: 2px solid #108a7a;
+    transition: all 0.3s ease;
 }
 
 .hidden{
