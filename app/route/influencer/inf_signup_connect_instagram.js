@@ -74,8 +74,12 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                             let id = await getFacebookId().then(data => data);
                             let instagramProfile = await go(
                                 id.id,
-                                a => getInstagramId(a).then(data => data),
-                                b => getInstagramProfile(b).then(data => data)
+                                a => getInstagramId(a).then(data => data).catch(e => e),
+                                b => {
+                                    if (!!b.message) throw b;
+                                    else return b;
+                                },
+                                c => getInstagramProfile(c).then(data => data)
                             );
                             let longTermToken = await go(
                                 response.authResponse.accessToken,
@@ -84,7 +88,6 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                             let userBirthday = await go('', _ => getUserBirthday().then(data => data));
                             userBirthday = userBirthday.split('/'); // [MM, DD, YYYY]
                             userBirthday = {"year" : userBirthday[2], "month" : userBirthday[0], "day" : userBirthday[1]};
-                            log(userBirthday);
                             $.find('[name="instagram_profile_img"]', document).src = instagramProfile.profile_picture_url;
                             $.find('[name="instagram_username"]', document).innerText = instagramProfile.username;
                             $.find('[name="instagram_media_count"]', document).innerText = "게시물 "+instagramProfile.media_count;
@@ -95,7 +98,6 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                             $.find('[name="instagram_user_birthday"]', document).innerText = JSON.stringify(userBirthday);
                             
                             let input_wraps = $.all('.input_wrap');
-                            log(input_wraps);
                             input_wraps[0].classList.add('hidden');
                             input_wraps[1].classList.remove('hidden');
                         } else {
@@ -103,6 +105,7 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                         }
                     } catch (e) {
                         if (e.message === "Cannot read property 'id' of undefined") alert("인스타그램 계정과 연동된 페이스북 계정으로 로그인해주세요");
+                        else alert(e)
                     }
                     });
                 }
@@ -118,7 +121,10 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                 function getInstagramId (id) {
                     return new Promise((resolve, reject) => {
                         FB.api('/'+id, 'GET', {"fields":"instagram_business_account"},
-                            response => resolve(response.instagram_business_account.id)
+                            response => {
+                                if (!response.instagram_business_account) reject(new Error("Cannot read property 'id' of undefined"));
+                                else resolve(response.instagram_business_account.id);
+                            }
                         );
                     });
                 }

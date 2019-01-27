@@ -123,7 +123,7 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                             </tr>
                         </thead>
                         <tbody id="click_wrap">
-                            ${go(infList, map(a => getHtmlInfList(a)), b => html`${b}`)}
+                            ${go(infList, map(a => TMPL.AdvInfluencerList.getInfProfile(a)), b => html`${b}`)}
                         </tbody>
                     </table>
                 </div>
@@ -147,11 +147,12 @@ app.post('/api/advertiser/adv_influencer_list', async (req, res) => {
     let id = req.body.id;
     // 해당 id의 instagram id 와 instagram access token 을 얻기위해 데이터베이스 조회
     let [userSnsInfo] = await QUERY`SELECT sns_info FROM users WHERE id = ${id}`;
-    if (!userSnsInfo) res.json({"res":"fail to read database"});
+    if (!userSnsInfo) {res.json({"res":"fail to read database"}); return;}
     
     // 얻은 id 와 access token 을 통해 facebook Graph api에 필요한 정보 요청
     let instagramMedia = await getInstagramMedia(userSnsInfo.sns_info.instagram_id, userSnsInfo.sns_info.instagram_access_token, 7).then(data => data);
-    if (!instagramMedia) res.json({"res":"fail to get API return"});
+    if (!instagramMedia) {res.json({"res":"fail to get API return"}); return;}
+    else if (!instagramMedia.media) {res.json({"res":"media dose not exist"}); return;}
 
     // 데이터베이스의 데이터 갱신을 위해 갱신이 필요한 정보들을 api에서 받아온 정보로 업데이트
     userSnsInfo.sns_info.instagram_followers = instagramMedia.followers_count;
@@ -173,7 +174,7 @@ app.post('/api/advertiser/adv_influencer_list', async (req, res) => {
 
     // 데이터베이스에 업데이트
     let [updateResult] = await QUERY`UPDATE users SET sns_info = ${JSON.stringify(userSnsInfo.sns_info)} WHERE id = ${id} RETURNING TRUE`;
-    if (!updateResult || !updateResult.bool) res.json({"res":"fail to update at database"});
+    if (!updateResult || !updateResult.bool) {res.json({"res":"fail to update at database"}); return;}
     // 호출 결과와 필요한 데이터를 json형태로 응답
     go( {
             "res" : "success to load media data",
@@ -182,7 +183,7 @@ app.post('/api/advertiser/adv_influencer_list', async (req, res) => {
         },
         res.json
     );
-    
+    return;
 })
 
 const getInstagramMedia = async (id, accessToken, limit) => {
@@ -191,44 +192,4 @@ const getInstagramMedia = async (id, accessToken, limit) => {
         `https://graph.facebook.com/v3.2/${id}/?fields=media.limit(${limit})%7Bcaption%2Ccomments_count%2Clike_count%2Cmedia_url%2Ctimestamp%2Cpermalink%2Cthumbnail_url%2Cmedia_type%7D%2Cfollowers_count%2Cfollows_count%2Cprofile_picture_url&access_token=${accessToken}`,
         ``
     );
-}
-
-const getHtmlInfList = data => {
-    // 아직 카테고리에 대해 구현된 사항이 없어서 임의의 카테고리 지정
-    let category = ["IT", "패션"];
-    let htmlCategoryList = go(
-        category,
-        map(a => html`
-        <li>${a}</li>`),
-        b => html`${b}`
-    );
-    let age = new Date().getFullYear() - parseInt(JSON.parse(data.sns_info.instagram_user_birthday).year) + 1;
-    return html`
-        <tr class="target" target="${data.id}">
-            <td class="inf_check">
-                <input type="checkbox" name="sale_chk" id="inf_click1" value="progress">
-                <label for="inf_click1"></label>
-            </td>
-            <td class="inf_img"><img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/instagram/instagram.png"></td>
-            <td class="inf_id">${data.id}</td>
-            <td class="inf_level">Master</td>
-            <td class="inf_follow">${data.sns_info.instagram_followers}</td>
-            <td class="inf_gender" value="${data.info.gender}">${matchGender(data.info.gender)}</td>
-            <td class="inf_category">
-                <ul>
-                    ${htmlCategoryList}
-                </ul>
-            </td>
-            <td class="inf_ages" value=${age}>${matchAges(age)}</td>
-        </tr>
-        <tr class="click_hidden hidden" name="${data.id}"></tr>
-    `
-}
-const matchGender = gender => (gender === "woman")? "여성" : "남성";
-const matchAges = age => {
-    if (age < 20) return "10대";
-    else if (age < 24) return "20대 초반";
-    else if (age < 27) return "20대 중반";
-    else if (age < 30) return "20대 후반";
-    else if (age < 40) return "30대";
 }

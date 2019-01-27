@@ -74,7 +74,44 @@
         })
     };
 
+    const updateDB = (column, value, id) => {
+        switch (column) {
+            case "name":
+                return QUERY`UPDATE campaign SET name = ${value} WHERE id = ${id} RETURNING true`
+            case "sns_type":
+                return QUERY`UPDATE campaign SET sns_type = ${value} WHERE id = ${id} RETURNING true`
+            case "category":
+                return QUERY`UPDATE campaign SET category = ${value} WHERE id = ${id} RETURNING true`
+            case "state":
+                return QUERY`UPDATE campaign SET state = ${value} WHERE id = ${id} RETURNING true`
+            case "img":
+                return QUERY`UPDATE campaign SET img = ${value} WHERE id = ${id} RETURNING true`
+            case "info":
+                return QUERY`UPDATE campaign SET info = ${value} WHERE id = ${id} RETURNING true`
+            case "updated_at":
+                return QUERY`UPDATE campaign SET updated_at = ${value} WHERE id = ${id} RETURNING true`
+            case "apply_start_date":
+                return QUERY`UPDATE campaign SET apply_start_date = ${value} WHERE id = ${id} RETURNING true`
+            case "apply_end_date":
+                return QUERY`UPDATE campaign SET apply_end_date = ${value} WHERE id = ${id} RETURNING true`
+            case "post_start_date":
+                return QUERY`UPDATE campaign SET post_start_date = ${value} WHERE id = ${id} RETURNING true`
+            case "post_end_date":
+                return QUERY`UPDATE campaign SET post_end_date = ${value} WHERE id = ${id} RETURNING true`
+            case "notice_date":
+                return QUERY`UPDATE campaign SET notice_date = ${value} WHERE id = ${id} RETURNING true`
+            case "sub_img":
+                return QUERY`UPDATE campaign SET sub_img = ${value} WHERE id = ${id} RETURNING true`
+            case "influencer_id":
+                return QUERY`UPDATE campaign SET influencer_id = ${value} WHERE id = ${id} RETURNING true`
+            default:
+                return ({bool : false});
+        }
+    }
+
+    const getFileName = fileUrl => fileUrl.split('/')[fileUrl.split('/').length-1].split('?')[0];
+
     global.Formatter = {
-        formatFrontDate, formatBackDate, isEmptyObj, formatStateClass, formatState, sortObjKey
+        formatFrontDate, formatBackDate, isEmptyObj, formatStateClass, formatState, sortObjKey, updateDB, getFileName
     }
 }(typeof window != 'undefined'? window : global);

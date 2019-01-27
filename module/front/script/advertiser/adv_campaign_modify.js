@@ -41,13 +41,12 @@
                     })
                 }),
                 $.post('/api/advertiser/adv_campaign_modify'),
-                c => {
-                    if (!c.id) alert('전송 에러입니다');
-                    else{
-                        alert('수정 완료')
+                c => match(c)
+                    .case(d => !d.id)(_ => alert('전송 에러입니다'))
+                    .else(_ => {
+                        alert('수정 완료');
                         location.href = `/advertiser/adv_campaign_detail/?id=${c.id}`
-                    }
-                }
+                    })
             )
         }),
 
@@ -90,8 +89,6 @@
     };
 }();
 
-const addAttributeAtSelect = (selectBoxName, option) => {
-    $(`.${selectBoxName} option[value=${option}]`).setAttribute("selected", "selected");
-}
+const addAttributeAtSelect = (selectBoxName, option) => $(`.${selectBoxName} option[value=${option}]`).setAttribute("selected", "selected");
 const findSelectedOption = selecter => selecter.options[selecter.selectedIndex].value;
 const getISOString = date => new Date(date);
