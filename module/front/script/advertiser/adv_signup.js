@@ -23,6 +23,11 @@
                             throw 'No content'
                         }
                     }
+                    for (checkbox of $.all('.chk')) {
+                        if (checkbox.checked === false) {
+                            throw 'No check';
+                        }
+                    }
                     return a;
                 },
                 ({ id, pw, auth, created_at, ...info }) => {
@@ -35,11 +40,13 @@
                     }
                 },
                 $.post('/api/advertiser/adv_signup'),
-                a => location.href = `/advertiser/adv_signup_complete/?name=${a}`
+                a => location.replace(`/advertiser/adv_signup_complete/?name=${a}`)
             ).catch(
                 a => match(a)
                     .case(a => a === 'No content')
                     (_ => alert('입력란을 채워주세요.'))
+                    .case(a => a === 'No check')
+                    (_ => alert('약관 동의에 대해 채크해주세요.'))
                     .else(_ => a),
 
                 b => b.text(),
@@ -157,10 +164,12 @@
                     $('.address').focus();
                 }
             }).open();
-        })
+        }),
+
+        checkAllAgree: $.on('click', ({currentTarget: ct}) => go($.all('[type="checkbox"]'), map(a => a.checked = ct.checked)))
     };
 
-    global.AdvSignUp = {
+global.AdvSignUp = {
         Do
     }
 }();

@@ -102,31 +102,31 @@ app.get('/advertiser/adv_signup', (req, res) => {
                                     </p>
                                     <ul>
                                         <li>
-                                            <input type="checkbox" name="chk1" id="chk1">
+                                            <input type="checkbox" name="chk1" id="chk1" class="chk">
                                             <label for="chk1"><a href="#">이용약관</a></label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" name="chk2" id="chk2">
+                                            <input type="checkbox" name="chk2" id="chk2" class="chk">
                                             <label for="chk2"><a href="#">개인정보 수집 및 이용동의</a></label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" name="chk3" id="chk3">
+                                            <input type="checkbox" name="chk3" id="chk3" class="chk">
                                             <label for="chk3"><a href="#">매월 15일/30일 정산동의</a></label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" name="chk4" id="chk4">
+                                            <input type="checkbox" name="chk4" id="chk4" class="chk">
                                             <label for="chk4"><a href="#">개인정보 제3자 제공 동의</a></label>                                        
                                         </li>
                                         <li>
-                                            <input type="checkbox" name="chk5" id="chk5">
+                                            <input type="checkbox" name="chk5" id="chk5" class="chk">
                                             <label for="chk5"><a href="#">전자 금융거래 이용약관</a></label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" name="chk6" id="chk6">
+                                            <input type="checkbox" name="chk6" id="chk6" class="chk">
                                             <label for="chk6"><a href="#">[광고용]SNS 수신 동의</a></label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" name="chk7" id="chk7">
+                                            <input type="checkbox" name="chk7" id="chk7" class="chk">
                                             <label for="chk7"><a href="#">[광고용]E-mail 수신 동의</a></label>
                                         </li>
                                     </ul>
@@ -152,6 +152,7 @@ app.get('/advertiser/adv_signup', (req, res) => {
             go('#password', $, AdvSignUp.Do.validatePw);
             go('#password_chk', $, AdvSignUp.Do.validateCheckPw);
             go('.sch_add_btn', $, AdvSignUp.Do.showPost)
+            go('#all_chk', $, AdvSignUp.Do.checkAllAgree)
         </script>
          `
     }));

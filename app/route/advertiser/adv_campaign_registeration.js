@@ -78,8 +78,10 @@ app.get('/advertiser/adv_campaign_registration', async (req, res) => {
                             </div>
                             <div class="input_wrap">
                                 <label for="main_img" class="mimg_wrap">대표 이미지<sup>*</sup></label>
-                                <div class="wrap_right mimg_wrap">
-                                    <input type="file" name="main_img" accept="image/*" class="main_img">
+                                <div class="wrap_right mimg_wrap ">
+                                    <input value="파일선택" disabled="disabled" class="upload_name">
+                                    <label for="main_img">업로드</label>
+                                    <input type="file" name="main_img" accept="image/*" id="main_img" class="upload_hidden">
                                     <p>메인 페이지에 노출될 대표 이미지</p>
                                 </div>
                             </div>
@@ -150,6 +152,7 @@ app.get('/advertiser/adv_campaign_registration', async (req, res) => {
         <script>
             go('.camp_register_btn', $, AdvCampaignRegistration.Do.registerCampaign);
             go('.camp_cancel_btn', $, AdvCampaignRegistration.Do.cancelCampaign);
+            go('.upload_hidden', $, AdvCampaignRegistration.Do.mainImageFileName);
         </script>
         `
     }));

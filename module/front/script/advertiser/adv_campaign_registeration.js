@@ -9,11 +9,10 @@
                                 throw 'No content';
                             }
                         }
-                        log(a);
                         return a;
                 },
                 $.postFormData('/api/advertiser/adv_campaign_registration'),
-                _ => location.href = '/advertiser/adv_campaign_management'
+                _ => location.replace('/advertiser/adv_campaign_management')
             ).catch(
                 a => match(a)
                     .case(a => a === 'No content')
@@ -23,6 +22,8 @@
         )),
 
         cancelCampaign: $.on('click', _ => location.href = '/advertiser/adv_campaign_management'),
+
+        mainImageFileName: $.on('change', el => { $('.upload_name').value =el.target.files[0].name; })
     };
 
 

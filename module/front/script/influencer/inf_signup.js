@@ -12,7 +12,7 @@
                 gender: go(dt, $.findAll('[name="gender"]'), filter(a => a.checked === true), first, $.val),
                 // phone_num: go(dt, $.find('[name="phone_num_cer"]'), $.trim),
                 // certification_num: go(dt, $.find('[name="certification_num"]'), $.trim),
-                instagram_id: go(dt, $.find('[name="instagram_user_id"]'), a => a.innerText)
+                //instagram_id: go(dt, $.find('[name="instagram_user_id"]'), a => a.innerText)
             },
             pipeT(
                 a => {
@@ -20,6 +20,11 @@
                     for (key in a) {
                         if (a[key] === '') {
                             throw 'No content'
+                        }
+                    }
+                    for (checkbox of $.all('.chk')) {
+                        if (checkbox.checked === false) {
+                            throw 'No check';
                         }
                     }
                     // delete a.certification_num;
@@ -46,11 +51,13 @@
                     };
                 },
                 $.post('/api/influencer/inf_signup'),
-                a => location.href = `/influencer/inf_signup_complete?name=${a.info.nickname}&created_at=${a.created_at}`
+                a => location.replace(`/influencer/inf_signup_complete?name=${a.info.nickname}&created_at=${a.created_at}`)
             ).catch(
                 a => match(a)
                     .case(a => a === 'No content')
                     (_ => alert('입력란을 채워주세요'))
+                    .case(a => a === 'No check')
+                    (_ => alert('약관 동의에 대해 채크해주세요.'))
                     .else(_ => a),
                 b => b.text(),
                 match
@@ -214,7 +221,9 @@
                 };
                 reader.readAsDataURL(f);
             })
-        })
+        }),
+
+        checkAllAgree: $.on('click', ({currentTarget: ct}) => go($.all('[type="checkbox"]'), map(a => a.checked = ct.checked)))
     };
     global.InfSignup = {
         Do
