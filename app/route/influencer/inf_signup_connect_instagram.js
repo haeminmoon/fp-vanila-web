@@ -89,7 +89,6 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                             let userBirthday = await go('', _ => getUserBirthday().then(data => data));
                             userBirthday = userBirthday.split('/'); // [MM, DD, YYYY]
                             userBirthday = {"year" : userBirthday[2], "month" : userBirthday[0], "day" : userBirthday[1]};
-                            log(userBirthday);
                             $.find('[name="instagram_profile_img"]', document).src = instagramProfile.profile_picture_url;
                             $.find('[name="instagram_username"]', document).innerText = instagramProfile.username;
                             $.find('[name="instagram_media_count"]', document).innerText = instagramProfile.media_count;
@@ -100,7 +99,6 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                             $.find('[name="instagram_user_birthday"]', document).innerText = JSON.stringify(userBirthday);
                             
                             let input_wraps = $.all('.input_wrap');
-                            log(input_wraps);
                             input_wraps[0].classList.add('hidden');
                             input_wraps[1].classList.remove('hidden');
                         } else {
@@ -108,7 +106,7 @@ app.get('/influencer/inf_signup_connect_instagram', (req, res) => {
                         }
                     } catch (e) {
                         if (e.message === "Cannot read property 'id' of undefined") alert("인스타그램 계정과 연동된 페이스북 계정으로 로그인해주세요");
-                        else log(e)
+                        else alert(e)
                     }
                     });
                 }

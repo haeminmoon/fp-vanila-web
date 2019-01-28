@@ -17,7 +17,9 @@
     require('../module/share/template/tmpl');
     require('../module/share/template/tmpl.layout');
     require('../module/share/template/influencer/inf_campaign_list');
-
+    require('../module/share/template/advertiser/adv_campaign_detail');
+    require('../module/share/template/advertiser/adv_influencer_list');
+    require('../module/share/template/advertiser/adv_campaign_modify');
     /**
      * DB - Query builder setting
      */

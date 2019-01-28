@@ -10,13 +10,21 @@
             else go(
                 {"id":targetId},
                 $.post('/api/advertiser/adv_influencer_list'),
-                a => {
-                    if (a.res !== "success to load media data") alert(a.res);
-                    else {
-                        $('.inf_follow', ct).innerText = a.followers;
-                        target.innerHTML = writeInstagramMediaHtml(a.media);
-                        target.classList.remove("hidden");
-                    }
+                a => match(a.res)
+                    .case(b => b === "media dose not exist")
+                    (_ => alert("게시물이 존재하지 않습니다"))
+                    .case(b => b === "fail to read database")
+                    (_ => alert("데이터베이스를 읽는데 실패했습니다"))
+                    .case(b => b === "fail to update at database")
+                    (_ => alert("데이터베이스에 업데이트하는데 실패했습니다"))
+                    .case(b => b === "success to load media data")
+                    (_ => a)
+                    .else(_ => alert("서버 에러 입니다")),
+                c => {
+                    if (!c) return;
+                    $('.inf_follow', ct).innerText = c.followers;
+                    target.innerHTML = TMPL.AdvInfluencerList.getInstagramMedia(c.media);
+                    target.classList.remove("hidden");
                 }
             )
         }),
@@ -41,10 +49,11 @@
             if (selectFollowerMax === "all") selectFollowerMax = 10000000000;
             else if (selectFollowerMin > selectFollowerMax) return alert("팔로워 검색 조건을 확인해주세요");
             if (selectAgesMax === "all") selectAgesMax = 1000;
-            else if (selectAgesMin > selectAgesMax) return alert("연령대 검색 조건을 확인해주세요");
+            else if (selectAgesMin >= selectAgesMax) return alert("연령대 검색 조건을 확인해주세요");
 
             let infList = $.all('.target', document);
-            go(infList, map(a => {
+            go(infList, 
+                map(a => {
                     let follower = parseInt($.find('.inf_follow', a).innerText);
                     let age = parseInt($.attr('value', $.find('.inf_ages', a)));
                     let gender = $.attr('value', $.find('.inf_gender', a))
@@ -64,41 +73,6 @@
             infListHtml.innerHTML += `<tr class="click_hidden hidden" name="${$.attr('target', a.target)}">${a.click_hidden.innerHTML}</div>`
         }));
     }
-    
-    const writeInstagramMediaHtml = media => {
-        let firstMedia = media[0];
-        let RemainMediaList;
-        if (media.length > 1) {
-            RemainMediaList = go(
-                media,
-                a => {
-                    let result;
-                    for (let i = 1; i < a.length; i++) {
-                        result += html`
-                        <a href=${a[i].instagram_link}><img src=${a[i].media_url}></a>`
-                    }
-                    return result;
-                },
-                b => html`${b}`
-            );
-        }
-        return `
-        <td>
-            <a href=${firstMedia.permalink}><img src=${firstMedia.media_url} alt="인스타그램 이미지"></a>
-            <div class="click_txt">
-                <strong class="like">게시일 ${convertDateToMMDD(new Date(firstMedia.timestamp))}</strong>
-                <strong class="like">좋아요 ${firstMedia.like_count}개</strong>
-                <strong>댓글수 ${firstMedia.comments_count}개</strong>
-                <div class="click_main">
-                    <strong class="click_comment">${firstMedia.caption}</strong>
-                </div>
-            </div>
-            <div class="click_img">
-                ${RemainMediaList}
-            </div>
-        </td>`
-    }
-    const convertDateToMMDD = date => `${toString(date.getMonth()+1).padStart(2,'0')}-${toString(date.getDate()).padStart(2,'0')}`;
 
     global.AdvInfluencerList = {
         Do
