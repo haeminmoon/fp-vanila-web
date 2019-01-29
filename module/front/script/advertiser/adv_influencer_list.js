@@ -20,10 +20,10 @@
                     .case(b => b === "success to load media data")
                     (_ => a)
                     .else(_ => alert("서버 에러 입니다")),
-                c => {
-                    if (!c) return;
-                    $('.inf_follow', ct).innerText = c.followers;
-                    target.innerHTML = TMPL.AdvInfluencerList.getInstagramMedia(c.media);
+                b => {
+                    if (!b) return;
+                    $('.inf_follow', ct).innerText = b.followers;
+                    target.innerHTML = TMPL.AdvInfluencerList.getInstagramMedia(b.media);
                     target.classList.remove("hidden");
                 }
             )

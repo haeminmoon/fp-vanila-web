@@ -86,33 +86,33 @@
     const updateDB = (column, value, id) => {
         switch (column) {
             case "name":
-                return QUERY`UPDATE campaign SET name = ${value} WHERE id = ${id} RETURNING true`
+                return QUERY`UPDATE campaign SET name = ${value} WHERE id = ${id} RETURNING TRUE`
             case "sns_type":
-                return QUERY`UPDATE campaign SET sns_type = ${value} WHERE id = ${id} RETURNING true`
+                return QUERY`UPDATE campaign SET sns_type = ${value} WHERE id = ${id} RETURNING TRUE`
             case "category":
-                return QUERY`UPDATE campaign SET category = ${value} WHERE id = ${id} RETURNING true`
+                return QUERY`UPDATE campaign SET category = ${value} WHERE id = ${id} RETURNING TRUE`
             case "state":
-                return QUERY`UPDATE campaign SET state = ${value} WHERE id = ${id} RETURNING true`
+                return QUERY`UPDATE campaign SET state = ${value} WHERE id = ${id} RETURNING TRUE`
             case "img":
-                return QUERY`UPDATE campaign SET img = ${value} WHERE id = ${id} RETURNING true`
+                return QUERY`UPDATE campaign SET img = ${value} WHERE id = ${id} RETURNING TRUE`
             case "info":
-                return QUERY`UPDATE campaign SET info = ${value} WHERE id = ${id} RETURNING true`
+                return QUERY`UPDATE campaign SET info = ${value} WHERE id = ${id} RETURNING TRUE`
             case "updated_at":
-                return QUERY`UPDATE campaign SET updated_at = ${value} WHERE id = ${id} RETURNING true`
+                return QUERY`UPDATE campaign SET updated_at = ${value} WHERE id = ${id} RETURNING TRUE`
             case "apply_start_date":
-                return QUERY`UPDATE campaign SET apply_start_date = ${value} WHERE id = ${id} RETURNING true`
+                return QUERY`UPDATE campaign SET apply_start_date = ${value} WHERE id = ${id} RETURNING TRUE`
             case "apply_end_date":
-                return QUERY`UPDATE campaign SET apply_end_date = ${value} WHERE id = ${id} RETURNING true`
+                return QUERY`UPDATE campaign SET apply_end_date = ${value} WHERE id = ${id} RETURNING TRUE`
             case "post_start_date":
-                return QUERY`UPDATE campaign SET post_start_date = ${value} WHERE id = ${id} RETURNING true`
+                return QUERY`UPDATE campaign SET post_start_date = ${value} WHERE id = ${id} RETURNING TRUE`
             case "post_end_date":
-                return QUERY`UPDATE campaign SET post_end_date = ${value} WHERE id = ${id} RETURNING true`
+                return QUERY`UPDATE campaign SET post_end_date = ${value} WHERE id = ${id} RETURNING TRUE`
             case "notice_date":
-                return QUERY`UPDATE campaign SET notice_date = ${value} WHERE id = ${id} RETURNING true`
+                return QUERY`UPDATE campaign SET notice_date = ${value} WHERE id = ${id} RETURNING TRUE`
             case "sub_img":
-                return QUERY`UPDATE campaign SET sub_img = ${value} WHERE id = ${id} RETURNING true`
+                return QUERY`UPDATE campaign SET sub_img = ${value} WHERE id = ${id} RETURNING TRUE`
             case "influencer_id":
-                return QUERY`UPDATE campaign SET influencer_id = ${value} WHERE id = ${id} RETURNING true`
+                return QUERY`UPDATE campaign SET influencer_id = ${value} WHERE id = ${id} RETURNING TRUE`
             default:
                 return ({bool : false});
         }
@@ -120,7 +120,13 @@
 
     const getFileName = fileUrl => fileUrl.split('/')[fileUrl.split('/').length-1].split('?')[0];
 
+    const getHashTag = text => {
+        let textArr = [];
+        text.replace(/#[^#\s,;&|]+/gm, a => textArr.push(a.replace('#', "")));
+        return textArr;
+    }
+
     global.Formatter = {
-        formatFrontDate, formatBackDate, isEmptyObj, formatStateClass, formatState, sortObjKey, updateDB, getFileName
+        formatFrontDate, formatBackDate, isEmptyObj, formatStateClass, formatState, sortObjKey, updateDB, getFileName, getHashTag
     }
 }(typeof window != 'undefined'? window : global);

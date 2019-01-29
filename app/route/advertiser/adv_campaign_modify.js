@@ -1,11 +1,9 @@
 const awsS3 = require('../../../module/back/util/fileUpload.js');
 
 app.get('/advertiser/adv_campaign_modify', async (req, res) => {
-
     if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
     let [campaign] = await QUERY`SELECT * FROM campaign WHERE id = ${req.query.id}`;
-
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
@@ -135,7 +133,7 @@ app.get('/advertiser/adv_campaign_modify', async (req, res) => {
                         <div class="input_wrap">
                             <label for="hash_tag" class="hash_tag_wrap">해시 태그<sup>*</sup></label>
                             <div class="hash_tag_wrap">
-                                <input type="text" name="hash_tag" class="hash_tag" value=${campaign.info.hash_tag}>
+                                <input type="text" name="hash_tag" class="hash_tag" value="${campaign.info.hash_tag}">
                             </div>
                         </div>
                     </div>
