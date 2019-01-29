@@ -1,5 +1,5 @@
 const getHash = require('../../../module/back/util/encryption');
-const { sendMail } =  require('../../../module/back/util/mailer');
+const { ses, mailOption } =  require('../../../module/back/util/ses');
 const { getRandomInt8 } = require('../../../module/back/util/getRandomInt');
 
 
@@ -94,16 +94,16 @@ app.post('/api/common/find_user/pw', (req, res, next) => {
                return b;
            },
            first,
-           async c => {
+            c => {
                if (c.info.phone_num !== req.body.phone_num) {
                    throw 'the phone number wrong number';
                }
-               await sendMail(
+               ses.sendEmail(mailOption(
                    '스핀 프로토콜에서 보내는 메일입니다.',
                    `스핀 프로토콜에서 비밀번호 재발급을 위해 임시 비밀번호 [ ${newPw} ]를 드립니다.`,
                    c.id
-               ).catch(err => {
-                   return err;
+               ), (err,data) => {
+                   if (err) throw err;
                });
                return c;
            },
