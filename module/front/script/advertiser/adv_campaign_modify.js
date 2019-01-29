@@ -67,7 +67,7 @@
         setMinDate: $.on('change', '.date_start', ({currentTarget: ct}) => {
             let target = $(`[name=${$.attr('target', ct)}]`, document);
             target.min = ct.value;
-            (target.value < target.min)? target.value = "" : ""; 
+            (target.value < target.min)? target.value = "" : "";
         }),
 
         setSelectOption: obj => {

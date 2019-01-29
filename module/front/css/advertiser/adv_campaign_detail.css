@@ -101,6 +101,17 @@
 .column{width: 150px}
 .column_phone{width: 180px}
 .camp_state{width: 70px}
+.post_status{width: 70px}
+.post_status span{
+	display: block;
+	font-size: 11px;
+	line-height: 12px;
+	border-radius: 20px;
+	padding: 5px 0;
+	width: 50px;
+	text-align: center;
+}
+.post_refresh{width: 30px}
 .target_down{
 	position: relative;
 	top: 100px;
