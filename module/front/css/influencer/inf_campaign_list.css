@@ -70,6 +70,33 @@
     color: #fff;
 }
 
+table {
+    width: 80%;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: 0 1px 4px 0 #e5e9f2;
+    padding: 20px 40px 20px 30px;
+
+}
+table tr td:last-child {
+    padding-right: 40px;
+}
+
+.filter_button{
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    background-color: #9b9b9b;
+}
+
+.filter_button:hover{
+    background-color: transparent;
+    color: #108a7a;
+    border: 2px solid #108a7a;
+    transition: all 0.3s ease;
+}
 /* #footer{
     position: absolute;
     height: 50px;

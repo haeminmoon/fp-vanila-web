@@ -1,7 +1,7 @@
 const isSameDay = require('date-fns/is_same_day');
 const isYesterDay = require('date-fns/is_yesterday');
 const cron = require('node-cron');
-const {ses, mailOption} = require('../../../module/back/util/ses');
+const {ses, mailOption} = require('../../module/back/util/ses');
 
 
 const scheduler = () => {
