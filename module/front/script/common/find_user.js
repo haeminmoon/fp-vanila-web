@@ -15,7 +15,11 @@
                     return a;
                 },
                 $.post('/api/common/find_user/id'),
-                a => alert(`당신의 아이디는 ${a} 입니다,`)
+                a => {
+                    $('.result_wrap').classList.remove('hidden');
+                    $('.result_des').innerHTML = '입력하신 정보와 일치하는 아이디 정보입니다.';
+                    $('.result').innerHTML = a;
+                }
             ).catch(
                 a => match(a)
                     .case(a => a === 'No content')(_ => alert('입력란을 채워주세요'))
@@ -43,7 +47,10 @@
                 },
                 $.post('/api/common/find_user/pw'),
                 first,
-                a => (a.bool === true) ? alert('임시번호를 사용자의 아이디 메일로 전송해드렸습니다.') : alert('서버 에러입니다.')
+                a => {
+                    $('.result_wrap').classList.remove('hidden');
+                    (a.bool === true) ? $('.result_des').innerHTML = '임시번호를 사용자의 아이디 메일로 전송해드렸습니다.' : alert('서버 에러입니다.') ;
+                }
             ).catch(
                 a => match(a)
                     .case(a => a === 'No content')(_ => alert('입력란을 채워주세요.'))

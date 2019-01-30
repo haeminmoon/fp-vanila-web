@@ -3,32 +3,9 @@ const { get } = require('../../../module/back/util/request');
 app.get('/advertiser/adv_influencer_list', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
-
-    const updateInfSnsInfo = await go(
-        QUERY`SELECT id, sns_info FROM users WHERE auth = 'influencer' and sns_info is not null`,
-        map(async a => {
-            let instagramMedia = await getInstagramMedia(a.sns_info.instagram_id, a.sns_info.instagram_access_token, 7).then(data => data);
-            a.sns_info.instagram_followers = instagramMedia.followers_count;
-            a.sns_info.instagram_follows = instagramMedia.follows_count;
-            a.sns_info.instagram_profile_img = instagramMedia.profile_picture_url;
-            let [commentAverage, likeAverage] = go(
-                instagramMedia.media.data,
-                a => {
-                    let commentC = 0;
-                    let likeC = 0;
-                    for (const iter of a) {
-                        commentC += iter.comments_count;
-                        likeC += iter.like_count;
-                    }
-                    return [Math.ceil(commentC / a.length), Math.ceil(likeC / a.length)];
-                }
-            );
-            Object.assign(a.sns_info, { "instagram_media": instagramMedia.media.data }, { "instagram_comment_average": commentAverage }, { "instagram_like_average": likeAverage });
-            QUERY`UPDATE users SET sns_info = ${JSON.stringify(a.sns_info)} WHERE id = ${a.id}`;
-            return a;
-        })
-    )
     
+    const infList = await QUERY`SELECT id, info, sns_info FROM users WHERE auth = 'influencer' and sns_info is not null`;
+
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_influencer_list.css"/>
@@ -40,7 +17,7 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
             <div class="container">
                 <div class="breadcrumbs">
                     <a>홈</a>
-                    <span>캠페인 리스트</span>
+                    <a href="/advertiser/adv_influencer_list">인플런서 리스트</a>
                 </div>
                 <div class="terms_wrap">
                     <button type="button" class="terms_clear_btn">조건 초기화</button>
@@ -71,10 +48,20 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                             </td>
                         </tr>
                         <tr>
+                            <th>성별</th>
+                            <td>
+                                <select title="성별" class="form" name="gender">
+                                    <option value="all">전체</option>
+                                    <option value="man">남성</option>
+                                    <option value="woman">여성</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
                             <th>연령대</th>
                             <td>
                                 <select title="연령대에서" class="form" name="ages_min">
-                                    <option value="0">전체</option>
+                                    <option value="0">0</option>
                                     <option value="10">10대</option>
                                     <option value="20">20대 초반</option>
                                     <option value="24">20대 중반</option>
@@ -98,13 +85,14 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                                 <select title="팔로우수에서" class="form" name="follower_min">
                                     <option value="0">0</option>
                                     <option value="10">10</option>
-                                    <option value="50">50</option>
+                                    <option value="100">100</option>
                                 </select>
                                 <em>~</em>
                                 <select title="팔로우수까지" class="form" name="follower_max">
                                     <option value="all">전체</option>
                                     <option value="10">10</option>
-                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="200">200</option>
                                 </select>
                                 <button class="terms_search_btn">검색</button>
                             </td>
@@ -113,7 +101,6 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                 </div>
                 <div class="inf_list_make_wrap">
                     <h3>인플루언서 리스트</h3>
-                    <button type="button" class="make_btn">캠페인만들기</button>
                     <select title="정열 옵션" class="list_form select_sort_opt">
                         <option>정열 옵션</option>
                         <option value="inf_follow">팔로우 많은 순</option>
@@ -130,12 +117,13 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
                                 <th scope="col" class="inf_id">아이디</th>
                                 <th scope="col" class="inf_level">레벨</th>
                                 <th scope="col" class="inf_follow">총 팔로워수</th>
-                                <th scope="col" class="inf_category">카테고리</th>
+                                <th scope="col" class="inf_gender">성별</th>
+                                <th scope="col" class="inf_category">카테고리</th>                        
                                 <th scope="col" class="inf_category">연령대</th>
                             </tr>
                         </thead>
                         <tbody id="click_wrap">
-                            ${infList(JSON.stringify(updateInfSnsInfo))}
+                            ${go(infList, map(a => TMPL.AdvInfluencerList.getInfProfile(a)), b => html`${b}`)}
                         </tbody>
                     </table>
                 </div>
@@ -154,85 +142,54 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
     }));
 });
 
+app.post('/api/advertiser/adv_influencer_list', async (req, res) => {
+    // 클릭한 유저의 id를 받음
+    let id = req.body.id;
+    // 해당 id의 instagram id 와 instagram access token 을 얻기위해 데이터베이스 조회
+    let [userSnsInfo] = await QUERY`SELECT sns_info FROM users WHERE id = ${id}`;
+    if (!userSnsInfo) {res.json({"res":"fail to read database"}); return;}
+    
+    // 얻은 id 와 access token 을 통해 facebook Graph api에 필요한 정보 요청
+    let instagramMedia = await getInstagramMedia(userSnsInfo.sns_info.instagram_id, userSnsInfo.sns_info.instagram_access_token, 7).then(data => data);
+    if (!instagramMedia) {res.json({"res":"fail to get API return"}); return;}
+    else if (!instagramMedia.media) {res.json({"res":"media dose not exist"}); return;}
+
+    // 데이터베이스의 데이터 갱신을 위해 갱신이 필요한 정보들을 api에서 받아온 정보로 업데이트
+    userSnsInfo.sns_info.instagram_followers = instagramMedia.followers_count;
+    userSnsInfo.sns_info.instagram_follows = instagramMedia.follows_count;
+    userSnsInfo.sns_info.instagram_profile_img = instagramMedia.profile_picture_url;
+    let [commentAverage, likeAverage] = go(
+        instagramMedia.media.data,
+        a => {
+            let commentC = 0;
+            let likeC = 0;
+            for (const iter of a) {
+                commentC += iter.comments_count;
+                likeC += iter.like_count;
+            }
+            return [Math.ceil(commentC / userSnsInfo.length), Math.ceil(likeC / userSnsInfo.length)];
+        }
+    )
+    Object.assign(userSnsInfo.sns_info, { "instagram_media": instagramMedia.media.data }, { "instagram_comment_average": commentAverage }, { "instagram_like_average": likeAverage });
+
+    // 데이터베이스에 업데이트
+    let [updateResult] = await QUERY`UPDATE users SET sns_info = ${JSON.stringify(userSnsInfo.sns_info)} WHERE id = ${id} RETURNING TRUE`;
+    if (!updateResult || !updateResult.bool) {res.json({"res":"fail to update at database"}); return;}
+    // 호출 결과와 필요한 데이터를 json형태로 응답
+    go( {
+            "res" : "success to load media data",
+            "media" : instagramMedia.media.data,
+            "followers" : instagramMedia.followers_count
+        },
+        res.json
+    );
+    return;
+})
+
 const getInstagramMedia = async (id, accessToken, limit) => {
     !limit ? limit = 7 : limit;
-    /**
-     * 1. First parameter, end point
-     * 2. Second parameter, header
-     */
     return get(
         `https://graph.facebook.com/v3.2/${id}/?fields=media.limit(${limit})%7Bcaption%2Ccomments_count%2Clike_count%2Cmedia_url%2Ctimestamp%2Cpermalink%2Cthumbnail_url%2Cmedia_type%7D%2Cfollowers_count%2Cfollows_count%2Cprofile_picture_url&access_token=${accessToken}`,
         ``
     );
-}
-
-const infList = data => go(
-    JSON.parse(data),
-    map(a => writeInfList(a.id, a.sns_info.instagram_followers, ['IT', '패션'], JSON.parse(a.sns_info.instagram_user_birthday), a.sns_info.instagram_media[0].like_count, a.sns_info.instagram_media[0].comments_count, a.sns_info.instagram_media[0].caption, a.sns_info.instagram_media[0].media_url, a.sns_info.instagram_media[0].permalink, go(a.sns_info.instagram_media, map(a => ({ "media_url": a.media_url, "instagram_link": a.permalink }))))),
-    b => html`${b}`
-)
-
-const writeInfList = (id, followers, category, birthday, firstPostLike, firstPostComment, firstPostCaption, firstPostImg, firstPostLink, postImg) => {
-    let htmlCategoryList = go(
-        category,
-        map(a => html`
-        <li>${a}</li>`),
-        b => html`${b}`
-    );
-    let htmlImgList;
-    if (postImg.length > 1) {
-        htmlImgList = go(
-            postImg,
-            a => {
-                let result;
-                for (let i = 1; i < a.length; i++) {
-                    result += html`
-                    <a href=${a[i].instagram_link}><img src=${a[i].media_url}></a>`
-                }
-                return result;
-            },
-            b => html`${b}`
-        );
-    }
-    let age = new Date().getFullYear() - parseInt(birthday.year) + 1;
-    return html`
-    <tr class="target" target="${id}">
-        <td class="inf_check">
-            <input type="checkbox" name="sale_chk" id="inf_click1" value="progress">
-            <label for="inf_click1"></label>
-        </td>
-        <td class="inf_img"><img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/instagram/instagram.png"></td>
-        <td class="inf_id">${id}</td>
-        <td class="inf_level">Master</td>
-        <td class="inf_follow">${followers}</td>
-        <td class="inf_category">
-            <ul>
-                ${htmlCategoryList}
-            </ul>
-        </td>
-        <td class="inf_ages" value=${age}>${matchAges(age)}</td>
-    </tr>
-    <tr class="click_hidden hidden" name="${id}">
-        <td>
-            <a href=${firstPostLink}><img src=${firstPostImg} alt="인스타그램 이미지"></a>
-            <div class="click_txt">
-                <strong class="like">좋아요 ${firstPostLike}개</strong>
-                <strong>댓글수 ${firstPostComment}개</strong>
-                <div class="click_main">
-                    <strong class="click_comment">${firstPostCaption}</strong>
-                </div>
-            </div>
-            <div class="click_img">
-                ${htmlImgList}
-            </div>
-        </td>
-    </tr>`
-}
-
-const matchAges = age => {
-    if (age < 20) return "10대";
-    else if (age < 24) return "20대 초반";
-    else if (age < 27) return "20대 중반";
-    else if (age < 30) return "20대 후반";
-    else if (age < 40) return "30대";
 }

@@ -30,10 +30,13 @@
 	background-size: 8px;
 	opacity: 0.2;
 }
-.breadcrumbs span{
+.breadcrumbs a:last-child{
 	color: #222;
 	font-size: 13px;
 	font-weight: bold;
+}
+.breadcrumbs a:last-child:after{
+	content: none;
 }
 
 h3{
@@ -118,8 +121,6 @@ h3{
 }
 
 
-
-
 /*  제발  */
 .inf_list_make_wrap{
 	width: 100%;
@@ -190,7 +191,7 @@ caption{
 .inf_list_make tbody tr *{
 	color: #666666;
 }
-.inf_list_make tbody tr.tr_on:after{
+.inf_list_make tbody tr.target:after{
 	content: '';
 	position: absolute;
 	left: 0;
@@ -207,7 +208,8 @@ caption{
 .inf_level{width: 140px;}
 .inf_follow{width: 140px;}
 .inf_ages{width: 140px;}
-.inf_category{width: 250px;}
+.inf_category{width: 210px;}
+.inf_gender{width: 100px;}
 .inf_check input[type="checkbox"]{
 	width: 20px;
 	height: 20px;
@@ -281,4 +283,8 @@ caption{
 
 td{
 	cursor: pointer;
+}
+
+.hidden {
+	display: none;
 }

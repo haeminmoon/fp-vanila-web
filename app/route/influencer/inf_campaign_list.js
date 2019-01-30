@@ -1,14 +1,14 @@
 app.get('/influencer/inf_campaign_list', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
-    const campaignList = await QUERY`SELECT * FROM campaign WHERE influencer_id->> ${req.session.user.id} IS NULL AND state = 'progress'`;
+    const campaignList = await QUERY`SELECT * FROM campaign WHERE influencer_id->> ${req.session.user.id} IS NULL AND advertiser_state = 'progress'`;
 
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/influencer/inf_campaign_list.css">
         `,
-        header: TMPL.layout.infHeader(user.info.name),
-        nav: TMPL.layout.infNav(user.info.name),
+        header: TMPL.layout.infHeader(user.info.nickname),
+        nav: TMPL.layout.infNav(user.info.nickname),
         main: `
             <div id="main">
                 <div class="breadcrumbs">

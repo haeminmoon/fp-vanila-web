@@ -10,12 +10,20 @@
                 name: go(dt, $.find('.name'), $.html),
                 post_code: go(dt, $.find('[name="post_code"]'), $.trim),
                 address: go(dt, $.find('[name="address"]'), $.trim),
-                followers: go(dt, $.find('.user_id'), $.attr('followers'))
+                followers: go(dt, $.find('.user_id'), $.attr('followers')),
+                selected: 'false',
+                post_status: 'false',
+                state: 'apply_complete'
             },
             pipeT(
                 a => {
                     if (a.address === '' || a.post_code === ''){
                         throw 'No content';
+                    }
+                    for (checkbox of $.all('[type="checkbox"]')) {
+                        if (checkbox.checked === false) {
+                            throw 'No checked';
+                        }
                     }
                     return a;
                 },
@@ -30,9 +38,11 @@
                     }
                 },
                 $.post('/api/influencer/inf_campaign_apply'),
-                _ => location.href = '/influencer/inf_campaign_management'
+                _ => location.replace('/advertiser/adv_campaign_management')
             ).catch(
                 a => match(a)
+                    .case(a => a === 'No checked')
+                    (_ => alert('약관 동의 대한 체크를 해주세요.'))
                     .case(a => a === 'No content')
                     (_ => alert('배송 주소를 입력해주세요'))
                     .else(_ => alert('서버 에러입니다.'))

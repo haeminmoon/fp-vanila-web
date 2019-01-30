@@ -24,7 +24,7 @@
     width: 100%;
     margin: 10px 0;
     font-size: 1em;
-    color: #627efe;
+    color: #108a7a;
 }
 .inf_info{
     margin-bottom: 10px;
@@ -76,6 +76,38 @@
     height: 40px;
     border-radius: 30px;
     border: none;
+}
+.campaign_agree_btn:hover{
+    background-color: transparent;
+    color: #108a7a;
+    border: 2px solid #108a7a;
+    transition: all 0.3s ease;
+}
+.container button{
+    border: none;
+    background-color: #9b9b9b;
     color: #fff;
-    background-color: #627efe;
+}
+
+input[type="text"]{
+    width: 380px;
+    height: 35px;
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 1px solid ;
+    border-radius: 10px;
+    /* box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1); */
+    background-color: #fbfcff;
+}
+input:focus{
+    border: 1px solid #00aa87;
+}
+
+.sch_add_btn{
+    width: 76px;
+    height: 40px;
+    margin-left: 10px;
+}
+.post_code{
+    width: 120px !important;
 }
