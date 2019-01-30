@@ -1,0 +1,141 @@
+/*notice_wrap*/
+.notice_wrap{
+    position: relative;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    border-radius: 4px;
+    background-color: white;
+}
+.input_wrap{
+    width: 100%;
+}
+.input_wrap:after{content: ''; display: block; clear: both;}
+.input_wrap > label{
+    float: left;
+    width: 25%;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    font-size: 15px;
+    line-height: 70px;
+    text-align: right;
+    padding-right: 20px;
+    color: #222;
+}
+.input_wrap > .wrap_right{
+    float: left;
+    border-bottom: 1px solid #ddd;
+    width: 75%;
+    padding: 0 15px;
+}
+sup{
+    font-weight: bold;
+    font-size: 5px;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+.input_wrap .notification_target_wrap {height: 70px;}
+.input_wrap .notice_name_wrap{height: 70px;}
+
+.input_wrap .date_wrap{height: 70px;}
+.wrap_right .date_wrap{padding: 15px;}
+
+.input_wrap .notice_description_wrap{height: 165px;}
+
+select{
+    border: 1px solid #ddd;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 40px;
+    padding-left: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 14px;
+}
+.notice_name{
+    border: 1px solid #ddd;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 14px;
+}
+.wrap_right p{
+    margin-top: 8px;
+    font-size: 13px;
+    color: #858585;
+}
+.date_wrap > div{
+    /* width: 800px; */
+    height: 33px;
+    padding-left: 10px;
+    margin-top: 20px;
+}
+.date_wrap > div > input{
+    background-color: #dedede;
+    padding-left: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 30px;
+    height: 30px;
+    margin-right: 6px;
+    width: 200px;
+    color: #555;
+}
+.date_wrap > div > label{
+    display: inline-block;
+    width: 80px;
+}
+textarea{
+    width: 100%;
+    height: 135px;
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.notice_wrap > div{
+    /* position: relative; */
+    left: 0;
+    right: 0;
+    bottom: -100px;
+    text-align: center;
+    /*	border: 3px solid blue;*/
+}
+.notice_wrap > div > input{
+    width: 90px;
+    height: 35px;
+    margin-left: 10px;
+    border: 1px solid #a8a8a8;
+    border-radius: 5px;
+    background-color: white;
+}
+.notice_wrap > div > input:hover{
+    background-color: #a8a8a8;
+    color: white;
+}
+
+/* 파일 css */
+.input_wrap .mimg_wrap{height: 90px;}
+.wrap_right.mimg_wrap{padding: 15px;}
+
+.wrap_right.mimg_wrap label {
+    display: inline-block;
+    padding: .5em .75em;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+}

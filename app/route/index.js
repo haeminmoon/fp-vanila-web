@@ -6,6 +6,7 @@ require('./common/signin');
 require('./common/signup_popup');
 require('./common/signout');
 require('./common/find_user');
+require('./common/notification')
 
 /**
  * Advertiser router
@@ -34,4 +35,6 @@ require('./influencer/inf_signup_connect_instagram');
 /**
 * Admin router
 */
-
+require('./admin/admin_notice_management');
+require('./admin/admin_notice_registeration');
+require('./admin/notice_detail');

@@ -22,8 +22,8 @@
                     .case(b => b === "fail to update database")(_ => alert("데이터베이스 업데이트에 실패했습니다"))
                     .case(b => b === "successful data import but could not found the post")(_ => alert("해당 유저가 아직 캠페인 관련 게시물을 등록하지 않았습니다"))
                     .case(b => b === "successful data import and found the post")(_ => {
-                        alert("캠페인 관련 게시물이 확인되었습니다")
-                        return a.post
+                        alert("캠페인 관련 게시물이 확인되었습니다");
+                        return a.post;
                     })
                     .else(_ => alert("서버 에러 입니다")),
                 _ => location.reload()

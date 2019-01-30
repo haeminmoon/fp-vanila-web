@@ -57,32 +57,36 @@
         </div>
     `;
 
-    TMPL.layout.advHeader = userName => `
-    <div id="header">
-        <ul class="header_gnb">
-            <li class="notice_icon">
-                <button type="button" class="notice_msg">
-                    <div class="circle_cnt">1</div>
-                    <img class="gnb_icon" src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/notice_icon/baseline-search-24-px-copy.svg" alt="notice icon">
-                </button>
-            </li>
-            <li class="header_profile_img">
-                <div class="header_img">
-                    <img src="http://file2.nocutnews.co.kr/newsroom/image/2018/07/18/20180718120948825781_0_420_600.jpg" alt="profile image">
-                </div>
-            </li>
-            <li>
-                <p>${userName}님</p>
-            </li>
-        </ul>
-    </div>
-    `;
-
-    TMPL.layout.infHeader = userName => `
+    TMPL.layout.advHeader = (userName, userId) => `
         <div id="header">
             <ul class="header_gnb">
                 <li class="notice_icon">
-                    <button type="button" class="notice_msg">
+                    <button type="button" class="notice_msg" onclick="clickNoticeMsg('${userId}');">
+                        <div class="circle_cnt">1</div>
+                        <img class="gnb_icon" src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/notice_icon/baseline-search-24-px-copy.svg" alt="notice icon">
+                    </button>
+                </li>
+                <li class="header_profile_img">
+                    <div class="header_img">
+                        <img src="http://file2.nocutnews.co.kr/newsroom/image/2018/07/18/20180718120948825781_0_420_600.jpg" alt="profile image">
+                    </div>
+                </li>
+                <li>
+                    <p>${userName}님</p>
+                </li>
+            </ul>
+        </div>
+        <div class="pop_content">
+            <div class="notification hidden">
+            </div>
+        </div>
+    `;
+
+    TMPL.layout.infHeader = (userName, userId) => `
+        <div id="header">
+            <ul class="header_gnb">
+                <li class="notice_icon">
+                    <button type="button" class="notice_msg" onclick="clickNoticeMsg('${userId}');">
                         <div class="circle_cnt">1</div>
                         <img class="gnb_icon" src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/notice_icon/baseline-search-24-px-copy.svg" alt="notice icon">
                     </button>
@@ -98,13 +102,14 @@
             </ul>
         </div>
         <div class="pop_content">
-            <div class="notification">
+            <div class="notification hidden">
             </div>
         </div>
     `;
 
     TMPL.layout.advNav = userName => `
         <div id="nav">
+            <a class="open"></a>
             <h1 class="logo">
                 <a href="/">
                     <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%403x.png" class="logo" alt="spinprotocol_logo">
@@ -130,6 +135,7 @@
 
     TMPL.layout.infNav = userName => `
         <div id="nav">
+            <a class="open"></a>
             <h1 class="logo">
                 <a href="/">
                     <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%403x.png" class="logo" alt="spinprotocol_logo">
@@ -146,6 +152,32 @@
                 <li><a href="/influencer/inf_campaign_list">캠페인 목록</a></li>
                 <li class="setting">
                     <a href="/influencer/inf_my_info">설정</a>
+                </li>
+            </ul>
+            <div class="logout_btn_wrap">
+                <a class="logout_btn" href="/common/signout">로그아웃</a>
+            </div>
+        </div>
+    `;
+
+    TMPL.layout.adminNav = userName => `
+        <div id="nav">
+            <h1 class="logo">
+                <a href="/">
+                    <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%403x.png" class="logo" alt="spinprotocol_logo">
+                </a>
+            </h1>
+            <div class="profile">
+                <div class="image">
+                    <img src="http://file2.nocutnews.co.kr/newsroom/image/2018/07/18/20180718120948825781_0_420_600.jpg" alt="profile image">
+                </div>
+                <p class="user_name">${userName}</p>
+            </div>
+            <ul class="nav_gnb">
+                <li class="nav_on"><a href="/admin/admin_notice_management">공지사항 관리</a></li>
+                <li><a href="/admin/admin_notice_registeration">공지사항 등록</a></li>
+                <li class="setting">
+                    <a href="/admin/admin_my_info">설정</a>
                 </li>
             </ul>
             <div class="logout_btn_wrap">

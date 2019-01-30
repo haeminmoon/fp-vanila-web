@@ -14,7 +14,7 @@ app.get('/influencer/inf_my_info', async (req, res) => {
             <link rel="stylesheet" href="/front/css/influencer/inf_my_info.css" />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         `,
-        header: TMPL.layout.infHeader(user.info.nickname),
+        header: TMPL.layout.infHeader(user.info.nickname, user.id),
         nav: TMPL.layout.infNav(user.info.nickname),
         main: `
             <div id="main">
