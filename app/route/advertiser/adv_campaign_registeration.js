@@ -18,7 +18,7 @@ app.get('/advertiser/adv_campaign_registration', async (req, res) => {
 
 
         `,
-        header: TMPL.layout.advHeader(user.info.company_name),
+        header: TMPL.layout.advHeader(user.info.company_name, user.id),
         nav: TMPL.layout.advNav(user.info.company_name),
         main: `
             <div id="main">

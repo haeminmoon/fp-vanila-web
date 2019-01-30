@@ -20,6 +20,7 @@
     require('../module/share/template/advertiser/adv_campaign_detail');
     require('../module/share/template/advertiser/adv_influencer_list');
     require('../module/share/template/advertiser/adv_campaign_modify');
+    require('../module/share/template/admin/admin_notice_management');
     /**
      * DB - Query builder setting
      */

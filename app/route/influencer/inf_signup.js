@@ -201,9 +201,12 @@ app.post('/api/influencer/inf_signup', (req, res, next) => {
             return a;
         },
         pipeT(
-            b => QUERY`INSERT INTO users ${VALUES(b)} RETURNING info, created_at`,
+            b => QUERY`INSERT INTO users ${VALUES(b)} RETURNING id, auth, info, created_at`,
             first,
-            tap(log),
+            c => {
+                QUERY`INSERT INTO user_notification ${VALUES({"id": c.id, "auth": c.auth})}`
+                return c;
+            },
             res.json
         ).catch(
             match
