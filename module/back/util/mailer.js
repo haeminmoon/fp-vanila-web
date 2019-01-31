@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const mailerAccount = require('../../../config/mailerInfo.json');
+const mailerAccount = require('../../../config/mailer_info.json');
 
 const sendMail = (subject, text, receiverMail) => {
     const mailTransport = nodemailer.createTransport({

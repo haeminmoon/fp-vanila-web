@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
-const mailerAccount = require('../../../config/mailerInfo.json');
-AWS.config.loadFromPath(__dirname + '/../../../config/s3Info.json');
+const mailerAccount = require('../../../config/mailer_info.json');
+AWS.config.loadFromPath(__dirname + '/../../../config/s3_info.json');
 AWS.config.update({region: "us-west-2"});
 const ses = new AWS.SES({apiVersion: '2010-12-01'});
 
