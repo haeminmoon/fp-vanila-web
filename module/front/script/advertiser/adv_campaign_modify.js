@@ -56,16 +56,16 @@
             if (ct.files && ct.files[0]) {
                 let reader = new FileReader();
                 reader.onload = (e) => {
-                    $(`[file_name=${$.attr('target', ct)}]`).src = e.target.result;
-                    $(`[file_name=${$.attr('target', ct)}]`).classList.remove('non_modified');
-                    $(`[file_name=${$.attr('target', ct)}]`).classList.add('modified');
+                    $(`[file_name="${$.attr('target', ct)}"]`).src = e.target.result;
+                    $(`[file_name="${$.attr('target', ct)}"]`).classList.remove('non_modified');
+                    $(`[file_name="${$.attr('target', ct)}"]`).classList.add('modified');
                 };
                 reader.readAsDataURL(ct.files[0]);
             }
         }),
 
         setMinDate: $.on('change', '.date_start', ({currentTarget: ct}) => {
-            let target = $(`[name=${$.attr('target', ct)}]`, document);
+            let target = $(`[name="${$.attr('target', ct)}"]`, document);
             target.min = ct.value;
             (target.value < target.min)? target.value = "" : "";
         }),

@@ -6,6 +6,7 @@ app.get('/advertiser/adv_signup', (req, res) => {
         css: `
             <link rel="stylesheet" href="/front/css/common/common_signup.css">
             <link rel="stylesheet" href="/front/css/advertiser/adv_signup.css">
+            <link rel="stylesheet" href="/front/css/advertiser/media/media_adv_signup.css" />
          `,
         header: TMPL.layout.accountHeader('signup'),
         main: `
@@ -166,9 +167,13 @@ app.post('/api/advertiser/adv_signup', (req, res, next) => {
             return a;
         },
         pipeT(
-            b => QUERY`INSERT INTO users ${VALUES(b)} RETURNING info`,
+            b => QUERY`INSERT INTO users ${VALUES(b)} RETURNING id, auth, info`,
             first,
-            c => c.info.ceo_name,
+            c => {
+                QUERY`INSERT INTO user_notification ${VALUES({"id": c.id, "auth": c.auth})}`
+                return c;
+            },
+            d => d.info.ceo_name,
             res.json
         ).catch(
             match

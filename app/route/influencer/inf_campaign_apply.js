@@ -3,14 +3,27 @@ const {ses, mailOption} = require('../../../module/back/util/ses');
 app.get('/influencer/inf_campaign_apply', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
-
+    const [notification] = await QUERY`SELECT * FROM user_notification WHERE id = ${req.session.user.id}`;
+    let notiCount = list => go(
+        list,
+        a => {
+            if (!a) return [];
+            let arr = [];
+            for (const key in a) {
+                if (a[key].read === false) a.push(key);
+            }
+            return arr;
+        },
+        b => b.length
+    );
     const [campaignItem] = await QUERY`SELECT * FROM campaign WHERE advertiser_state = 'progress' AND id = ${req.query.id}`;
 
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/influencer/inf_campaign_apply.css">
+            <link rel="stylesheet" href="/front/css/influencer/media/media_inf_campaign_apply.css">
         `,
-        header: TMPL.layout.infHeader(user.info.nickname),
+        header: TMPL.layout.infHeader(user.info.nickname, user.id, notiCount(notification.notification_list)),
         nav: TMPL.layout.infNav(user.info.nickname),
         main: `
             <div id="main">

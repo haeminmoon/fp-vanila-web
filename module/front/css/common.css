@@ -31,7 +31,6 @@ a, button{
     clear: both;
 }
 
-
 /* 체크박스 디자인 */
 input[type="checkbox"]{
     position: absolute;
@@ -256,19 +255,53 @@ input[type="radio"]:checked + label:before {
     color: #878787;
 }
 
+/* pop_content */
 .pop_content{
-    position: absolute;
-    top: 48px;
-    right: 230px;
-    z-index: 1000;
+	position: absolute;
+	top: 48px;
+	right: 170px;
+	width: 400px;
+	background-color: #fff;
+	box-shadow: 0 3px 7px rgba(0, 0, 0, .25);
+    z-index: 300;
 }
 .notification{
-    width: 400px;
-    height: 568px;
-    max-height: 568px;
+	height: 100%;
     overflow: auto;
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0px 3px 7px 3px rgba(163,163,163,0.69);
+}
+.notification strong{
+	display: block;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	font-size: 14px;
+	line-height: 30px;
+	padding-left: 10px
+}
+.notification li{
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	padding: 10px 0 10px 10px;
+	background-color: #f7f7f7;
+}
+.notification li:hover{background-color: #f1f1f1;}
+.notification li a{font-size: 0;}
+.notification li a >*{
+	display: inline-block;
+	font-size: 12px;
+	line-height: 20px;
+}
+.notification span{
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/notice.png)no-repeat;
+	background-size: 100% auto;
+	width: 20px;
+	height: 20px;
+	text-indent: -99999px;
+	margin-right: 10px;
+	opacity: 0.6;
+}
+.notification p{
+	vertical-align: top;
+	width: 345px;
+}
+
+.hidden{
     display: none;
 }

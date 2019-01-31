@@ -2,12 +2,25 @@ app.get('/influencer/inf_campaign_detail', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
     const [campaignItem] = await QUERY`SELECT * FROM campaign WHERE advertiser_state IN ('progress','complete')  AND id = ${req.query.id}`;
-
+    const [notification] = await QUERY`SELECT * FROM user_notification WHERE id = ${req.session.user.id}`;
+    let notiCount = list => go(
+        list,
+        a => {
+            if (!a) return [];
+            let arr = [];
+            for (const key in a) {
+                if (a[key].read === false) arr.push(key);
+            }
+            return arr;
+        },
+        b => b.length
+    );
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/influencer/inf_campaign_detail.css">
+            <link rel="stylesheet" href="/front/css/influencer/media/media_inf_campaign_detail.css">
         `,
-        header: TMPL.layout.infHeader(user.info.nickname),
+        header: TMPL.layout.infHeader(user.info.nickname, user.id, notiCount(notification.notification_list)),
         nav: TMPL.layout.infNav(user.info.nickname),
         main: `
             <div id="main">
@@ -56,7 +69,7 @@ app.get('/influencer/inf_campaign_detail', async (req, res) => {
                             상세 이미지
                         </h2>
                         <div class="detail_content">
-                            ${go(campaignItem.sub_img, map((subImg) => ` <img src=${subImg}
+                            ${campaignItem.sub_img === null? `상세이미지가 없습니다` : go(campaignItem.sub_img, map((subImg) => ` <img src=${subImg}
                                 alt="캠페인 상세이미지">`))}
                         </div>
                     </div>
@@ -105,7 +118,7 @@ app.get('/influencer/inf_campaign_detail', async (req, res) => {
                         </div>
                     </div>
                     <div class="btn_wrap">
-                        <button type="button" class=${go(Object.keys(campaignItem.influencer_id), filter(id => id === user.id), a => a.length === 0) ? "submit_btn" : "hidden"} campaign_id = ${campaignItem.id}>신청하기</button>
+                        <button type="button" class=${go(Object.keys(campaignItem.influencer_id), filter(id => id === user.id), a => a.length === 0) ? "submit_btn" : "submit_btn hidden"} campaign_id = ${campaignItem.id}>신청하기</button>
                     </div>
                 </div>
             </div>

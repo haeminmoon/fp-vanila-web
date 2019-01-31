@@ -1,6 +1,19 @@
 app.get('/influencer/inf_campaign_management', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
+    const [notification] = await QUERY`SELECT * FROM user_notification WHERE id = ${req.session.user.id}`;
+    let notiCount = list => go(
+        list,
+        a => {
+            if (!a) return [];
+            let arr = [];
+            for (const key in a) {
+                if (a[key].read === false) arr.push(key);
+            }
+            return arr;
+        },
+        b => b.length
+    );
     let searchTerm = `%${req.query.searchTerm}%`;
 
     let campaignList = (!req.query.searchTerm) ?
@@ -11,8 +24,9 @@ app.get('/influencer/inf_campaign_management', async (req, res) => {
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
             <link rel="stylesheet" href="/front/css/influencer/inf_campaign_management.css" />
+            <link rel="stylesheet" href="/front/css/influencer/media/media_inf_campaign_management.css">
         `,
-        header: TMPL.layout.infHeader(user.info.nickname),
+        header: TMPL.layout.infHeader(user.info.nickname, user.id, notiCount(notification.notification_list)),
         nav: TMPL.layout.infNav(user.info.nickname),
         main: `
             <div id="main" influencer=${req.session.user.id}>

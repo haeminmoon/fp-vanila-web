@@ -1,19 +1,23 @@
 @charset "utf-8";
-
-#main{
-    margin-left: 220px;
-}
+#main{margin-left: 220px;}
 .container{
-    padding: 50px 200px;
+	width: 100%;
+	position: relative;
+	padding: 0 0 200px 0;
 }
-
 .container > div{
-    display: inline-block;  
-    width: 100%;
-    padding: 0px 70px 30px;
-    margin-bottom: 30px;
+	display: block;  
+	position: relative;
+	top: 50px; left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+	max-width: 800px;
+	min-width: 600px;
+	margin: 0 0 20px 0;
+	padding: 0 30px 30px;
+    border-radius: 8px;
+	box-shadow: 0 1px 4px 0 #e5e9f2;
     background-color: #fff;
-    border-radius: 15px;
 }
 .set_tit{
     height: 70px;
@@ -58,16 +62,10 @@ label:nth-child(1){
 button{
     width: 100%;
     height: 40px;
-    background-color: #9b9b9b;
+    background-color: #108a7a;
     border: none;
     border-radius: 5px;
     color: #fff;
-}
-.container button:hover{
-    background-color: #fff;
-    color: #108a7a;
-    border: 2px solid #108a7a;
-    transition: all 0.3s ease;
 }
 
 .haf{

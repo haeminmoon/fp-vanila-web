@@ -3,13 +3,27 @@ const awsS3 = require('../../../module/back/util/fileUpload.js');
 app.get('/advertiser/adv_campaign_modify', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
+    const [notification] = await QUERY`SELECT * FROM user_notification WHERE id = ${req.session.user.id}`;
+    let notiCount = list => go(
+        list,
+        a => {
+            if (!a) return [];
+            let arr = [];
+            for (const key in a) {
+                if (a[key].read === false) arr.push(key);
+            }
+            return arr;
+        },
+        b => b.length
+    )
     let [campaign] = await QUERY`SELECT * FROM campaign WHERE id = ${req.query.id}`;
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
             <link rel="stylesheet" href="/front/css/advertiser/adv_campaign_modify.css" />
+            <link rel="stylesheet" href="/front/css/advertiser/media/media_adv_campaign_modify.css" />
         `,
-        header: TMPL.layout.advHeader(user.info.company_name),
+        header: TMPL.layout.advHeader(user.info.company_name, user.id, notiCount(notification.notification_list)),
         nav: TMPL.layout.advNav(user.info.company_name),
         main: `
             <div id="main">
@@ -22,7 +36,7 @@ app.get('/advertiser/adv_campaign_modify', async (req, res) => {
                         <div class="input_wrap">
                             <label>캠페인 명<sup>*</sup></label>
                             <div class="campaign_wrap">
-                                <input type="text" class="campaign_title" value=${campaign.name}>
+                                <input type="text" class="campaign_title" value="${campaign.name}">
                             </div>
                         </div>
                         <div class="input_wrap">
@@ -31,19 +45,19 @@ app.get('/advertiser/adv_campaign_modify', async (req, res) => {
                                 <ul>
                                     <li>
                                         <label>신청기간</label>
-                                        <input type="date" class="date_start" name="apply_start_date" target="apply_end_date" value=${formatBackDate(campaign.apply_start_date)}>
+                                        <input type="date" class="date_start" name="apply_start_date" target="apply_end_date" value="${formatBackDate(campaign.apply_start_date)}">
                                         <em>~</em>
-                                        <input type="date" name="apply_end_date" class="date_end" min=${formatBackDate(campaign.apply_start_date)} value=${formatBackDate(campaign.apply_end_date)}>
+                                        <input type="date" name="apply_end_date" class="date_end" min="${formatBackDate(campaign.apply_start_date)}" value="${formatBackDate(campaign.apply_end_date)}">
                                     </li>
                                     <li>
                                         <label>포스팅 기간 </label>
-                                        <input type="date" class="date_start" name="post_start_date" target="post_end_date" value=${formatBackDate(campaign.post_start_date)}>
+                                        <input type="date" class="date_start" name="post_start_date" target="post_end_date" value="${formatBackDate(campaign.post_start_date)}">
                                         <em>~</em>
-                                        <input type="date" name="post_end_date" class="date_end" min=${formatBackDate(campaign.post_start_date)} value=${formatBackDate(campaign.post_end_date)}>
+                                        <input type="date" name="post_end_date" class="date_end" min="${formatBackDate(campaign.post_start_date)}" value="${formatBackDate(campaign.post_end_date)}">
                                     </li>
                                     <li>
                                         <label>발표일 </label>
-                                        <input type="date" name="notice_date" class="notice_date" value=${formatBackDate(campaign.notice_date)}>
+                                        <input type="date" name="notice_date" class="notice_date" value="${formatBackDate(campaign.notice_date)}">
                                     </li>
                                 </ul>
                             </div>
@@ -51,7 +65,7 @@ app.get('/advertiser/adv_campaign_modify', async (req, res) => {
                         <div class="input_wrap">
                             <label>대표이미지<sup>*</sup></label>
                             <div class="main_img_wrap">
-                                <img src="${campaign.img}?${new Date()}" class="main_img non_modified" name="main_img" 	file_name=${getFileName(campaign.img)} sub_order=0>
+                                <img src="${campaign.img}?${new Date()}" class="main_img non_modified" name="main_img" 	file_name="${getFileName(campaign.img)}" sub_order=0>
                                 <input type="file" target=${getFileName(campaign.img)} accept=".jpg, .jpeg, .png" class="img_url" name="img_url">
                             </div>
                         </div>
@@ -190,7 +204,7 @@ app.post('/api/advertiser/adv_campaign_modify', async (req, res) => {
         d => {
             let arr = [];
             for (let iter of d) {
-                if (iter.src.indexOf('main') > 0) QUERY`UPDATE campaign SET img = ${iter.src} WHERE id = ${campaignId}`;
+                if (iter.src.indexOf('main') > 0 || iter.src.indexOf('logo') > 0) QUERY`UPDATE campaign SET img = ${iter.src} WHERE id = ${campaignId}`;
                 else arr.push(iter.src);
             }
             return QUERY`UPDATE campaign SET sub_img = ${JSON.stringify(arr)} WHERE id = ${campaignId} RETURNING TRUE`

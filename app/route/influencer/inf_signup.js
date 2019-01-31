@@ -9,6 +9,7 @@ app.get('/influencer/inf_signup', (req, res) => {
         css: `
             <link rel="stylesheet" href="/front/css/common/common_signup.css">
             <link rel="stylesheet" href="/front/css/influencer/inf_signup.css">
+            <link rel="stylesheet" href="/front/css/influencer/media/media_inf_signup.css">
          `,
         header: TMPL.layout.accountHeader('signup'),
         main: `
@@ -201,9 +202,12 @@ app.post('/api/influencer/inf_signup', (req, res, next) => {
             return a;
         },
         pipeT(
-            b => QUERY`INSERT INTO users ${VALUES(b)} RETURNING info, created_at`,
+            b => QUERY`INSERT INTO users ${VALUES(b)} RETURNING id, auth, info, created_at`,
             first,
-            tap(log),
+            c => {
+                QUERY`INSERT INTO user_notification ${VALUES({"id": c.id, "auth": c.auth})}`
+                return c;
+            },
             res.json
         ).catch(
             match

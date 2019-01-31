@@ -1,0 +1,177 @@
+@charset "utf-8";
+/*캠페인 등록 공통사항*/
+.hide{display: none;}
+/* ============ main ============ */
+#main{
+	padding: 0 20px 200px;
+	margin-left: 220px;
+}
+.container > div:nth-child(1),.container > div:nth-child(2) {margin-top: 0px;}
+.container > div{margin-top: 75px;}
+
+.breadcrumbs{
+	line-height: 70px;
+	height: 70px;
+	position: relative;
+}
+.breadcrumbs a{
+	position: relative;
+	padding-right: 23px;
+	color: #ccc;
+	font-size: 13px;
+	font-weight: bold;
+}
+.breadcrumbs a:after{
+	content: '';
+	position: absolute;
+	top:3px; right: 4px;
+	width: 10px;
+	height: 15px;
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/arrow.png)no-repeat;
+	background-size: 8px;
+	opacity: 0.2;
+}
+.breadcrumbs a:last-child{
+	color: #222;
+	font-size: 13px;
+	font-weight: bold;
+}
+.breadcrumbs a:last-child:after{
+	content: none;
+}
+.container {width: 100%;}
+h2{
+	font-size: 17px;
+	line-height: 25px;
+	color: #222;
+}
+
+.list_wrap{
+	position: relative;
+	background-color: #fff;
+	box-shadow: 0 1px 4px 0 #e5e9f2;
+	border-radius: 5px;
+}
+.container h2{
+	position: absolute;
+	top: -35px;
+}
+/*캠페인 등록 공통사항 ====> 끝*/
+
+/* list_wrap 공통사항 */
+.list_wrap{
+	position: relative;
+	background-color: #fff;
+	box-shadow: 0 1px 4px 0 #e5e9f2;
+	border-radius: 5px;
+}
+caption{
+	position: absolute;
+	text-indent: -99999px;
+}
+table{
+	border-collapse: collapse;
+	width: 100%;
+}
+tr{text-align: left;}
+thead th{
+	text-align: left;
+	padding: 20px 30px;
+	font-size: 15px;
+	position: relative;
+	color: #666;
+}
+thead:after{
+	content: '';
+	position: absolute;
+	left: 0;
+	width: 100%;
+	border-bottom: 1px solid #eeeeee;
+	z-index: 20;
+}
+tbody td{
+	position: relative;
+	padding: 30px;
+	font-size: 15px;
+	font-weight: bold;
+	z-index: 100;
+}
+tbody tr{
+	width: 100%;
+	cursor: pointer;
+}
+tbody tr:hover{
+	background-color: #f0f3ff;
+}
+tbody tr *{
+	color: #222;
+}
+thead .ud:after{
+	content: '';
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/btn-list-filter/btn-list-filter.png)no-repeat;
+}
+thead .up:after{
+	content: '';
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/btn-list-filter/btn-list-filter.png)no-repeat;
+}
+thead .down:after{
+	content: '';
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/btn-list-filter/btn-list-filter.png)no-repeat;
+}
+.infu_name p{
+	padding-left: 40px;
+}
+.infu_name img{
+	position: absolute;
+	width: 35px; height: 35px;
+	object-fit: cover;
+	border-radius: 50%;
+	/* top: 25px;
+	width: 35px;
+	height: 35px; */
+}
+.camp_state span{
+	display: block;
+	font-size: 11px;
+	line-height: 12px;
+	border-radius: 20px;
+	padding: 5px 0;
+	width: 50px;
+	text-align: center;
+}
+.check0{
+	border: 2px solid #FF9614;
+	color: #FF9614;
+}
+.check1{
+	border: 2px solid #627efe;
+	color: #627efe;
+}
+.check2{
+	border: 2px solid #00dbbf;
+	color: #00dbbf;
+}
+.check3{
+	 border: 2px solid #ccc;
+	 color: #ccc;
+ }
+
+.check4{
+	border: 2px solid #0000ff;
+	color: #0000ff;
+}
+
+.check5{
+	border: 2px solid #ff0000;
+	color: #ff0000;
+}
+/* list_wrap 공통사항 ==>끝 */

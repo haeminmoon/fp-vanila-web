@@ -3,12 +3,25 @@ const getHash = require('../../../module/back/util/encryption');
 app.get('/advertiser/adv_my_info', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
-
+    const [notification] = await QUERY`SELECT * FROM user_notification WHERE id = ${req.session.user.id}`;
+    let notiCount = list => go(
+        list,
+        a => {
+            if (!a) return [];
+            let arr = [];
+            for (const key in a) {
+                if (a[key].read === false) arr.push(key);
+            }
+            return arr;
+        },
+        b => b.length
+    );
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_my_info.css"/>
+            <link rel="stylesheet" href="/front/css/advertiser/media/media_adv_my_info.css" />
         `,
-        header: TMPL.layout.advHeader(user.info.company_name),
+        header: TMPL.layout.advHeader(user.info.company_name, user.id, notiCount(notification.notification_list)),
         nav: TMPL.layout.advNav(user.info.company_name),
         main: `
         <div id="main">
@@ -147,7 +160,6 @@ app.put('/api/adv_my_info/modify_ps_info', (req, res) => {
     const object = { info: { "company_name": textDate.company_name, "brand_name": textDate.brand_name, "ceo_name": textDate.ceo_name, "business_num": textDate.business_num, "event": textDate.event, "industry": textDate.industry, "phone_num": textDate.phone_num } };
     go(
         textDate,
-        tap(log),
         _ => QUERY`UPDATE users SET info = info - '*' || ${object.info} WHERE id = ${user.id} RETURNING true`,
         res.json
     )
@@ -159,7 +171,6 @@ app.put('/api/adv_my_info/modify_ad_info', (req, res) => {
     const object = { info: { "address": textDate.address, "post_code": textDate.post_code } };
     go(
         textDate,
-        tap(log),
         _ => QUERY`UPDATE users SET info = info - '*' || ${object.info} WHERE id = ${user.id} RETURNING true`,
         res.json
     )

@@ -6,13 +6,26 @@ const awsS3 = require('../../../module/back/util/fileUpload.js');
 app.get('/advertiser/adv_campaign_registration', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
-
+    const [notification] = await QUERY`SELECT * FROM user_notification WHERE id = ${req.session.user.id}`;
+    let notiCount = list => go(
+        list,
+        a => {
+            if (!a) return [];
+            let arr = [];
+            for (const key in a) {
+                if (a[key].read === false) arr.push(key);
+            }
+            return arr;
+        },
+        b => b.length
+    );
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
             <link rel="stylesheet" href="/front/css/advertiser/adv_campaign_registeration.css" />
+            <link rel="stylesheet" href="/front/css/advertiser/media/media_adv_campaign_registeration.css" />
         `,
-        header: TMPL.layout.advHeader(user.info.company_name),
+        header: TMPL.layout.advHeader(user.info.company_name, user.id, notiCount(notification.notification_list)),
         nav: TMPL.layout.advNav(user.info.company_name),
         main: `
             <div id="main">
@@ -176,7 +189,7 @@ app.post('/api/advertiser/adv_campaign_registration', cpUpload, (req, res, next)
         advertiser_id: userId
     };
     const newMainImg = req.files['main_img'] || ['no_img'];
-    const newSubImgs = req.files['sub_img'] || ['no_img'];
+    const newSubImgs = req.files['sub_img'];
     let fileName = null, campaign_id = null, index = 0;
     go(
         data,
