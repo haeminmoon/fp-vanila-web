@@ -1,0 +1,318 @@
+@charset "utf-8";
+@media screen and (max-width:767px){
+	#header{height: 56px;}
+	#header .logo{
+		padding-left: 8px;
+		height: 56px;
+	}
+	.title{
+		margin-right: 8px;
+		line-height: 56px;
+	}
+	#main{padding: 0;}
+	.container{
+		width: 100%;
+		min-width: 0;
+	}
+	.form_tit{font-size: 18px;}
+	.clear{display: none;}
+	.signup_form{max-width: 767px;}
+	.signup_form > div{
+		float: none;
+		margin-top: 15px;
+		max-width: 728px;
+		min-width: 360px;
+		border-radius: 0;
+	}
+	.signup_form > .info{
+		width: 100%;
+		height: 420px;
+		margin-top: 0;
+	}
+	.info:after{content: ''; display: block; clear: both;}
+	.form_left{
+		padding: 0 20px;
+		width: 100%;
+	}
+	.form_left:after{content: ''; display: block; clear: both;}
+	.form_left > .input_wrap{display: block;}
+	.event, .industry, .post_code{width: 100% !important;}
+	.form_left > .input_wrap input[type="text"]{width: 100%;}
+	.form_right{
+		float: left;
+		padding: 0 20px;
+		width: 100%;
+		font-size: 0;
+	}
+	.form_right > .input_wrap{display: block;}
+	.form_right > .input_wrap input[type="text"]{width: 100%;}
+	.form_right > .input_wrap:nth-child(1),
+	.form_right > .input_wrap:nth-child(2),
+	.form_right > .input_wrap:nth-child(3)
+	{width: calc((100% - 15px) / 2); display: inline-block;}
+	.form_right > .input_wrap:nth-child(4) .post_code
+	{width: 48% !important;}
+	.form_right > .input_wrap:nth-child(2) input[type="text"],
+	.form_right > .input_wrap:nth-child(2) label
+	{margin-left: 15px;}
+	.input_margin{margin: 0;}
+	
+	.account{width: 100%; height: 330px;}
+	.account .form{padding: 0 20px;}
+	.account > div{font-size: 0;}
+	.account > div > div{
+		width: 100%;
+		font-size: 0;
+	}
+	.account .input_wrap input[type="text"]{
+		width: calc(100% - 86px) !important;
+		display: inline-block;
+	} 
+	input[type="password"]{width: 100%; }
+	.account .form > .input_wrap:nth-child(2),
+	.form > .input_wrap:nth-child(3){
+		width: calc((100% - 15px) / 2);
+		display: inline-block;
+		font-size: 0;
+	}
+	.account .form > .input_wrap:nth-child(3) input[type="password"],
+	.account .form > .input_wrap:nth-child(3) label
+	{margin-left: 15px;}
+	
+	.sns_con{
+		width: 100%;
+		height: 300px;
+	}
+	.sns_con > .form{
+		position: relative;
+		top: 20%;
+		transform: translateY(-20%);
+		padding: 0;
+	}
+	.phone_cer{
+		display: block;
+		float: none;
+		width: 100%;
+		height: 200px;
+		padding: 0;
+		margin: 0;
+	}
+	.phone_cer .form{padding: 0 20px;}
+	.phone_cer .input_wrap{font-size: 0;}
+	.phone_cer .input_wrap input[type="text"]{
+		width: calc(100% - 86px) !important;
+		display: inline-block;
+	} 
+	.term_inf{
+		width: 100%;
+		height: 450px;
+		padding: 0;
+	}
+	.agree{padding: 0;}
+	.all_agree{padding-left: 20px;}
+	.agree > ul{
+		width: 100%;
+		height: 300px;
+		margin: 0;
+		padding: 20px 40px;
+		background-color: white;
+	}
+	.agree > ul > li{width: 100%; padding-bottom: 10px;}
+	.agree > ul > li a{font-size: 13px;}
+	.submit_btn{margin: 40px 0;}
+}
+
+
+@media screen and (min-width:768px) and (max-width:1023px){
+	#main{padding: 20px 20px 0;}
+	.container{
+		width: 100%;
+		min-width: 0;
+	}
+	.form_tit{font-size: 20px;}
+	.signup_form{
+		max-width: 1000px;
+		min-height: 728px;
+	}
+	.signup_form > div{margin-top: 0; float: none;}
+	.signup_form > .info{
+		display: block;
+		width: 100%;
+		height: 360px;
+	}
+	.info:after{content: ''; display: block; clear: both;}
+	.info > div{width: calc((100% - 20px)/2);}
+	.info .input_wrap input[type="text"]{width: 100%;}
+	.info .form_left .input_wrap:nth-child(2){
+		width: 90%;
+		position: absolute;
+		top: 90px;
+	}
+	.form_left{padding: 0 0 0 40px; position: relative;}
+	.form_right{padding: 0 40px 0 0;}
+	.account{
+		position: relative;
+		top: 20px;
+		width: 100%;
+		height: 340px;
+		display: block;
+	}
+	.account:after{content: ''; display: block; clear: both;}
+	.account > div{font-size: 0;}
+	.account > div > div{
+		width: 100%;
+		font-size: 0;
+	}
+	.account .input_wrap input[type="text"]{
+		width: calc(100% - 86px) !important;
+		display: inline-block;
+	} 
+	input[type="password"]{width: 100%; }
+	.account .form > .input_wrap:nth-child(2),
+	.form > .input_wrap:nth-child(3){
+		width: calc((100% - 15px) / 2);
+		display: inline-block;
+		font-size: 0;
+	}
+	.form > .input_wrap:nth-child(3) input[type="password"],
+	.form > .input_wrap:nth-child(3) label
+	{margin-left: 15px;}
+	
+	.sns_con{
+		float: left;
+		position: relative;
+		top: 40px; left: 0px;
+		display: inline-block;
+		width: calc((100% - 20px)/ 2);
+		height: 280px;
+		vertical-align: top;
+	}
+	.sns_con:after{content: ''; display: block; clear: both;}
+	.sns_con .form{
+		position: relative;
+		padding: 0;
+		top: 20%;
+		transform: translateY(-20%);
+	}
+	body .phone_cer{
+		display: inline-block;
+		position: relative;
+		top: 40px; left: 20px;
+		width: calc((100% - 20px)/ 2);
+		height: 280px;
+		margin: 0;
+	}
+	.phone_cer input[type="text"]{width: 100% !important;}
+	.phone_chk_btn{margin: 10px 0 0;}
+	.term_inf{
+		position: relative;
+		top: 60px;
+		width: 100%;
+		height: 340px;
+		margin-bottom: 200px;
+	}
+	.agree > ul {
+		width: 100%;
+		height: 200px;
+		padding: 20px 0;
+		font-size: 0;
+	}
+	.agree > ul > li{
+		display: inline-block;
+		width: 50%;
+		padding-bottom: 15px;
+	}
+	.submit_wrap{
+		position: relative;
+		top: -70px;
+	}
+
+}
+
+@media screen and (min-width:1024px) and (max-width:1599px){
+	#main{padding: 50px 20px 0;}
+	.container{
+		width: 100%;
+		min-width: 0;
+	}
+	.form_tit{font-size: 20px;}
+	.signup_form{
+		width: 965px;
+		margin: 0 auto;
+	}
+	.signup_form > div{margin-top: 0;}
+	.signup_form > .info{
+		float: left;
+		position: relative;
+		top: 0;
+		display: inline-block;
+		width: 480px;
+		height: 500px;
+	}
+	.form_left{
+		float: none;
+		display: block;
+		width: 465px;
+	}
+	.form_right{
+		float: none;
+		display: block;
+		width: 465px;
+		height: 300px;
+		padding: 0 40px;
+	}
+	.account{
+		position: relative;
+		top: 0;
+		display: inline-block;
+		width: 465px;
+		height: 500px;
+	}
+	.sns_con{
+		position: relative;
+		top: 20px; left: 0;
+		display: inline-block;
+		width: 480px;
+		height: 300px;
+		margin-top: 0;
+	}
+	.sns_con .form{
+		position: relative;
+		padding: 0;
+		top: 20%;
+		transform: translateY(-20%);
+	}
+	.phone_cer{
+		position: relative;
+		top: 20px; left: 20px;
+		width: 465px;
+		height: 300px;
+		margin: 0;
+	}
+	.term_inf{
+		position: relative;
+		top: 45px; left: -3px;
+		width: 960px;
+		height: 320px;
+		margin-bottom: 200px;
+	}
+	.agree > ul {
+		width: 100%;
+		height: 130px;
+		display: inline-block;
+		padding: 30px 50px;
+	}
+	.agree > ul > li{
+		display: inline-block;
+		width: 30%;
+		padding-bottom: 15px;
+	}
+	.submit_wrap{
+		position: relative;
+		top: -80px;
+	}
+}
+
+@media screen and (min-width:1600px) { /*기본*/
+
+}

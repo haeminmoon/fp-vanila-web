@@ -1,0 +1,229 @@
+@charset "utf-8";
+@media screen and (max-width:767px){
+	#header{background-color: green !important}
+	#header{height: 56px;}
+	.header_gnb{padding-right: 0;}
+	.header_gnb li{padding: 0 2px;}
+	.header_img, #header p{display: none;}
+	#main{margin-left: 0; padding: 20px 20px 200px;}
+	.breadcrumbs{display: none;}
+	#nav{
+		position: absolute;
+		z-index: 1000;
+		left: -220px;
+		transition: all 0.5s ease;
+	}
+	#nav.on{
+		position: fixed;
+		left: 0;
+		transition: all 0.5s ease;
+	}
+	#nav > a{
+		display: block;
+		position: absolute;
+		left: 240px;
+		top: 15px;
+		z-index: 10;
+	}
+	#nav .open{
+		background: url(../img/open.png)no-repeat;
+		background-size: 100% auto;
+		width: 22px;
+		height: 22px;
+	}
+	#nav .close{
+		background: url(../img/close_2.png)no-repeat;
+		background-size: 100% auto;
+		width: 22px;
+		height: 22px;
+		left: 175px;
+	}
+	.logo{height: 56px;}
+	.logo > a{
+		width: 130px;
+		margin-right: 40px;
+	}
+/*공통*/
+	#main{padding: 0;}
+	.container{padding: 0;}
+	.campaign_main{
+		position: relative;
+		margin:0 auto;
+		width: 100%;
+		height: 560px;
+	}
+	.campaign_main:after{
+		content: '';
+		position: absolute;
+		top: 200px;
+		width: 100%;
+		height: 250px;
+		background-color: #f5f6fa;
+	}
+	.campaign_article{margin: 0 auto;}
+	.mask{
+		position: absolute;
+		top: 220px;
+		transform: translate(0);
+		height: 250px;
+		padding-top: 15px;
+		background-color: rgba(0,0,0,0);
+		z-index: 10;
+	}
+	.brand_tit{
+		color: black;
+		font-size: 22px;
+		line-height: 20px;
+	}
+	.campaign_tit{
+		color: black;
+		font-size: 17px;
+		line-height: 23px;
+		margin: 7px 0 30px;
+	}
+	.campaign_info{
+		width: 90%;
+		height: 200px;
+		margin: 0 auto;
+		padding: 20px;
+		background-color: white;
+		border-radius: 7px;
+		box-shadow: 0 1px 4px 0 #e5e9f2;
+	}
+	.campaign_info > li{
+		width: 100%;
+		font-size: 0;
+	}
+	.campaign_info > li > p{
+		display: inline-block;
+		width: 50%;
+	}
+	.campaign_info > li > p:nth-child(odd){
+		width: 40%; 
+		font-size:15px;
+		color: black;
+	}
+	.campaign_info > li > p:nth-child(even){
+		width: 60%;
+		font-size:15px;
+		color: black;
+	}
+	.detail_tit{padding-left: 20px;}
+	.campaign_article:nth-child(2) .detail_tit{margin: 0;}
+	.pd_info{
+		white-space: normal;
+		font-size: 16px;
+	}
+	.btn_wrap{margin: 80px 0 100px;}
+	.submit_btn{
+		width: 260px;
+		height: 45px;
+	}
+	#footer{display: none;}
+}
+
+@media screen and (min-width:768px) and (max-width:1023px){
+	#header{background-color: blue !important}
+	#main{margin-left: 100px;}
+	.header_gnb{margin-right:25px;}
+	#nav{width: 100px;}
+	.logo{display: block; height: 80px;}
+	.logo > a{width: 100px; height: 70px;}
+	.logo > a > img{width: 94px;}
+	.nav_on > a::after{display: none;}
+	.nav_gnb > li{position: relative; height: 90px;}
+	.nav_gnb > li > a{
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size: 11px;
+		line-height: 20px;
+		text-align: center;
+		padding: 0 19px;
+	}
+	.nav_gnb > li.setting{height: 130px;}
+	.setting > a{padding: 20px 39px !important ;}
+	.setting > a::before{
+		content: '';
+		background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/icon-settings/ic-settings%402x.png)no-repeat;
+		background-size: 35px;
+		width: 35px;
+		height: 35px;
+		top: -17px;
+		left: 33px;
+	}
+/*공통*/
+	.container{padding: 0;}
+	.campaign_main{
+		margin: 50px auto 0;
+		width: 85%;
+		max-width: 700px;
+		min-width: 550px;
+		height: 300px;
+	}
+	.campaign_article{
+		margin: 0 auto;
+		width: 85%;
+		max-width: 700px;
+		min-width: 550px
+	}
+	.mask{
+		top: 0;
+		transform: translate(0);
+		height: 100%;
+		padding-top: 10px;
+	}
+	.pd_info{
+		white-space: normal;
+		font-size: 16px;
+	}
+	.btn_wrap{margin: 80px 0 100px;}
+	.submit_btn{
+		width: 260px;
+		height: 45px;
+	}
+	#footer{display: none;}
+	
+	
+	
+}
+
+@media screen and (min-width:1024px) and (max-width:1599px){
+	#header{background-color: yellow !important}
+	.header_gnb{margin-right:25px;}
+	.container{padding: 0;}
+	.campaign_main{
+		margin: 50px auto 0;
+		width: 85%;
+		max-width: 1000px;
+		min-width: 700px;
+		height: 300px;
+	}
+	.campaign_article{
+		margin: 0 auto;
+		width: 85%;
+		max-width: 1000px;
+		min-width: 700px;
+	}
+	.mask{
+		top: 0;
+		transform: translate(0);
+		height: 100%;
+		padding-top: 10px;
+	}
+	.pd_info{
+		white-space: normal;
+		font-size: 16px;
+	}
+	.btn_wrap{margin: 80px 0 100px;}
+	.submit_btn{
+		width: 260px;
+		height: 45px;
+	}
+	#footer{display: none;}
+}
+
+
+@media screen and (min-width:1600px) { /*기본*/
+
+}
