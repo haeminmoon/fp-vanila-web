@@ -6,6 +6,7 @@
 	.header_img, #header p{display: none;}
 	#main{margin-left: 0; padding: 20px 20px 200px;}
 	.breadcrumbs{display: none;}
+/*공통내용끝*/
 	#nav{
 		position: absolute;
 		z-index: 1000;
@@ -44,12 +45,28 @@
 	}
 	
 	.state_wrap:after{content: ''; display: block; clear: both;}
+	.state_box{
+		width: 100%;
+		height: 160px;
+	}
 	.state_box li{
-		width: calc((100% - 20px)/2);
+		display: inline-block;
+		width: 32%;
+		height: 70px;
 		margin-bottom: 10px;
 	}
-	.state_box > li > a{padding: 15px;}
-	.state_box li:nth-child(3){margin-left: 0;}
+	.state_box li > a{
+		padding: 0px;
+		width: 100%;
+		height: 100%;
+		padding: 10px;
+		
+	}
+	.state_box li:nth-child(3) a{margin-left: 20px;}
+	.state_box li:nth-child(4) a{margin-left: 0;}
+	.state_box li:nth-child(4), .state_box li:nth-child(5)
+	{width: 49%;}
+	
 	.search_wrap{
 		height: 180px;
 		padding: 20px 0 0 20px;
@@ -85,8 +102,9 @@
 	.check_box{width: 100%;}
 	.check_tab{
 		margin-right: 0;
-		width: 32%;
+		width: 24%;
 	}
+	.check_tab label{font-size: 13px;}
 	h2{font-size: 16px;}
 	thead th{padding: 15px;}
 	tbody td{padding: 22px 15px;}
@@ -125,6 +143,7 @@
 		top: -17px;
 		left: 33px;
 	}
+/*공통내용끝*/
 	.state_box li > a{
 		padding: 20px 22px;
 	}
@@ -148,6 +167,7 @@
 	}
 	.search_wrap > div > span{font-size: 15px;}
 	h2{font-size: 16px;}
+	.check_tab{margin-right: 25px;}
 	.list_wrap label{font-size: 13px;}
 	.list_wrap thead th{
 		padding: 20px 10px;
@@ -168,9 +188,12 @@
 
 @media screen and (min-width:1024px) and (max-width:1599px){
 	.header_gnb{margin-right:25px;}
+/*공통내용끝*/
 	thead th{
 		padding: 15px 25px;
 		font-size: 14px;
 	}
 }
-@media screen and (min-width:1600px) {}
+@media screen and (min-width:1600px) { /*기본*/
+
+}

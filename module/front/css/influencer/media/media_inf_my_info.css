@@ -1,0 +1,127 @@
+@charset "utf-8";
+@media screen and (max-width:767px){
+	#header{
+		position: relative;
+		z-index: 100;
+		box-shadow: 0 4px 20px rgba(124, 124, 124, 0.13);
+		height: 56px;
+	}
+	.header_gnb{padding-right: 0;}
+	.header_gnb li{padding: 0 2px;}
+	.header_img, #header p{display: none;}
+	.breadcrumbs{display: none;}
+/*공통내용끝*/
+	#nav{
+		position: absolute;
+		z-index: 1000;
+		left: -220px;
+		transition: all 0.5s ease;
+	}
+	#nav.on{
+		position: fixed;
+		left: 0;
+		transition: all 0.5s ease;
+	}
+	#nav > a{
+		display: block;
+		position: absolute;
+		left: 240px;
+		top: 15px;
+		z-index: 10;
+	}
+	#nav .open{
+		background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/open.png)no-repeat;
+		background-size: 100% auto;
+		width: 22px;
+		height: 22px;
+	}
+	#nav .close{
+		background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/close_2.png)no-repeat;
+		background-size: 100% auto;
+		width: 22px;
+		height: 22px;
+		left: 175px;
+	}
+	.logo{height: 56px;}
+	.logo > a{
+		width: 130px;
+		margin-right: 40px;
+	}
+	#main{
+		margin-left: 0;
+		padding: 0 0 0;
+		position: relative;
+		z-index: 0;
+		width: 100%;
+	}
+	.container > div{
+		margin: 0 0 20px 0;
+		padding: 0 20px 30px 20px;
+		width: 100%;
+		min-width: 0;
+		border-radius: 4px;
+	}
+	body .sns_warp{
+		height: 200px;
+	}
+	.profile_img{
+		width: 70px;
+		height: 70px;
+	}
+	.profile_info{
+		width: 75%;
+		padding:0;
+		position: relative;
+		left: 100px;
+	}
+	.info_1{
+		position: relative;
+		padding: 5px 0;
+		height: 40px;
+	}
+	.info_2{padding: 0 20px;}
+	.info_2 > li{font-size: 14px;}
+}
+
+@media screen and (min-width:768px) and (max-width:1023px){
+	#main{margin-left: 100px;}
+	.header_gnb{margin-right:25px;}
+	#nav{width: 100px;}
+	.logo{display: block; height: 80px;}
+	.logo > a{width: 100px; height: 70px;}
+	.logo > a > img{width: 94px;}
+	.nav_on > a::after{display: none;}
+	.nav_gnb > li{position: relative; height: 90px;}
+	.nav_gnb > li > a{
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size: 11px;
+		line-height: 20px;
+		text-align: center;
+		padding: 0 19px;
+	}
+	.nav_gnb > li.setting{height: 130px;}
+	.setting > a{padding: 20px 39px !important ;}
+	.setting > a::before{
+		content: '';
+		background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/icon-settings/ic-settings%402x.png)no-repeat;
+		background-size: 35px;
+		width: 35px;
+		height: 35px;
+		top: -17px;
+		left: 33px;
+	}
+/*공통내용끝*/
+	.container > div{
+		width: 85%;
+		max-width: 600px;
+		min-width: 550px;
+	}
+}
+
+@media screen and (min-width:1024px) and (max-width:1599px){
+	.header_gnb{margin-right:25px;}
+}
+@media screen and (min-width:1600px) { /*기본*/
+}

@@ -1,0 +1,31 @@
+@charset "utf-8";
+.container{
+	position: relative;
+	top: 50px;
+	width: 80%;
+	max-width: 800px;
+	min-width: 600px;
+	margin: 0 auto;
+}
+.container strong{
+	font-size: 25px;
+	display: block;
+	padding-bottom: 20px;;
+}
+.container > div{
+	margin: 20px 0 0 0;
+	font-size: 0;
+}
+.container > div:last-child{border: none;}
+.container span{
+	display: block;
+	border-bottom: 1px solid black;
+	font-size: 17px;
+	font-weight: bold;
+	line-height: 50px;
+}
+.container p{
+	margin-top: 10px;
+	font-size: 13px;
+	line-height: 20px;
+}

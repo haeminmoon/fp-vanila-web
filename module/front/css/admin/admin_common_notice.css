@@ -1,5 +1,4 @@
 @charset "utf-8";
-
 /*캠페인 등록 공통사항*/
 .hide{display: none;}
 /* ============ main ============ */
@@ -7,7 +6,6 @@
 	padding: 0 20px 200px;
 	margin-left: 220px;
 }
-
 .container > div:nth-child(1),.container > div:nth-child(2) {margin-top: 0px;}
 .container > div{margin-top: 75px;}
 
@@ -60,7 +58,6 @@ h2{
 }
 /*캠페인 등록 공통사항 ====> 끝*/
 
-
 /* list_wrap 공통사항 */
 .list_wrap{
 	position: relative;
@@ -109,7 +106,6 @@ tbody tr:hover{
 tbody tr *{
 	color: #222;
 }
-
 thead .ud:after{
 	content: '';
 	position: absolute;
@@ -142,9 +138,6 @@ thead .down:after{
 	/* top: 25px;
 	width: 35px;
 	height: 35px; */
-}
-.notice_name p{
-	padding-left: 40px;
 }
 .camp_state span{
 	display: block;
