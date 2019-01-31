@@ -3,13 +3,25 @@ const getHash = require('../../../module/back/util/encryption');
 app.get('/advertiser/adv_my_info', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
-
+    const [notification] = await QUERY`SELECT * FROM user_notification WHERE id = ${req.session.user.id}`;
+    let notiCount = list => go(
+        list,
+        a => {
+            if (!a) return [];
+            let arr = [];
+            for (const key in a) {
+                if (a[key].read === false) arr.push(key);
+            }
+            return arr;
+        },
+        b => b.length
+    );
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_my_info.css"/>
             <link rel="stylesheet" href="/front/css/advertiser/media/media_adv_my_info.css" />
         `,
-        header: TMPL.layout.advHeader(user.info.company_name, user.id),
+        header: TMPL.layout.advHeader(user.info.company_name, user.id, notiCount(notification.notification_list)),
         nav: TMPL.layout.advNav(user.info.company_name),
         main: `
         <div id="main">

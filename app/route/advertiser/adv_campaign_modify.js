@@ -3,6 +3,19 @@ const awsS3 = require('../../../module/back/util/fileUpload.js');
 app.get('/advertiser/adv_campaign_modify', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
+    const [notification] = await QUERY`SELECT * FROM user_notification WHERE id = ${req.session.user.id}`;
+    let notiCount = list => go(
+        list,
+        a => {
+            if (!a) return [];
+            let arr = [];
+            for (const key in a) {
+                if (a[key].read === false) arr.push(key);
+            }
+            return arr;
+        },
+        b => b.length
+    )
     let [campaign] = await QUERY`SELECT * FROM campaign WHERE id = ${req.query.id}`;
     res.send(TMPL.layout.hnmf({
         css: `
@@ -10,7 +23,7 @@ app.get('/advertiser/adv_campaign_modify', async (req, res) => {
             <link rel="stylesheet" href="/front/css/advertiser/adv_campaign_modify.css" />
             <link rel="stylesheet" href="/front/css/advertiser/media/media_adv_campaign_modify.css" />
         `,
-        header: TMPL.layout.advHeader(user.info.company_name, user.id),
+        header: TMPL.layout.advHeader(user.info.company_name, user.id, notiCount(notification.notification_list)),
         nav: TMPL.layout.advNav(user.info.company_name),
         main: `
             <div id="main">
@@ -191,7 +204,7 @@ app.post('/api/advertiser/adv_campaign_modify', async (req, res) => {
         d => {
             let arr = [];
             for (let iter of d) {
-                if (iter.src.indexOf('main') > 0) QUERY`UPDATE campaign SET img = ${iter.src} WHERE id = ${campaignId}`;
+                if (iter.src.indexOf('main') > 0 || iter.src.indexOf('logo') > 0) QUERY`UPDATE campaign SET img = ${iter.src} WHERE id = ${campaignId}`;
                 else arr.push(iter.src);
             }
             return QUERY`UPDATE campaign SET sub_img = ${JSON.stringify(arr)} WHERE id = ${campaignId} RETURNING TRUE`

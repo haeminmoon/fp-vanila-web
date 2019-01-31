@@ -3,7 +3,19 @@ const { get } = require('../../../module/back/util/request');
 app.get('/advertiser/adv_influencer_list', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'advertiser') return res.redirect('/common/signin');
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
-    
+    const [notification] = await QUERY`SELECT * FROM user_notification WHERE id = ${req.session.user.id}`;
+    let notiCount = list => go(
+        list,
+        a => {
+            if (!a) return [];
+            let arr = [];
+            for (const key in a) {
+                if (a[key].read === false) arr.push(key);
+            }
+            return arr;
+        },
+        b => b.length
+    );
     const infList = await QUERY`SELECT id, info, sns_info FROM users WHERE auth = 'influencer' and sns_info is not null`;
 
     res.send(TMPL.layout.hnmf({
@@ -11,7 +23,7 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
             <link rel="stylesheet" href="/front/css/advertiser/adv_influencer_list.css"/>
             <link rel="stylesheet" href="/front/css/advertiser/media/media_adv_influencer_list.css" />
         `,
-        header: TMPL.layout.advHeader(user.info.company_name, user.id),
+        header: TMPL.layout.advHeader(user.info.company_name, user.id, notiCount(notification.notification_list)),
         nav: TMPL.layout.advNav(user.info.company_name),
         main: `
         <div id="main">

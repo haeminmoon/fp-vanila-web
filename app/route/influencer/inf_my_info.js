@@ -7,15 +7,26 @@ app.get('/influencer/inf_my_info', async (req, res) => {
     const [user] = await QUERY`SELECT * FROM users where id = ${req.session.user.id}`;
     const getInstagramInfo = (id, accessToken) => get(`https://graph.facebook.com/v3.2/${id}?fields=followers_count%2Cfollows_count%2Cmedia_count%2Cprofile_picture_url%2Cusername%2Cname&access_token=${accessToken}`, ``);
     const instagramInfo = await getInstagramInfo(user.sns_info.instagram_id, user.sns_info.instagram_access_token);
-    console.log(instagramInfo);
-
+    const [notification] = await QUERY`SELECT * FROM user_notification WHERE id = ${req.session.user.id}`;
+    let notiCount = list => go(
+        list,
+        a => {
+            if (!a) return [];
+            let arr = [];
+            for (const key in a) {
+                if (a[key].read === false) arr.push(key);
+            }
+            return arr;
+        },
+        b => b.length
+    );
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/influencer/inf_my_info.css" />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
             <link rel="stylesheet" href="/front/css/influencer/media/media_inf_my_info.css">
         `,
-        header: TMPL.layout.infHeader(user.info.nickname, user.id),
+        header: TMPL.layout.infHeader(user.info.nickname, user.id, notiCount(notification.notification_list)),
         nav: TMPL.layout.infNav(user.info.nickname),
         main: `
             <div id="main">

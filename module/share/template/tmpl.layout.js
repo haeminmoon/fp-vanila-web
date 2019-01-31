@@ -52,13 +52,13 @@
         </div>
     `;
 
-    TMPL.layout.advHeader = (userName, userId) => `
+    TMPL.layout.advHeader = (userName, userId, notificationCount) => `
         <script src="/front/script/common/nav.js"></script>
         <div id="header">
             <ul class="header_gnb">
                 <li class="notice_icon">
                     <button type="button" class="notice_msg" onclick="clickNoticeMsg('${userId}');">
-                        <div class="circle_cnt">1</div>
+                        <div class="circle_cnt">${notificationCount}</div>
                         <img class="gnb_icon" src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/notice_icon/baseline-search-24-px-copy.svg" alt="notice icon">
                     </button>
                 </li>
@@ -75,13 +75,13 @@
         </div>
     `;
 
-    TMPL.layout.infHeader = (userName, userId) => `
+    TMPL.layout.infHeader = (userName, userId, notificationCount) => `
         <script src="/front/script/common/nav.js"></script>
         <div id="header">
             <ul class="header_gnb">
                 <li class="notice_icon">
                     <button type="button" class="notice_msg" onclick="clickNoticeMsg('${userId}');">
-                        <div class="circle_cnt">1</div>
+                        <div class="circle_cnt">${notificationCount}</div>
                         <img class="gnb_icon" src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/notice_icon/baseline-search-24-px-copy.svg" alt="notice icon">
                     </button>
                 </li>
