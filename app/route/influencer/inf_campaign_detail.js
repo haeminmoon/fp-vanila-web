@@ -6,6 +6,7 @@ app.get('/influencer/inf_campaign_detail', async (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/influencer/inf_campaign_detail.css">
+            <link rel="stylesheet" href="/front/css/influencer/media/media_inf_campaign_detail.css">
         `,
         header: TMPL.layout.infHeader(user.info.nickname, user.id),
         nav: TMPL.layout.infNav(user.info.nickname),

@@ -9,6 +9,7 @@ app.get('/advertiser/adv_influencer_list', async (req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_influencer_list.css"/>
+            <link rel="stylesheet" href="/front/css/advertiser/media/media_adv_influencer_list.css" />
         `,
         header: TMPL.layout.advHeader(user.info.company_name, user.id),
         nav: TMPL.layout.advNav(user.info.company_name),

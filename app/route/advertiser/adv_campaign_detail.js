@@ -10,6 +10,7 @@ app.get('/advertiser/adv_campaign_detail', async (req, res) => {
         css: `
             <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
             <link rel="stylesheet" href="/front/css/advertiser/adv_campaign_detail.css" />
+            <link rel="stylesheet" href="/front/css/advertiser/media/media_adv_campaign_detail.css" />
         `,
         header: TMPL.layout.advHeader(user.info.company_name, user.id),
         nav: TMPL.layout.advNav(user.info.company_name),

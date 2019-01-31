@@ -6,6 +6,7 @@ app.get('/advertiser/adv_signup', (req, res) => {
         css: `
             <link rel="stylesheet" href="/front/css/common/common_signup.css">
             <link rel="stylesheet" href="/front/css/advertiser/adv_signup.css">
+            <link rel="stylesheet" href="/front/css/advertiser/media/media_adv_signup.css" />
          `,
         header: TMPL.layout.accountHeader('signup'),
         main: `

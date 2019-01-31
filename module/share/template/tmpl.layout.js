@@ -58,6 +58,7 @@
     `;
 
     TMPL.layout.advHeader = (userName, userId) => `
+        <script src="/front/script/common/nav.js"></script>
         <div id="header">
             <ul class="header_gnb">
                 <li class="notice_icon">
@@ -83,6 +84,7 @@
     `;
 
     TMPL.layout.infHeader = (userName, userId) => `
+        <script src="/front/script/common/nav.js"></script>
         <div id="header">
             <ul class="header_gnb">
                 <li class="notice_icon">
