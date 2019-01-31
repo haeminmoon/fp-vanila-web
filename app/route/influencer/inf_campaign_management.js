@@ -9,6 +9,7 @@ app.get('/influencer/inf_campaign_management', async (req, res) => {
 
     res.send(TMPL.layout.hnmf({
         css: `
+            <link rel="stylesheet" href="/front/css/advertiser/adv_common_campaign.css" />
             <link rel="stylesheet" href="/front/css/influencer/inf_campaign_management.css" />
             <link rel="stylesheet" href="/front/css/influencer/media/media_inf_campaign_management.css">
         `,

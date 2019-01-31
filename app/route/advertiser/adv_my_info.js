@@ -148,7 +148,6 @@ app.put('/api/adv_my_info/modify_ps_info', (req, res) => {
     const object = { info: { "company_name": textDate.company_name, "brand_name": textDate.brand_name, "ceo_name": textDate.ceo_name, "business_num": textDate.business_num, "event": textDate.event, "industry": textDate.industry, "phone_num": textDate.phone_num } };
     go(
         textDate,
-        tap(log),
         _ => QUERY`UPDATE users SET info = info - '*' || ${object.info} WHERE id = ${user.id} RETURNING true`,
         res.json
     )
@@ -160,7 +159,6 @@ app.put('/api/adv_my_info/modify_ad_info', (req, res) => {
     const object = { info: { "address": textDate.address, "post_code": textDate.post_code } };
     go(
         textDate,
-        tap(log),
         _ => QUERY`UPDATE users SET info = info - '*' || ${object.info} WHERE id = ${user.id} RETURNING true`,
         res.json
     )

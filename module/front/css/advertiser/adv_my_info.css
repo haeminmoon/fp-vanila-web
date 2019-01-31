@@ -62,16 +62,10 @@ label:nth-child(1){
 button{
     width: 100%;
     height: 40px;
-    background-color: #9b9b9b;
+    background-color: #108a7a;
     border: none;
     border-radius: 5px;
     color: #fff;
-}
-.container button:hover{
-    background-color: #fff;
-    color: #108a7a;
-    border: 2px solid #108a7a;
-    transition: all 0.3s ease;
 }
 
 .haf{

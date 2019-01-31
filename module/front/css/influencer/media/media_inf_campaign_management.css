@@ -6,7 +6,6 @@
 	.header_img, #header p{display: none;}
 	#main{margin-left: 0; padding: 20px 20px 200px;}
 	.breadcrumbs{display: none;}
-/*공통내용끝*/
 	#nav{
 		position: absolute;
 		z-index: 1000;
@@ -26,13 +25,13 @@
 		z-index: 10;
 	}
 	#nav .open{
-		background: url(../img/open.png)no-repeat;
+		background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/open.png)no-repeat;
 		background-size: 100% auto;
 		width: 22px;
 		height: 22px;
 	}
 	#nav .close{
-		background: url(../img/close_2.png)no-repeat;
+		background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/close_2.png)no-repeat;
 		background-size: 100% auto;
 		width: 22px;
 		height: 22px;
@@ -98,10 +97,6 @@
 }
 
 @media screen and (min-width:768px) and (max-width:1023px){
-	
-/* 1024에서변함  768과정 */
-	
-/*	#header{background-color: blue;}*/
 	#main{margin-left: 100px;}
 	.header_gnb{margin-right:25px;}
 	#nav{width: 100px;}
@@ -130,7 +125,6 @@
 		top: -17px;
 		left: 33px;
 	}
-/*공통내용끝*/
 	.state_box li > a{
 		padding: 20px 22px;
 	}
@@ -173,19 +167,10 @@
 }
 
 @media screen and (min-width:1024px) and (max-width:1599px){
-	
-	/* 1600에서변함  1024과정 */
-	
-/*	#header{background-color: yellow;}*/
 	.header_gnb{margin-right:25px;}
-/*공통내용끝*/
 	thead th{
 		padding: 15px 25px;
 		font-size: 14px;
 	}
 }
-
-
-@media screen and (min-width:1600px) { /*기본*/
-
-}
+@media screen and (min-width:1600px) {}

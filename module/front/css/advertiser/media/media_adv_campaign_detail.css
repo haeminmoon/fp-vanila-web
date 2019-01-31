@@ -99,9 +99,6 @@
 }
 
 @media screen and (min-width:768px) and (max-width:1023px){
-	
-	#header{background-color: blue;}
-	
 	#main{margin-left: 100px;}
 	.header_gnb{margin-right:25px;}
 	#nav{width: 100px;}
@@ -131,18 +128,11 @@
 		left: 33px;
 	}
 /*공통내용끝*/
-
 }
 
 @media screen and (min-width:1024px) and (max-width:1599px){
-	
-	#header{background-color: yellow;}
 	.header_gnb{margin-right:25px;}
-/*공통내용끝*/
-	
-
 }
 
 @media screen and (min-width:1600px) { /*기본*/
-
 }

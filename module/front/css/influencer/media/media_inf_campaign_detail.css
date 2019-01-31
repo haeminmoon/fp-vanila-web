@@ -1,6 +1,5 @@
 @charset "utf-8";
 @media screen and (max-width:767px){
-	#header{background-color: green !important}
 	#header{height: 56px;}
 	.header_gnb{padding-right: 0;}
 	.header_gnb li{padding: 0 2px;}
@@ -26,13 +25,13 @@
 		z-index: 10;
 	}
 	#nav .open{
-		background: url(../img/open.png)no-repeat;
+		background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/open.png)no-repeat;
 		background-size: 100% auto;
 		width: 22px;
 		height: 22px;
 	}
 	#nav .close{
-		background: url(../img/close_2.png)no-repeat;
+		background: url(https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/close_2.png)no-repeat;
 		background-size: 100% auto;
 		width: 22px;
 		height: 22px;
@@ -123,7 +122,6 @@
 }
 
 @media screen and (min-width:768px) and (max-width:1023px){
-	#header{background-color: blue !important}
 	#main{margin-left: 100px;}
 	.header_gnb{margin-right:25px;}
 	#nav{width: 100px;}
@@ -183,13 +181,9 @@
 		height: 45px;
 	}
 	#footer{display: none;}
-	
-	
-	
 }
 
 @media screen and (min-width:1024px) and (max-width:1599px){
-	#header{background-color: yellow !important}
 	.header_gnb{margin-right:25px;}
 	.container{padding: 0;}
 	.campaign_main{
@@ -222,8 +216,5 @@
 	}
 	#footer{display: none;}
 }
-
-
 @media screen and (min-width:1600px) { /*기본*/
-
 }

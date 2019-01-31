@@ -121,8 +121,6 @@
 	.agree > ul > li a{font-size: 13px;}
 	.submit_btn{margin: 40px 0;}
 }
-
-
 @media screen and (min-width:768px) and (max-width:1023px){
 	#main{padding: 20px 20px 0;}
 	.container{
@@ -226,9 +224,7 @@
 		position: relative;
 		top: -70px;
 	}
-
 }
-
 @media screen and (min-width:1024px) and (max-width:1599px){
 	#main{padding: 50px 20px 0;}
 	.container{
@@ -312,7 +308,5 @@
 		top: -80px;
 	}
 }
-
 @media screen and (min-width:1600px) { /*기본*/
-
 }
