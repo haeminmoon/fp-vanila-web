@@ -1,0 +1,11 @@
+@charset "utf-8";
+@media screen and (max-width:767px){
+}
+
+@media screen and (min-width:768px) and (max-width:1023px){
+}
+
+@media screen and (min-width:1024px) and (max-width:1599px){
+}
+@media screen and (min-width:1600px) { /*기본*/
+}
