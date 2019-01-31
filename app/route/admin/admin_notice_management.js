@@ -42,7 +42,7 @@ app.get('/admin/admin_notice_management', async(req, res) => {
         script: `
         <script src="/front/script/admin/admin_notice_management.js"></script>
         <script>
-            go('.target', $, AdminNoticeManagement.Do.clickTarget);
+            go('.notice_list', $, AdminNoticeManagement.Do.clickTarget);
         </script>
         `
     }));

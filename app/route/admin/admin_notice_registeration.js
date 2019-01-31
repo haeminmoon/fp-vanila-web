@@ -81,9 +81,9 @@ app.post('/api/admin/admin_notice_registeration', async (req, res) => {
                 map(a => {
                     // 알림을 어떻게 저장할지 확인하는 부분
                     if (a.notification_list === null) {
-                        a.notification_list = {hsms : {attr : notification_contents.attr, id : notification_contents.id, name : notification_contents.name, read : false}};
+                        a.notification_list = {[hsms] : {attr : notification_contents.attr, id : notification_contents.id, name : notification_contents.name, read : false}};
                     } else {
-                        Object.assign(a.notification_list.notice, {hsms : {attr : notification_contents.attr, id : notification_contents.id, name : notification_contents.name, read : false}});
+                        Object.assign(a.notification_list, {[hsms] : {attr : notification_contents.attr, id : notification_contents.id, name : notification_contents.name, read : false}});
                     }
                     return a;
                 }),

@@ -16,9 +16,8 @@ const clickNoticeMsg = userId => {
             $.post('/api/notification'),
             a => match(a.res)
                 .case(b => b === "there is no contents")(_ => $('.notification').innerHTML = "<p>알림이 없습니다</p>")
-                .case(b => b === "successful load notification")(_ => a.contents)
-                .else(_ => alert("서버 에러입니다")),
-            b => $('.notification_contents').innerHTML = b
+                .case(b => b === "successful load notification")(_ => $('.notification_contents').innerHTML = a.contents)
+                .else(_ => alert("서버 에러입니다"))
         )
         $('.notification').classList.remove("hidden");
     }

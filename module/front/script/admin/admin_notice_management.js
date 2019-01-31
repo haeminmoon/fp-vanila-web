@@ -1,6 +1,6 @@
 !function() {
     const Do = {
-        clickTarget : $.on('click', ({currentTarget : ct}) => {
+        clickTarget : $.on('click', '.target', ({currentTarget : ct}) => {
             let id = $('.num', ct).innerText;
             location.href = `/notice_detail?id=${id}`
         })

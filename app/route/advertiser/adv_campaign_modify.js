@@ -23,7 +23,7 @@ app.get('/advertiser/adv_campaign_modify', async (req, res) => {
                         <div class="input_wrap">
                             <label>캠페인 명<sup>*</sup></label>
                             <div class="campaign_wrap">
-                                <input type="text" class="campaign_title" value=${campaign.name}>
+                                <input type="text" class="campaign_title" value="${campaign.name}">
                             </div>
                         </div>
                         <div class="input_wrap">
@@ -32,19 +32,19 @@ app.get('/advertiser/adv_campaign_modify', async (req, res) => {
                                 <ul>
                                     <li>
                                         <label>신청기간</label>
-                                        <input type="date" class="date_start" name="apply_start_date" target="apply_end_date" value=${formatBackDate(campaign.apply_start_date)}>
+                                        <input type="date" class="date_start" name="apply_start_date" target="apply_end_date" value="${formatBackDate(campaign.apply_start_date)}">
                                         <em>~</em>
-                                        <input type="date" name="apply_end_date" class="date_end" min=${formatBackDate(campaign.apply_start_date)} value=${formatBackDate(campaign.apply_end_date)}>
+                                        <input type="date" name="apply_end_date" class="date_end" min="${formatBackDate(campaign.apply_start_date)}" value="${formatBackDate(campaign.apply_end_date)}">
                                     </li>
                                     <li>
                                         <label>포스팅 기간 </label>
-                                        <input type="date" class="date_start" name="post_start_date" target="post_end_date" value=${formatBackDate(campaign.post_start_date)}>
+                                        <input type="date" class="date_start" name="post_start_date" target="post_end_date" value="${formatBackDate(campaign.post_start_date)}">
                                         <em>~</em>
-                                        <input type="date" name="post_end_date" class="date_end" min=${formatBackDate(campaign.post_start_date)} value=${formatBackDate(campaign.post_end_date)}>
+                                        <input type="date" name="post_end_date" class="date_end" min="${formatBackDate(campaign.post_start_date)}" value="${formatBackDate(campaign.post_end_date)}">
                                     </li>
                                     <li>
                                         <label>발표일 </label>
-                                        <input type="date" name="notice_date" class="notice_date" value=${formatBackDate(campaign.notice_date)}>
+                                        <input type="date" name="notice_date" class="notice_date" value="${formatBackDate(campaign.notice_date)}">
                                     </li>
                                 </ul>
                             </div>
@@ -52,7 +52,7 @@ app.get('/advertiser/adv_campaign_modify', async (req, res) => {
                         <div class="input_wrap">
                             <label>대표이미지<sup>*</sup></label>
                             <div class="main_img_wrap">
-                                <img src="${campaign.img}?${new Date()}" class="main_img non_modified" name="main_img" 	file_name=${getFileName(campaign.img)} sub_order=0>
+                                <img src="${campaign.img}?${new Date()}" class="main_img non_modified" name="main_img" 	file_name="${getFileName(campaign.img)}" sub_order=0>
                                 <input type="file" target=${getFileName(campaign.img)} accept=".jpg, .jpeg, .png" class="img_url" name="img_url">
                             </div>
                         </div>
