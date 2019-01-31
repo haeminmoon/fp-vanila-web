@@ -1,4 +1,4 @@
-const { sendMail } = require('../../../module/back/util/mailer');
+const {ses, mailOption} = require('../../../module/back/util/ses');
 
 app.get('/influencer/inf_campaign_apply', async (req, res) => {
     if (!req.session.user || req.session.user.auth !== 'influencer') return res.redirect('/common/signin');
@@ -132,13 +132,13 @@ app.post('/api/influencer/inf_campaign_apply', (req, res, next) => {
     go(
         req.body,
         pipeT(
-            async a => {
-                await sendMail(
-                    '스핀 프로토콜에서 보내는 메일입니다',
+            a => {
+                ses.sendEmail(mailOption(
+                    '스핀 프로토콜에서 보내는 메일입니다.',
                     `${a.campaign_name} 캠페인에 ${a.info[userId].followers}명의 팔로워 수를 가진 ${a.info[userId].name} 인플런서 님께서 신청하셨습니다.`,
                     a.advertiser_id
-                ).catch(err => {
-                    throw err;
+                ), (err, data) => {
+                    if (err) throw err;
                 });
                 return a;
             },

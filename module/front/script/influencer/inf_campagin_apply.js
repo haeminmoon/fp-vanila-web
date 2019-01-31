@@ -38,7 +38,7 @@
                     }
                 },
                 $.post('/api/influencer/inf_campaign_apply'),
-                _ => location.replace('/advertiser/adv_campaign_management')
+                _ => location.replace('/influencer/inf_campaign_management')
             ).catch(
                 a => match(a)
                     .case(a => a === 'No checked')

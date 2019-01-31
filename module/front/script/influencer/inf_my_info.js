@@ -7,7 +7,6 @@
                 password_chk: go(dt, $.find('[name="password_chk"]'), $.trim)
             },
             pipeT(
-                tap(log),
                 $.put('/api/inf_my_info/modify_password'),
                 _ => alert('비밀번호가 변경되었습니다. 다시 로그인 해주세요.'),
                 _ => location.href = '/logout'
@@ -35,13 +34,24 @@
                 birth: go(dt, $.find('[name="birth"]'), $.trim),
                 // phone_num: go(dt, $.find('[name="phone_num"]'), $.trim)
             },
-            tap(log),
-            a => {
-                if (confirm('수정하시겠습니까?') === true) {
-                    $.put('/api/inf_my_info/modify_ps_info', a);
-                    alert('계정정보가 수정되었습니다.');
+            pipeT(
+                a => {
+                    for (key in a) {
+                        if (a[key] === '') {
+                            throw 'No content'
+                        }
+                    }
+                    if (confirm('수정하시겠습니까?')) {
+                        $.put('/api/inf_my_info/modify_ps_info', a);
+                        alert('계정정보가 수정되었습니다.');
+                    }
                 }
-            }
+            ).catch(
+                a => match(a)
+                    .case(a => a === 'No content')
+                    (_ => alert('입력란을 채워주세요.'))
+                    .else(_ => alert('서버 에러입니다.'))
+            )
         )),
 
         openSnsPop: $.on('click', _ => {
@@ -61,9 +71,7 @@
                 instagram_access_token: go(dt, $.find('[name="instagram_access_token"]'), a => a.innerText),
                 instagram_user_birthday: go(dt, $.find('[name="instagram_user_birthday"]'), a => a.innerText)
             },
-            tap(log),
             $.put('/api/inf_my_info/sns_account_info'),
-            tap(log),
             _ => alert('연동 계정이 변경되었습니다.'),
         )),
 
