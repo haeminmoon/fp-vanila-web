@@ -37,16 +37,24 @@
                 industry: go(dt, $.find('[name="industry"]'), $.trim),
                 phone_num: go(dt, $.find('[name="phone_num"]'), $.trim)
             },
-            a => {
-                if (confirm('수정하시겠습니까?') === true) {
-                    /**
-                     * TO-DO
-                     * 실패시 예외처리
-                     */
-                    $.put('/api/adv_my_info/modify_ps_info', a);
-                    alert('수정되었습니다.');
+            pipeT(
+                a => {
+                    for (key in a) {
+                        if (a[key] === '') {
+                            throw 'No content'
+                        }
+                    }
+                    if (confirm('수정하시겠습니까?')) {
+                        $.put('/api/adv_my_info/modify_ps_info', a);
+                        alert('수정되었습니다.');
+                    }
                 }
-            }
+            ).catch(
+                a => match(a)
+                    .case(a => a === 'No content')
+                    (_ => alert('입력란을 채워주세요.'))
+                    .else(_ => alert('서버 에러입니다.'))
+            )
         )),
 
         address: $.on('click', '.modify_address_btn', ({ delegateTarget: dt }) => go(
@@ -54,12 +62,24 @@
                 post_code: go(dt, $.find('[name="post_code"]'), $.trim),
                 address: go(dt, $.find('[name="address"]'), $.trim)
             },
-            /**
-             * TO-DO
-             * 실패시 예외처리
-             */
-            $.put('/api/adv_my_info/modify_ad_info'),
-            _ => alert('수정되었습니다.')
+            pipeT(
+                a => {
+                    for (key in a) {
+                        if (a[key] === '') {
+                            throw 'No content'
+                        }
+                    }
+                    if (confirm('수정하시겠습니까?')) {
+                        $.put('/api/adv_my_info/modify_ad_info', a);
+                        alert('수정되었습니다.');
+                    }
+                }
+            ).catch(
+                a => match(a)
+                    .case(a => a === 'No content')
+                    (_ => alert('입력란을 채워주세요.'))
+                    .else(_ => alert('서버 에러입니다.'))
+            )
         )),
 
         showPost: $.on('click', _ => {

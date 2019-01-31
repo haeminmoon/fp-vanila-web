@@ -99,17 +99,17 @@ app.get('/advertiser/adv_campaign_registration', async (req, res) => {
                                 <div class="wrap_right date_wrap">
                                     <div>
                                         <label for="apply_due_date">신청 기간</label>
-                                        <input type="date" name="apply_due_date" class="apply_due_date">
-                                        <input type="date" name="apply_due_date" class="apply_due_date">
+                                        <input type="date" name="apply_due_date" class="apply_due_date" min=${formatFrontDate(new Date())}>
+                                        <input type="date" name="apply_due_date" class="apply_due_date" min=${formatFrontDate(new Date())}>
                                     </div>
                                     <div>                                
                                         <label for="notice_date">발표일</label>
-                                        <input type="date" name="notice_date" class="notice_date">
+                                        <input type="date" name="notice_date" class="notice_date" min=${formatFrontDate(new Date())}>
                                     </div>
                                     <div>                         
                                     <label for="post_date">포스팅 기간</label>       
-                                    <input type="date" name="post_date" class="post_date">
-                                    <input type="date" name="post_date" class="post_date">
+                                    <input type="date" name="post_date" class="post_date" min=${formatFrontDate(new Date())}>
+                                    <input type="date" name="post_date" class="post_date" min=${formatFrontDate(new Date())}>
                                 </div>
                                 </div>
                             </div>
