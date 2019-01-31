@@ -61,9 +61,6 @@
 		min-width: 0;
 		border-radius: 4px;
 	}
-	body .sns_warp{
-		height: 200px;
-	}
 	.profile_img{
 		width: 70px;
 		height: 70px;
@@ -81,6 +78,14 @@
 	}
 	.info_2{padding: 0 20px;}
 	.info_2 > li{font-size: 14px;}
+	
+	.sns_warp{height: 270px;}
+	.container .sns_change_btn{
+		position: absolute;
+		left: 0;
+		width: 100%;
+		bottom: -70px;
+	}
 }
 
 @media screen and (min-width:768px) and (max-width:1023px){
@@ -118,10 +123,33 @@
 		max-width: 600px;
 		min-width: 550px;
 	}
+	.sns_warp{height: 300px;}
+	.container .sns_change_btn{
+		width: 100%;
+		position: relative;
+		display: block;
+		bottom: -30px;
+	}
 }
 
 @media screen and (min-width:1024px) and (max-width:1599px){
 	.header_gnb{margin-right:25px;}
+	.sns_warp{height: 300px;}
+	.profile_img{
+		position: relative;
+		top: 20px;
+	}
+	.container .sns_change_btn{
+		width: 100%;
+		position: relative;
+		bottom: -30px;
+	}
 }
 @media screen and (min-width:1600px) { /*기본*/
+	.sns_warp{height: 290px;}
+	.container .sns_change_btn{
+		width: 530px;
+		position: absolute;
+		bottom: 30px;
+	}
 }

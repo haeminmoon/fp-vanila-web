@@ -17,7 +17,7 @@ const getNoice = item => {
                 <p>${item.name}</p>
             </td>
             <td class="apply_term">${formatFrontDate(item.info.due_date_start)} ~ ${formatFrontDate(item.info.due_date_end)}</td>
-            <td class="inf" style="text-align: center;">${convertTarget(item.notification_target)}</td>
+            <td class="inf">${convertTarget(item.notification_target)}</td>
             <td class="start_date">${formatFrontDate(item.created_at)}</td>
         </tr>
     `

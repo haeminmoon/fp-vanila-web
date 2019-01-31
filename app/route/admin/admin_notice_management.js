@@ -6,6 +6,7 @@ app.get('/admin/admin_notice_management', async(req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/admin/admin_common_notice.css"/>
+            <link rel="stylesheet" href="/front/css/admin/admin_notice.css"/>
         `,
         header: TMPL.layout.accountHeader('find_user'),
         nav: TMPL.layout.adminNav("admin"),

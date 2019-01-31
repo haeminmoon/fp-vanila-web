@@ -48,11 +48,6 @@
 
     TMPL.layout.accountHeader = (title) => ` 
         <div id="header">
-            <h1 class="logo">
-                <a href="/">
-                <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%403x.png" class="logo" alt="spinprotocol_logo">
-                </a>
-            </h1>
             <p class="title">${__(title)}</p>
         </div>
     `;
@@ -76,10 +71,7 @@
                     <p>${userName}님</p>
                 </li>
             </ul>
-        </div>
-        <div class="pop_content">
-            <div class="notification hidden">
-            </div>
+            ${TMPL.layout.popupNotification()}
         </div>
     `;
 
@@ -102,12 +94,20 @@
                     <p>반가워요, ${userName}님</p>
                 </li>
             </ul>
-        </div>
-        <div class="pop_content">
-            <div class="notification hidden">
-            </div>
+            ${TMPL.layout.popupNotification()}
         </div>
     `;
+
+    TMPL.layout.popupNotification = _ => `
+        <div class="pop_content">
+            <div class="notification hidden">
+                <strong>알림</strong>
+                <ul class="notification_contents">
+
+                </ul>
+            </div>
+        </div>
+    `
 
     TMPL.layout.advNav = userName => `
         <div id="nav">

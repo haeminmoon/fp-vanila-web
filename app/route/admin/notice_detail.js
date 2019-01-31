@@ -10,18 +10,26 @@ app.get('/notice_detail', async(req, res) => {
     res.send(TMPL.layout.hnmf({
         css: `
             <link rel="stylesheet" href="/front/css/admin/admin_common_notice.css" />
+            <link rel="stylesheet" href="/front/css/admin/admin_detail.css" />
         `,
         header: TMPL.layout.accountHeader('find_user'),
         nav: getNav(user),
         main: `
             <div id="main">
                 <div class="container">
-                    <p>공지사항 제목 : ${notice.name}</p>
-                    <p>공지 대상 : ${notice.notification_target}</p>
-                    <p>공지 기간</p>
-                    <p>${notice.info.due_date_start} ~ ${notice.info.due_date_end}</p>
-                    <p>내용</p>
-                    <p>${notice.info.description}</p>
+                    <strong>${notice.name}</strong>
+                    <div>
+                        <span>공지대상</span>
+                        <p>${notice.notification_target}</p>
+                    </div>
+                    <div>
+                        <span>공지기간</span>
+                        <p>${notice.info.due_date_start} ~ ${notice.info.due_date_end}</p>
+                    </div>
+                    <div class="notice_contents">
+                        <span>내용</span>
+                        <p>${notice.info.description}</p>
+                    </div>
                 </div>
             </div>
         `,

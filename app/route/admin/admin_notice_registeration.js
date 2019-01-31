@@ -74,19 +74,16 @@ app.post('/api/admin/admin_notice_registeration', async (req, res) => {
             let [notice] = await QUERY`INSERT INTO notices ${VALUES(b)} RETURNING id, name, notification_target`;
             let notification_contents = {"attr":"notice", "id":notice.id, "name":notice.name};
             let targetUserList = await getUserList(notice.notification_target);
+            let hsms = new Date();
+            hsms = hsms.getHours()+""+hsms.getMinutes()+""+hsms.getMilliseconds();
             return go(
                 targetUserList,
                 map(a => {
+                    // 알림을 어떻게 저장할지 확인하는 부분
                     if (a.notification_list === null) {
-                        a.notification_list = {
-                            notice: [{id : notification_contents.id, name : notification_contents.name, read : false}]
-                        }
-                    } else if (!a.notification_list.notice) {
-                        Object.assign(a.notification_list, {
-                            notice: [{id : notification_contents.id, name : notification_contents.name, read : false}]
-                        })
+                        a.notification_list = {hsms : {attr : notification_contents.attr, id : notification_contents.id, name : notification_contents.name, read : false}};
                     } else {
-                        a.notification_list.notice.push({id : notification_contents.id, name : notification_contents.name, read : false})
+                        Object.assign(a.notification_list.notice, {hsms : {attr : notification_contents.attr, id : notification_contents.id, name : notification_contents.name, read : false}});
                     }
                     return a;
                 }),

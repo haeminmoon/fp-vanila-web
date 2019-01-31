@@ -4,18 +4,24 @@ app.post('/api/notification', async (req, res) => {
     go(
         data.notification_list,
         a => {
-            let contents = "";
-            for (const key in a) {
-                contents += `<p>${convertNotificationAttr(key)}</p>`;
-                contents += go(
-                    a[key],
-                    map(b => {
-                        if (!b.read) return `<button onclick="location.href = '${convertNotificationContents(key)}?id=${b.id}'">${b.name}</button>`
-                    }),
-                    c => html`${c}`
-                )
-            }
-            return contents;
+            // let contents = ``;
+            // for (const key in a) {
+            //     contents = go(
+            //         a[key],
+            //         map(b => {
+            //             if (true) return `
+            //             <li>
+            //                 <a href='${convertNotificationContents(key)}?id=${b.id}'>
+            //                     <span>${convertNotificationAttr(key)}</span>
+            //                     <p>${convertNotificationAttr(key)} | ${b.name}</p>
+            //                 </a>
+            //             </li>
+            //             `
+            //         }),
+            //         c => html`${c}`
+            //     )
+            // }
+            // return contents;
         },
         b => {
             if (!b) return ({"res":"there is no contents"});
@@ -33,9 +39,3 @@ app.post('/api/notification_read', async (req, res) => {
 
 const convertNotificationAttr = attr => attr === "notice"? "공지사항" : "알림 속성이 존재하지 않습니다";
 const convertNotificationContents = attr => attr === "notice"? "/notice_detail" : "";
-// 알람컨텐츠 => 속성받고 => 속성에 대한 알람 한줄씩 만들수 있음 예를들어 [ 공지사항 알람 | 제목 : ${ㅇㅇㅇ} 필요한사항 추가 ]
-// [ 공지사항 알람 | 제목 : 이건알람 필요한사항 추가 ]
-// [ 합격통지 알람 | 제목 : ${ㅇㅇㅇ} 필요한사항 추가 ]
-// [ 공지사항 알람 | 제목 : ${ㅇㅇㅇ} 필요한사항 추가 ]
-// [ 공지사항 알람 | 제목 : ${ㅇㅇㅇ} 필요한사항 추가 ]
-// [ 공지사항 알람 | 제목 : ${ㅇㅇㅇ} 필요한사항 추가 ]
