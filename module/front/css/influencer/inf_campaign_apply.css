@@ -16,8 +16,6 @@
 	font-weight: bold;
 }
 
-
-
 .confirm_info{
     height: auto;
     margin-bottom: 30px;
@@ -43,6 +41,9 @@
 }
 .agree_txt, .input_wrap{display: inline-block;}
 .agree_title{padding: 20px;}
+.agree_contents{
+    padding: 0 0 20px 0;
+}
 .input_wrap{float: right;}
 .campaign_agree{
     width: 100%;
