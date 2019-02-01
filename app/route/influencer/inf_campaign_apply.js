@@ -10,7 +10,7 @@ app.get('/influencer/inf_campaign_apply', async (req, res) => {
             if (!a) return [];
             let arr = [];
             for (const key in a) {
-                if (a[key].read === false) a.push(key);
+                if (a[key].read === false) arr.push(key);
             }
             return arr;
         },

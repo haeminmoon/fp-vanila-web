@@ -10,12 +10,12 @@ app.get('/advertiser/adv_campaign_detail', async (req, res) => {
             if (!a) return [];
             let arr = [];
             for (const key in a) {
-                if (a[key].read === false) a.push(key);
+                if (a[key].read === false) arr.push(key);
             }
             return arr;
         },
         b => b.length
-    )
+    );
     let campaignId = req.query.id;
     let [campaignDetail] = await QUERY`SELECT * FROM campaign WHERE id = ${campaignId}`;
     res.send(TMPL.layout.hnmf({
