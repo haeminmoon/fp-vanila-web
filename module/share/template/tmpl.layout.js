@@ -111,7 +111,7 @@
 
     TMPL.layout.advNav = userName => `
         <div id="nav">
-            <a class="open"></a>
+            <a class="open ham_btn"></a>
             <h1 class="logo">
                 <a href="/">
                     <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%403x.png" class="logo" alt="spinprotocol_logo">
@@ -137,7 +137,7 @@
 
     TMPL.layout.infNav = userName => `
         <div id="nav">
-            <a class="open"></a>
+            <a class="open ham_btn"></a>
             <h1 class="logo">
                 <a href="/">
                     <img src="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17.png" srcset="https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%402x.png, https://s3.ap-northeast-2.amazonaws.com/spin-protocol-resource/resources/images/spin-logo1/group-17%403x.png" class="logo" alt="spinprotocol_logo">
