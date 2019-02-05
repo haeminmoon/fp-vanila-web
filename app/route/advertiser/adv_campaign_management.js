@@ -13,7 +13,7 @@ app.get('/advertiser/adv_campaign_management', async (req, res) => {
             return arr;
         },
         b => b.length
-    )
+    );
     let searchTerm = `%${req.query.searchTerm}%`;
 
     let campaignList = (!req.query.searchTerm) ?
