@@ -11,7 +11,8 @@
 	.header_img, #header p{display: none;}
 	#main{margin-left: 0; padding: 0 0 170px; overflow: hidden;}
 	.breadcrumbs{display: none;}
-/*곧통내용끝*/
+
+	/*공통내용끝*/
 	#nav{
 		position: absolute;
 		z-index: 1000;
